@@ -1,0 +1,3 @@
+* comando para crear proyecto en laravel ver 5.0 
+$ composer create=project laravel/laravel=5.0 project-name --prefer-dist
+
