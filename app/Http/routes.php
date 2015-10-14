@@ -19,3 +19,11 @@ Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+Route::resource('clients', 'ClientController');
+
+Route::get('clients/{id}/delete', [
+    'as' => 'clients.delete',
+    'uses' => 'ClientController@destroy',
+]);
