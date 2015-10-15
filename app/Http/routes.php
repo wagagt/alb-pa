@@ -69,3 +69,11 @@ Route::get('proyectos/{id}/delete', [
     'as' => 'proyectos.delete',
     'uses' => 'ProyectosController@destroy',
 ]);
+
+
+Route::resource('comentarios', 'ComentariosController');
+
+Route::get('comentarios/{id}/delete', [
+    'as' => 'comentarios.delete',
+    'uses' => 'ComentariosController@destroy',
+]);
