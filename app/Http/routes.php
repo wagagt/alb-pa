@@ -53,3 +53,11 @@ Route::get('estados/{id}/delete', [
 ]);
 
 
+
+
+Route::resource('usuarios', 'UsuariosController');
+
+Route::get('usuarios/{id}/delete', [
+    'as' => 'usuarios.delete',
+    'uses' => 'UsuariosController@destroy',
+]);
