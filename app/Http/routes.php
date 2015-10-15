@@ -77,3 +77,11 @@ Route::get('comentarios/{id}/delete', [
     'as' => 'comentarios.delete',
     'uses' => 'ComentariosController@destroy',
 ]);
+
+
+Route::resource('bitacoras', 'BitacoraController');
+
+Route::get('bitacoras/{id}/delete', [
+    'as' => 'bitacoras.delete',
+    'uses' => 'BitacoraController@destroy',
+]);
