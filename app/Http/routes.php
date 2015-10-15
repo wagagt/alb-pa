@@ -61,3 +61,11 @@ Route::get('usuarios/{id}/delete', [
     'as' => 'usuarios.delete',
     'uses' => 'UsuariosController@destroy',
 ]);
+
+
+Route::resource('proyectos', 'ProyectosController');
+
+Route::get('proyectos/{id}/delete', [
+    'as' => 'proyectos.delete',
+    'uses' => 'ProyectosController@destroy',
+]);
