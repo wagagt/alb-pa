@@ -27,3 +27,29 @@ Route::get('clients/{id}/delete', [
     'as' => 'clients.delete',
     'uses' => 'ClientController@destroy',
 ]);
+
+
+Route::resource('roles', 'RolesController');
+
+Route::get('roles/{id}/delete', [
+    'as' => 'roles.delete',
+    'uses' => 'RolesController@destroy',
+]);
+
+
+Route::resource('clientes', 'ClientesController');
+
+Route::get('clientes/{id}/delete', [
+    'as' => 'clientes.delete',
+    'uses' => 'ClientesController@destroy',
+]);
+
+
+Route::resource('estados', 'EstadosController');
+
+Route::get('estados/{id}/delete', [
+    'as' => 'estados.delete',
+    'uses' => 'EstadosController@destroy',
+]);
+
+
