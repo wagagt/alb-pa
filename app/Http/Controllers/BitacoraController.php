@@ -16,6 +16,7 @@ class BitacoraController extends AppBaseController
 
 	function __construct(BitacoraRepository $bitacoraRepo)
 	{
+		// $this->middleware('auth'); Validar que solo usuarios autenticados puedan usar el controlador
 		$this->bitacoraRepository = $bitacoraRepo;
 	}
 
