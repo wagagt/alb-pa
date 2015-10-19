@@ -20,11 +20,11 @@ class CreateUsersTable extends Migration {
 			$table->string('contact_lname');
 			$table->string('email')->unique();
 			$table->string('password', 60);
-			$table->rememberToken();
 			$table->integer('id_rol')->unsigned();
 			$table->foreign('id_rol')->references('id')->on('roles')->onDelete('cascade');
 			$table->integer('id_cliente')->unsigned();
 			$table->foreign('id_cliente')->references('id')->on('clientes')->onDelete('cascade');
+			$table->rememberToken();
 			$table->timestamps();
 		});
 	}

@@ -74,7 +74,7 @@
             </li>
             <li>
                 <a href="/auth/logout">
-                <i class="fa fa-history"></i> <span>Cerrar Sesión</span> 
+                <i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span> 
                 </a>
             </li>
         </ul>
