@@ -27,12 +27,14 @@
             <li class="header">MENU PRINCIPAL</li>
             <li class="active treeview">
                 <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Inicio</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Inicio</span> 
+                <!--<i class="fa fa-angle-left pull-right">-->
+                </i>
                 </a>
-                <ul class="treeview-menu">
-                    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard</a></li>
-                    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Bitácoras</a></li>
-                </ul>
+                <!--<ul class="treeview-menu">-->
+                <!--    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard</a></li>-->
+                <!--    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Bitácoras</a></li>-->
+                <!--</ul>-->
             </li>
             <li class="treeview">
                 <a href="/usuarios">
@@ -68,6 +70,11 @@
             <li>
                 <a href="/bitacoras">
                 <i class="fa fa-history"></i> <span>Admin. Bitácoras</span> 
+                </a>
+            </li>
+            <li>
+                <a href="/auth/logout">
+                <i class="fa fa-history"></i> <span>Cerrar Sesión</span> 
                 </a>
             </li>
         </ul>
