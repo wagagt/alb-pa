@@ -364,6 +364,14 @@
   border-bottom: 0 solid transparent;
   border-right: 1px solid #eee;
 }
+
+.skin-black .main-header > .logo-login {
+  /* background-color: #ffffff;*/
+  color: #333333;
+  border-bottom: 0 solid transparent;
+  border-right: 1px solid #eee;
+}
+
 .skin-black .main-header > .logo:hover {
   background-color: #fcfcfc;
 }
