@@ -3,27 +3,28 @@
 namespace App\Libraries\Repositories;
 
 
-use App\Models\Roles;
+use App\Models\Users;
 use Illuminate\Support\Facades\Schema;
 
-class RolesRepository
+class UsersRepository
 {
 
 	/**
-	 * Returns all Roles
+	 * Returns all Users
 	 *
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
 	public function all()
 	{
-		return Roles::all();
+		return Users::all();
 	}
 
 	public function search($input)
     {
-        $query = Roles::query();
+        $query = Users::query();
+        
+        $columns = Schema::getColumnListing('users');
 
-        $columns = Schema::getColumnListing('roles');
         $attributes = array();
 
         foreach($columns as $attribute){
@@ -41,52 +42,42 @@ class RolesRepository
     }
 
 	/**
-	 * Stores Roles into database
+	 * Stores Users into database
 	 *
 	 * @param array $input
 	 *
-	 * @return Roles
+	 * @return Users
 	 */
 	public function store($input)
 	{
-		return Roles::create($input);
+		return Users::create($input);
 	}
 
 	/**
-	 * Find Roles by given id
+	 * Find Users by given id
 	 *
 	 * @param int $id
 	 *
-	 * @return \Illuminate\Support\Collection|null|static|Roles
+	 * @return \Illuminate\Support\Collection|null|static|Users
 	 */
-	public function findRolesById($id)
+	public function findUsersById($id)
 	{
-		return Roles::find($id);
+		return Users::find($id);
 	}
 
 	/**
-	 * Updates Roles into database
+	 * Updates Users into database
 	 *
-	 * @param Roles $roles
+	 * @param Users $Users
 	 * @param array $input
 	 *
-	 * @return Roles
+	 * @return Users
 	 */
-	public function update($roles, $input)
+	public function update($Users, $input)
 	{
-		$roles->fill($input);
-		$roles->save();
+		$Users->fill($input);
+		$Users->save();
 
-		return $roles;
+		return $Users;
 	}
-	
-	/**
-	 * Return list of Roles to fill option
-	 * @return Roles
-	 */
-	public function optionList()
-	{
-		return Roles::lists('descripcion', 'id');
-	}
-	
 }

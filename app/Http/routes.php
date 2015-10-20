@@ -52,6 +52,13 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'UsuariosController@destroy',
     ]);
     
+    Route::resource('users', 'UsersController');
+    
+    Route::get('users/{id}/delete', [
+        'as' => 'users.delete',
+        'uses' => 'UsersController@destroy',
+    ]);
+    
     
     Route::resource('proyectos', 'ProyectosController');
     
