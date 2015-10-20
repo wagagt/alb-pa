@@ -75,17 +75,6 @@ class UsersController extends AppBaseController
 	{
         $input = $request->all();
 
-		// $valid = $this->validate($input);
-
-		// if ($valid->fails())
-		// {
-		// 	Flash::message('Users saved successfully.');
-		// 	return redirect(route('users.create'));
-		// 	// $this->throwValidationException(
-		// 	// 	$request, $validator
-		// 	// );
-		// }
-		
 		$Users = $this->usersRepository->store($input);
 
 		Flash::message('Users saved successfully.');
@@ -122,6 +111,11 @@ class UsersController extends AppBaseController
 	public function edit($id)
 	{
 		$Users = $this->usersRepository->findUsersById($id);
+		/*Add selectS options*/
+		$roles_options 		= $this->rolesRepository->optionList();
+		$clientes_options 	= $this->clientesRepository->optionList();
+		
+		//dd([$Users,$roles_options,$clientes_options, $Users->id]);exit();
 
 		if(empty($Users))
 		{
@@ -129,7 +123,10 @@ class UsersController extends AppBaseController
 			return redirect(route('users.index'));
 		}
 
-		return view('users.edit')->with('Users', $Users);
+		return view('users.edit')
+		->with('userdata', $Users)
+		->with('rol_options', $roles_options)
+		->with('cliente_options', $clientes_options);
 	}
 
 	/**

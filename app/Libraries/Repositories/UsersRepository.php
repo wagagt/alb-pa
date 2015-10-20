@@ -50,6 +50,9 @@ class UsersRepository
 	 */
 	public function store($input)
 	{
+		$hashPass = \Hash::make($input['password']);
+		$input['password'] = $hashPass;
+		$input['password_confirmation'] = $hashPass;
 		return Users::create($input);
 	}
 

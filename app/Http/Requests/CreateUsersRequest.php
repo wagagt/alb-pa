@@ -37,9 +37,9 @@ class CreateUsersRequest extends Request {
             'id_cliente.required' => 'Debe elegir un Rol.',
             'password.required' => 'La clave es requerida.',
             'password.min' => 'La clave debe tener almenos 6 caracteres.',
-            // 'password.confirmed' => 'Debe confirmar la clave.',
+            'password.confirmed' => 'Debe confirmar la clave.',
             'password_confirmation.required' => 'Debe confirmar la clave',
-            'password_confirmation.min' => 'La confirmación de su Clave no es igual.',
+            'password_confirmation.min' => 'La confirmación de su Clave debe tener almenos 6 caracteres.',
             'password_confirmation.confirmed' => 'La confirmación de su Clave no es igual.',
         ];
     }
