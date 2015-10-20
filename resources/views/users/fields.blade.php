@@ -32,7 +32,8 @@
 <!--- Id Cliente Field --->
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('Cliente', 'Cliente:') !!}
-    {!! Form::text('id_cliente', null, ['class' => 'form-control']) !!}
+    <!--{!! Form::text('id_cliente', null, ['class' => 'form-control']) !!}-->
+    {!! Form::select('id_cliente', $cliente_options, Input::old('id_cliente'), ['class' => 'form-control']) !!}
 </div>
 
 <!--- Password  Cliente Field --->

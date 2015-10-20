@@ -79,4 +79,14 @@ class ClientesRepository
 
 		return $clientes;
 	}
+	
+		/**
+	 * Return list of Clientes to fill option
+	 * @return Clientes
+	 */
+	public function optionList()
+	{
+		return Clientes::lists('nombre', 'id');
+	}
+	
 }

@@ -5,6 +5,7 @@ use App\Http\Requests\CreateUsersRequest;
 use Illuminate\Http\Request;
 use App\Libraries\Repositories\RolesRepository;
 use App\Libraries\Repositories\UsersRepository;
+use App\Libraries\Repositories\ClientesRepository;
 use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
@@ -15,11 +16,13 @@ class UsersController extends AppBaseController
 	/** @var  UsersRepository */
 	private $UsersRepository;
 	private $RolesRepository;
+	private $ClientesRepository;
 
-	function __construct(UsersRepository $usersRepo, RolesRepository $rolesRepo)
+	function __construct(UsersRepository $usersRepo, RolesRepository $rolesRepo, ClientesRepository $clientesRepo)
 	{
 		$this->usersRepository = $usersRepo;
 		$this->rolesRepository = $rolesRepo;
+		$this->clientesRepository = $clientesRepo;
 	}
 
 	/**
@@ -52,12 +55,13 @@ class UsersController extends AppBaseController
 	public function create()
 	{
 				
-		/*Add Rol select options*/
-		$rol_options = $this->rolesRepository->optionList();
-		//dd($rol_options);exit();
-		
+		/*Add selectS options*/
+		$roles_options 		= $this->rolesRepository->optionList();
+		$clientes_options 	= $this->clientesRepository->optionList();
+
 		return view('users.create')
-		->with('rol_options', $rol_options);
+		->with('rol_options', $roles_options)
+		->with('cliente_options', $clientes_options);
 	}
 
 	/**
