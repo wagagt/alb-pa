@@ -25,10 +25,11 @@ class Users extends Model
 	    "name" => "required",
 		"contact_fname" => "required",
 		"contact_lname" => "required",
-		"email" => "required",
+		"email" => "required | email ",
 		"id_cliente" => "required",
 		"id_rol" => "required",
-		"password" => "required"
+		"password" => "required|min:6|confirmed",
+		"password_confirmation" => "required|min:6"
 	];
 
 }

@@ -71,10 +71,21 @@ class UsersController extends AppBaseController
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store(CreateUsersRequest $request)
 	{
         $input = $request->all();
 
+		// $valid = $this->validate($input);
+
+		// if ($valid->fails())
+		// {
+		// 	Flash::message('Users saved successfully.');
+		// 	return redirect(route('users.create'));
+		// 	// $this->throwValidationException(
+		// 	// 	$request, $validator
+		// 	// );
+		// }
+		
 		$Users = $this->usersRepository->store($input);
 
 		Flash::message('Users saved successfully.');
@@ -91,7 +102,7 @@ class UsersController extends AppBaseController
 	 */
 	public function show($id)
 	{
-		$Users = $this->UsersRepository->findUsersById($id);
+		$Users = $this->usersRepository->findUsersById($id);
 
 		if(empty($Users))
 		{
@@ -110,7 +121,7 @@ class UsersController extends AppBaseController
 	 */
 	public function edit($id)
 	{
-		$Users = $this->UsersRepository->findUsersById($id);
+		$Users = $this->usersRepository->findUsersById($id);
 
 		if(empty($Users))
 		{
@@ -131,7 +142,7 @@ class UsersController extends AppBaseController
 	 */
 	public function update($id, CreateUsersRequest $request)
 	{
-		$Users = $this->UsersRepository->findUsersById($id);
+		$Users = $this->usersRepository->findUsersById($id);
 
 		if(empty($Users))
 		{
@@ -139,7 +150,7 @@ class UsersController extends AppBaseController
 			return redirect(route('users.index'));
 		}
 
-		$Users = $this->UsersRepository->update($Users, $request->all());
+		$Users = $this->usersRepository->update($Users, $request->all());
 
 		Flash::message('Users updated successfully.');
 
@@ -155,7 +166,7 @@ class UsersController extends AppBaseController
 	 */
 	public function destroy($id)
 	{
-		$Users = $this->UsersRepository->findUsersById($id);
+		$Users = $this->usersRepository->findUsersById($id);
 
 		if(empty($Users))
 		{
