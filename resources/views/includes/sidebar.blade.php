@@ -36,8 +36,8 @@
                 <!--    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Bitácoras</a></li>-->
                 <!--</ul>-->
             </li>
-            <li class="treeview">
-                <a href="/usuarios">
+            <li>
+                <a href="/users">
                     <i class="fa fa-users"></i>
                     <span>Admin. Usuarios</span>
                 </a>
@@ -47,6 +47,7 @@
                 <i class="fa fa-level-up"></i> <span>Admin. Roles</span> 
                 </a>
             </li>
+            
             <li>
                 <a href="/estados">
                 <i class="fa fa-certificate"></i> <span>Admin. Estados</span> 
