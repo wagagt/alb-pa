@@ -4,19 +4,23 @@ use App\Http\Requests;
 use App\Http\Requests\CreateComentariosRequest;
 use Illuminate\Http\Request;
 use App\Libraries\Repositories\ComentariosRepository;
+use App\Libraries\Repositories\ProyectosRepository;
 use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
+use Auth;
 
 class ComentariosController extends AppBaseController
 {
 
 	/** @var  ComentariosRepository */
 	private $comentariosRepository;
+	private $proyectosRepository;
 
-	function __construct(ComentariosRepository $comentariosRepo)
+	function __construct(ComentariosRepository $comentariosRepo, ProyectosRepository $proyectosRepo)
 	{
 		$this->comentariosRepository = $comentariosRepo;
+		$this->proyectosRepository = $proyectosRepo;
 	}
 
 	/**
@@ -48,7 +52,10 @@ class ComentariosController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('comentarios.create');
+		/* Add select options */
+		$proyectos_options = $this->proyectosRepository->optionList();
+		return view('comentarios.create')
+		->with('proyecto_options', $proyectos_options);
 	}
 
 	/**
@@ -62,6 +69,7 @@ class ComentariosController extends AppBaseController
 	{
         $input = $request->all();
 
+		//dd($input);
 		$comentarios = $this->comentariosRepository->store($input);
 
 		Flash::message('Comentarios saved successfully.');
@@ -98,6 +106,8 @@ class ComentariosController extends AppBaseController
 	public function edit($id)
 	{
 		$comentarios = $this->comentariosRepository->findComentariosById($id);
+		/* Add select options */
+		$proyectos_options = $this->proyectosRepository->optionsList();
 
 		if(empty($comentarios))
 		{
@@ -105,7 +115,9 @@ class ComentariosController extends AppBaseController
 			return redirect(route('comentarios.index'));
 		}
 
-		return view('comentarios.edit')->with('comentarios', $comentarios);
+		return view('comentarios.edit')
+		->with('comentarios', $comentarios)
+		->with('proyecto_options', $proyectos_options);
 	}
 
 	/**

@@ -79,4 +79,13 @@ class ProyectosRepository
 
 		return $proyectos;
 	}
+	
+	/**
+	 * Return list of Proyectos to fill option
+	 * @return list array of proyects
+	 */
+	public function optionList()
+	{
+		return Proyectos::lists('nombre', 'id');
+	}	
 }
