@@ -4,6 +4,8 @@ use App\Http\Requests;
 use App\Http\Requests\CreateProyectosRequest;
 use Illuminate\Http\Request;
 use App\Libraries\Repositories\ProyectosRepository;
+use App\Libraries\Repositories\ClientesRepository;
+use App\Libraries\Repositories\EstadosRepository;
 use Mitul\Controller\AppBaseController;
 use Response;
 use Flash;
@@ -13,10 +15,21 @@ class ProyectosController extends AppBaseController
 
 	/** @var  ProyectosRepository */
 	private $proyectosRepository;
+	private $clientesRepository;
+	private $estadosRepository;
+	private $maquina_options;
+	private $metodo_options;
+	
 
-	function __construct(ProyectosRepository $proyectosRepo)
+	function __construct(ProyectosRepository $proyectosRepo, EstadosRepository $estadosRepo, ClientesRepository $clientesRepo )
 	{
-		$this->proyectosRepository = $proyectosRepo;
+		$this->proyectosRepository 	= $proyectosRepo;
+		$this->clientesRepository  	= $clientesRepo;
+		$this->estadosRepository  	= $estadosRepo;
+		$this->maquina_options		= ['M-3' => 'M-3','M-4' => 'M-4','M-5' => 'M-5','M-6' => 'M-6',
+		'M-7' => 'M-7', 'M-8' => 'M-8', 'M-9' => 'M-9', 'M-10' => 'M-10', 'M-11' => 'M-11'];
+		$this->metodo_options		= ['Rotativo' => 'Rotativo', 'Percusión' => 'Percusión', 
+		'Roto-Percusión' => 'Roto-Percusión'];
 	}
 
 	/**
@@ -48,7 +61,17 @@ class ProyectosController extends AppBaseController
 	 */
 	public function create()
 	{
-		return view('proyectos.create');
+		/*Add select options*/
+		$estados_options 	= $this->estadosRepository->optionList();
+		$clientes_options 	= $this->clientesRepository->optionList();
+		
+		//dd([$this->maquina_options,$this->metodo_options]);
+		
+		return view('proyectos.create')
+		->with('estado_options', $estados_options)
+		->with('cliente_options', $clientes_options)
+		->with('maquina_options', $this->maquina_options)
+		->with('metodo_options', $this->metodo_options);
 	}
 
 	/**
@@ -98,6 +121,9 @@ class ProyectosController extends AppBaseController
 	public function edit($id)
 	{
 		$proyectos = $this->proyectosRepository->findProyectosById($id);
+		/*Add select options*/
+		$estados_options 	= $this->estadosRepository->optionList();
+		$clientes_options 	= $this->clientesRepository->optionList();
 
 		if(empty($proyectos))
 		{
@@ -105,7 +131,12 @@ class ProyectosController extends AppBaseController
 			return redirect(route('proyectos.index'));
 		}
 
-		return view('proyectos.edit')->with('proyectos', $proyectos);
+		return view('proyectos.edit')
+		->with('proyectos', $proyectos)
+		->with('estado_options', $estados_options)
+		->with('cliente_options', $clientes_options)
+		->with('maquina_options', $this->maquina_options)
+		->with('metodo_options', $this->metodo_options);
 	}
 
 	/**

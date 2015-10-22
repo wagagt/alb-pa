@@ -1,6 +1,6 @@
 <!--- Nombre Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('nombre', 'Nombre:') !!}
+    {!! Form::label('nombre', 'Nombre de Proyecto:') !!}
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -18,46 +18,33 @@
 
 <!--- Maquina Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('maquina', 'Maquina:') !!}
-    {!! Form::text('maquina', null, ['class' => 'form-control']) !!}
+    {!! Form::label('maquina', 'Máquina:') !!}
+    {!! Form::select('maquina', $maquina_options, Input::old('maquina'), ['class' => 'form-control']) !!}
 </div>
 
 <!--- Metodo Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('metodo', 'Metodo:') !!}
-    {!! Form::text('metodo', null, ['class' => 'form-control']) !!}
+    {!! Form::label('metodo', 'Método:') !!}
+    {!! Form::select('metodo', $metodo_options, Input::old('metodo'),  ['class' => 'form-control']) !!}
+</div>
+
+<!--- Id Cliente Field --->
+<div class="form-group col-sm-6 col-lg-4">
+    {!! Form::label('id_cliente', 'Cliente:') !!}
+    {!! Form::select('id_cliente', $cliente_options, Input::old('id_cliente'), ['class' => 'form-control']) !!}
+</div>
+
+<!--- Id Estado Field --->
+<div class="form-group col-sm-6 col-lg-4">
+    {!! Form::label('id_estado', 'Estado:') !!}
+    {!! Form::select('id_estado', $estado_options, Input::old('id_estado'),  ['class' => 'form-control']) !!}
 </div>
 
 <!--- Observaciones Field --->
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('observaciones', 'Observaciones:') !!}
-    {!! Form::text('observaciones', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('observaciones', null, ['class' => 'form-control', 'size' => '30x3']) !!}
 </div>
-
-<!--- Id Estado Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_estado', 'Id Estado:') !!}
-    {!! Form::text('id_estado', null, ['class' => 'form-control']) !!}
-</div>
-
-<!--- Id Estado Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_estado', 'Id Estado:') !!}
-    {!! Form::text('id_estado', null, ['class' => 'form-control']) !!}
-</div>
-
-<!--- Id Cliente Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_cliente', 'Id Cliente:') !!}
-    {!! Form::text('id_cliente', null, ['class' => 'form-control']) !!}
-</div>
-
-<!--- Id Cliente Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_cliente', 'Id Cliente:') !!}
-    {!! Form::text('id_cliente', null, ['class' => 'form-control']) !!}
-</div>
-
 
 <!--- Submit Field --->
 <div class="form-group col-sm-12">

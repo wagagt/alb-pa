@@ -79,4 +79,14 @@ class EstadosRepository
 
 		return $estados;
 	}
+	
+	/**
+	 * Return list of Estados to fill option
+	 * @return array list
+	 */
+	public function optionList()
+	{
+		return Estados::lists('descripcion', 'id');
+	}
+	
 }
