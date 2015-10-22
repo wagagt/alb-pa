@@ -1,9 +1,3 @@
-<!--- Comentario Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('comentario', 'Comentario:') !!}
-    {!! Form::text('comentario', null, ['class' => 'form-control']) !!}
-</div>
-
 <!--- Avance Field --->
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('avance', 'Avance:') !!}
@@ -17,29 +11,19 @@
 </div>
 
 <!--- Id Usuario Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_usuario', 'Id Usuario:') !!}
-    {!! Form::text('id_usuario', null, ['class' => 'form-control']) !!}
-</div>
-
-<!--- Id Usuario Field --->
-<div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_usuario', 'Id Usuario:') !!}
-    {!! Form::text('id_usuario', null, ['class' => 'form-control']) !!}
-</div>
+    {!! Form::hidden('id_usuario', Auth::user()->id) !!} 
 
 <!--- Id Proyecto Field --->
 <div class="form-group col-sm-6 col-lg-4">
     {!! Form::label('id_proyecto', 'Id Proyecto:') !!}
-    {!! Form::text('id_proyecto', null, ['class' => 'form-control']) !!}
+    {!! Form::select('id_proyecto', $proyecto_options, Input::old('id_proyecto'),  ['class' => 'form-control']) !!}
 </div>
 
-<!--- Id Proyecto Field --->
+<!--- Comentario Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('id_proyecto', 'Id Proyecto:') !!}
-    {!! Form::text('id_proyecto', null, ['class' => 'form-control']) !!}
+    {!! Form::label('comentario', 'Comentario:') !!}
+    {!! Form::textarea('comentario', null, ['class' => 'form-control', 'size' => '30x5']) !!}
 </div>
-
 
 <!--- Submit Field --->
 <div class="form-group col-sm-12">
