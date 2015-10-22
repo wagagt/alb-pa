@@ -77,7 +77,10 @@ class UsersRepository
 	 * @return Users
 	 */
 	public function update($Users, $input)
-	{
+	{	
+		$hashPass = \Hash::make($input['password']);
+		$input['password'] = $hashPass;
+		$input['password_confirmation'] = $hashPass;
 		$Users->fill($input);
 		$Users->save();
 
