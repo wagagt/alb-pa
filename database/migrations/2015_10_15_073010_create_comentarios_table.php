@@ -20,7 +20,7 @@ class CreateComentariosTable extends Migration
 			$table->integer('avance');
 			$table->integer('horas');
 			$table->integer('id_usuario')->unsigned();
-			$table->foreign('id_usuario')->references('id')->on('usuarios')->onDelete('cascade');
+			$table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
 			$table->integer('id_proyecto')->unsigned();
 			$table->foreign('id_proyecto')->references('id')->on('proyectos')->onDelete('cascade');
 			$table->timestamps();
