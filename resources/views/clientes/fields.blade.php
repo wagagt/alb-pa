@@ -1,6 +1,6 @@
 <!--- Nombre Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('nombre', 'Nombre:') !!}
+    {!! Form::label('nombre', 'Nombre de cliente:') !!}
     {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -18,13 +18,13 @@
 
 <!--- Telefono Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('telefono', 'Telefono:') !!}
+    {!! Form::label('telefono', 'Teléfono:') !!}
     {!! Form::text('telefono', null, ['class' => 'form-control']) !!}
 </div>
 
 <!--- Direccion Field --->
 <div class="form-group col-sm-6 col-lg-4">
-    {!! Form::label('direccion', 'Direccion:') !!}
+    {!! Form::label('direccion', 'Dirección:') !!}
     {!! Form::text('direccion', null, ['class' => 'form-control']) !!}
 </div>
 

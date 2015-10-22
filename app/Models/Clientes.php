@@ -24,7 +24,7 @@ class Clientes extends Model
 	    "nombre" => "required",
 		"contacto_nombres" => "required",
 		"contacto_apellidos" => "required",
-		"email" => "required"
+		"email" => "required | email"
 	];
 
 }
