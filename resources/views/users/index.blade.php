@@ -33,8 +33,8 @@
 					<td>{!! $users->contact_fname !!}</td>
 					<td>{!! $users->contact_lname !!}</td>
 					<td>{!! $users->email !!}</td>
-					<td>{!! $users->id_rol !!}</td>
-					<td>{!! $users->id_cliente !!}</td>
+					<td>{!! $users->rol->descripcion !!}</td>
+					<td>{!! $users->cliente->nombre !!}</td>
                             <td>
                                 <a href="{!! route('users.edit', [$users->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{!! route('users.delete', [$users->id]) !!}" onclick="return confirm('Are you sure wants to delete this Users?')"><i class="glyphicon glyphicon-remove"></i></a>

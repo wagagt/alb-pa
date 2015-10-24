@@ -20,10 +20,8 @@
                     <th>Comentario</th>
 			<th>Avance</th>
 			<th>Horas</th>
-			<th>Id Usuario</th>
-			<th>Id Usuario</th>
-			<th>Id Proyecto</th>
-			<th>Id Proyecto</th>
+			<th>Creado por</th>
+			<th>Proyecto</th>
                     <th width="50px">Action</th>
                     </thead>
                     <tbody>
@@ -33,10 +31,8 @@
                             <td>{!! $comentarios->comentario !!}</td>
 					<td>{!! $comentarios->avance !!}</td>
 					<td>{!! $comentarios->horas !!}</td>
-					<td>{!! $comentarios->id_usuario !!}</td>
-					<td>{!! $comentarios->id_usuario !!}</td>
-					<td>{!! $comentarios->id_proyecto !!}</td>
-					<td>{!! $comentarios->id_proyecto !!}</td>
+					<td>{!! $comentarios->usuario->name !!}</td>
+					<td>{!! $comentarios->proyecto->nombre !!}</td>
                             <td>
                                 <a href="{!! route('comentarios.edit', [$comentarios->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{!! route('comentarios.delete', [$comentarios->id]) !!}" onclick="return confirm('Are you sure wants to delete this Comentarios?')"><i class="glyphicon glyphicon-remove"></i></a>

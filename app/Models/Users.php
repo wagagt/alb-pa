@@ -31,5 +31,19 @@ class Users extends Model
 		"password" => "required|min:6|confirmed",
 		"password_confirmation" => "required|min:6"
 	];
+	
+	
+	/* Relationed Fields*/
+	public function rol()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Roles', 'id_rol');
+	}
+	
+	public function cliente()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Clientes', 'id_cliente');
+	}	
 
 }

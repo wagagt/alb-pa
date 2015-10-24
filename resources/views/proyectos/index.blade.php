@@ -23,10 +23,8 @@
 			<th>Maquina</th>
 			<th>Metodo</th>
 			<th>Observaciones</th>
-			<th>Id Estado</th>
-			<th>Id Estado</th>
 			<th>Id Cliente</th>
-			<th>Id Cliente</th>
+			<th>Id Estado</th>
                     <th width="50px">Action</th>
                     </thead>
                     <tbody>
@@ -39,10 +37,9 @@
 					<td>{!! $proyectos->maquina !!}</td>
 					<td>{!! $proyectos->metodo !!}</td>
 					<td>{!! $proyectos->observaciones !!}</td>
-					<td>{!! $proyectos->id_estado !!}</td>
-					<td>{!! $proyectos->id_estado !!}</td>
-					<td>{!! $proyectos->id_cliente !!}</td>
-					<td>{!! $proyectos->id_cliente !!}</td>
+					<td>{!! $proyectos->cliente->nombre !!}</td>
+					<td>{!! $proyectos->estado->descripcion !!}</td>
+					
                             <td>
                                 <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
                                 <a href="{!! route('proyectos.delete', [$proyectos->id]) !!}" onclick="return confirm('Are you sure wants to delete this Proyectos?')"><i class="glyphicon glyphicon-remove"></i></a>

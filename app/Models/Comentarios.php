@@ -16,8 +16,6 @@ class Comentarios extends Model
 		"avance",
 		"horas",
 		"id_usuario",
-		"id_usuario",
-		"id_proyecto",
 		"id_proyecto"
 	];
 
@@ -28,5 +26,18 @@ class Comentarios extends Model
 		"id_usuario" => "required",
 		"id_proyecto" => "required"
 	];
+	
+	/* Relationed Fields*/
+	public function usuario()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Users', 'id_usuario');
+	}
+	
+	public function proyecto()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Proyectos', 'id_proyecto');
+	}
 
 }

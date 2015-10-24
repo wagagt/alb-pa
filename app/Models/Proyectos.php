@@ -19,8 +19,6 @@ class Proyectos extends Model
 		"metodo",
 		"observaciones",
 		"id_estado",
-		"id_estado",
-		"id_cliente",
 		"id_cliente"
 	];
 
@@ -29,5 +27,19 @@ class Proyectos extends Model
 		"id_estado" => "required",
 		"id_cliente" => "required"
 	];
+	
+		
+	/* Relationed Fields*/
+	public function estado()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Estados', 'id_estado');
+	}
+	
+	public function cliente()
+	{
+		//dd($this->belongsTo('App\Models\Roles'));
+		return $this->belongsTo('App\Models\Clientes', 'id_cliente');
+	}
 
 }
