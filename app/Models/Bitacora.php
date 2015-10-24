@@ -20,5 +20,10 @@ class Bitacora extends Model
 	    "accion" => "required",
 		"id_usuario" => "required"
 	];
+/* Relationed fields */
+
+	public function usuario(){
+		return $this->belongsTo('App\Models\Users', 'id_usuario');
+	}
 
 }
