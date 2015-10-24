@@ -25,32 +25,16 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MENU PRINCIPAL</li>
-            <li class="active treeview">
-                <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Inicio</span> 
-                <!--<i class="fa fa-angle-left pull-right">-->
-                </i>
+            <li>
+                <a href="/home">
+                    <i class="fa fa-users"></i>
+                    <span>Inicio</span>
                 </a>
-                <!--<ul class="treeview-menu">-->
-                <!--    <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard</a></li>-->
-                <!--    <li><a href="index2.html"><i class="fa fa-circle-o"></i>Bitácoras</a></li>-->
-                <!--</ul>-->
             </li>
             <li>
                 <a href="/users">
                     <i class="fa fa-users"></i>
                     <span>Admin. Usuarios</span>
-                </a>
-            </li>
-            <li>
-                <a href="/roles">
-                <i class="fa fa-level-up"></i> <span>Admin. Roles</span> 
-                </a>
-            </li>
-            
-            <li>
-                <a href="/estados">
-                <i class="fa fa-certificate"></i> <span>Admin. Estados</span> 
                 </a>
             </li>
             <li>
@@ -73,6 +57,17 @@
                 <i class="fa fa-history"></i> <span>Admin. Bitácoras</span> 
                 </a>
             </li>
+            <li class="treeview">
+                <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Catálogos Internos</span> 
+                <!--<i class="fa fa-angle-left pull-right">-->
+                </i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/roles"><i class="fa fa-level-up"></i> Admin. Roles</a></li>
+                    <li><a href="/estados"><i class="fa fa-certificate"></i>Admin. Estados</a></li>
+                </ul>
+            </li>            
             <li>
                 <a href="/auth/logout">
                 <i class="fa fa-sign-out"></i> <span>Cerrar Sesión</span> 
