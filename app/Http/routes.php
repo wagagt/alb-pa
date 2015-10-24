@@ -11,6 +11,8 @@
 |
 */
 
+\Event::subscribe('App\Subscriber\Auth');
+
 Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');

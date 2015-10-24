@@ -13,7 +13,6 @@ class Bitacora extends Model
 
 	public $fillable = [
 	    "accion",
-		"id_usuario",
 		"id_usuario"
 	];
 
