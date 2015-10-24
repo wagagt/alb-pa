@@ -36,8 +36,8 @@
 					<td>{!! $users->rol->descripcion !!}</td>
 					<td>{!! $users->cliente->nombre !!}</td>
                             <td>
-                                <a href="{!! route('users.edit', [$users->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('users.delete', [$users->id]) !!}" onclick="return confirm('Are you sure wants to delete this Users?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('users.edit', [$users->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('users.delete', [$users->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Users?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

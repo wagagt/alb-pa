@@ -36,8 +36,8 @@
 					<td>{!! $client->tels !!}</td>
 					<td>{!! $client->address !!}</td>
                             <td>
-                                <a href="{!! route('clients.edit', [$client->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('clients.delete', [$client->id]) !!}" onclick="return confirm('Are you sure wants to delete this Client?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('clients.edit', [$client->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('clients.delete', [$client->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Client?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

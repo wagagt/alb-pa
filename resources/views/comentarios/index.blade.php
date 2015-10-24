@@ -34,8 +34,8 @@
 					<td>{!! $comentarios->usuario->name !!}</td>
 					<td>{!! $comentarios->proyecto->nombre !!}</td>
                             <td>
-                                <a href="{!! route('comentarios.edit', [$comentarios->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('comentarios.delete', [$comentarios->id]) !!}" onclick="return confirm('Are you sure wants to delete this Comentarios?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('comentarios.edit', [$comentarios->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('comentarios.delete', [$comentarios->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Comentarios?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

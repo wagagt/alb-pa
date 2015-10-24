@@ -38,8 +38,8 @@
 					<td>{!! $usuarios->id_cliente !!}</td>
 					<td>{!! $usuarios->id_cliente !!}</td>
                             <td>
-                                <a href="{!! route('usuarios.edit', [$usuarios->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('usuarios.delete', [$usuarios->id]) !!}" onclick="return confirm('Are you sure wants to delete this Usuarios?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('usuarios.edit', [$usuarios->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('usuarios.delete', [$usuarios->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Usuarios?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

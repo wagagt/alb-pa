@@ -29,8 +29,8 @@
         					<td>{!! $bitacora->accion !!}</td>
         					<td>{!! $bitacora->created_at !!}</td>
                             <td>
-                                <a href="{!! route('bitacoras.edit', [$bitacora->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('bitacoras.delete', [$bitacora->id]) !!}" onclick="return confirm('Are you sure wants to delete this Bitacora?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('bitacoras.edit', [$bitacora->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('bitacoras.delete', [$bitacora->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Bitacora?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

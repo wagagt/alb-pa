@@ -26,8 +26,8 @@
                         <tr>
                             <td>{!! $roles->descripcion !!}</td>
                             <td>
-                                <a href="{!! route('roles.edit', [$roles->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('roles.delete', [$roles->id]) !!}" onclick="return confirm('Are you sure wants to delete this Roles?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('roles.edit', [$roles->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('roles.delete', [$roles->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Roles?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

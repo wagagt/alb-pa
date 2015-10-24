@@ -41,8 +41,8 @@
 					<td>{!! $proyectos->estado->descripcion !!}</td>
 					
                             <td>
-                                <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}"><i class="glyphicon glyphicon-edit"></i></a>
-                                <a href="{!! route('proyectos.delete', [$proyectos->id]) !!}" onclick="return confirm('Are you sure wants to delete this Proyectos?')"><i class="glyphicon glyphicon-remove"></i></a>
+                                <a href="{!! route('proyectos.edit', [$proyectos->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                                <a href="{!! route('proyectos.delete', [$proyectos->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Proyectos?')"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
