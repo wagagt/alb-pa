@@ -15,6 +15,7 @@ class Proyectos extends Model
 	    "nombre",
 		"profundidad",
 		"perforado",
+		'diametro',
 		"maquina",
 		"metodo",
 		"observaciones",

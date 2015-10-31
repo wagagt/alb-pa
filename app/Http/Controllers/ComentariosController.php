@@ -35,6 +35,7 @@ class ComentariosController extends AppBaseController
 	    $input = $request->all();
 
 		$result = $this->comentariosRepository->search($input);
+		//dd($result[0][0]->proyecto->cliente->nombre);
 
 		$comentarios = $result[0];
 

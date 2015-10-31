@@ -19,6 +19,7 @@ class CreateProyectosTable extends Migration
 			$table->string('nombre', 300);
 			$table->integer('profundidad');
 			$table->string('perforado', 255);
+			$table->integer('diametro');
 			$table->string('maquina', 255);
 			$table->string('metodo', 255);
 			$table->text('observaciones');

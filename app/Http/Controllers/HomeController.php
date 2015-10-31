@@ -32,9 +32,11 @@ class HomeController extends Controller {
 	public function index()
 	{
 		//dd(\Auth::user()->id_rol);
-		if (\Auth::user()->id_rol == 1 ){
-			return view('home');
+		if (\Auth::user()->id_rol == 1 ){  // if is Admin
+ 			return view('home');   //Admin view
 		}else{
+			//$proyects = App\Client::find(1)->comments()->where('title', 'foo')->first();
+			//dd(\Auth::user()->id_cliente);
 			return view('client');
 		}
 	}

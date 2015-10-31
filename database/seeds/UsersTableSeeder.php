@@ -6,11 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 class UsersTableSeeder extends Seeder {
 public function run()
  {
-    $user = [
+    $user = 
+    [
      ['name' => 'wagagt', 'contact_fname' => 'Wilver', 'contact_lname' => 'Gonzalez', 
       'email' => 'wagagt@gmail.com', 'password' => Hash::make("waga15"), 
-      'id_rol'=>'1', 'id_cliente'=>'1', 'created_at' => new DateTime]
-     ];
+      'id_rol'=>'1', 'id_cliente'=>'1', 'created_at' => new DateTime
+     ],
+     ['name' => 'fabiogt', 'contact_fname' => 'Fabio', 'contact_lname' => 'Gonzalez', 
+      'email' => 'fabiogt@gmail.com', 'password' => Hash::make("fabio15"), 
+      'id_rol'=>'2', 'id_cliente'=>'2', 'created_at' => new DateTime
+     ],
+     ['name' => 'diegogt', 'contact_fname' => 'Diego', 'contact_lname' => 'Gonzalez', 
+      'email' => 'diegogt@gmail.com', 'password' => Hash::make("fabio15"), 
+      'id_rol'=>'2', 'id_cliente'=>'3', 'created_at' => new DateTime
+     ]
+    ];
     DB::table('users')->insert($user);
  }
  
