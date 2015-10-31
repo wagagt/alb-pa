@@ -27,4 +27,9 @@ class Clientes extends Model
 		"email" => "required | email"
 	];
 
+	/* Relationed Fields*/
+	public function proyectos(){
+		//return $this->belongsTo('App\Models\Proyectos', 'id_proyecto');
+		return $this->hasMany('App\Models\Proyectos');
+	}
 }

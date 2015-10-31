@@ -36,8 +36,11 @@ class HomeController extends Controller {
  			return view('home');   //Admin view
 		}else{
 			//$proyects = App\Client::find(1)->comments()->where('title', 'foo')->first();
-			//dd(\Auth::user()->id_cliente);
-			return view('client');
+			//dd(\Auth::user());
+			$proyectos = \DB::table('proyectos')->where('id_cliente',\Auth::user()->id_cliente)->get();
+			//dd($proyectos);
+			return view('client')
+			->with('proyectos',$proyectos);
 		}
 	}
 

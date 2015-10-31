@@ -38,8 +38,9 @@
                 </i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/roles"><i class="fa fa-level-up"></i> Admin. Roles</a></li>
-                    <li><a href="/estados"><i class="fa fa-certificate"></i>Admin. Estados</a></li>
+                    @foreach ($proyectos as $proy)
+                        <li><a href="/proyecto/{{ $proy->id }}"><i class="fa fa-level-up"></i> {{ $proy->nombre }}</a></li>
+                    @endforeach
                 </ul>
             </li>            
             <li>
