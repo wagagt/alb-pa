@@ -31,7 +31,12 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		//dd(\Auth::user()->id_rol);
+		if (\Auth::user()->id_rol == 1 ){
+			return view('home');
+		}else{
+			return view('client');
+		}
 	}
 
 }

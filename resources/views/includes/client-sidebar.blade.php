@@ -24,42 +24,16 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MENU PRINCIPAL</li>
+            <li class="header">MENU</li>
             <li>
                 <a href="/home">
                     <i class="fa fa-users"></i>
                     <span>Inicio</span>
                 </a>
             </li>
-            <li>
-                <a href="/users">
-                    <i class="fa fa-users"></i>
-                    <span>Admin. Usuarios</span>
-                </a>
-            </li>
-            <li>
-                <a href="/clientes">
-                <i class="fa fa-male "></i> <span>Admin. Clientes</span> 
-                </a>
-            </li>
-            <li>
-                <a href="/proyectos">
-                <i class="fa fa-building"></i> <span>Admin. Proyectos</span> 
-                </a>
-            </li>
-            <li>
-                <a href="/comentarios">
-                <i class="fa fa-comments-o"></i> <span>Admin. Comentarios</span> 
-                </a>
-            </li>
-            <li>
-                <a href="/bitacoras">
-                <i class="fa fa-history"></i> <span>Admin. Bitácoras</span> 
-                </a>
-            </li>
             <li class="treeview">
                 <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Catálogos Internos</span> 
+                <i class="fa fa-dashboard"></i> <span>Mis proyectos</span> 
                 <!--<i class="fa fa-angle-left pull-right">-->
                 </i>
                 </a>
