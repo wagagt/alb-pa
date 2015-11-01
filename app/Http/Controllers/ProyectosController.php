@@ -101,15 +101,26 @@ class ProyectosController extends AppBaseController
 	 */
 	public function show($id)
 	{
-		$proyectos = $this->proyectosRepository->findProyectosById($id);
-
-		if(empty($proyectos))
+		$proyecto = $this->proyectosRepository->findProyectosById($id);
+		//dd($proyecto);
+		if(empty($proyecto))
 		{
 			Flash::error('Proyectos not found');
 			return redirect(route('proyectos.index'));
 		}
-
-		return view('proyectos.show')->with('proyectos', $proyectos);
+		
+		if (\Auth::user()->id_rol == 1 ){  // if is Admin
+ 			return view('proyectos.show')->with('proyecto', $proyecto);   //Admin view
+		}else{
+			$proyectos = \DB::table('proyectos')->where('id_cliente',\Auth::user()->id_cliente)->get();
+			$comentarios = \DB::table('comentarios')->where('id_proyecto', $id)->orderBy('created_at', 'desc')->get();
+			//dd($comentarios);
+			return view('proyectos.client-show')
+			->with('proyectos',$proyectos)
+			->with('proyecto',$proyecto)
+			->with('comentarios', $comentarios);
+		}
+		
 	}
 
 	/**

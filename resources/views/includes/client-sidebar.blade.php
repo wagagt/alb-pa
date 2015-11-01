@@ -39,7 +39,7 @@
                 </a>
                 <ul class="treeview-menu">
                     @foreach ($proyectos as $proy)
-                        <li><a href="/proyecto/{{ $proy->id }}"><i class="fa fa-level-up"></i> {{ $proy->nombre }}</a></li>
+                        <li><a href="/proyectos/{{ $proy->id }}"><i class="fa fa-level-up"></i> {{ $proy->nombre }}</a></li>
                     @endforeach
                 </ul>
             </li>            
