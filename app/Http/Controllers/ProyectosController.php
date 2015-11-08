@@ -113,7 +113,8 @@ class ProyectosController extends AppBaseController
  			return view('proyectos.show')->with('proyecto', $proyecto);   //Admin view
 		}else{
 			$proyectos = \DB::table('proyectos')->where('id_cliente',\Auth::user()->id_cliente)->get();
-			$comentarios = \DB::table('comentarios')->where('id_proyecto', $id)->orderBy('created_at', 'desc')->get();
+			$comentarios = \DB::table('comentarios')->where('id_proyecto', $id)->orderBy('created_at', 'desc')->paginate(25);
+			$comentarios->setPath('http://ts50-wagagt.c9.io/proyectos/'.$id);
 			//dd($comentarios);
 			return view('proyectos.client-show')
 			->with('proyectos',$proyectos)

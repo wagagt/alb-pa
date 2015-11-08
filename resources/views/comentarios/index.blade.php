@@ -15,31 +15,33 @@
             @if($comentarios->isEmpty())
                 <div class="well text-center">No Comentarios found.</div>
             @else
-                <table class="table">
+            {!! $comentarios->render() !!}
+                <table class="table table-striped table-condensed">
                     <thead>
-                    <th>Comentario</th>
-			<th>Avance</th>
-			<th>Horas</th>
-			<th>Proyecto (Cliente)</th>
-                    <th width="50px">Action</th>
+                      <th>Fecha</th>
+                      <th>Avance</th>
+                      <th>Horas</th>
+                      <th>Comentario</th>  
+                      <th>Action</th>
                     </thead>
                     <tbody>
-                     
-                    @foreach($comentarios as $comentarios)
+                    @foreach($comentarios as $comentario)
                     <tr>
-                        <td>{!! $comentarios->comentario !!}</td>
-    					<td>{!! $comentarios->avance !!}</td>
-    					<td>{!! $comentarios->horas !!}</td>
-    					<td>{!! $comentarios->proyecto->nombre !!} ({!! $comentarios->proyecto->cliente->nombre !!})</td>
+                        <td>{{$comentario->created_at}}</td>
+                        <td>{{$comentario->avance}}</td>
+                        <td>{{$comentario->horas}}</td>
+                        <td><textarea rows="2" cols="50">{{$comentario->comentario}}</textarea></td>
                         <td>
-                            <a href="{!! route('comentarios.edit', [$comentarios->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
-                            <a href="{!! route('comentarios.delete', [$comentarios->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Comentarios?')"><i class="fa fa-trash"></i></a>
+                            <a href="{!! route('comentarios.edit', [$comentario->id]) !!}"><i class="fa fa-pencil-square-o"></i></a>
+                            <a href="{!! route('comentarios.delete', [$comentario->id]) !!}" onclick="return confirm('Está seguro de eliminar éste registro - Comentarios?')"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
-                    @endforeach
+                    @endforeach                     
                     </tbody>
                 </table>
+                {!! $comentarios->render() !!}
             @endif
         </div>
     </div>
 @endsection
+

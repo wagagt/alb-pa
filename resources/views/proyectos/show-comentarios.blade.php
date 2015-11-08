@@ -1,6 +1,7 @@
 
 <div class="row">
 		<div class="span5">
+		    {!! $comentarios->render() !!}
             <table class="table table-striped table-condensed">
                   <thead>
                 
@@ -17,16 +18,12 @@
                     <td>{{$comentario->created_at}}</td>
                     <td>{{$comentario->avance}}</td>
                     <td>{{$comentario->horas}}</td>
-                    <td><textarea rows="4" cols="50">{{$comentario->comentario}}</textarea></td>                                       
+                    <td><textarea rows="2" cols="50">{{$comentario->comentario}}</textarea></td>                                       
                 </tr>
                 @endforeach
               </tbody>
             </table>
+            {!! $comentarios->render() !!}
             </div>
 	</div>
 	
-    <!--- Profundidad Field --->
-    <div class="form-group col-sm-6 col-lg-4">
-        Fecha:{{ $comentario->created_at }}, Avance:{{ $comentario->avance }}, Horas: {{ $comentario->horas }}<br>
-        Comentario: {{ $comentario->comentario }}<hr>
-    </div>

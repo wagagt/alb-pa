@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Libraries\Repositories\ComentariosRepository;
 use App\Libraries\Repositories\ProyectosRepository;
 use Mitul\Controller\AppBaseController;
+use App\Http\Controllers\App\Comentarios;
 use Response;
 use Flash;
 use Auth;
+use App\Models;
 
 class ComentariosController extends AppBaseController
 {
@@ -34,16 +36,17 @@ class ComentariosController extends AppBaseController
 	{
 	    $input = $request->all();
 
-		$result = $this->comentariosRepository->search($input);
-		//dd($result[0][0]->proyecto->cliente->nombre);
-
-		$comentarios = $result[0];
-
-		$attributes = $result[1];
+		// $result = $this->comentariosRepository->search($input);
+		// //dd($result[0][0]->proyecto->cliente->nombre);
+		// $comentarios = $result[0];
+		// $attributes = $result[1];
+		$comentarios = \DB::table('comentarios')->paginate(25);
+		//$comentarios = \Comentarios::paginate(25);
+		$comentarios->setPath('http://ts50-wagagt.c9.io/comentarios');
 
 		return view('comentarios.index')
-		    ->with('comentarios', $comentarios)
-		    ->with('attributes', $attributes);;
+		    ->with('comentarios', $comentarios);
+		    //->with('attributes', $attributes);
 	}
 
 	/**
