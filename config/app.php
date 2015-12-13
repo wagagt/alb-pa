@@ -149,6 +149,7 @@ return [
 		'Illuminate\Html\HtmlServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Mitul\Generator\GeneratorServiceProvider',
+		'Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider',
 
 	],
 

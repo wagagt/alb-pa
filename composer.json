@@ -9,7 +9,7 @@
 		"mitulgolakiya/laravel-api-generator": "1.3.*",
 		"doctrine/dbal":"2.5.1",
 		"fzaninotto/faker": "^1.5",
-		"acacha/admin-lte-template-laravel": "1.*"
+		"acacha/admin-lte-template-laravel": "0.*"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
