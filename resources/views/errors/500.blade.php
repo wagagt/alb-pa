@@ -1,11 +1,11 @@
 @extends('app')
 
 @section('htmlheader_title')
-    Service unavailable
+    Server error
 @endsection
 
 @section('contentheader_title')
-    503 Error Page
+    500 Error Page
 @endsection
 
 @section('$contentheader_description')
@@ -14,7 +14,7 @@
 @section('main-content')
 
     <div class="error-page">
-        <h2 class="headline text-red">530</h2>
+        <h2 class="headline text-red">500</h2>
         <div class="error-content">
             <h3><i class="fa fa-warning text-red"></i> Oops! Something went wrong.</h3>
             <p>
