@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `tbl_Client` (
 INSERT INTO `tbl_Client` (`idClient`, `sName`, `sContactFName`, `sContactLName`, `sTels`, `sAddress`, `sEmail`) VALUES
 (20, 'Hidrodinamica', 'Armando', 'Cabrera', '52061296  / 23326786', 'zona 4.', ' hidrodinamica15@yahoo.com'),
 (24, 'Tripic III', 'Bendfeldt', 'Francisco', '53011890', 'zona 9', 'fbc@tripic.com'),
-(23, 'Tierra Segura', 'Jose Federico', 'Sandoval', '54176589', ' 10 calle 0-65 zona 14 local 9', ' info@tierrasegura.com'),
+(23, 'Tierra Segura', 'Jose Federico', 'Sandoval', '54176589', ' 10 calle 0-65 zona 14 local 9', ' info@ALB.com'),
 (30, 'Constructora Manantial', 'Martinez', 'Marlon', '66833173/74-52040988', '10 Calle D 10-76 Condominio El Frutal # 4 Zona 5 de Villanueva', ''),
 (29, 'AC Perforaciones', 'Collado', 'Jose', '52082038', 'Monte Maria', 'pepecollado@hotmail.com'),
 (32, 'PERCEUSA', 'Peña', 'Rodolfo', '55097787', '', 'ejpenalsaej@itelgua.com'),
@@ -16941,7 +16941,7 @@ INSERT INTO `tbl_User` (`User_id`, `sFName`, `sPass`, `Rol_id`, `sLName`, `sUser
 (39, 'U', '4431819', 2, 'Prueba', 'upcid', 25),
 (41, 'Francisco', 'tripic', 2, 'Bendfeldt', 'tripic', 24),
 (43, 'Rafael', 'ramablanca', 2, 'Morales', 'Rafael', 28),
-(44, 'Jose', 'tierrasegura', 2, 'Sandoval', 'tierra', 23),
+(44, 'Jose', 'ALB', 2, 'Sandoval', 'tierra', 23),
 (45, 'Jose', 'paisa', 2, 'Collado', 'acperforaciones', 29),
 (47, 'Rodolfo', 'perceusa', 2, 'Peña', 'magdalena', 32),
 (48, 'Ernesto', 'santarosa', 2, 'Solares', 'casillas', 33),

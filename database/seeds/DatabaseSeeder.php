@@ -23,14 +23,14 @@ class DatabaseSeeder extends Seeder {
 		$this->call('UsersTableSeeder');
 		$this->command->info('User table seeded!');
 		
-		$this->call('EstadosTableSeeder');
-		$this->command->info('User estados seeded!');
+		// $this->call('EstadosTableSeeder');
+		// $this->command->info('User estados seeded!');
 		
-		$this->call('ProyectosTableSeeder');
-		$this->command->info('Proyectos table seeded!');
+		// $this->call('ProyectosTableSeeder');
+		// $this->command->info('Proyectos table seeded!');
 		
-		$this->call('ComentariosTableSeeder');
-		$this->command->info('Comentarios table seeded!');
+		// $this->call('ComentariosTableSeeder');
+		// $this->command->info('Comentarios table seeded!');
 		
 	}
 

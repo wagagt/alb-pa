@@ -43,16 +43,6 @@
                 </a>
             </li>
             <li>
-                <a href="/proyectos">
-                <i class="fa fa-building"></i> <span>Admin. Proyectos</span> 
-                </a>
-            </li>
-            <li>
-                <a href="/comentarios">
-                <i class="fa fa-comments-o"></i> <span>Admin. Comentarios</span> 
-                </a>
-            </li>
-            <li>
                 <a href="/bitacoras">
                 <i class="fa fa-history"></i> <span>Admin. Bitácoras</span> 
                 </a>
@@ -65,7 +55,6 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="/roles"><i class="fa fa-level-up"></i> Admin. Roles</a></li>
-                    <li><a href="/estados"><i class="fa fa-certificate"></i>Admin. Estados</a></li>
                 </ul>
             </li>            
             <li>

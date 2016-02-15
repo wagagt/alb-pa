@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="home" class="logo">TIERRASEGURA</a>
+    <a href="home" class="logo">ALB</a>
     <!-- Header Navbar: style can be found in header.less -->
 
     <nav class="navbar navbar-static-top" role="navigation">
