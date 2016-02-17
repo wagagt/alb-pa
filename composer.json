@@ -6,10 +6,14 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"mitulgolakiya/laravel-api-generator": "1.3.*",
 		"doctrine/dbal":"2.5.1",
 		"fzaninotto/faker": "^1.5",
-		"acacha/admin-lte-template-laravel": "0.*"
+		"acacha/admin-lte-template-laravel": "0.*",
+		"infyomlabs/laravel-generator": "dev-master",
+		"infyomlabs/core-templates": "dev-master",
+		"laravelcollective/html": "5.2.*",
+		"infyomlabs/swagger-generator": "dev-master",
+		"jlapp/swaggervel": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

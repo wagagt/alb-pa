@@ -150,7 +150,14 @@ return [
 		'Laracasts\Flash\FlashServiceProvider',
 		'Mitul\Generator\GeneratorServiceProvider',
 		'Acacha\AdminLTETemplateLaravel\app\Providers\AdminLTETemplateServiceProvider',
-
+		
+		"laravelcollective/html": "5.1.*",
+		Collective\Html\HtmlServiceProvider::class
+		Laracasts\Flash\FlashServiceProvider::class,
+		Prettus\Repository\Providers\RepositoryServiceProvider::class,
+		\InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
+		\InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
+		
 	],
 
 	/*
@@ -198,9 +205,12 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-		'Form'  => 'Illuminate\Html\FormFacade',
-		'HTML'  => 'Illuminate\Html\HtmlFacade',
-		'Flash' => 'Laracasts\Flash\Flash'
+		'Form'  	=> 'Illuminate\Html\FormFacade',
+		'HTML'  	=> 'Illuminate\Html\HtmlFacade',
+		'Flash' 	=> 'Laracasts\Flash\Flash',
+		'Form'      => 'Collective\Html\FormFacade::class',
+		'Html'      => 'Collective\Html\HtmlFacade::class',
+		'Flash'     => 'Laracasts\Flash\Flash::class'
 
 	],
 
