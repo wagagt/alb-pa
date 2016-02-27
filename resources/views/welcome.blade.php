@@ -1,45 +1,27 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+@extends('layouts.admin')
+@section('title', 'Inicio')
+@section('content')
+<div class="col-xs-12">
+    <div class="box box-primary">
+        <div class="box-header">
+            <h3 class="box-title">título</h3>
+            <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px">
+                    <input type="text" placeholder="Buscar" name="search_table" class="form-control">
+                    <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </body>
-</html>
+        
+        <div class="box-body">
+            Contenidos de la caja
+        </div>
+        
+        
+    </div>
+</div>
+@endsection
