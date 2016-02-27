@@ -3,9 +3,8 @@
 
     <!-- Logo -->
     <a href="/" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="{{asset('ui/images/logo-min.png')}}"></img></span>
-      <!-- logo for regular state and mobile devices -->
+          <span class="logo-mini"><img src="{{asset('ui/images/logo-min.png')}}"></img></span>
+     
       <span class="logo-lg"> <img src="{{asset('ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB Panamá</span>
     </a>
 

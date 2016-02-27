@@ -11,6 +11,23 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Authentication routes...
+Route::get('admin2702/login', [
+
+  'uses'    =>  'Auth\AuthController@getLogin',
+  'as'     =>  'auth.login'
+]);
+
+
+Route::post('admin2702/login', [
+
+  'uses'    =>  'Auth\AuthController@postLogin',
+  'as'     =>  'auth.login'
+]);
+
+Route::get('admin2702/logout', [
+
+  'uses'    =>  'Auth\AuthController@getLogout',
+  'as'     =>  'auth.logout'
+]);
+// end Authentication routes .....
