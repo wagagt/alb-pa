@@ -9,7 +9,12 @@
         "laravel/framework": "5.1.*",
         "laracasts/flash": "^1.3",
         "laravelcollective/html": "^5.1",
-        "nesbot/carbon": "^1.21"
+        "nesbot/carbon": "^1.21",
+        "infyomlabs/laravel-generator": "dev-master",
+        "infyomlabs/core-templates": "dev-master",
+        "infyomlabs/swagger-generator": "dev-master",
+        "jlapp/swaggervel": "dev-master",
+        "doctrine/dbal": "~2.3"
         
     },
     "require-dev": {

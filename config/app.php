@@ -148,6 +148,10 @@ return [
         // Our Providers
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
+        \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
+        Jlapp\Swaggervel\SwaggervelServiceProvider::class,
 
     ],
 

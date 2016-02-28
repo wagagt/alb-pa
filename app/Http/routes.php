@@ -28,6 +28,22 @@ Route::post('admin2702/login', [
 Route::get('admin2702/logout', [
 
   'uses'    =>  'Auth\AuthController@getLogout',
-  'as'     =>  'auth.logout'
+  'as'      =>  'auth.logout'
 ]);
 // end Authentication routes .....
+
+
+
+/*
+|--------------------------------------------------------------------------
+| API routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
+{
+    Route::group(['prefix' => 'v1'], function ()
+    {
+        require config('infyom.laravel_generator.path.api_routes');
+    });
+});
