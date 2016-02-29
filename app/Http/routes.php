@@ -12,6 +12,7 @@
 */
 
 // Authentication routes...
+
 Route::get('admin2702/login', [
 
   'uses'    =>  'Auth\AuthController@getLogin',
@@ -31,6 +32,15 @@ Route::get('admin2702/logout', [
   'as'      =>  'auth.logout'
 ]);
 // end Authentication routes .....
+
+
+//  Dashboard
+Route::get('admin2702/login/dash', [
+
+  'uses'    =>  'FrontController@index',
+  'as'     =>  'dash.init'
+]);
+
 
 
 
