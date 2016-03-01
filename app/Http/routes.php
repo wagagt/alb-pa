@@ -66,3 +66,11 @@ Route::post('oficina/{id}/update','OficinaController@update');
 Route::get('oficina/{id}/delete','OficinaController@destroy');
 Route::get('oficina/{id}/deleteMsg','OficinaController@DeleteMsg');
 /********************************************************/
+
+//Torre Resources
+/*******************************************************/
+Route::resource('torre','TorreController');
+Route::post('torre/{id}/update','TorreController@update');
+Route::get('torre/{id}/delete','TorreController@destroy');
+Route::get('torre/{id}/deleteMsg','TorreController@DeleteMsg');
+/********************************************************/
