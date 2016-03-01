@@ -144,7 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
+
         // Our Providers
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
@@ -152,10 +152,10 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
         Jlapp\Swaggervel\SwaggervelServiceProvider::class,
-        
-        
+
+
         // Generator visual interface
-        
+
         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
 
@@ -208,11 +208,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        
-        
-        
+
+
+
         // Our Aliases
-        'Flash' => Laracasts\Flash\Flash::class,     
+        'Flash' => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
 

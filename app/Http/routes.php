@@ -12,14 +12,6 @@
 */
 
 // Authentication routes...
-
-Route::get('/login', [
-
-  'uses'    =>  'Auth\AuthController@getLogin',
-  'as'     =>  'auth.login'
-]);
-
-
 Route::post('/login', [
 
   'uses'    =>  'Auth\AuthController@postLogin',
@@ -57,3 +49,20 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
         require config('infyom.laravel_generator.path.api_routes');
     });
 });
+
+
+//Paise Resources
+/*******************************************************/
+Route::resource('paise','PaiseController');
+Route::post('paise/{id}/update','PaiseController@update');
+Route::get('paise/{id}/delete','PaiseController@destroy');
+Route::get('paise/{id}/deleteMsg','PaiseController@DeleteMsg');
+/********************************************************/
+
+//Oficina Resources
+/*******************************************************/
+Route::resource('oficina','OficinaController');
+Route::post('oficina/{id}/update','OficinaController@update');
+Route::get('oficina/{id}/delete','OficinaController@destroy');
+Route::get('oficina/{id}/deleteMsg','OficinaController@DeleteMsg');
+/********************************************************/
