@@ -13,20 +13,20 @@
 
 // Authentication routes...
 
-Route::get('admin2702/login', [
+Route::get('/login', [
 
   'uses'    =>  'Auth\AuthController@getLogin',
   'as'     =>  'auth.login'
 ]);
 
 
-Route::post('admin2702/login', [
+Route::post('/login', [
 
   'uses'    =>  'Auth\AuthController@postLogin',
   'as'     =>  'auth.login'
 ]);
 
-Route::get('admin2702/logout', [
+Route::get('/logout', [
 
   'uses'    =>  'Auth\AuthController@getLogout',
   'as'      =>  'auth.logout'
@@ -35,7 +35,7 @@ Route::get('admin2702/logout', [
 
 
 //  Dashboard
-Route::get('admin2702/login/dash', [
+Route::get('login/dash', [
 
   'uses'    =>  'FrontController@index',
   'as'     =>  'dash.init'

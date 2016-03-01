@@ -152,6 +152,13 @@ return [
         \InfyOm\Generator\InfyOmGeneratorServiceProvider::class,
         \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
         Jlapp\Swaggervel\SwaggervelServiceProvider::class,
+        
+        
+        // Generator visual interface
+        
+        Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
+        Amranidev\Ajaxis\AjaxisServiceProvider::class,
+
 
     ],
 
