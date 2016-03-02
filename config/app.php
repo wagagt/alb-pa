@@ -88,7 +88,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the log settings for your application. Out of
-    | the box, Laravel uses the Monolog PHP logging library. This gives
+    | the box, Laravel uses the Monolog PHP logging library. key:generate This gives
     | you a variety of powerful log handlers / formatters to utilize.
     |
     | Available Settings: "single", "daily", "syslog", "errorlog"
@@ -144,7 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
+
         // Our Providers
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
@@ -201,11 +201,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        
-        
-        
+
+
+
         // Our Aliases
-        'Flash' => Laracasts\Flash\Flash::class,     
+        'Flash' => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
 

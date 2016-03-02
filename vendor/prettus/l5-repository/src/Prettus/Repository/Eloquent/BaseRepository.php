@@ -245,7 +245,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
 
     /**
      * Retrieve data array for populate field select
-     * 
+     *
      * @param string $column
      * @param string|null $key
      *
@@ -278,20 +278,51 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
         return $this->parserResult($results);
     }
 
+
+    /**
+     * Retrieve first data of repository
+     *
+     * @param array $columns
+     * @return mixed
+     */
+    public function first($columns = array('*'))
+    {
+        $this->applyCriteria();
+        $this->applyScope();
+
+        $results = $this->model->first($columns);
+
+        $this->resetModel();
+
+        return $this->parserResult($results);
+    }
+
     /**
      * Retrieve all data of repository, paginated
      * @param null $limit
      * @param array $columns
+     * @param string $method
      * @return mixed
      */
-    public function paginate($limit = null, $columns = array('*'))
+    public function paginate($limit = null, $columns = array('*'), $method = "paginate")
     {
         $this->applyCriteria();
         $this->applyScope();
         $limit = is_null($limit) ? config('repository.pagination.limit', 15) : $limit;
-        $results = $this->model->paginate($limit, $columns);
+        $results = $this->model->{$method}($limit, $columns);
         $this->resetModel();
         return $this->parserResult($results);
+    }
+
+    /**
+     * Retrieve all data of repository, simple paginated
+     * @param null $limit
+     * @param array $columns
+     * @return mixed
+     */
+    public function simplePaginate($limit = null, $columns = array('*'))
+    {
+        return $this->paginate($limit, $columns, "simplePaginate");
     }
 
     /**
@@ -434,6 +465,38 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
         $model = $this->model->findOrFail($id);
         $model->fill($attributes);
         $model->save();
+
+        $this->skipPresenter($_skipPresenter);
+        $this->resetModel();
+
+        event(new RepositoryEntityUpdated($this, $model));
+
+        return $this->parserResult($model);
+    }
+    
+    /**
+     * Update or Create an entity in repository
+     *
+     * @throws ValidatorException
+     * @param array $attributes
+     * @param $id
+     * @return mixed
+     */
+    public function updateOrCreate(array $attributes, $id)
+    {
+        $this->applyScope();
+
+        if ( !is_null($this->validator) ) {
+            $this->validator->with($attributes)
+                ->setId($id)
+                ->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        }
+
+        $_skipPresenter = $this->skipPresenter;
+
+        $this->skipPresenter(true);
+
+        $model = $this->model->updateOrCreate(['id' => $id], $attributes);
 
         $this->skipPresenter($_skipPresenter);
         $this->resetModel();
@@ -648,7 +711,7 @@ abstract class BaseRepository implements RepositoryInterface, RepositoryCriteria
             } elseif ( $result instanceof Presentable ) {
                 $result = $result->setPresenter($this->presenter);
             }
-    
+
             if( !$this->skipPresenter){
                 return $this->presenter->present($result);
             }
