@@ -15,94 +15,74 @@
             <form class = 'col s3' method = 'get' action = 'http://localhost:8000/apartamento/create'>
                 <button class = 'btn red' type = 'submit'>Create New Apartamento</button>
             </form>
-            
+
                 <ul id="dropdown" class="dropdown-content">
-            
+
                     <li><a href="http://localhost:8000/torre">Torre</a></li>
-            
+
                 </ul>
                 <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a>
                         </div>
             <table>
                 <thead>
-                    
+
                     <th>numero</th>
-                    
                     <th>nivel</th>
-                    
                     <th>cantidad_banios</th>
-                    
                     <th>metros_cuadrados</th>
-                    
                     <th>ambientes</th>
-                    
                     <th>dormitorios</th>
-                    
                     <th>marca_v_1</th>
-                    
                     <th>modelo_v_1</th>
-                    
                     <th>placa_v_1</th>
-                    
                     <th>marca_v_2</th>
-                    
                     <th>modelo_v_2</th>
-                    
                     <th>placa_v_2</th>
-                    
-                    
-                    
-                    
                     <th>nombre</th>
-                    
                     <th>direccion</th>
-                    
                     <th>niveles</th>
-                    
-                    
-                    
                     <th>actions</th>
                 </thead>
                 <tbody>
                     @foreach($apartamentos as $value)
 
                     <tr>
-                        
+
                         <td>{{$value->numero}}</td>
-                        
+
                         <td>{{$value->nivel}}</td>
-                        
+
                         <td>{{$value->cantidad_banios}}</td>
-                        
+
                         <td>{{$value->metros_cuadrados}}</td>
-                        
+
                         <td>{{$value->ambientes}}</td>
-                        
+
                         <td>{{$value->dormitorios}}</td>
-                        
+
                         <td>{{$value->marca_v_1}}</td>
-                        
+
                         <td>{{$value->modelo_v_1}}</td>
-                        
+
                         <td>{{$value->placa_v_1}}</td>
-                        
+
                         <td>{{$value->marca_v_2}}</td>
-                        
+
                         <td>{{$value->modelo_v_2}}</td>
-                        
+
                         <td>{{$value->placa_v_2}}</td>
-                        
-                        
-                        
-                        
+
+
+
+
                         <td>{{$value->torre->nombre}}</td>
-                        
+
                         <td>{{$value->torre->direccion}}</td>
-                        
+
                         <td>{{$value->torre->niveles}}</td>
-                        
-                        
-                        
+
+
+
                         <td>
                             <div class = 'row'>
                                 <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/apartamento/{{$value->id}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
@@ -114,6 +94,9 @@
                     @endforeach
                 </tbody>
             </table>
+
+            {!! $apartamentos->render() !!}
+
         </div>
         <div id="modal1" class="modal">
             <div class = "row AjaxisModal">

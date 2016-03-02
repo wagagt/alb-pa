@@ -25,7 +25,7 @@ class ApartamentoController extends Controller
      */
     public function index()
     {
-        $apartamentos = Apartamento::all();
+        $apartamentos = Apartamento::orderBy('numero', 'ASC')->paginate(5);
         return view('apartamento.index',compact('apartamentos'));
     }
 
@@ -36,9 +36,9 @@ class ApartamentoController extends Controller
      */
     public function create()
     {
-        
+
         $torres = Torre::all()->lists('nombre','id');
-        
+
         return view('apartamento.create'
                 ,compact(
                 'torres'
@@ -58,47 +58,47 @@ class ApartamentoController extends Controller
 
         $apartamento = new Apartamento();
 
-        
+
         $apartamento->numero = $input['numero'];
 
-        
+
         $apartamento->nivel = $input['nivel'];
 
-        
+
         $apartamento->cantidad_banios = $input['cantidad_banios'];
 
-        
+
         $apartamento->metros_cuadrados = $input['metros_cuadrados'];
 
-        
+
         $apartamento->ambientes = $input['ambientes'];
 
-        
+
         $apartamento->dormitorios = $input['dormitorios'];
 
-        
+
         $apartamento->marca_v_1 = $input['marca_v_1'];
 
-        
+
         $apartamento->modelo_v_1 = $input['modelo_v_1'];
 
-        
+
         $apartamento->placa_v_1 = $input['placa_v_1'];
 
-        
+
         $apartamento->marca_v_2 = $input['marca_v_2'];
 
-        
+
         $apartamento->modelo_v_2 = $input['modelo_v_2'];
 
-        
+
         $apartamento->placa_v_2 = $input['placa_v_2'];
 
-        
-        
+
+
         $apartamento->torre_id = $input['torre_id'];
 
-        
+
         $apartamento->save();
 
         return redirect('apartamento');
@@ -134,10 +134,10 @@ class ApartamentoController extends Controller
             return URL::to('apartamento/'. $id . '/edit');
         }
 
-        
+
         $torres = Torre::all()->lists('nombre','id');
 
-        
+
         $apartamento = Apartamento::findOrfail($id);
         return view('apartamento.edit',compact('apartamento'
                 ,
@@ -158,35 +158,35 @@ class ApartamentoController extends Controller
         $input = Request::except('_token');
 
         $apartamento = Apartamento::findOrfail($id);
-    	
+
         $apartamento->numero = $input['numero'];
-        
+
         $apartamento->nivel = $input['nivel'];
-        
+
         $apartamento->cantidad_banios = $input['cantidad_banios'];
-        
+
         $apartamento->metros_cuadrados = $input['metros_cuadrados'];
-        
+
         $apartamento->ambientes = $input['ambientes'];
-        
+
         $apartamento->dormitorios = $input['dormitorios'];
-        
+
         $apartamento->marca_v_1 = $input['marca_v_1'];
-        
+
         $apartamento->modelo_v_1 = $input['modelo_v_1'];
-        
+
         $apartamento->placa_v_1 = $input['placa_v_1'];
-        
+
         $apartamento->marca_v_2 = $input['marca_v_2'];
-        
+
         $apartamento->modelo_v_2 = $input['modelo_v_2'];
-        
+
         $apartamento->placa_v_2 = $input['placa_v_2'];
-        
-        
+
+
         $apartamento->torre_id = $input['torre_id'];
 
-        
+
         $apartamento->save();
 
         return redirect('apartamento');
