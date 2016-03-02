@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Database\Eloquent\Model;
+use App\Paise;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -43,6 +44,28 @@ Route::get('/login/dash', [
 
 
 
+/////////
+
+Route::get('csv',function(){
+  if(($handle = fopen(public_path().'/uploads/paises.csv','r')) !== FALSE)
+  {
+    while(($data = fgetcsv($handle, 1000, ',')) !== FALSE)
+    {
+      $pais = new Paise();
+      $pais->pais = $data[0];
+      $pais->ciudad = $data[1];
+      $pais->save();
+    }
+    fclose($handle);
+  }
+  return Paise::all();
+});
+
+
+////////
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +80,19 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
         require config('infyom.laravel_generator.path.api_routes');
     });
 });
+
+//Pai Resources
+/*******************************************************/
+Route::resource('pai','PaiController');
+Route::post('pai/{id}/update','PaiController@update');
+Route::get('pai/{id}/delete','PaiController@destroy');
+Route::get('pai/{id}/deleteMsg','PaiController@DeleteMsg');
+/********************************************************/
+
+//Paise Resources
+/*******************************************************/
+Route::resource('paises','PaiseController');
+Route::post('pais/{id}/update','PaiseController@update');
+Route::get('pais/{id}/delete','PaiseController@destroy');
+Route::get('pais/{id}/deleteMsg','PaiseController@DeleteMsg');
+/********************************************************/
