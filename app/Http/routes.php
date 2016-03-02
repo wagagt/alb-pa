@@ -96,3 +96,27 @@ Route::post('pais/{id}/update','PaiseController@update');
 Route::get('pais/{id}/delete','PaiseController@destroy');
 Route::get('pais/{id}/deleteMsg','PaiseController@DeleteMsg');
 /********************************************************/
+
+//Oficina Resources
+/*******************************************************/
+Route::resource('oficina','OficinaController');
+Route::post('oficina/{id}/update','OficinaController@update');
+Route::get('oficina/{id}/delete','OficinaController@destroy');
+Route::get('oficina/{id}/deleteMsg','OficinaController@DeleteMsg');
+/********************************************************/
+
+//Torre Resources
+/*******************************************************/
+Route::resource('torre','TorreController');
+Route::post('torre/{id}/update','TorreController@update');
+Route::get('torre/{id}/delete','TorreController@destroy');
+Route::get('torre/{id}/deleteMsg','TorreController@DeleteMsg');
+/********************************************************/
+
+//Apartamento Resources
+/*******************************************************/
+Route::resource('apartamento','ApartamentoController');
+Route::post('apartamento/{id}/update','ApartamentoController@update');
+Route::get('apartamento/{id}/delete','ApartamentoController@destroy');
+Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
+/********************************************************/
