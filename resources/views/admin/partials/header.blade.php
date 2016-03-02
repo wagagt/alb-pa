@@ -3,9 +3,9 @@
 
     <!-- Logo -->
     <a href="/" class="logo">
-          <span class="logo-mini"><img src="{{asset('ui/images/logo-min.png')}}"></img></span>
-     
-      <span class="logo-lg"> <img src="{{asset('ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB Panamá</span>
+          <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
+
+      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB Panamá</span>
     </a>
 
     <!-- Header Navbar -->
@@ -33,7 +33,7 @@
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="ui/images/avataruser.png" class="img-circle" alt="User Image">
+                        <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -124,7 +124,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                 <img src="ui/images/avataruser.png" class="img-circle" alt="User Image">
+                 <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
 
                 <p>
                   Alexander Pierce - Web Developer
@@ -133,7 +133,7 @@
               </li>
               <!-- Menu Body -->
               <li class="user-body">
-               
+
                 <!-- /.row -->
               </li>
               <!-- Menu Footer-->

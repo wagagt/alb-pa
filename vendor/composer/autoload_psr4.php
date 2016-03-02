@@ -41,4 +41,6 @@ return array(
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'App\\' => array($baseDir . '/app'),
+    'Amranidev\\ScaffoldInterface\\' => array($vendorDir . '/amranidev/scaffold-interface/src'),
+    'Amranidev\\Ajaxis\\' => array($vendorDir . '/amranidev/ajaxis/src'),
 );

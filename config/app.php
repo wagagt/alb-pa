@@ -153,6 +153,11 @@ return [
         \InfyOm\CoreTemplates\CoreTemplatesServiceProvider::class,
         Jlapp\Swaggervel\SwaggervelServiceProvider::class,
 
+        // Scaffold
+
+        Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
+        Amranidev\Ajaxis\AjaxisServiceProvider::class,
+
     ],
 
     /*
