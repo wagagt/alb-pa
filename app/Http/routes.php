@@ -36,12 +36,17 @@ Route::get('/logout', [
 
 
 //  Dashboard
-Route::get('/login/dash', [
+Route::get('login/dash', [
 
   'uses'    =>  'FrontController@index',
   'as'     =>  'dash.init'
 ]);
 
+Route::post('login/dash', [
+
+  'uses'    =>  'FrontController@index',
+  'as'     =>  'dash.init'
+]);
 
 
 /////////
