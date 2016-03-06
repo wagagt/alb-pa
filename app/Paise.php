@@ -12,11 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Paise extends Model
 {
+    use softDeletes;
 
     //public $timestamps = false;
 
     protected $table = 'paises';
-    
+
 
     protected $fillable = ['pais',  'ciudad'];
     protected $dates = ['deleted_at'];
