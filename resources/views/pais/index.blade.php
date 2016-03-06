@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Usuarios Lista')
+@section('title', 'Países Lista')
 @section('content')
   <div class="col-xs-12">
     <div class="box box-primary">

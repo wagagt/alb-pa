@@ -25,10 +25,7 @@ class Oficinas extends Migration
         $table->string('direccion');
         $table->softDeletes();
         $table->timestamps();
-
-
-
-
+        
         /**
          * Foreignkeys section
          */

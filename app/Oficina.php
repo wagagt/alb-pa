@@ -12,12 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Oficina extends Model
 {
-
+    use softDeletes;
 
 
     protected $table = 'oficinas';
 
-    protected $fillable = ['nombre',  'direccion', 'niveles', 'pais_id'];
+    protected $fillable = ['nombre', 'telefono', 'direccion', 'niveles', 'pais_id'];
     protected $dates = ['deleted_at'];
 
 public function oficinas()
@@ -27,7 +27,7 @@ public function oficinas()
 
 }
 
-	public function paise()
+	public function pais()
 	{
 		return $this->belongsTo('App\Paise');
 	}

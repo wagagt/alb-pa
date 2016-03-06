@@ -21,12 +21,12 @@
                 <div class="form-gorup">
                     <div class="col-md-6">
                         {!! Form::label('País', 'Nombres:') !!}
-                        {!! Form::text('pais', null, ['class' => 'form-control', 'placeholder' => 'Ingrese los nombres del país', 'required'])!!}
+                        {!! Form::text('pais', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del país', 'required'])!!}
                     </div>
                 </div>
                 <div class="form-gorup">
                     <div class="col-md-6">
-                        {!! Form::label('ciudad', 'Usuario:') !!}
+                        {!! Form::label('ciudad', 'Ciudad:') !!}
                         {!! Form::text('ciudad', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la ciudad', 'required'])!!}
                     </div>
                 </div>

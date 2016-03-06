@@ -1,79 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Index Oficina</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Oficinas Index</h1>
-            <div class="row">
-            <form class = 'col s3' method = 'get' action = 'http://localhost:8000/oficina/create'>
-                <button class = 'btn red' type = 'submit'>Create New Oficina</button>
-            </form>
+@extends('layouts.admin')
+@section('title', 'Oficinas Lista')
+  @section('content')
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Lista de oficinas</h3>
+          <div class="box-tools">
 
-                <ul id="dropdown" class="dropdown-content">
+            <!-- Buscador de Tags -->
+            <div class="input-group input-group-sm">
+              {!! Form::open(['route'=>'oficina.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
+              <div class="input-group">
 
-                    <li><a href="http://localhost:8000/paise">Paise</a></li>
+                {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Buscar Oficina...',
+                  'aria-describedby'=>'search','autofocus']) !!}
+                  <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
+                </div>
 
-                </ul>
-                <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                        </div>
-            <table>
-                <thead>
-
-                    <th>nombre</th>
-                    <th>telefono</th>
-                    <th>direccion</th>
-                    <th>pais</th>
-                    <th>ciudad</th>
-                    <th>actions</th>
-                </thead>
-                <tbody>
-                    @foreach($oficinas as $value)
-
-                    <tr>
-
-                        <td>{{$value->nombre}}</td>
-
-                        <td>{{$value->telefono}}</td>
-
-                        <td>{{$value->direccion}}</td>
-
-
-
-
-                        <td>{{$value->paise->pais}}</td>
-
-                        <td>{{$value->paise->ciudad}}</td>
-
-
-
-                        <td>
-                            <div class = 'row'>
-                                <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/oficina/{{$value->id}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                                <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/oficina/{{$value->id}}/edit'><i class = 'material-icons'>edit</i></a>
-                                <a href = '#' class = 'viewShow btn-floating orange' data-link = '/oficina/{{$value->id}}'><i class = 'material-icons'>info</i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {!! $oficinas->render() !!}
-        </div>
-        <div id="modal1" class="modal">
-            <div class = "row AjaxisModal">
+                {!! Form::close() !!}
+              </div>
+              <!-- Fin del buscador -->
             </div>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script> var baseURL = "{{URL::to('/')}}"</script>
-    <script type="text/javascript" src = "/js/AjaxisMaterialize.js"></script>
-    <script type="text/javascript" src = "/js/scaffold-interface-js/customA.js"></script>
-</html>
+          </div>
+
+          <div class="box-body">
+            <div class="col-md-12 text-left"><a href="{{route('oficina.create')}}" class="btn btn-primary"><i class="fa fa-briefcase"></i> Crear Oficinas </a>  </div>
+            <table class="table table-hover">
+              <thead>
+
+                <td><strong>NOMBRE</strong></td>
+                <td><strong>TELÉFONO</strong></td>
+                <td><strong>DIRECCION</strong></td>
+                <td><strong>PAIS</strong></td>
+                <td><strong>ACCIONES</strong></td>
+
+              </thead>
+              <tbody>
+                @foreach($oficinas as $oficina)
+                  <tr>
+                    <td>{{$oficina->nombre}}</td>
+                    <td>{{$oficina->telefono}}</td>
+                    <td>{{$oficina->direccion}}</td>
+                    <td>{{$oficina->pais->pais}}</td>
+                    <td><a href="{{ route('oficina.edit', $oficina->id) }}" class="btn btn-warning" title="Editar">
+                      <i class="fa fa-pencil-square-o"></i></a> <a href="{{ route('oficina.destroy', $oficina->id) }}"
+                        class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
+                        <i class="fa fa-trash"></i></a></td>
+                      </tr>
+
+                    @endforeach
+                  </tbody>
+                </table>
+                {!! $oficinas->render()  !!}
+              </div>
+
+            </div>
+          </div>
+
+        @endsection

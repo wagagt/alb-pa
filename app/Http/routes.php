@@ -112,9 +112,11 @@ Route::get('pais/{id}/destroy', [
 //Oficina Resources
 /*******************************************************/
 Route::resource('oficina','OficinaController');
-Route::post('oficina/{id}/update','OficinaController@update');
-Route::get('oficina/{id}/delete','OficinaController@destroy');
-Route::get('oficina/{id}/deleteMsg','OficinaController@DeleteMsg');
+Route::get('oficina/{id}/destroy', [
+      'uses'  => 'OficinaController@destroy',
+      'as'    => 'oficina.destroy'
+
+    ]);
 /********************************************************/
 
 //Torre Resources

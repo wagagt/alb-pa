@@ -2307,51 +2307,6 @@
         ]
     },
     {
-        "name": "infyomlabs/core-templates",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/InfyOmLabs/core-templates.git",
-            "reference": "c5b35ed442efebc86574d137aa7886cc6b2d120e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/c5b35ed442efebc86574d137aa7886cc6b2d120e",
-            "reference": "c5b35ed442efebc86574d137aa7886cc6b2d120e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "~5.0",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-02-18 14:37:06",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "InfyOm\\CoreTemplates\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mitul Golakiya",
-                "email": "me@mitul.me"
-            }
-        ],
-        "description": "Core Bootstrap templates for InfyOm Laravel Generator",
-        "keywords": [
-            "bootstrap",
-            "generator",
-            "laravel",
-            "templates"
-        ]
-    },
-    {
         "name": "infyomlabs/swagger-generator",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -4160,6 +4115,51 @@
             "scaffoldinterface",
             "smart crud generator",
             "smart generator"
+        ]
+    },
+    {
+        "name": "infyomlabs/core-templates",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/InfyOmLabs/core-templates.git",
+            "reference": "180e0e4c7311d74204db089f4d84be86724b9cce"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/180e0e4c7311d74204db089f4d84be86724b9cce",
+            "reference": "180e0e4c7311d74204db089f4d84be86724b9cce",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-03-04 03:41:49",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "InfyOm\\CoreTemplates\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mitul Golakiya",
+                "email": "me@mitul.me"
+            }
+        ],
+        "description": "Core Bootstrap templates for InfyOm Laravel Generator",
+        "keywords": [
+            "bootstrap",
+            "generator",
+            "laravel",
+            "templates"
         ]
     }
 ]
