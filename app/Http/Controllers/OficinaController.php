@@ -25,9 +25,9 @@ class OficinaController extends Controller
   *
   * @return  \Illuminate\Http\Response
   */
-  public function index()
+  public function index(Request $request)
   {
-    $oficinas = Oficina::orderBy('nombre', 'ASC')->paginate(5);
+    $oficinas = Oficina::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
     //dd($oficinas);
     return view('oficina.index',compact('oficinas'));
   }
