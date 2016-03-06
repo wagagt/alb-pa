@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Console\RouteListCommand;
 use App\Paise;
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,16 @@ Route::post('login/dash', [
   'as'     =>  'dash.init'
 ]);
 
+// Users Crud Route
+Route::resource('users','UsersController');
+Route::get('users/{id}/destroy', [
+      'uses'  => 'UsersController@destroy',
+      'as'    => 'admin.users.destroy'
+
+    ]);
+
+
+
 
 /////////
 
@@ -86,13 +97,6 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
     });
 });
 
-//Pai Resources
-/*******************************************************/
-Route::resource('pai','PaiController');
-Route::post('pai/{id}/update','PaiController@update');
-Route::get('pai/{id}/delete','PaiController@destroy');
-Route::get('pai/{id}/deleteMsg','PaiController@DeleteMsg');
-/********************************************************/
 
 //Paise Resources
 /*******************************************************/

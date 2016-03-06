@@ -10,7 +10,7 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
       @include('admin.partials.links')
 
-  
+
 </head>
 <!--
 
@@ -33,7 +33,7 @@
 <div class="wrapper">
 
 @include('admin.partials.header')
-  
+
 @include('admin.partials.aside')
 
   <!-- Content Wrapper. Contains page content -->
@@ -41,8 +41,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Page Header
-        <small>Optional description</small>
+        <small>@include('flash::message')</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -52,22 +51,22 @@
 
     <!-- Main content -->
     <section class="content">
-        
+
       <div class="row">
-        
+
           @yield('content')
-          
+
       </div>
 
     </section>
     <!-- /.content -->
   </div>
- 
+
 
   @include('admin.partials.footer')
 
   @include('admin.partials.aside-r')
- 
+
   <div class="control-sidebar-bg"></div>
 </div>
 @include('admin.partials.js')
