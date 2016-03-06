@@ -21,7 +21,7 @@
               </div>
               <!-- Fin del buscador -->
 
-            
+
 
 
             </div>
@@ -61,7 +61,7 @@
                       @endif
                     </td>
                     <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning" title="Editar">
-                      <i class="fa fa-pencil-square-o"></i></a> <a href="{{ route('admin.users.destroy', $user->id) }}"
+                      <i class="fa fa-pencil-square-o"></i></a> <a href="{{ route('users.destroy', $user->id) }}"
                         class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                         <i class="fa fa-trash"></i></a></td>
                       </tr>

@@ -1,10 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\PaisRequest;
 use App\Http\Controllers\Controller;
-use App\Paise;
 use Amranidev\Ajaxis\Ajaxis;
+use Laracasts\Flash\Flash;
+use App\Paise;
 use URL;
 
 /**
@@ -20,10 +23,10 @@ class PaiseController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $paises = Paise::orderBy('pais', 'ASC')->paginate(5);
-        return view('paise.index',compact('paises'));
+        $paises = Paise::search($request->pais)->orderBy('pais', 'ASC')->paginate(5);
+        return view('pais.index')->with('paises', $paises);
     }
 
     /**
@@ -34,8 +37,7 @@ class PaiseController extends Controller
     public function create()
     {
 
-        return view('paise.create'
-                );
+        return view('pais.create');
     }
 
     /**
@@ -44,23 +46,13 @@ class PaiseController extends Controller
      * @param    \Illuminate\Http\Request  $request
      * @return  \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaisRequest $request)
     {
-        $input = Request::except('_token');
+        $pais = new Paise($request->all());
+        $pais->save();
+        Flash::success('Pais '.$pais->pais.' ha sido agregado con éxito!..');
 
-        $paise = new Paise();
-
-
-        $paise->pais = $input['pais'];
-
-
-        $paise->ciudad = $input['ciudad'];
-
-
-
-        $paise->save();
-
-        return redirect('paise');
+        return redirect()->route('pais.index');
     }
 
     /**
@@ -71,13 +63,7 @@ class PaiseController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('paise/'.$id);
-        }
-
-        $paise = Paise::findOrfail($id);
-        return view('paise.show',compact('paise'));
+        //
     }
 
     /**
@@ -88,16 +74,8 @@ class PaiseController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('paise/'. $id . '/edit');
-        }
-
-
         $paise = Paise::findOrfail($id);
-        return view('paise.edit',compact('paise'
-                )
-                );
+        return view('pais.edit')->with('pais',$paise);
     }
 
     /**
@@ -107,37 +85,13 @@ class PaiseController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
-
-        $paise = Paise::findOrfail($id);
-
-        $paise->pais = $input['pais'];
-
-        $paise->ciudad = $input['ciudad'];
-
-
-        $paise->save();
-
-        return redirect('paise');
-    }
-
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
-    public function DeleteMsg($id)
-    {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/paise/'. $id . '/delete/');
-
-        if(Request::ajax())
-        {
-            return $msg;
-        }
+        $pais = Paise::findOrfail($id);
+        $pais->fill($request->all());
+        $pais->save();
+            Flash::warning('El país '.$pais->pis.' ha sido actualizado con éxito!!');
+        return redirect()->route('pais.index');
     }
 
     /**
@@ -148,9 +102,10 @@ class PaiseController extends Controller
      */
     public function destroy($id)
     {
-     	$paise = Paise::findOrfail($id);
-     	$paise->delete();
-        return URL::to('paise');
+     	$pais = Paise::findOrfail($id);
+     	$pais->delete();
+      Flash::error('El País  '.$pais->pais. ' ha sido borrado de forma exitosa!!');
+        return redirect()->route('pais.index');
     }
 
 }

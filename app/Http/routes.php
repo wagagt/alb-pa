@@ -53,7 +53,7 @@ Route::post('login/dash', [
 Route::resource('users','UsersController');
 Route::get('users/{id}/destroy', [
       'uses'  => 'UsersController@destroy',
-      'as'    => 'admin.users.destroy'
+      'as'    => 'users.destroy'
 
     ]);
 
@@ -100,10 +100,13 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
 
 //Paise Resources
 /*******************************************************/
-Route::resource('paises','PaiseController');
-Route::post('pais/{id}/update','PaiseController@update');
-Route::get('pais/{id}/delete','PaiseController@destroy');
-Route::get('pais/{id}/deleteMsg','PaiseController@DeleteMsg');
+Route::resource('pais','PaiseController');
+Route::get('pais/{id}/destroy', [
+      'uses'  => 'PaiseController@destroy',
+      'as'    => 'pais.destroy'
+
+    ]);
+
 /********************************************************/
 
 //Oficina Resources

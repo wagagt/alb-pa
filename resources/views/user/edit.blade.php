@@ -6,7 +6,6 @@
           <div class="box-header">
           <h3 class="box-title">Editar Usuario</h3>
               <div class="box-tools">
-
               </div>
           </div>
 
@@ -70,29 +69,17 @@
                             ['class' => 'form-control', 'placehodler' => 'Seleecione una opción',  'required'])!!}
                     </div>
                 </div>
-
-
-
-
-
                 <div class="form-gorup">
                   <br/>
                   <div class="col-md-12">
                     {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
-
-
-
-
                 {!! Form::close()!!}
-
-
           </div>
-
-
 
       </div>
   </div>
+</div>
 
 @endsection

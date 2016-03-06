@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class PaiseController
@@ -12,9 +13,19 @@ use Illuminate\Database\Eloquent\Model;
 class Paise extends Model
 {
 
-    public $timestamps = false;
+    //public $timestamps = false;
 
     protected $table = 'paises';
+    public $timestamps = false;
 
-	
+    protected $fillable = ['pais',  'ciudad'];
+    protected $dates = ['deleted_at'];
+
+
+    public function  scopeSearch($query, $name)
+    {
+      return $query->where('pais', 'LIKE', '%'.$name.'%');
+    }
+
+
 }

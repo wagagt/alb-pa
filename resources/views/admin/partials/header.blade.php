@@ -2,7 +2,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/" class="logo">
+    <a href="/login/dash" class="logo">
           <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
 
       <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB Panamá</span>
