@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Torre extends Model
 {
+    use softDeletes;
 
     protected $table = 'torres';
 

@@ -1,180 +1,125 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
-use App\Http\Controllers\Controller;
-use App\Torre;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\TorreRequest;
 use Amranidev\Ajaxis\Ajaxis;
+use Laracasts\Flash\Flash;
+use App\Torre;
 use URL;
 
 use App\Oficina;
 
 
 /**
- * Class TorreController
- *
- * @author  The scaffold-interface created at 2016-03-02 08:02:48pm
- * @link  https://github.com/amranidev/scaffold-interfac
- */
+* Class TorreController
+*
+* @author  The scaffold-interface created at 2016-03-02 08:02:48pm
+* @link  https://github.com/amranidev/scaffold-interfac
+*/
 class TorreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $torres = Torre::all();
-        return view('torre.index',compact('torres'));
-    }
+  /**
+  * Display a listing of the resource.
+  *
+  * @return  \Illuminate\Http\Response
+  */
+  public function index(Request $request)
+  {
+    $torres = Torre::search($request->nombre)->orderBy('nombre','ASC')->paginate(15);
+    //dd($torres);
+    return view('torre.index')->with('torres', $torres);
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return  \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-        $oficinas = Oficina::all()->lists('nombre','id');
-        
-        return view('torre.create'
-                ,compact(
-                'oficinas'
-                )
-                );
-    }
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return  \Illuminate\Http\Response
+  */
+  public function create()
+  {
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param    \Illuminate\Http\Request  $request
-     * @return  \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $input = Request::except('_token');
+    $oficinas = Oficina::orderBy('nombre','ASC')->lists('nombre','id');
 
-        $torre = new Torre();
+    return view('torre.create')->with('oficinas', $oficinas);
+  }
 
-        
-        $torre->nombre = $input['nombre'];
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param    \Illuminate\Http\Request  $request
+  * @return  \Illuminate\Http\Response
+  */
+  public function store(TorreRequest $request)
+  {
 
-        
-        $torre->direccion = $input['direccion'];
+    $torre = new Torre($request->all());
+    $torre->save();
+    Flash::success('torre '.$torre->name.' ha sido agregada satisfactoriamente');
+    return redirect()->route('torre.index');
+  }
 
-        
-        $torre->niveles = $input['niveles'];
+  /**
+  * Display the specified resource.
+  *
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function show($id)
+  {
 
-        
-        
-        $torre->oficina_id = $input['oficina_id'];
+  }
 
-        
-        $torre->save();
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function edit($id)
+  {
+    $oficinas = Oficina::orderBy('nombre','ASC')->lists('nombre','id');
 
-        return redirect('torre');
-    }
+    $torre = Torre::findOrfail($id);
+    $torre->oficina;  //traigo la oficina relacionada
 
-    /**
-     * Display the specified resource.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        if(Request::ajax())
-        {
-            return URL::to('torre/'.$id);
-        }
+    return view('torre.edit')
+    ->with('oficinas', $oficinas)
+    ->with('torre', $torre);
+  }
 
-        $torre = Torre::findOrfail($id);
-        return view('torre.show',compact('torre'));
-    }
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param    \Illuminate\Http\Request  $request
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function update(Request $request,$id)
+  {
+    $torre = Torre::findOrfail($id);
+    $torre->fill($request->all());
+    //dd($torre);
+    $torre->save();
+    Flash::warning('La torre ' .$torre->nombre.' ha sido actualizada con éxito!!..');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        if(Request::ajax())
-        {
-            return URL::to('torre/'. $id . '/edit');
-        }
+    return redirect()->route('torre.index');
+  }
 
-        
-        $oficinas = Oficina::all()->lists('nombre','id');
 
-        
-        $torre = Torre::findOrfail($id);
-        return view('torre.edit',compact('torre'
-                ,
-                'oficinas'
-                        )
-                );
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param    \Illuminate\Http\Request  $request
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
-    public function update($id)
-    {
-        $input = Request::except('_token');
-
-        $torre = Torre::findOrfail($id);
-    	
-        $torre->nombre = $input['nombre'];
-        
-        $torre->direccion = $input['direccion'];
-        
-        $torre->niveles = $input['niveles'];
-        
-        
-        $torre->oficina_id = $input['oficina_id'];
-
-        
-        $torre->save();
-
-        return redirect('torre');
-    }
-
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
-    public function DeleteMsg($id)
-    {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/torre/'. $id . '/delete/');
-
-        if(Request::ajax())
-        {
-            return $msg;
-        }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-     	$torre = Torre::findOrfail($id);
-     	$torre->delete();
-        return URL::to('torre');
-    }
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function destroy($id)
+  {
+    $torre = Torre::findOrfail($id);
+    $torre->delete();
+    Flash::error('La torre '.$torre->nombre.' ha sido borrada de forma exitosa');
+    return redirect()->route('torre.index');
+  }
 
 }

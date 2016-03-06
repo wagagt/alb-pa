@@ -29,7 +29,7 @@ class OficinaController extends Controller
   {
     $oficinas = Oficina::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
     //dd($oficinas);
-    return view('oficina.index',compact('oficinas'));
+    return view('oficina.index')->with('oficinas',$oficinas);
   }
 
   /**

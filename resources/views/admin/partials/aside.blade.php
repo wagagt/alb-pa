@@ -34,7 +34,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
         <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
-        <li><a href="#"><i class="fa fa-building-o"/></i><span>Torres</span></a></li>
+        <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Torres</span></a></li>
         <li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
         <li><a href="#"><i class="fa fa-exclamation-triangle"/></i> <span>Notificación General</span></a></li>
         <li><a href="#"><i class="fa fa-commenting-o"/></i> <span>Notificación de Incidencias</span></a></li>

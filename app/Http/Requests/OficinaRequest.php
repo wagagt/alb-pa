@@ -27,7 +27,7 @@ class OficinaRequest extends Request
       'nombre'        => 'min:6|max:120|required',
       'telefono'      => 'min:5|required',
       'direccion'     => 'min:4|required',
-      'pais_id'          => 'required',
+      'pais_id'       => 'required',
 
     ];
   }

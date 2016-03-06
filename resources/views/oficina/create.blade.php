@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Crear usuarios')
+@section('title', 'Crear oficina')
 @section('content')
   <div class="col-xs-12">
       <div class="box box-primary">

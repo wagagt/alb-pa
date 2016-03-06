@@ -1,54 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Edit Torre</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Edit Torre</h1>
-            <form method = 'get' action = 'http://localhost:8000/torre'>
-                <button class = 'btn blue'>Torre Index</button>
-            </form>
-            <br>
-            <form method = 'POST' action = 'http://localhost:8000/torre/{{$torre->id}}/update'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="nombre" name = "nombre" type="text" class="validate" value="{{$torre->nombre}}">
-                    <label for="nombre">nombre</label>
+@extends('layouts.admin')
+@section('title', 'Editar torre')
+@section('content')
+  <div class="col-xs-12">
+      <div class="box box-primary">
+          <div class="box-header">
+          <h3 class="box-title">Editar torre</h3>
+              <div class="box-tools">
+              </div>
+          </div>
+
+          <div class="box-body">
+            <div class="text-left">
+            <a href="{{ route('torre.store') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+              Listar torres</a>
+            </div>
+
+            <div class="row col-md-12">
+                {!! Form::model($torre, ['route'=>['torre.update', $torre->id],  'method' => 'PUT']) !!}
+                <div class="row col-md-12">
+                    {!! Form::open(['route'=>'torre.store', 'method' => 'POST']) !!}
+                    <div class="form-gorup">
+                        <div class="col-md-6">
+                            {!! Form::label('nombre', 'Nombre:') !!}
+                            {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la torre', 'required'])!!}
+                        </div>
+                    </div>
+                  <div class="form-gorup">
+                        <div class="col-md-6">
+                            {!! Form::label('direccion', 'Dirección:') !!}
+                            {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la dirección de la torre', 'required'])!!}
+                        </div>
+                    </div>
+
+                    <div class="form-gorup">
+                        <div class="col-md-6">
+                            {!! Form::label('niveles', 'Niveles:') !!}
+                            {!! Form::text('niveles', null, ['class' => 'form-control', 'placeholder' => 'ej: 25'])!!}
+                        </div>
+                    </div>
+                    <div class="form-gorup">
+                        <div class="col-md-6">
+                            {!! Form::label('oficina_id', 'Oficina:') !!}
+                            {!! Form::select('oficina_id', $oficinas , null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione una oficina', 'required'])!!}
+                        </div>
+                    </div>
+
+                <div class="form-gorup">
+                  <br/>
+                  <div class="col-md-12">
+                    {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="direccion" name = "direccion" type="text" class="validate" value="{{$torre->direccion}}">
-                    <label for="direccion">direccion</label>
-                </div>
-                
-                <div class="input-field col s6">
-                    <input id="niveles" name = "niveles" type="text" class="validate" value="{{$torre->niveles}}">
-                    <label for="niveles">niveles</label>
-                </div>
-                                
-                <div class="input-field col s12">
-                    <select name = 'oficina_id'>
-                        @foreach($oficinas as $key1 => $value1)
-                        <option value="{{$key1}}">{{$value1}}</option>
-                        @endforeach
-                    </select>
-                    <label>oficinas Select</label>
-                </div>
-                
-                <button class = 'btn red' type ='submit'>Update</button>
-            </form>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script type="text/javascript">
-    $('select').material_select();
-    </script>
-</html>
+                {!! Form::close()!!}
+          </div>
+
+      </div>
+  </div>
+  </div>
+
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+
+         $('.select-country').chosen({
+            no_results_text:'Ningún resultado coincide con: '
+          });
+
+
+      </script>
+@endsection
