@@ -16,7 +16,7 @@ class Paise extends Model
     //public $timestamps = false;
 
     protected $table = 'paises';
-    public $timestamps = false;
+    
 
     protected $fillable = ['pais',  'ciudad'];
     protected $dates = ['deleted_at'];

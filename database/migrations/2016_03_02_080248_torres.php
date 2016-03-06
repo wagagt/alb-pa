@@ -20,21 +20,21 @@ class Torres extends Migration
         Schema::create('torres',function (Blueprint $table){
 
         $table->increments('id');
-        
         $table->string('nombre');
-        
         $table->string('direccion');
-        
         $table->string('niveles');
-        
+        $table->softDeletes();
+        $table->timestamps();
+
+
         /**
          * Foreignkeys section
          */
-        
+
         $table->integer('oficina_id')->unsigned();
         $table->foreign('oficina_id')->references('id')->on('oficinas');
 
-        
+
         // type your addition here
 
         });

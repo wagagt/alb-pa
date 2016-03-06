@@ -20,15 +20,16 @@ class Paises extends Migration
         Schema::create('paises',function (Blueprint $table){
 
         $table->increments('id');
-        
         $table->string('pais');
-        
         $table->string('ciudad');
-        
+        $table->softDeletes();
+        $table->timestamps();
+
+
         /**
          * Foreignkeys section
          */
-        
+
         // type your addition here
 
         });

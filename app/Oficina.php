@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class OficinaController
@@ -12,9 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 class Oficina extends Model
 {
 
-    public $timestamps = false;
+
 
     protected $table = 'oficinas';
+
+    protected $fillable = ['nombre',  'direccion', 'niveles', 'pais_id'];
+    protected $dates = ['deleted_at'];
 
 public function oficinas()
 {
@@ -27,6 +31,11 @@ public function oficinas()
 	{
 		return $this->belongsTo('App\Paise');
 	}
+
+  public function  scopeSearch($query, $name)
+  {
+    return $query->where('nombre', 'LIKE', '%'.$name.'%');
+  }
 
 
 }

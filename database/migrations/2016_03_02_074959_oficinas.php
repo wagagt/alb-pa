@@ -23,13 +23,18 @@ class Oficinas extends Migration
         $table->string('nombre');
         $table->string('telefono');
         $table->string('direccion');
+        $table->softDeletes();
+        $table->timestamps();
+
+
+
 
         /**
          * Foreignkeys section
          */
 
-        $table->integer('paise_id')->unsigned();
-        $table->foreign('paise_id')->references('id')->on('paises');
+        $table->integer('pais_id')->unsigned();
+        $table->foreign('pais_id')->references('id')->on('paises');
 
 
         // type your addition here
