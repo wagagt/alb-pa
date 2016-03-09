@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
- use Laracasts\Flash\Flash;
+//use Laracasts\Flash\Flash;
 
-class admin
+class Admin
 {
 
     protected $auth;
@@ -33,8 +33,6 @@ class admin
 
       }else
       {
-
-        //Flash::warning('Usuario sin privilegios para esta área');
         abort(401);
       }
 

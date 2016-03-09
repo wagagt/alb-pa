@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'mail.hosannaweb.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,8 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    //'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'info@hosannaweb.com', 'name' => 'Manager Real State'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +68,8 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    //'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => '',
 
     /*
     |--------------------------------------------------------------------------

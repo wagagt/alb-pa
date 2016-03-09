@@ -19,7 +19,7 @@
           <hr/>
           <strong class="text-center">
             <p class="text-center"> Usted no tiene acceso a esta zona</p>
-            <p>  <a href="{{ route('dash')}}" class="btn btn-warning"><i class="fa fa-times"></i> ¿Desea volver al inicio?</a></p>
+            <p>  <a href="{{ route('admin.index')}}" class="btn btn-warning"><i class="fa fa-times"></i> ¿Desea volver al inicio?</a></p>
           </strong>
 
         </div>

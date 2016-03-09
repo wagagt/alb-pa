@@ -44,8 +44,11 @@
                     </div>
 
                   </div>
-
-
+                  <div class="form-group">
+                    <div class="col-md-8 text-center">
+                      {!! link_to('password/email', $title = '¿Olvidó su contraseña?', $attributes = null, $secure = null) !!}
+                    </div>
+                  </div>
 
                   {!! Form::close() !!}
 

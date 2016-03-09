@@ -16,7 +16,7 @@ use App\Paise;
 // Authentication routes...
 
 Route::get('/',function(){
-      return redirect()->route('admin.auth.login');
+  return redirect()->route('admin.auth.login');
 });
 
 Route::get('admin/auth/login', [
@@ -37,6 +37,12 @@ Route::get('admin/auth/logout', [
   'uses'    =>  'Auth\AuthController@getLogout',
   'as'      =>  'admin.auth.logout'
 ]);
+
+Route::get('password/email','Auth\PasswordController@getEmail');
+Route::post('password/email','Auth\PasswordController@postEmail');
+
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
 // end Authentication routes .....
 
 Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
@@ -46,9 +52,11 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
     return view('admin.index');
   } ]);
 
-// Users Crud Route
-Route::resource('users','UsersController');
-Route::get('users/{id}/destroy', [
+  Route::group(['middleware' => ['admin']], function(){
+
+    // Users Crud Route
+    Route::resource('users','UsersController');
+    Route::get('users/{id}/destroy', [
       'uses'  => 'UsersController@destroy',
       'as'    => 'users.destroy'
 
@@ -57,64 +65,69 @@ Route::get('users/{id}/destroy', [
 
 
 
-/////////
+    /////////
 
-Route::get('csv',function(){
-  if(($handle = fopen(public_path().'/uploads/paises.csv','r')) !== FALSE)
-  {
-    while(($data = fgetcsv($handle, 1000, ',')) !== FALSE)
-    {
-      $pais = new Paise();
-      $pais->pais = $data[0];
-      $pais->ciudad = $data[1];
-      $pais->save();
-    }
-    fclose($handle);
-  }
-  return Paise::all();
-});
+    Route::get('csv',function(){
+      if(($handle = fopen(public_path().'/uploads/paises.csv','r')) !== FALSE)
+      {
+        while(($data = fgetcsv($handle, 1000, ',')) !== FALSE)
+        {
+          $pais = new Paise();
+          $pais->pais = $data[0];
+          $pais->ciudad = $data[1];
+          $pais->save();
+        }
+        fclose($handle);
+      }
+      return redirect()->route('admin.index');
+    });
 
 
-////////
-//Paise Resources
-/*******************************************************/
-Route::resource('pais','PaiseController');
-Route::get('pais/{id}/destroy', [
+    ////////
+    //Paise Resources
+    /*******************************************************/
+    Route::resource('pais','PaiseController');
+    Route::get('pais/{id}/destroy', [
       'uses'  => 'PaiseController@destroy',
       'as'    => 'pais.destroy'
 
     ]);
-/********************************************************/
+    /********************************************************/
 
-//Oficina Resources
-/*******************************************************/
-Route::resource('oficina','OficinaController');
-Route::get('oficina/{id}/destroy', [
+    //Oficina Resources
+    /*******************************************************/
+    Route::resource('oficina','OficinaController');
+    Route::get('oficina/{id}/destroy', [
       'uses'  => 'OficinaController@destroy',
       'as'    => 'oficina.destroy'
 
     ]);
-/********************************************************/
+    /********************************************************/
 
-//Torre Resources
-/*******************************************************/
-Route::resource('torre','TorreController');
-Route::get('torre/{id}/destroy', [
+    //Torre Resources
+    /*******************************************************/
+    Route::resource('torre','TorreController');
+    Route::get('torre/{id}/destroy', [
       'uses'  => 'TorreController@destroy',
       'as'    => 'torre.destroy'
 
     ]);
-/********************************************************/
+    /********************************************************/
 
-//Apartamento Resources
-/*******************************************************/
-Route::resource('apartamento','ApartamentoController');
-Route::post('apartamento/{id}/update','ApartamentoController@update');
-Route::get('apartamento/{id}/delete','ApartamentoController@destroy');
-Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
-/********************************************************/
-
+    //Apartamento Resources
+    /*******************************************************/
+    Route::resource('apartamento','ApartamentoController');
+    Route::post('apartamento/{id}/update','ApartamentoController@update');
+    Route::get('apartamento/{id}/delete','ApartamentoController@destroy');
+    Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
+    /********************************************************/
+  });
 });
+
+// Restablecer la contraseña
+//Route::resource('mail', 'MailController');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -124,8 +137,8 @@ Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
 
 Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
 {
-    Route::group(['prefix' => 'v1'], function ()
-    {
-        require config('infyom.laravel_generator.path.api_routes');
-    });
+  Route::group(['prefix' => 'v1'], function ()
+  {
+    require config('infyom.laravel_generator.path.api_routes');
+  });
 });
