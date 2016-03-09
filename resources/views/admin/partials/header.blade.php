@@ -3,9 +3,9 @@
 
     <!-- Logo -->
     <a href="/login/dash" class="logo">
-          <span class="logo-mini"><!--img src="{--{asset('/ui/images/logo-min.png')}--}"></img--></span>
+          <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img--></span>
 
-      <span class="logo-lg"> <!--img src="{--{asset('/ui/images/logo-b2.png')}--}"></img--><b>Admin</b> ALB Panamá</span>
+      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB - Panamá</span>
     </a>
 
     <!-- Header Navbar -->
@@ -25,7 +25,7 @@
               <span class="label label-success">4</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">Tiene 4 Mensajes</li>
               <li>
                 <!-- inner menu: contains the messages -->
                 <ul class="menu">
@@ -48,7 +48,7 @@
                 </ul>
                 <!-- /.menu -->
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a href="#">Ver todos los mensajes</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->
@@ -61,7 +61,7 @@
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">Tiene 10 notificaciones</li>
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
@@ -73,7 +73,7 @@
                   <!-- end notification -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="#">Todas las vistas</a></li>
             </ul>
           </li>
           <!-- Tasks Menu -->
@@ -84,7 +84,7 @@
               <span class="label label-danger">9</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
+              <li class="header">tiene 9 tareas</li>
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
@@ -127,7 +127,7 @@
                  <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Auth::user()->name}} - {{Auth::user()->tipo}}
+                  {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
                   <small>Miembro desde:  {{Auth::user()->created_at}}</small>
                 </p>
               </li>
