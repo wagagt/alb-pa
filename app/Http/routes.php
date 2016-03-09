@@ -15,39 +15,36 @@ use App\Paise;
 
 // Authentication routes...
 
-Route::get('/login', [
+Route::get('/',function(){
+      return redirect()->route('admin.auth.login');
+});
+
+Route::get('admin/auth/login', [
 
   'uses'    =>  'Auth\AuthController@getLogin',
-  'as'     =>  'auth.login'
+  'as'     =>  'admin.auth.login'
 ]);
 
 
-Route::post('/login', [
+Route::post('admin/auth/login', [
 
   'uses'    =>  'Auth\AuthController@postLogin',
-  'as'     =>  'auth.login'
+  'as'     =>  'admin.auth.login'
 ]);
 
-Route::get('/logout', [
+Route::get('admin/auth/logout', [
 
   'uses'    =>  'Auth\AuthController@getLogout',
-  'as'      =>  'auth.logout'
+  'as'      =>  'admin.auth.logout'
 ]);
 // end Authentication routes .....
 
+Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
 
-//  Dashboard
-Route::get('login/dash', [
-
-  'uses'    =>  'FrontController@index',
-  'as'     =>  'dash.init'
-]);
-
-Route::post('login/dash', [
-
-  'uses'    =>  'FrontController@index',
-  'as'     =>  'dash.init'
-]);
+  //  Dashboard
+  Route::get('/dash', ['as' => 'admin.index', function(){
+    return view('admin.index');
+  } ]);
 
 // Users Crud Route
 Route::resource('users','UsersController');
@@ -79,25 +76,6 @@ Route::get('csv',function(){
 
 
 ////////
-
-
-
-
-/*
-|--------------------------------------------------------------------------
-| API routes
-|--------------------------------------------------------------------------
-*/
-
-Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
-{
-    Route::group(['prefix' => 'v1'], function ()
-    {
-        require config('infyom.laravel_generator.path.api_routes');
-    });
-});
-
-
 //Paise Resources
 /*******************************************************/
 Route::resource('pais','PaiseController');
@@ -135,3 +113,19 @@ Route::post('apartamento/{id}/update','ApartamentoController@update');
 Route::get('apartamento/{id}/delete','ApartamentoController@destroy');
 Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
 /********************************************************/
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| API routes
+|--------------------------------------------------------------------------
+*/
+
+Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
+{
+    Route::group(['prefix' => 'v1'], function ()
+    {
+        require config('infyom.laravel_generator.path.api_routes');
+    });
+});

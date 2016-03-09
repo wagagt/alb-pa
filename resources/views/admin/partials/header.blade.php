@@ -3,9 +3,9 @@
 
     <!-- Logo -->
     <a href="/login/dash" class="logo">
-          <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
+          <span class="logo-mini"><!--img src="{--{asset('/ui/images/logo-min.png')}--}"></img--></span>
 
-      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB Panamá</span>
+      <span class="logo-lg"> <!--img src="{--{asset('/ui/images/logo-b2.png')}--}"></img--><b>Admin</b> ALB Panamá</span>
     </a>
 
     <!-- Header Navbar -->
@@ -119,7 +119,7 @@
               <!-- The user image in the navbar-->
               <img src="ui/images/avataruser.png" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -127,8 +127,8 @@
                  <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{Auth::user()->name}} - {{Auth::user()->tipo}}
+                  <small>Miembro desde:  {{Auth::user()->created_at}}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -138,11 +138,8 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn  btn-warning">Perfil</a>
-                </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-danger">Salir</a>
+                  <a href="{{route('admin.auth.logout')}}" class="btn btn-danger">Salir</a>
                 </div>
               </li>
             </ul>

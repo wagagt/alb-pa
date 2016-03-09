@@ -29,7 +29,7 @@ $factory->define(User::class,function(Generator $faker){
     'email'         => $faker->email,
     'pasaporte'     => str_random(15),
     'cedula'        => str_random(15),
-    'password'    => bcrypt('1234567'),
+    'password'      => bcrypt('123456'),
 
   ];
 

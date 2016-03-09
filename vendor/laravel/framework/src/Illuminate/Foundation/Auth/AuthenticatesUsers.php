@@ -21,7 +21,7 @@ trait AuthenticatesUsers
             return view('auth.authenticate');
         }
 
-        return view('admin.index');
+        return view('auth.login');
     }
 
     /**
@@ -117,7 +117,7 @@ trait AuthenticatesUsers
     {
         Auth::logout();
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/login');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'admin/auth/login');
     }
 
     /**
@@ -127,7 +127,7 @@ trait AuthenticatesUsers
      */
     public function loginPath()
     {
-        return property_exists($this, 'loginPath') ? $this->loginPath : 'login/dash';
+        return property_exists($this, 'loginPath') ? $this->loginPath : '/dash';
     }
 
     /**
@@ -137,7 +137,7 @@ trait AuthenticatesUsers
      */
     public function loginUsername()
     {
-        return property_exists($this, 'user_name') ? $this->username : 'email';
+        return property_exists($this, 'username') ? $this->username : 'usuario';
     }
 
     /**

@@ -10,9 +10,9 @@
              <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>{{Auth::user()->name}}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
         </div>
       </div>
 
@@ -30,7 +30,9 @@
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-        <li class="header">HEADER</li>
+          <li class="header">Menú</li>
+        @if((Auth::user()->tipo == 'admin')|| (Auth::user()->tipo == 'super_admin'))
+
         <!-- Optionally, you can add icons to the links -->
         <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
         <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
@@ -38,7 +40,11 @@
         <li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
         <li><a href="#"><i class="fa fa-exclamation-triangle"/></i> <span>Notificación General</span></a></li>
         <li><a href="#"><i class="fa fa-commenting-o"/></i> <span>Notificación de Incidencias</span></a></li>
-        <li><a href="#"><i class="fa fa-sign-out"/></i> <span>Salir</span></a></li>
+        <li><a href="{{route('admin.auth.logout')}}"><i class="fa fa-sign-out"/></i> <span>Salir</span></a></li>
+      @else
+        <li><a href="{{route('admin.auth.logout')}}"><i class="fa fa-sign-out"/></i> <span>Salir</span></a></li>
+      @endif
+
         <!--li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">

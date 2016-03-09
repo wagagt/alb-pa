@@ -1,64 +1,60 @@
 @extends('layouts.login')
 @section('title', 'Login')
-@section('content')
-   <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="panel panel-default">
-				<div class="panel-heading">Login</div>
-				<div class="panel-body">
-					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+  @section('content')
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">Login</div>
+            <div class="panel-body">
+              @include('admin.partials.errors')
 
-					<form class="form-horizontal" role="form" method="POST" action="{{route('dash.init')}}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Usuario:</label>
-							<div class="col-md-6">
-								<input type="text" class="form-control" name="usuario" value="{{ old('usuario') }}">
-							</div>
-						</div>
+              {!! Form::open(['route' => 'admin.auth.login', 'method' => 'POST']) !!}
+              <div class="form-group" style="padding-bottom:38px">
+                <div class="col-md-4">
+                  {!! Form::label('usuario', 'Usuario:') !!}
+                </div>
+                <div class="col-md-4">
+                  {!! Form::text('usuario', null, [
+                    'class'=>'form-control',
+                    'placeholder'=>'Ingrese usuario asignado',
+                    'value' => '{{ old("usuario") }}', 'autofocus']) !!}
 
-						<div class="form-group">
-							<label class="col-md-4 control-label">Clave:</label>
-							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
-							</div>
-						</div>
+                  </div>
+                </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<div class="checkbox">
-									<label>
-										<input type="checkbox" name="remember"> Recordarme
-									</label>
-								</div>
-							</div>
-						</div>
+                <div class="form-group">
+                  <div class="col-md-4">
+                    {!! Form::label('password', 'Contraseña:') !!}
+                  </div>
 
-						<div class="form-group">
-							<div class="col-md-6 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
-									Ingresar
-								</button>
+                  <div class="col-md-4">
+                    {!! Form::password('password', [
+                      'class'=>'form-control',
+                      'placeholder'=>'**********', 'autofocus']) !!}
 
-								<!--<a href="/password/email">Olvidó su clave?</a>-->
-							</div>
-						</div>
-					</form>
+                    </div>
+                  </div>
 
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-@endsection
+                  <div class="form-group">
+
+                    <div class="col-md-8">
+                      {!! Form::submit('Ingresar',['class' => 'btn btn-primary']) !!}
+                    </div>
+
+                  </div>
+
+
+
+                  {!! Form::close() !!}
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      @endsection
