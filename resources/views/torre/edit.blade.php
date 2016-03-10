@@ -11,14 +11,13 @@
 
           <div class="box-body">
             <div class="text-left">
-            <a href="{{ route('torre.store') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+            <a href="{{ route('torre.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
               Listar torres</a>
             </div>
 
             <div class="row col-md-12">
                 {!! Form::model($torre, ['route'=>['torre.update', $torre->id],  'method' => 'PUT']) !!}
                 <div class="row col-md-12">
-                    {!! Form::open(['route'=>'torre.store', 'method' => 'POST']) !!}
                     <div class="form-gorup">
                         <div class="col-md-6">
                             {!! Form::label('nombre', 'Nombre:') !!}

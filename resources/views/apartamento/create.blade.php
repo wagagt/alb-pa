@@ -1,100 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Create Apartamento</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Create Apartamento</h1>
-            <form method = 'get' action = 'http://localhost:8000/apartamento'>
-                <button class = 'btn blue'>Apartamento Index</button>
-            </form>
-            <br>
-            <form method = 'POST' action = 'http://localhost:8000/apartamento'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="numero" name = "numero" type="text" class="validate">
-                    <label for="numero">numero</label>
+@extends('layouts.admin')
+@section('title', 'Crear Apartamento')
+@section('content')
+  <div class="col-xs-12">
+      <div class="box box-primary">
+          <div class="box-header">
+          <h3 class="box-title">Crear Apartamento</h3>
+              <div class="box-tools">
+
+              </div>
+          </div>
+
+          <div class="box-body">
+            <div class="text-left">
+            <a href="{{ route('apartamento.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+              Listar Apartamento</a>
+            </div>
+
+            <div class="row col-md-12">
+                {!! Form::open(['route'=>'apartamento.store', 'method' => 'POST']) !!}
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('numero', 'Número:') !!}
+                        {!! Form::text('numero', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el número de apartamento', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="nivel" name = "nivel" type="text" class="validate">
-                    <label for="nivel">nivel</label>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('nivel', 'Nivel:') !!}
+                        {!! Form::text('nivel', null, ['class' => 'form-control', 'placeholder' => 'Número de nivel', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="cantidad_banios" name = "cantidad_banios" type="text" class="validate">
-                    <label for="cantidad_banios">cantidad_banios</label>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('cantidad_banios', '# de Baños:') !!}
+                        {!! Form::text('cantidad_banios', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 2', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="metros_cuadrados" name = "metros_cuadrados" type="text" class="validate">
-                    <label for="metros_cuadrados">metros_cuadrados</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('metros_cuadrados', 'Metros Cuadrados:') !!}
+                        {!! Form::text('metros_cuadrados', null, ['class' => 'form-control select-country', 'placeholder' => 'Ejemplo: 600', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="ambientes" name = "ambientes" type="text" class="validate">
-                    <label for="ambientes">ambientes</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('ambientes', 'Ambientes:') !!}
+                        {!! Form::text('ambientes', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 3', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="dormitorios" name = "dormitorios" type="text" class="validate">
-                    <label for="dormitorios">dormitorios</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('dormitorios', '# de Dormitorios:') !!}
+                        {!! Form::text('dormitorios', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 4', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="marca_v_1" name = "marca_v_1" type="text" class="validate">
-                    <label for="marca_v_1">marca_v_1</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('marca_v_1', 'Marca Vehículo 1:') !!}
+                        {!! Form::text('marca_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: BMW', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="modelo_v_1" name = "modelo_v_1" type="text" class="validate">
-                    <label for="modelo_v_1">modelo_v_1</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('modelo_v_1', 'Modelo Vehículo 1:') !!}
+                        {!! Form::text('modelo_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 2014', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="placa_v_1" name = "placa_v_1" type="text" class="validate">
-                    <label for="placa_v_1">placa_v_1</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('Placa_v_1', 'Placa Vehículo 1:') !!}
+                        {!! Form::text('Placa_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: PR 2365', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="marca_v_2" name = "marca_v_2" type="text" class="validate">
-                    <label for="marca_v_2">marca_v_2</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('marca_v_2', 'Marca Vehículo 2:') !!}
+                        {!! Form::text('marca_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: BMW', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="modelo_v_2" name = "modelo_v_2" type="text" class="validate">
-                    <label for="modelo_v_2">modelo_v_2</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('modelo_v_2', 'Modelo Vehículo 2:') !!}
+                        {!! Form::text('modelo_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 2014', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="placa_v_2" name = "placa_v_2" type="text" class="validate">
-                    <label for="placa_v_2">placa_v_2</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('Placa_v_2', 'Placa Vehículo 2:') !!}
+                        {!! Form::text('Placa_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: PR 2365', 'required'])!!}
+                    </div>
                 </div>
-                
-                
-                <div class="input-field col s12">
-                    <select name = 'torre_id'>
-                        @foreach($torres as $key1 => $value1)
-                        <option value="{{$key1}}">{{$value1}}</option>
-                        @endforeach
-                    </select>
-                    <label>torres Select</label>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('torre_id', 'Torre:') !!}
+                        {!! Form::select('torre_id', $torres , null, ['class' => 'form-control select-torre', 'placeholder' => 'Seleccione un Torre', 'required'])!!}
+                    </div>
                 </div>
-                
-                <button class = 'btn red' type ='submit'>Create</button>
-            </form>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script type="text/javascript">
-    $('select').material_select();
-    </script>
-</html>
+
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('user_id', 'Propietario:') !!}
+                        {!! Form::select('user_id', $users , null, ['class' => 'form-control select-user', 'placeholder' => 'Seleccione un Usuario', 'required'])!!}
+                    </div>
+                </div>
+
+
+                <div class="form-gorup">
+                  <div class="col-md-12">
+                    {!! Form::submit('Registrar',  ['class' => 'btn btn-primary']) !!}
+                    </div>
+                </div>
+                {!! Form::close()!!}
+
+          </div>
+      </div>
+  </div>
+  </div>
+
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+
+         $('.select-user').chosen({
+            no_results_text:'Ningún resultado coincide con: '
+          });
+
+          $('.select-torre').chosen({
+             no_results_text:'Ningún resultado coincide con: '
+           });
+
+
+      </script>
+@endsection

@@ -1,95 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Index Apartamento</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Apartamento Index</h1>
-            <div class="row">
-            <form class = 'col s3' method = 'get' action = 'http://localhost:8000/apartamento/create'>
-                <button class = 'btn red' type = 'submit'>Create New Apartamento</button>
-            </form>
+@extends('layouts.admin')
+@section('title', 'Torre Apartamentos ')
+  @section('content')
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Lista de Apartamentos</h3>
+          <div class="box-tools">
 
-                <ul id="dropdown" class="dropdown-content">
+            <!-- Buscador de Tags -->
+            <div class="input-group input-group-sm">
+              {!! Form::open(['route'=>'apartamento.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
+              <div class="input-group">
 
-                    <li><a href="http://localhost:8000/torre">Torre</a></li>
+                {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Buscar Apartamento...',
+                  'aria-describedby'=>'search','autofocus']) !!}
+                  <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
+                </div>
 
-                </ul>
-                <a class="col s3 btn dropdown-button #1e88e5 blue darken-1" href="#!" data-activates="dropdown">Associate<i class="mdi-navigation-arrow-drop-down right"></i></a>
-                        </div>
-            <table>
+                {!! Form::close() !!}
+              </div>
+              <!-- Fin del buscador -->
+            </div>
+          </div>
+<div class="box-body">
+<div class="col-md-12 text-left"><a href="{{route('apartamento.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Apartamento </a>  </div>
+            <table class="table table-hover">
                 <thead>
 
-                    <th>numero</th>
-                    <th>nivel</th>
-                    <th>cantidad_banios</th>
-                    <th>metros_cuadrados</th>
-                    <th>ambientes</th>
-                    <th>dormitorios</th>
-                    <th>marca_v_1</th>
-                    <th>modelo_v_1</th>
-                    <th>placa_v_1</th>
-                    <th>marca_v_2</th>
-                    <th>modelo_v_2</th>
-                    <th>placa_v_2</th>
-                    <th>nombre</th>
-                    <th>direccion</th>
-                    <th>niveles</th>
-                    <th>actions</th>
+                    <th>NUMERO</th>
+                    <th>NIVEL</th>
+                    <th>METROS CUADRADOS</th>
+                    <th>TORRE</th>
+                    <th>PROPIETARIO</th>
+                    <th>ACCIONES</th>
                 </thead>
                 <tbody>
-                    @foreach($apartamentos as $value)
+                    @foreach($apartamentos as $apartamento)
 
                     <tr>
 
-                        <td>{{$value->numero}}</td>
+                        <td>{{$apartamento->numero}}</td>
+                        <td>{{$apartamento->nivel}}</td>
+                        <td>{{$apartamento->metros_cuadrados}}</td>
+                        <td>{{$apartamento->torre->nombre}}</td>
+                        <td>{{$apartamento->user->name}}</td>
+                      <td>
 
-                        <td>{{$value->nivel}}</td>
+                              <a href="{{ route('apartamento.edit', $apartamento->id) }}" class="btn btn-warning" title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+                              <a href="{{ route('apartamento.destroy', $apartamento->id) }}" class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
+                                <i class="fa fa-trash"></i></a>
+                      </td>
 
-                        <td>{{$value->cantidad_banios}}</td>
-
-                        <td>{{$value->metros_cuadrados}}</td>
-
-                        <td>{{$value->ambientes}}</td>
-
-                        <td>{{$value->dormitorios}}</td>
-
-                        <td>{{$value->marca_v_1}}</td>
-
-                        <td>{{$value->modelo_v_1}}</td>
-
-                        <td>{{$value->placa_v_1}}</td>
-
-                        <td>{{$value->marca_v_2}}</td>
-
-                        <td>{{$value->modelo_v_2}}</td>
-
-                        <td>{{$value->placa_v_2}}</td>
-
-
-
-
-                        <td>{{$value->torre->nombre}}</td>
-
-                        <td>{{$value->torre->direccion}}</td>
-
-                        <td>{{$value->torre->niveles}}</td>
-
-
-
-                        <td>
-                            <div class = 'row'>
-                                <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/apartamento/{{$value->id}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                                <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/apartamento/{{$value->id}}/edit'><i class = 'material-icons'>edit</i></a>
-                                <a href = '#' class = 'viewShow btn-floating orange' data-link = '/apartamento/{{$value->id}}'><i class = 'material-icons'>info</i></a>
-                            </div>
-                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -97,15 +58,9 @@
 
             {!! $apartamentos->render() !!}
 
+          </div>
+
         </div>
-        <div id="modal1" class="modal">
-            <div class = "row AjaxisModal">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script> var baseURL = "{{URL::to('/')}}"</script>
-    <script type="text/javascript" src = "/js/AjaxisMaterialize.js"></script>
-    <script type="text/javascript" src = "/js/scaffold-interface-js/customA.js"></script>
-</html>
+      </div>
+
+  @endsection

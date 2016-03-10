@@ -5,7 +5,7 @@
     <a href="/login/dash" class="logo">
           <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
 
-      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Admin</b> ALB - Panamá</span>
+      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Administración</b> - </span>
     </a>
 
     <!-- Header Navbar -->
@@ -146,7 +146,7 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a href="#" data-toggle="control-sidebar" style="display:none;"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>

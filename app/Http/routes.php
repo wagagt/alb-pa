@@ -117,9 +117,18 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
     //Apartamento Resources
     /*******************************************************/
     Route::resource('apartamento','ApartamentoController');
-    Route::post('apartamento/{id}/update','ApartamentoController@update');
-    Route::get('apartamento/{id}/delete','ApartamentoController@destroy');
-    Route::get('apartamento/{id}/deleteMsg','ApartamentoController@DeleteMsg');
+
+    // Lista los apartamentos segun torre_id
+    Route::get('apartamento/{id}/aptoTorres', [
+      'uses'    =>  'ApartamentoController@aptoTorres',
+      'as'      =>  'apartamento.Torres'
+    ]);
+
+    Route::get('apartamento/{id}/destroy', [
+      'uses'  => 'ApartamentoController@destroy',
+      'as'    => 'apartamento.destroy'
+
+    ]);
     /********************************************************/
   });
 });

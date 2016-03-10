@@ -34,8 +34,14 @@
         @if((Auth::user()->tipo == 'admin')|| (Auth::user()->tipo == 'super_admin'))
 
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
-        <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
+        <li class="treeview">
+          <a href="#"><i class="fa fa-cogs"></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
+            <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
+            <li><a href="{{route('apartamento.index')}}"><i class="fa fa-home"></i></i><span>Apartamentos</span></a></li>
+          </ul>
+        </li>
         <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Torres</span></a></li>
         <li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
         <li><a href="#"><i class="fa fa-exclamation-triangle"/></i> <span>Notificación General</span></a></li>

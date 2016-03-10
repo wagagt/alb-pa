@@ -24,7 +24,7 @@
           </div>
 
           <div class="box-body">
-            <div class="col-md-12 text-left"><a href="{{route('torre.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Torre </a>  </div>
+            <div class="col-md-12 text-left"><a href="{{route('torre.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Agregar Torre </a>  </div>
             <table class="table table-hover">
               <thead>
 
@@ -40,10 +40,16 @@
                     <td>{{$torre->nombre}}</td>
                     <td>{{$torre->niveles}}</td>
                     <td>{{$torre->oficina->nombre}}</td>
-                    <td><a href="{{ route('torre.edit', $torre->id) }}" class="btn btn-warning" title="Editar">
-                      <i class="fa fa-pencil-square-o"></i></a> <a href="{{ route('torre.destroy', $torre->id) }}"
+                    <td>
+                      <a href="{{ route('apartamento.Torres', $torre->id) }}"
+                        class="btn btn-info" title="Apartamentos"><i class="fa fa-building-o"></i></a>
+                      <a href="{{ route('torre.edit', $torre->id) }}" class="btn btn-warning" title="Editar">
+                      <i class="fa fa-pencil-square-o"></i></a>
+                      <a href="{{ route('torre.destroy', $torre->id) }}"
                         class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
-                        <i class="fa fa-trash"></i></a></td>
+                        <i class="fa fa-trash"></i></a>
+
+                      </td>
                       </tr>
 
                     @endforeach

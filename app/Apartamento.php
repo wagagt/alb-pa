@@ -47,6 +47,11 @@ class Apartamento extends Model
     return $this->belongsTo('App\User');
   }
 
+  public function  scopeSearch($query, $numero)
+  {
+    return $query->where('numero', 'LIKE', '%'.$numero.'%');
+  }
+
 
 
 }
