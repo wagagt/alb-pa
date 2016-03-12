@@ -151,3 +151,19 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
     require config('infyom.laravel_generator.path.api_routes');
   });
 });
+
+//Tipo_documento Resources
+/*******************************************************/
+Route::resource('tipo_documento','Tipo_documentoController');
+Route::post('tipo_documento/{id}/update','Tipo_documentoController@update');
+Route::get('tipo_documento/{id}/delete','Tipo_documentoController@destroy');
+Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg');
+/********************************************************/
+
+//Documento Resources
+/*******************************************************/
+Route::resource('documento','DocumentoController');
+Route::post('documento/{id}/update','DocumentoController@update');
+Route::get('documento/{id}/delete','DocumentoController@destroy');
+Route::get('documento/{id}/deleteMsg','DocumentoController@DeleteMsg');
+/********************************************************/
