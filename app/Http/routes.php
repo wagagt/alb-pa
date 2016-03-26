@@ -158,6 +158,11 @@ Route::resource('tipo_documento','Tipo_documentoController');
 Route::post('tipo_documento/{id}/update','Tipo_documentoController@update');
 Route::get('tipo_documento/{id}/delete','Tipo_documentoController@destroy');
 Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg');
+Route::get('tipo_documento/{id}/destroy', [
+      'uses'  => 'Tipo_documentoController@destroy',
+      'as'    => 'tipo_documento.destroy'
+
+]);
 /********************************************************/
 
 //Documento Resources

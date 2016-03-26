@@ -18,17 +18,10 @@ class TipoDocumentos extends Migration
     public function up()
     {
         Schema::create('tipo_documentos',function (Blueprint $table){
-
         $table->increments('id');
-        
         $table->string('descripcion');
-        
-        /**
-         * Foreignkeys section
-         */
-        
-        // type your addition here
-
+        $table->softDeletes();
+        $table->timestamps();
         });
     }
 

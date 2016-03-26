@@ -2,7 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Tipo_documentoController
  *
@@ -11,10 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Tipo_documento extends Model
 {
-
-    public $timestamps = false;
-
+	use softDeletes;
     protected $table = 'tipo_documentos';
+    protected $fillable = ['descripcion'];
+    protected $dates = ['deleted_at'];
 
+     public function scopeSearch($query, $name)
+     {
+    	 return $query->where('descripcion', 'LIKE', '%'.$name.'%');
+     }
 	
 }

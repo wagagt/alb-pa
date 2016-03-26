@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Tipo_documento;
 use Amranidev\Ajaxis\Ajaxis;
+use Laracasts\Flash\Flash;
+use App\Tipo_documento;
 use URL;
 
 /**
@@ -20,10 +22,10 @@ class Tipo_documentoController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tipo_documentos = Tipo_documento::all();
-        return view('tipo_documento.index',compact('tipo_documentos'));
+        $tipo_documentos = Tipo_documento::search($request->descripcion)->orderBy('descripcion', 'ASC')->paginate(5);
+        return view('tipo_documento.index')->with('tipo_documentos', $tipo_documentos);
     }
 
     /**
@@ -33,9 +35,7 @@ class Tipo_documentoController extends Controller
      */
     public function create()
     {
-        
-        return view('tipo_documento.create'
-                );
+        return view('tipo_documento.create');
     }
 
     /**
@@ -46,18 +46,15 @@ class Tipo_documentoController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Request::except('_token');
-
-        $tipo_documento = new Tipo_documento();
-
-        
-        $tipo_documento->descripcion = $input['descripcion'];
-
-        
-        
+        $tipo_documento = new Tipo_documento($request->all());
         $tipo_documento->save();
-
-        return redirect('tipo_documento');
+        Flash::success('Tipo documento '.$tipo_documento->descripcion.' ha sido creado con exito!.');
+        return redirect()->route('tipo_documento.index');
+        // $input = Request::except('_token');
+        // $tipo_documento = new Tipo_documento();
+        // $tipo_documento->descripcion = $input['descripcion'];
+        // $tipo_documento->save();
+        // return redirect('tipo_documento');
     }
 
     /**
@@ -68,13 +65,13 @@ class Tipo_documentoController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('tipo_documento/'.$id);
-        }
+        // if(Request::ajax())
+        // {
+        //     return URL::to('tipo_documento/'.$id);
+        // }
 
-        $tipo_documento = Tipo_documento::findOrfail($id);
-        return view('tipo_documento.show',compact('tipo_documento'));
+        // $tipo_documento = Tipo_documento::findOrfail($id);
+        // return view('tipo_documento.show',compact('tipo_documento'));
     }
 
     /**
@@ -85,16 +82,12 @@ class Tipo_documentoController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('tipo_documento/'. $id . '/edit');
-        }
-
-        
+        // if(Request::ajax())
+        // {
+        //     return URL::to('tipo_documento/'. $id . '/edit');
+        // }
         $tipo_documento = Tipo_documento::findOrfail($id);
-        return view('tipo_documento.edit',compact('tipo_documento'
-                )
-                );
+        return view('tipo_documento.edit',compact('tipo_documento'));
     }
 
     /**
@@ -104,27 +97,17 @@ class Tipo_documentoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
-
+        //$input = Request::except('_token');
         $tipo_documento = Tipo_documento::findOrfail($id);
-    	
-        $tipo_documento->descripcion = $input['descripcion'];
-        
-        
+        $tipo_documento->fill($request->all());
         $tipo_documento->save();
-
-        return redirect('tipo_documento');
+        //return redirect('tipo_documento');
+        Flash::warning('El tipo documento '.$tipo_documento->id.' ha sido actualizado con éxito!!');
+        return redirect()->route('tipo_documento.index');
     }
 
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
     public function DeleteMsg($id)
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/tipo_documento/'. $id . '/delete/');
@@ -135,17 +118,13 @@ class Tipo_documentoController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
      	$tipo_documento = Tipo_documento::findOrfail($id);
      	$tipo_documento->delete();
-        return URL::to('tipo_documento');
+        //return URL::to('tipo_documento');
+        Flash::error('El tipo documento  "'.$tipo_documento->descripcion. '" ha sido borrado de forma exitosa!!');
+        return redirect()->route('tipo_documento.index');
     }
 
 }
