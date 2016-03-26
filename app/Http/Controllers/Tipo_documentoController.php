@@ -104,7 +104,7 @@ class Tipo_documentoController extends Controller
         $tipo_documento->fill($request->all());
         $tipo_documento->save();
         //return redirect('tipo_documento');
-        Flash::warning('El tipo documento '.$tipo_documento->id.' ha sido actualizado con éxito!!');
+        Flash::warning('El tipo documento "'.$tipo_documento->descripcion.'" ha sido actualizado con éxito!!');
         return redirect()->route('tipo_documento.index');
     }
 

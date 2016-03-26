@@ -34,7 +34,7 @@
 
                 <div class="form-gorup">
                   <div class="col-md-12">
-                    {!! Form::submit('Registrar',  ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Crear',  ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
                 {!! Form::close()!!}
