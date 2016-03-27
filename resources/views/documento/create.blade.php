@@ -1,56 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Create Documento</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Create Documento</h1>
-            <form method = 'get' action = 'http://alb.app:8000/documento'>
-                <button class = 'btn blue'>Documento Index</button>
-            </form>
-            <br>
-            <form method = 'POST' action = 'http://alb.app:8000/documento'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="nombre" name = "nombre" type="text" class="validate">
-                    <label for="nombre">nombre</label>
+@extends('layouts.admin')
+@section('title', 'Crear Documento')
+@section('content')
+  <div class="col-xs-12">
+      <div class="box box-primary">
+          <div class="box-header">
+          <h3 class="box-title">Crear Documento</h3>
+              <div class="box-tools">
+
+              </div>
+          </div>
+
+          <div class="box-body">
+            <div class="text-left">
+            <a href="{{ route('documento.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+              Lista de Documentos</a>
+            </div>
+        <br>
+
+                    <div class="row col-md-12">
+                {!! Form::open(['route'=>'documento.store', 'method' => 'POST']) !!}
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('Nombre', 'Nombre:') !!}
+                        {!! Form::text('documento', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del documento', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="tipo_documentos_id" name = "tipo_documentos_id" type="text" class="validate">
-                    <label for="tipo_documentos_id">tipo_documentos_id</label>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('TipoDocumento', 'Tipo de Documento:') !!}
+                        {!! Form::select('tipo_documento', $tipo_documentos_list, null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
+
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="fecha_del" name = "fecha_del" type="text" class="validate">
-                    <label for="fecha_del">fecha_del</label>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('fechadel', 'Fecha Desde:') !!}
+                        {!! Form::text('documento', null, ['class' => 'form-control', 'placeholder' => 'Fecha Inicio', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="fecha_al" name = "fecha_al" type="text" class="validate">
-                    <label for="fecha_al">fecha_al</label>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('fechaal', 'Fecha Hasta:') !!}
+                        {!! Form::text('tipodocumento', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="user_id" name = "user_id" type="text" class="validate">
-                    <label for="user_id">user_id</label>
+
+                <div class="form-gorup">
+                  <div class="col-md-12">
+                    <br>
+                    {!! Form::hidden('user_id', Auth::user()->id ,null) !!}
+                    {!! Form::submit('Crear',  ['class' => 'btn btn-primary']) !!}
+                    </div>
                 </div>
-                
-                
-                <button class = 'btn red' type ='submit'>Create</button>
-            </form>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script type="text/javascript">
-    $('select').material_select();
-    </script>
-</html>
+                {!! Form::close()!!}
+
+          </div>
+</div>
+      </div>
+      
+  </div>
+  </div>
+
+@endsection

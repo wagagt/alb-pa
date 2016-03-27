@@ -9,7 +9,8 @@ use Amranidev\Ajaxis\Ajaxis;
 use Laracasts\Flash\Flash;
 use App\Documento;
 use URL;
-
+//use App\Http\Controllers\tipo_documento;
+use App\Tipo_documento;
 /**
  * Class DocumentoController
  *
@@ -39,8 +40,10 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        $tipo_documento = tipo_documento::orderBy('nombre','ASC')->lists('nombre', 'id');
-        return view('documento.create')->with('tipo_documento', $tipo_documento);
+        // $tipo_documento = tipo_documento::orderBy('nombre','ASC')->lists('nombre', 'id');
+        // return view('documento.create')->with('tipo_documento', $tipo_documento);
+        $tipoDocumentos = Tipo_documento::orderBy('descripcion','ASC')->lists('descripcion','id'); // se listan los paises
+        return view('documento.create')->with('tipo_documentos_list', $tipoDocumentos);
     }
 
     /**
