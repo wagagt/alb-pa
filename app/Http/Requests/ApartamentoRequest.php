@@ -24,8 +24,8 @@ class ApartamentoRequest extends Request
     public function rules()
     {
         return [
-          'numero' => 'min:6|required',
-          'nivel' => 'min:6|required',
+          'numero' => 'min:3|required',
+          'nivel' => 'min:3|required',
           'torre_id' => 'required',
           'user_id' => 'required'
         ];
