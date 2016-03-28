@@ -23,6 +23,7 @@ class DocumentoController extends Controller
     public function index(Request $request)
     {
         $documentos = Documento::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
+        //dd($documentos->relations());
         return view('documento.index')->with('documentos', $documentos);
     }
 

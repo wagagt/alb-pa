@@ -38,10 +38,10 @@
                 @foreach($documentos as $value)
                 <tr>
                     <td>{{$value->nombre}}</td>
-                    <td>{{$value->tipo_documentos_id}}</td>
+                    <td>{{$value->tipo_documento->descripcion}}</td>
                     <td>{{$value->fecha_del}}</td>
                     <td>{{$value->fecha_al}}</td>
-                    <td>{{$value->user_id}}</td>
+                    <td>{{$value->user->usuario}}</td>
                     <td>
                         <td>
                     <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
