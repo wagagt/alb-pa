@@ -11,7 +11,7 @@
 
           <div class="box-body">
             <div class="text-left">
-            <a href="{{ route('oficina.store') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+            <a href="{{ route('oficina.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
               Listar oficinas</a>
             </div>
 

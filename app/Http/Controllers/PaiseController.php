@@ -50,7 +50,7 @@ class PaiseController extends Controller
     {
         $pais = new Paise($request->all());
         $pais->save();
-        Flash::success('Pais '.$pais->pais.' ha sido agregado con éxito!..');
+        Flash::success('Pais "'.$pais->pais.'" ha sido agregado con éxito!..');
 
         return redirect()->route('pais.index');
     }
@@ -90,7 +90,7 @@ class PaiseController extends Controller
         $pais = Paise::findOrfail($id);
         $pais->fill($request->all());
         $pais->save();
-            Flash::warning('El país '.$pais->pis.' ha sido actualizado con éxito!!');
+            Flash::warning('El país "'.$pais->pis.'" ha sido actualizado con éxito!!');
         return redirect()->route('pais.index');
     }
 
@@ -104,7 +104,7 @@ class PaiseController extends Controller
     {
      	$pais = Paise::findOrfail($id);
      	$pais->delete();
-      Flash::error('El País  '.$pais->pais. ' ha sido borrado de forma exitosa!!');
+      Flash::error('El País  "'.$pais->pais. '" ha sido borrado de forma exitosa!!');
         return redirect()->route('pais.index');
     }
 

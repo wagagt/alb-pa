@@ -48,7 +48,7 @@ class Tipo_documentoController extends Controller
     {
         $tipo_documento = new Tipo_documento($request->all());
         $tipo_documento->save();
-        Flash::success('Tipo documento '.$tipo_documento->descripcion.' ha sido creado con exito!.');
+        Flash::success('Tipo documento "'.$tipo_documento->descripcion.'" ha sido creado con exito!.');
         return redirect()->route('tipo_documento.index');
         // $input = Request::except('_token');
         // $tipo_documento = new Tipo_documento();

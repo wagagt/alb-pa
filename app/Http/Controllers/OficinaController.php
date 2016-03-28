@@ -98,7 +98,7 @@ class OficinaController extends Controller
 * @param    int  $id
 * @return  \Illuminate\Http\Response
 */
-public function update(Request $request,$id)
+public function update(Request $request, $id)
 {
   $oficina = Oficina::findOrfail($id);
   $oficina->fill($request->all());

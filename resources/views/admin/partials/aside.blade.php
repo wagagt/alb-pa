@@ -40,7 +40,7 @@
             <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
             <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
             <li><a href="{{route('apartamento.index')}}"><i class="fa fa-home"></i></i><span>Apartamentos</span></a></li>
-            <li><a href="{{route('tipo_documento.index')}}"><i class="fa fa-book"></i></i><span>Tipo Documientos</span></a></li>
+            <li><a href="{{route('tipo_documento.index')}}"><i class="fa fa-book"></i></i><span>Tipo Documentos</span></a></li>
           </ul>
         </li>
         <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Torres</span></a></li>

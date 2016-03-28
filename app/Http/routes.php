@@ -171,4 +171,8 @@ Route::resource('documento','DocumentoController');
 Route::post('documento/{id}/update','DocumentoController@update');
 Route::get('documento/{id}/delete','DocumentoController@destroy');
 Route::get('documento/{id}/deleteMsg','DocumentoController@DeleteMsg');
+Route::get('documento/{id}/destroy', [
+    'uses'  => 'DocumentoController@destroy',
+    'as'    => 'documento.destroy'
+  ]);
 /********************************************************/
