@@ -14,13 +14,13 @@
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('fecha_del', 'Fecha Desde:') !!}
-        {!! Form::text('fecha_del', null, ['class' => 'form-control', 'placeholder' => 'Fecha Inicio', 'required'])!!}
+        {!! Form::text('fecha_del', null, ['class' => 'form-control', 'placeholder' => 'Fecha Inicio (año-mes-dia)', 'required'])!!}
     </div>
 </div>
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('fecha_al', 'Fecha Hasta:') !!}
-        {!! Form::text('fecha_al', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final', 'required'])!!}
+        {!! Form::text('fecha_al', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final (año-mes-dia)', 'required'])!!}
     </div>
 </div>
 

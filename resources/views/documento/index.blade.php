@@ -28,7 +28,7 @@
         <table class="table table-hover">
             <thead>
                 <td><strong>NOMBRE</strong></td>
-                <td><strong>tIPO DOC.</strong></td>
+                <td><strong>TIPO DOC.</strong></td>
                 <td><strong>DESDE</strong></td>
                 <td><strong>HASTA</strong></td>
                 <td><strong>CREADO POR</strong></td>
