@@ -3,7 +3,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
 
-class TipoDocumentosTableSeeder.php extends Seeder
+class TipoDocumentosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class TipoDocumentosTableSeeder.php extends Seeder
 		['descripcion' => 'Estado Financiero'],
 		['descripcion' => 'Bancos'],
 		['descripcion' => 'Cuentas por Pagar'],
-		['descripcion' => 'Estado de Cobrar']
+		['descripcion' => 'Cuentas por Cobrar']
         ];
 
         foreach($tiposdocumentos as $tipodoc){

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call(OficinasTableSeeder::class);
         $this->call(TorresTableSeeder::class);
         $this->call(ApartamentoTableSeeder::class);
+        $this->call(TipoDocumentosTableSeeder::class);
+        $this->call(DocumentosTableSeeder::class);
 
         Model::reguard();
     }
