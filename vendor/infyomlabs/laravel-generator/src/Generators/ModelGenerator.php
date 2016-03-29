@@ -4,20 +4,21 @@ namespace InfyOm\Generator\Generators;
 
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Utils\FileUtil;
+use InfyOm\Generator\Utils\TableFieldsGenerator;
 use InfyOm\Generator\Utils\TemplateUtil;
 
 class ModelGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.model', app_path('Models/'));
+        $this->path = $commandData->config->pathModel;
     }
 
     public function generate()
@@ -44,25 +45,27 @@ class ModelGenerator
 
         foreach ($this->commandData->inputFields as $field) {
             if ($field['fillable']) {
-                $fillables[] = '"'.$field['fieldName'].'"';
+                $fillables[] = "'".$field['fieldName']."'";
             }
         }
 
         $templateData = $this->fillDocs($templateData);
 
+        $templateData = $this->fillTimestamps($templateData);
+
         if ($this->commandData->getOption('primary')) {
-            $primary = "protected \$primaryKey = '".$this->commandData->getOption('primary')."';\n";
+            $primary = str_repeat(' ', 4)."protected \$primaryKey = '".$this->commandData->getOption('primary')."';\n";
         } else {
             $primary = '';
         }
 
         $templateData = str_replace('$PRIMARY$', $primary, $templateData);
 
-        $templateData = str_replace('$FIELDS$', implode(",\n\t\t", $fillables), $templateData);
+        $templateData = str_replace('$FIELDS$', implode(','.PHP_EOL.str_repeat(' ', 8), $fillables), $templateData);
 
-        $templateData = str_replace('$RULES$', implode(",\n\t\t", $this->generateRules()), $templateData);
+        $templateData = str_replace('$RULES$', implode(','.PHP_EOL.str_repeat(' ', 8), $this->generateRules()), $templateData);
 
-        $templateData = str_replace('$CAST$', implode(",\n\t\t", $this->generateCasts()), $templateData);
+        $templateData = str_replace('$CAST$', implode(','.PHP_EOL.str_repeat(' ', 8), $this->generateCasts()), $templateData);
 
         return $templateData;
     }
@@ -74,11 +77,16 @@ class ModelGenerator
             $templateData = str_replace('$SOFT_DELETE$', '', $templateData);
             $templateData = str_replace('$SOFT_DELETE_DATES$', '', $templateData);
         } else {
-            $templateData = str_replace('$SOFT_DELETE_IMPORT$', "use Illuminate\\Database\\Eloquent\\SoftDeletes;\n",
-                $templateData);
-            $templateData = str_replace('$SOFT_DELETE$', "use SoftDeletes;\n", $templateData);
-            $templateData = str_replace('$SOFT_DELETE_DATES$', "\n\tprotected \$dates = ['deleted_at'];\n",
-                $templateData);
+            $templateData = str_replace(
+                '$SOFT_DELETE_IMPORT$', "use Illuminate\\Database\\Eloquent\\SoftDeletes;\n",
+                $templateData
+            );
+            $templateData = str_replace('$SOFT_DELETE$', str_repeat(' ', 4)."use SoftDeletes;\n", $templateData);
+            $deletedAtTimestamp = config('infyom.laravel_generator.timestamps.deleted_at', 'deleted_at');
+            $templateData = str_replace(
+                '$SOFT_DELETE_DATES$', PHP_EOL.str_repeat(' ', 4)."protected \$dates = ['".$deletedAtTimestamp."'];\n",
+                $templateData
+            );
         }
 
         return $templateData;
@@ -95,6 +103,28 @@ class ModelGenerator
         }
 
         return $templateData;
+    }
+
+    private function fillTimestamps($templateData)
+    {
+        $timestamps = TableFieldsGenerator::getTimestampFieldNames();
+
+        $replace = '';
+
+        if ($this->commandData->getOption('fromTable')) {
+            if (empty($timestamps)) {
+                $replace = infy_nl_tab()."public \$timestamps = false;\n";
+            } else {
+                list($created_at, $updated_at) = collect($timestamps)->map(function ($field) {
+                    return !empty($field) ? "'$field'" : 'null';
+                });
+
+                $replace .= infy_nl_tab()."const CREATED_AT = $created_at;";
+                $replace .= infy_nl_tab()."const UPDATED_AT = $updated_at;\n";
+            }
+        }
+
+        return str_replace('$TIMESTAMPS$', $replace, $templateData);
     }
 
     public function generateSwagger($templateData)
@@ -139,7 +169,7 @@ class ModelGenerator
 
         foreach ($this->commandData->inputFields as $field) {
             if (!empty($field['validations'])) {
-                $rule = '"'.$field['fieldName'].'" => "'.$field['validations'].'"';
+                $rule = "'".$field['fieldName']."' => '".$field['validations']."'";
                 $rules[] = $rule;
             }
         }
@@ -151,25 +181,38 @@ class ModelGenerator
     {
         $casts = [];
 
+        $timestamps = TableFieldsGenerator::getTimestampFieldNames();
+
         foreach ($this->commandData->inputFields as $field) {
+            if (in_array($field['fieldName'], $timestamps)) {
+                continue;
+            }
+
             switch ($field['fieldType']) {
                 case 'integer':
-                    $rule = '"'.$field['fieldName'].'" => "integer"';
+                    $rule = "'".$field['fieldName']."' => 'integer'";
                     break;
                 case 'double':
-                    $rule = '"'.$field['fieldName'].'" => "double"';
+                    $rule = "'".$field['fieldName']."' => 'double'";
                     break;
                 case 'float':
-                    $rule = '"'.$field['fieldName'].'" => "float"';
+                    $rule = "'".$field['fieldName']."' => 'float'";
                     break;
                 case 'boolean':
-                    $rule = '"'.$field['fieldName'].'" => "boolean"';
+                    $rule = "'".$field['fieldName']."' => 'boolean'";
+                    break;
+                case 'dateTime':
+                case 'dateTimeTz':
+                    $rule = "'".$field['fieldName']."' => 'datetime'";
+                    break;
+                case 'date':
+                    $rule = "'".$field['fieldName']."' => 'date'";
                     break;
                 case 'enum':
                 case 'string':
                 case 'char':
                 case 'text':
-                    $rule = '"'.$field['fieldName'].'" => "string"';
+                    $rule = "'".$field['fieldName']."' => 'string'";
                     break;
                 default:
                     $rule = '';

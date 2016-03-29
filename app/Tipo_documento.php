@@ -20,5 +20,9 @@ class Tipo_documento extends Model
      {
     	 return $query->where('descripcion', 'LIKE', '%'.$name.'%');
      }
-	
+
+		public function documentos(){
+			return $this.hasMany('App\Documento');
+		}
+
 }

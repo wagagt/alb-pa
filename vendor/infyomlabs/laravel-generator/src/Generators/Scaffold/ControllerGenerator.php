@@ -8,16 +8,16 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class ControllerGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.controller', app_path('Http/Controllers/'));
+        $this->path = $commandData->config->pathController;
     }
 
     public function generate()

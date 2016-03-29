@@ -9,16 +9,16 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class TestTraitGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.test_trait', base_path('tests/traits/'));
+        $this->path = $commandData->config->pathApiTestTraits;
     }
 
     public function generate()
@@ -39,7 +39,7 @@ class TestTraitGenerator
     {
         $templateData = TemplateUtil::fillTemplate($this->commandData->dynamicVars, $templateData);
 
-        $templateData = str_replace('$FIELDS$', implode(",\n\t\t\t", $this->generateFields()), $templateData);
+        $templateData = str_replace('$FIELDS$', implode(','.PHP_EOL.str_repeat(' ', 12), $this->generateFields()), $templateData);
 
         return $templateData;
     }
@@ -49,6 +49,10 @@ class TestTraitGenerator
         $fields = [];
 
         foreach ($this->commandData->inputFields as $field) {
+            if ($field['primary']) {
+                continue;
+            }
+
             $fieldData = "'".$field['fieldName']."' => ".'$fake->';
 
             switch ($field['fieldType']) {
