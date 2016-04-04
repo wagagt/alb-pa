@@ -27,7 +27,7 @@ class PasswordController extends Controller
      *
      * @return void
      */
-     protected $redirect = '/dash';
+     protected $redirectTo = '/dash';
 
     public function __construct(Guard $auth, PasswordBroker $passwords)
     {
