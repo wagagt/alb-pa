@@ -12,9 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 class Automoviles_apto extends Model
 {
 
-    public $timestamps = false;
-
+    
     protected $table = 'automoviles_aptos';
 
-	
+
 }

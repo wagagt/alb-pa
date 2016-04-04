@@ -1,8 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MarcaVehiculoRequest;
+use Laracasts\Flash\Flash;
 use App\Marca_vehiculo;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
@@ -20,10 +23,11 @@ class Marca_vehiculoController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $marca_vehiculos = Marca_vehiculo::all();
-        return view('marca_vehiculo.index',compact('marca_vehiculos'));
+        $marca_vehiculos = Marca_vehiculo::search($request->marca)->orderBy('marca','ASC')->paginate(5);
+        return view('marca_vehiculo.index')
+        ->with('marcas', $marca_vehiculos);
     }
 
     /**
@@ -33,9 +37,8 @@ class Marca_vehiculoController extends Controller
      */
     public function create()
     {
-        
-        return view('marca_vehiculo.create'
-                );
+
+        return view('marca_vehiculo.create');
     }
 
     /**
@@ -44,20 +47,14 @@ class Marca_vehiculoController extends Controller
      * @param    \Illuminate\Http\Request  $request
      * @return  \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MarcaVehiculoRequest $request)
     {
-        $input = Request::except('_token');
+      $marcaVehiculo = new Marca_vehiculo($request->all());
+      $marcaVehiculo->save();
+      Flash::success('La marca '.$marcaVehiculo->marca.' ha sido agregada satisfactoriamente');
 
-        $marca_vehiculo = new Marca_vehiculo();
-
-        
-        $marca_vehiculo->marca = $input['marca'];
-
-        
-        
-        $marca_vehiculo->save();
-
-        return redirect('marca_vehiculo');
+        $marcaVehiculo->save();
+        return redirect()->route('marca-vehiculo.index');
     }
 
     /**
@@ -68,13 +65,7 @@ class Marca_vehiculoController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('marca_vehiculo/'.$id);
-        }
-
-        $marca_vehiculo = Marca_vehiculo::findOrfail($id);
-        return view('marca_vehiculo.show',compact('marca_vehiculo'));
+        //
     }
 
     /**
@@ -85,16 +76,9 @@ class Marca_vehiculoController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('marca_vehiculo/'. $id . '/edit');
-        }
-
-        
         $marca_vehiculo = Marca_vehiculo::findOrfail($id);
-        return view('marca_vehiculo.edit',compact('marca_vehiculo'
-                )
-                );
+        return view('marca_vehiculo.edit')
+                    ->with('marca', $marca_vehiculo);
     }
 
     /**
@@ -104,35 +88,14 @@ class Marca_vehiculoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
-
-        $marca_vehiculo = Marca_vehiculo::findOrfail($id);
-    	
-        $marca_vehiculo->marca = $input['marca'];
-        
-        
-        $marca_vehiculo->save();
-
-        return redirect('marca_vehiculo');
-    }
-
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
-    public function DeleteMsg($id)
-    {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/marca_vehiculo/'. $id . '/delete/');
-
-        if(Request::ajax())
-        {
-            return $msg;
-        }
+      $marcaVehiculo = Marca_vehiculo::findOrfail($id);
+      $marcaVehiculo->fill($request->all());
+      //dd($oficina);
+      $marcaVehiculo->save();
+      Flash::warning('La marca ' .$marcaVehiculo->marca.' ha sido actualizada con éxito!!..');
+      return redirect()->route('marca-vehiculo.index');
     }
 
     /**
@@ -143,9 +106,11 @@ class Marca_vehiculoController extends Controller
      */
     public function destroy($id)
     {
-     	$marca_vehiculo = Marca_vehiculo::findOrfail($id);
-     	$marca_vehiculo->delete();
-        return URL::to('marca_vehiculo');
+      $marcaVehiculo = Marca_vehiculo::findOrfail($id);
+      $marcaVehiculo->delete();
+      Flash::error('La marca '.$marcaVehiculo->marca.' ha sido borrada de forma exitosa');
+      return redirect()->route('marca-vehiculo.index');
+
     }
 
 }

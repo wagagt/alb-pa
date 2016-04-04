@@ -89,37 +89,37 @@ class OficinaController extends Controller
     ->with('paises', $paises)
     ->with('oficina', $oficina);
 
-}
+  }
 
-/**
-* Update the specified resource in storage.
-*
-* @param    \Illuminate\Http\Request  $request
-* @param    int  $id
-* @return  \Illuminate\Http\Response
-*/
-public function update(Request $request, $id)
-{
-  $oficina = Oficina::findOrfail($id);
-  $oficina->fill($request->all());
-  //dd($oficina);
-  $oficina->save();
-      Flash::warning('La oficina ' .$oficina->nombre.' ha sido actualizada con éxito!!..');
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param    \Illuminate\Http\Request  $request
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function update(Request $request, $id)
+  {
+    $oficina = Oficina::findOrfail($id);
+    $oficina->fill($request->all());
+    //dd($oficina);
+    $oficina->save();
+    Flash::warning('La oficina ' .$oficina->nombre.' ha sido actualizada con éxito!!..');
 
-  return redirect()->route('oficina.index');
-}
-/**
-* Remove the specified resource from storage.
-*
-* @param    int  $id
-* @return  \Illuminate\Http\Response
-*/
-public function destroy($id)
-{
-  $oficina = Oficina::findOrfail($id);
-  $oficina->delete();
-  Flash::error('La oficina '.$oficina->nombre.' ha sido borrada de forma exitosa');
-  return redirect()->route('oficina.index');
-}
+    return redirect()->route('oficina.index');
+  }
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param    int  $id
+  * @return  \Illuminate\Http\Response
+  */
+  public function destroy($id)
+  {
+    $oficina = Oficina::findOrfail($id);
+    $oficina->delete();
+    Flash::error('La oficina '.$oficina->nombre.' ha sido borrada de forma exitosa');
+    return redirect()->route('oficina.index');
+  }
 
 }

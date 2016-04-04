@@ -62,9 +62,6 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
 
     ]);
 
-
-
-
     /////////
 
     Route::get('csv',function(){
@@ -130,6 +127,33 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
 
     ]);
     /********************************************************/
+
+    //Marca_vehiculo Resources
+    /*******************************************************/
+    Route::resource('marca-vehiculo','Marca_vehiculoController');
+    Route::get('marca-vehiculo/{id}/destroy',[
+        'uses'   => 'Marca_vehiculoController@destroy',
+        'as'     => 'marca-vehiculo.destroy'
+    ]);
+    /********************************************************/
+
+    //Parqueo Resources
+    /*******************************************************/
+    Route::resource('parqueo','ParqueoController');
+    Route::get('parqueo/{id}/destroy',[
+        'uses'   => 'ParqueoController@destroy',
+        'as'     => 'parqueo.destroy'
+    ]);
+    /********************************************************/
+
+    //Automoviles_apto Resources
+    /*******************************************************/
+    Route::resource('automoviles','Automoviles_aptoController');
+    Route::get('automoviles/{id}/destroy',[
+        'uses'   => 'Automoviles_aptoController@destroy',
+        'as'     => 'automoviles.destroy'
+    ]);
+    /********************************************************/
   });
 });
 
@@ -155,9 +179,9 @@ Route::group(['prefix' => 'api', 'namespace' => 'API'], function ()
 //Tipo_documento Resources
 /*******************************************************/
 Route::resource('tipo_documento','Tipo_documentoController');
-Route::post('tipo_documento/{id}/update','Tipo_documentoController@update');
+/*Route::post('tipo_documento/{id}/update','Tipo_documentoController@update');
 Route::get('tipo_documento/{id}/delete','Tipo_documentoController@destroy');
-Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg');
+Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg');*/
 Route::get('tipo_documento/{id}/destroy', [
       'uses'  => 'Tipo_documentoController@destroy',
       'as'    => 'tipo_documento.destroy'
@@ -168,35 +192,11 @@ Route::get('tipo_documento/{id}/destroy', [
 //Documento Resources
 /*******************************************************/
 Route::resource('documento','DocumentoController');
-Route::post('documento/{id}/update','DocumentoController@update');
+/*Route::post('documento/{id}/update','DocumentoController@update');
 Route::get('documento/{id}/delete','DocumentoController@destroy');
-Route::get('documento/{id}/deleteMsg','DocumentoController@DeleteMsg');
+Route::get('documento/{id}/deleteMsg','DocumentoController@DeleteMsg');*/
 Route::get('documento/{id}/destroy', [
     'uses'  => 'DocumentoController@destroy',
     'as'    => 'documento.destroy'
   ]);
-/********************************************************/
-
-//Marca_vehiculo Resources
-/*******************************************************/
-Route::resource('marca_vehiculo','Marca_vehiculoController');
-Route::post('marca_vehiculo/{id}/update','Marca_vehiculoController@update');
-Route::get('marca_vehiculo/{id}/delete','Marca_vehiculoController@destroy');
-Route::get('marca_vehiculo/{id}/deleteMsg','Marca_vehiculoController@DeleteMsg');
-/********************************************************/
-
-//Parqueo Resources
-/*******************************************************/
-Route::resource('parqueo','ParqueoController');
-Route::post('parqueo/{id}/update','ParqueoController@update');
-Route::get('parqueo/{id}/delete','ParqueoController@destroy');
-Route::get('parqueo/{id}/deleteMsg','ParqueoController@DeleteMsg');
-/********************************************************/
-
-//Automoviles_apto Resources
-/*******************************************************/
-Route::resource('automoviles_apto','Automoviles_aptoController');
-Route::post('automoviles_apto/{id}/update','Automoviles_aptoController@update');
-Route::get('automoviles_apto/{id}/delete','Automoviles_aptoController@destroy');
-Route::get('automoviles_apto/{id}/deleteMsg','Automoviles_aptoController@DeleteMsg');
 /********************************************************/

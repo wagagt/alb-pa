@@ -18,8 +18,7 @@
             <div class="row col-md-12">
                 {!! Form::model($oficina, ['route'=>['oficina.update', $oficina->id],  'method' => 'PUT']) !!}
                 <div class="row col-md-12">
-                    {!! Form::open(['route'=>'oficina.store', 'method' => 'POST']) !!}
-                    <div class="form-gorup">
+                      <div class="form-gorup">
                         <div class="col-md-6">
                             {!! Form::label('nombre', 'Nombre:') !!}
                             {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la oficina', 'required'])!!}
