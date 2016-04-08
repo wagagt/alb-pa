@@ -281,7 +281,7 @@ class Guard implements GuardContract
      * @param  string  $field
      * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function basic($field = 'usuario')
+    public function basic($field = 'email')
     {
         if ($this->check()) {
             return;
@@ -303,7 +303,7 @@ class Guard implements GuardContract
      * @param  string  $field
      * @return \Symfony\Component\HttpFoundation\Response|null
      */
-    public function onceBasic($field = 'usuario')
+    public function onceBasic($field = 'email')
     {
         if (! $this->once($this->getBasicCredentials($this->getRequest(), $field))) {
             return $this->getBasicResponse();
