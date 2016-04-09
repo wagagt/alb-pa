@@ -1,35 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Edit Parqueo</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Edit Parqueo</h1>
-            <form method = 'get' action = 'http://localhost:8000/parqueo'>
-                <button class = 'btn blue'>Parqueo Index</button>
-            </form>
-            <br>
-            <form method = 'POST' action = 'http://localhost:8000/parqueo/{{$parqueo->id}}/update'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="numero" name = "numero" type="text" class="validate" value="{{$parqueo->numero}}">
-                    <label for="numero">numero</label>
+@extends('layouts.admin')
+@section('title', 'Crear oficina')
+@section('content')
+  <div class="col-xs-12">
+      <div class="box box-primary">
+          <div class="box-header">
+          <h3 class="box-title">Editar Parqueo</h3>
+              <div class="box-tools">
+
+              </div>
+          </div>
+          <div class="box-body">
+            <div class="text-left">
+            <a href="{{ route('parqueo.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+              Listar Parqueos</a>
+            </div>
+            <div class="row col-md-12">
+                {!! Form::model($parqueo,['route'=>['parqueo.update', $parqueo->id], 'method' => 'PUT']) !!}
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('numero', 'Número:') !!}
+                        {!! Form::text('numero', null, ['class' => 'form-control', 'placeholder' => 'Ingrese múmero de parqueo', 'required'])!!}
+                    </div>
                 </div>
-                                
-                <button class = 'btn red' type ='submit'>Update</button>
-            </form>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('apto_id', 'Apartamento:') !!}
+                        {!! Form::select('apto_id', $aptos , null, ['class' => 'form-control select-apto', 'placeholder' => 'Seleccione un apartamento...', 'required'])!!}
+                    </div>
+                </div>
+
+
+                <div class="form-gorup">
+                  <div class="col-md-12">
+                    {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
+                    </div>
+                </div>
+                {!! Form::close()!!}
+
+          </div>
         </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+    </div>
+    </div>
+
+  @endsection
+  @section('script')
     <script type="text/javascript">
-    $('select').material_select();
-    </script>
-</html>
+
+           $('.select-apto').chosen({
+              no_results_text:'Ningún resultado coincide con: '
+            });
+
+
+        </script>
+  @endsection

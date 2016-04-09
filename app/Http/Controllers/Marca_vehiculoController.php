@@ -25,7 +25,7 @@ class Marca_vehiculoController extends Controller
      */
     public function index(Request $request)
     {
-        $marca_vehiculos = Marca_vehiculo::search($request->marca)->orderBy('marca','ASC')->paginate(5);
+        $marca_vehiculos = Marca_vehiculo::search($request->marca)->orderBy('marca','ASC')->paginate(15);
         return view('marca_vehiculo.index')
         ->with('marcas', $marca_vehiculos);
     }

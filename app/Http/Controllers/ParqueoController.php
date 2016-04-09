@@ -1,9 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ParqueoRequest;
+use Laracasts\Flash\Flash;
 use App\Parqueo;
+use App\Apartamento;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
 
@@ -20,10 +24,10 @@ class ParqueoController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $parqueos = Parqueo::all();
-        return view('parqueo.index',compact('parqueos'));
+        $parqueos = Parqueo::search($request->numero)->orderBy('numero','ASC')->paginate(15);
+        return view('parqueo.index')->with('parqueos', $parqueos);
     }
 
     /**
@@ -33,9 +37,9 @@ class ParqueoController extends Controller
      */
     public function create()
     {
-        
-        return view('parqueo.create'
-                );
+        $aptos = Apartamento::orderBy('numero', 'ASC')->lists('numero', 'id');
+
+        return view('parqueo.create')->with('aptos',$aptos);
     }
 
     /**
@@ -44,20 +48,14 @@ class ParqueoController extends Controller
      * @param    \Illuminate\Http\Request  $request
      * @return  \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ParqueoRequest $request)
     {
-        $input = Request::except('_token');
-
-        $parqueo = new Parqueo();
-
-        
-        $parqueo->numero = $input['numero'];
-
-        
-        
+        $parqueo = new Parqueo($request->all());
+        $parqueo->asignado =  1;
         $parqueo->save();
+        Flash::success('Parqueo creado'.$parqueo->numero.' y asignado correctamente');
 
-        return redirect('parqueo');
+        return redirect()->route('parqueo.index');
     }
 
     /**
@@ -68,13 +66,7 @@ class ParqueoController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('parqueo/'.$id);
-        }
 
-        $parqueo = Parqueo::findOrfail($id);
-        return view('parqueo.show',compact('parqueo'));
     }
 
     /**
@@ -85,16 +77,13 @@ class ParqueoController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('parqueo/'. $id . '/edit');
-        }
+        $aptos = Apartamento::orderBy('numero','ASC')->lists('numero','id');
 
-        
         $parqueo = Parqueo::findOrfail($id);
-        return view('parqueo.edit',compact('parqueo'
-                )
-                );
+        $parqueo->apto_id;
+        return view('parqueo.edit')
+            ->with('aptos',$aptos)
+            ->with('parqueo', $parqueo);
     }
 
     /**
@@ -104,18 +93,14 @@ class ParqueoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
-
-        $parqueo = Parqueo::findOrfail($id);
-    	
-        $parqueo->numero = $input['numero'];
-        
-        
+        $parqueo = parqueo::findOrfail($id);
+        $parqueo->fill($request->all());
         $parqueo->save();
 
-        return redirect('parqueo');
+        Flash::warning('El parqueo '.$parqueo->numero.' ha sido actualizado con éxito');
+        return redirect()->route('parqueo.index');
     }
 
     /**
@@ -143,9 +128,10 @@ class ParqueoController extends Controller
      */
     public function destroy($id)
     {
-     	$parqueo = Parqueo::findOrfail($id);
-     	$parqueo->delete();
-        return URL::to('parqueo');
+      $parqueo = Parqueo::findOrfail($id);
+     	Flash::error('El parqueo '.$parqueo->numero.' no puede ser eliminado');
+     	//$parqueo->delete();
+        return redirect()->route('parqueo.index');
     }
 
 }

@@ -6,6 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddFieldDeletedAtInParqueoTable' => $baseDir . '/database/migrations/2016_04_08_193507_add_field_deleted_at_in_parqueo_table.php',
+    'AddFieldTimestapsInParqueoTable' => $baseDir . '/database/migrations/2016_04_09_003410_add_field_timestaps_in_parqueo_table.php',
     'Amranidev\\Ajaxis\\Ajaxis' => $vendorDir . '/amranidev/ajaxis/src/Ajaxis.php',
     'Amranidev\\Ajaxis\\AjaxisGenerate' => $vendorDir . '/amranidev/ajaxis/src/AjaxisGenerate.php',
     'Amranidev\\Ajaxis\\AjaxisServiceProvider' => $vendorDir . '/amranidev/ajaxis/src/AjaxisServiceProvider.php',
@@ -72,6 +74,7 @@ return array(
     'App\\Http\\Requests\\MarcaVehiculoRequest' => $baseDir . '/app/Http/Requests/MarcaVehiculoRequest.php',
     'App\\Http\\Requests\\OficinaRequest' => $baseDir . '/app/Http/Requests/OficinaRequest.php',
     'App\\Http\\Requests\\PaisRequest' => $baseDir . '/app/Http/Requests/PaisRequest.php',
+    'App\\Http\\Requests\\ParqueoRequest' => $baseDir . '/app/Http/Requests/ParqueoRequest.php',
     'App\\Http\\Requests\\Request' => $baseDir . '/app/Http/Requests/Request.php',
     'App\\Http\\Requests\\Tipo_documentosRequest' => $baseDir . '/app/Http/Requests/Tipo_documentosRequest.php',
     'App\\Http\\Requests\\TorreRequest' => $baseDir . '/app/Http/Requests/TorreRequest.php',

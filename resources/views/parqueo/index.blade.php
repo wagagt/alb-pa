@@ -1,57 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Index Parqueo</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Parqueo Index</h1>
-            <div class="row">
-            <form class = 'col s3' method = 'get' action = 'http://localhost:8000/parqueo/create'>
-                <button class = 'btn red' type = 'submit'>Create New Parqueo</button>
-            </form>
-                        </div>
-            <table>
-                <thead>
-                    
-                    <th>numero</th>
-                    
-                    
-                    <th>actions</th>
+@extends('layouts.admin')
+@section('title', 'Oficinas Lista')
+  @section('content')
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Parqueos</h3>
+          <div class="box-tools">
+
+            <!-- Buscador de Tags -->
+            <div class="input-group input-group-sm">
+              {!! Form::open(['route'=>'parqueo.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
+              <div class="input-group">
+
+                {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Buscar numero parqueo...',
+                  'aria-describedby'=>'search','autofocus']) !!}
+                  <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
+                </div>
+
+                {!! Form::close() !!}
+              </div>
+              <!-- Fin del buscador -->
+            </div>
+          </div>
+
+          <div class="box-body">
+            <div class="col-md-12 text-left"><a href="{{route('parqueo.create')}}" class="btn btn-primary"><i class="fa fa-briefcase"></i> Crear Parqueo </a>  </div>
+            <table class="table table-hover">
+              <thead>
+
+                    <th>Número de parqueo</th>
+                    <th>Apartamento</th>
+                    <th>Edificio</th>
+                    <th>Acciones</th>
                 </thead>
                 <tbody>
-                    @foreach($parqueos as $value)
-
+                    @foreach($parqueos as $parqueo)
                     <tr>
-                        
-                        <td>{{$value->numero}}</td>
-                        
-                        
-                        <td>
-                            <div class = 'row'>
-                                <a href = '#modal1' class = 'delete btn-floating modal-trigger red' data-link = "/parqueo/{{$value->id}}/deleteMsg" ><i class = 'material-icons'>delete</i></a>
-                                <a href = '#' class = 'viewEdit btn-floating blue' data-link = '/parqueo/{{$value->id}}/edit'><i class = 'material-icons'>edit</i></a>
-                                <a href = '#' class = 'viewShow btn-floating orange' data-link = '/parqueo/{{$value->id}}'><i class = 'material-icons'>info</i></a>
-                            </div>
-                        </td>
+                        <td>{{$parqueo->numero}}</td>
+                        <td>{{$parqueo->apartamento->numero}}</td>
+                        <td>{{$parqueo->apartamento->torre->nombre}} </td>
+                        <td><a href="{{ route('parqueo.edit',  $parqueo->id) }}" class="btn btn-warning" title="Editar">
+                          <i class="fa fa-pencil-square-o"></i></a></td>
                     </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div id="modal1" class="modal">
-            <div class = "row AjaxisModal">
-            </div>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script> var baseURL = "{{URL::to('/')}}"</script>
-    <script type="text/javascript" src = "/js/AjaxisMaterialize.js"></script>
-    <script type="text/javascript" src = "/js/scaffold-interface-js/customA.js"></script>
-</html>
+
+                        @endforeach
+                      </tbody>
+                    </table>
+                    {!! $parqueos->render()  !!}
+                  </div>
+
+                </div>
+              </div>
+
+            @endsection

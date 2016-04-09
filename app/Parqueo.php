@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ParqueoController
@@ -11,10 +12,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Parqueo extends Model
 {
-
-    public $timestamps = false;
+    use softDeletes;
 
     protected $table = 'parqueos';
+    protected $fillable = ['numero', 'apto_id','asignado'];
+    protected $dates = ['deleted_at'];
 
-	
+    public function apartamento(){
+      return $this->belongsTo('App\Apartamento', 'apto_id');
+    }
+
+    public function scopeSearch($query, $numero)
+    {
+        return $query->where('numero', 'LIKE', '%'.$numero.'%');
+    }
+
+
 }
