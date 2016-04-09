@@ -210,7 +210,7 @@ return [
 
 
         // Our Aliases
-        'Flash' => Laracasts\Flash\Flash::class,
+        'Flash'     => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
 
