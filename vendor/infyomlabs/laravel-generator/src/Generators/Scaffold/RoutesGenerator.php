@@ -7,16 +7,16 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class RoutesGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.routes', app_path('Http/routes.php'));
+        $this->path = $commandData->config->pathRoutes;
     }
 
     public function generate()
@@ -30,6 +30,6 @@ class RoutesGenerator
         $routeContents .= "\n\n".$routesTemplate;
 
         file_put_contents($this->path, $routeContents);
-        $this->commandData->commandComment("\n".$this->commandData->modelNames['camelPlural'].' routes added.');
+        $this->commandData->commandComment("\n".$this->commandData->config->mCamelPlural.' routes added.');
     }
 }

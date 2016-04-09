@@ -8,17 +8,16 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class APIControllerGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.api_controller', app_path('Http/Controllers/API/')
-        );
+        $this->path = $commandData->config->pathApiController;
     }
 
     public function generate()
@@ -38,7 +37,7 @@ class APIControllerGenerator
 
     private function fillDocs($templateData)
     {
-        $methods = ['controller', 'index', 'store', 'store', 'show', 'update', 'destroy'];
+        $methods = ['controller', 'index', 'store', 'show', 'update', 'destroy'];
 
         if ($this->commandData->getAddOn('swagger')) {
             $templatePrefix = 'controller';

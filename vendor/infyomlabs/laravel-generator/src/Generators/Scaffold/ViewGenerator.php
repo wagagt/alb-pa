@@ -10,7 +10,7 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class ViewGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
@@ -22,11 +22,10 @@ class ViewGenerator
     /** @var array */
     private $htmlFields;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.views', base_path('resources/views/'));
-        $this->path = $this->path.'/'.$this->commandData->modelNames['camelPlural'].'/';
+        $this->path = $commandData->config->pathViews;
         $this->templateType = config('infyom.laravel_generator.path.templates', 'core-templates');
     }
 
@@ -50,6 +49,8 @@ class ViewGenerator
     private function generateTable()
     {
         $templateData = TemplateUtil::getTemplate('scaffold.views.table', $this->templateType);
+        $headerFieldTemplate = TemplateUtil::getTemplate('scaffold.views.table_header', $this->templateType);
+        $cellFieldTemplate = TemplateUtil::getTemplate('scaffold.views.table_cell', $this->templateType);
 
         $templateData = TemplateUtil::fillTemplate($this->commandData->dynamicVars, $templateData);
 
@@ -58,21 +59,37 @@ class ViewGenerator
         $headerFields = [];
 
         foreach ($this->commandData->inputFields as $field) {
-            $headerFields[] = '<th>'.$field['fieldTitle'].'</th>';
+            if (!$field['inIndex']) {
+                continue;
+            }
+            $headerFields[] = $fieldTemplate = TemplateUtil::fillTemplateWithFieldData(
+                $this->commandData->dynamicVars,
+                $this->commandData->fieldNamesMapping,
+                $headerFieldTemplate,
+                $field
+            );
         }
 
-        $headerFields = implode("\n\t\t\t", $headerFields);
+        $headerFields = implode(PHP_EOL.str_repeat(' ', 8), $headerFields);
 
         $templateData = str_replace('$FIELD_HEADERS$', $headerFields, $templateData);
 
         $tableBodyFields = [];
 
         foreach ($this->commandData->inputFields as $field) {
-            $tableBodyFields[] = '<td>{!! $'.$this->commandData->modelNames['camel'].'->'.
-                $field['fieldName'].' !!}</td>';
+            if (!$field['inIndex']) {
+                continue;
+            }
+
+            $tableBodyFields[] = TemplateUtil::fillTemplateWithFieldData(
+                $this->commandData->dynamicVars,
+                $this->commandData->fieldNamesMapping,
+                $cellFieldTemplate,
+                $field
+            );
         }
 
-        $tableBodyFields = implode("\n\t\t\t", $tableBodyFields);
+        $tableBodyFields = implode(PHP_EOL.str_repeat(' ', 12), $tableBodyFields);
 
         $templateData = str_replace('$FIELD_BODY$', $tableBodyFields, $templateData);
 
@@ -111,6 +128,9 @@ class ViewGenerator
         $this->htmlFields = [];
 
         foreach ($this->commandData->inputFields as $field) {
+            if (!$field['inForm']) {
+                continue;
+            }
             switch ($field['htmlType']) {
                 case 'text':
                 case 'textarea':
@@ -150,21 +170,31 @@ class ViewGenerator
                     $fieldTemplate = str_replace('$RADIO_BUTTONS$', implode("\n", $radioButtons), $fieldTemplate);
                     break;
 
+//                case 'checkbox-group':
+//                    $fieldTemplate = TemplateUtil::getTemplate('scaffold.fields.checkbox_group', $this->templateType);
+//                      $radioTemplate = TemplateUtil::getTemplate('scaffold.fields.checks', $this->templateType);
+//                      $inputsArr = explode(',', $field['htmlTypeInputs']);
+//                      $radioButtons = [];
+//                      foreach ($inputsArr as $item) {
+//                          $radioButtonsTemplate = TemplateUtil::fillFieldTemplate(
+//                              $this->commandData->fieldNamesMapping,
+//                              $radioTemplate,
+//                              $field
+//                          );
+//                          $radioButtonsTemplate = str_replace('$VALUE$', $item, $radioButtonsTemplate);
+//                          $radioButtons[] = $radioButtonsTemplate;
+//                      }
+//                    $fieldTemplate = str_replace('$CHECKBOXES$', implode("\n", $radioButtons), $fieldTemplate);
+//                    break;
+
                 case 'checkbox':
-                    $fieldTemplate = TemplateUtil::getTemplate('scaffold.fields.checkbox_group', $this->templateType);
-                    $radioTemplate = TemplateUtil::getTemplate('scaffold.fields.checkbox', $this->templateType);
-                    $inputsArr = explode(',', $field['htmlTypeInputs']);
-                    $radioButtons = [];
-                    foreach ($inputsArr as $item) {
-                        $radioButtonsTemplate = TemplateUtil::fillFieldTemplate(
-                            $this->commandData->fieldNamesMapping,
-                            $radioTemplate,
-                            $field
-                        );
-                        $radioButtonsTemplate = str_replace('$VALUE$', $item, $radioButtonsTemplate);
-                        $radioButtons[] = $radioButtonsTemplate;
+                    $fieldTemplate = TemplateUtil::getTemplate('scaffold.fields.checkbox', $this->templateType);
+                    $checkboxValue = $value = $field['htmlTypeInputs'];
+                    if ($field['fieldType'] != 'boolean') {
+                        $checkboxValue = "'".$value."'";
                     }
-                    $fieldTemplate = str_replace('$CHECKBOXES$', implode("\n", $radioButtons), $fieldTemplate);
+                    $fieldTemplate = str_replace('$CHECKBOX_VALUE$', $checkboxValue, $fieldTemplate);
+                    $fieldTemplate = str_replace('$VALUE$', $value, $fieldTemplate);
                     break;
 
                 default:

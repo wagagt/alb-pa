@@ -2,7 +2,6 @@
 
 namespace InfyOm\Generator\Commands;
 
-use InfyOm\Generator\Commands\Scaffold\ScaffoldBaseCommand;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\API\APIControllerGenerator;
 use InfyOm\Generator\Generators\API\APIRequestGenerator;
@@ -18,7 +17,7 @@ use InfyOm\Generator\Generators\Scaffold\RoutesGenerator;
 use InfyOm\Generator\Generators\Scaffold\ViewGenerator;
 use InfyOm\Generator\Generators\TestTraitGenerator;
 
-class APIScaffoldGeneratorCommand extends ScaffoldBaseCommand
+class APIScaffoldGeneratorCommand extends BaseCommand
 {
     /**
      * The console command name.
@@ -53,10 +52,7 @@ class APIScaffoldGeneratorCommand extends ScaffoldBaseCommand
     {
         parent::handle();
 
-        $this->initAPIGeneratorCommandData();
-        $this->initScaffoldGeneratorCommandData();
-
-        if (!$this->commandData->options['fromTable']) {
+        if (!$this->commandData->getOption('fromTable')) {
             $migrationGenerator = new MigrationGenerator($this->commandData);
             $migrationGenerator->generate();
         }

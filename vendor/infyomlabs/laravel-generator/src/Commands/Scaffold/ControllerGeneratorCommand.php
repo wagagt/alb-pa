@@ -2,10 +2,11 @@
 
 namespace InfyOm\Generator\Commands\Scaffold;
 
+use InfyOm\Generator\Commands\BaseCommand;
 use InfyOm\Generator\Common\CommandData;
 use InfyOm\Generator\Generators\Scaffold\ControllerGenerator;
 
-class ControllerGeneratorCommand extends ScaffoldBaseCommand
+class ControllerGeneratorCommand extends BaseCommand
 {
     /**
      * The console command name.
@@ -39,8 +40,6 @@ class ControllerGeneratorCommand extends ScaffoldBaseCommand
     public function handle()
     {
         parent::handle();
-
-        $this->initScaffoldGeneratorCommandData();
 
         $controllerGenerator = new ControllerGenerator($this->commandData);
         $controllerGenerator->generate();

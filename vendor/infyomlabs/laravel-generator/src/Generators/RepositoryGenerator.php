@@ -8,16 +8,16 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class RepositoryGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
     private $path;
 
-    public function __construct($commandData)
+    public function __construct(CommandData $commandData)
     {
         $this->commandData = $commandData;
-        $this->path = config('infyom.laravel_generator.path.repository', app_path('Repositories/'));
+        $this->path = $commandData->config->pathRepository;
     }
 
     public function generate()
@@ -30,11 +30,11 @@ class RepositoryGenerator
 
         foreach ($this->commandData->inputFields as $field) {
             if ($field['searchable']) {
-                $searchables[] = '"'.$field['fieldName'].'"';
+                $searchables[] = "'".$field['fieldName']."'";
             }
         }
 
-        $templateData = str_replace('$FIELDS$', implode(",\n\t\t", $searchables), $templateData);
+        $templateData = str_replace('$FIELDS$', implode(','.PHP_EOL.str_repeat(' ', 8), $searchables), $templateData);
 
         $fileName = $this->commandData->modelName.'Repository.php';
 

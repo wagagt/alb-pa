@@ -9,7 +9,7 @@ use InfyOm\Generator\Utils\TemplateUtil;
 
 class MigrationGenerator
 {
-    /** @var  CommandData */
+    /** @var CommandData */
     private $commandData;
 
     /** @var string */
@@ -56,6 +56,6 @@ class MigrationGenerator
             $fields[] = '$table->softDeletes();';
         }
 
-        return implode("\n\t\t\t", $fields);
+        return implode(PHP_EOL.str_repeat(' ', 12), $fields);
     }
 }
