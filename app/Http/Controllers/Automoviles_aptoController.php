@@ -77,8 +77,10 @@ class Automoviles_aptoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
+    // viene del menu
     public function edit($id)
     {
+        $aparta = 0;
         $marcas = Marca_Vehiculo::orderBy('marca', 'ASC')->lists('marca','id');
         $aptos  = Apartamento::orderBy('numero', 'ASC')->lists('numero','id') ;
 
@@ -88,7 +90,25 @@ class Automoviles_aptoController extends Controller
         return view('automoviles_apto.edit')
         ->with('aptos', $aptos)
         ->with('marcas', $marcas)
-        ->with('auto', $auto);
+        ->with('auto', $auto)
+        ->with('apartamento',$aparta);
+    }
+
+    //Cuando Viene del edit de apartamentos
+    public function edits($id, $apto)
+    {
+        $aparta = $apto;
+        $marcas = Marca_Vehiculo::orderBy('marca', 'ASC')->lists('marca','id');
+        $aptos  = Apartamento::orderBy('numero', 'ASC')->lists('numero','id') ;
+
+        $auto = Automoviles_apto::findOrfail($id);
+        $auto->apto_id;
+        $auto->marca_id;
+        return view('automoviles_apto.edit')
+        ->with('aptos', $aptos)
+        ->with('marcas', $marcas)
+        ->with('auto', $auto)
+        ->with('apartamento',$aparta);
     }
 
     /**
@@ -100,30 +120,21 @@ class Automoviles_aptoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
       $auto = Automoviles_apto::findOrfail($id);
       $auto->fill($request->all());
       $auto->save();
+      if($request->aparta > 0){
+        $router = redirect()->route('apartamento.edit',$request->aparta);
+      }else{
+        $router = redirect()->route('automoviles.index');
+      }
       Flash::warning('Las asignacion para el vehículo matricula '.$auto->placa.' se ha realizado con éxito!!.');
 
-      return redirect()->route('automoviles.index');
+      return $router;
     }
 
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
-    public function DeleteMsg($id)
-    {
-        $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/automoviles_apto/'. $id . '/delete/');
 
-        if(Request::ajax())
-        {
-            return $msg;
-        }
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -133,9 +144,9 @@ class Automoviles_aptoController extends Controller
      */
     public function destroy($id)
     {
-     	$automoviles_apto = Automoviles_apto::findOrfail($id);
-     	$automoviles_apto->delete();
-        return URL::to('automoviles_apto');
+      $auto = Automoviles_apto::findOrfail($id);
+     	Flash::error('Los vehículos no pueden ser borrados solo editados');
+      return redirect()->route('automoviles.index');
     }
 
 }

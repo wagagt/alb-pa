@@ -149,6 +149,10 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
     //Automoviles_apto Resources
     /*******************************************************/
     Route::resource('automoviles','Automoviles_aptoController');
+    Route::get('automoviles/{id}/edits/{apto}',[
+      'uses' => 'Automoviles_aptoController@edits',
+      'as'   => 'automoviles.edits'
+    ]);
     Route::get('automoviles/{id}/destroy',[
         'uses'   => 'Automoviles_aptoController@destroy',
         'as'     => 'automoviles.destroy'

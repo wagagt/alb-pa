@@ -41,6 +41,7 @@
                         {!! Form::select('apto_id', $aptos , null, ['class' => 'form-control select-apto', 'placeholder' => 'Asigne un apartamentos', 'required'])!!}
                     </div>
                 </div>
+                  {!! Form::hidden('aparta', $apartamento)!!}
 
 
                 <div class="form-gorup">

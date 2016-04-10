@@ -95,7 +95,7 @@
                         <td class="warning"> <strong><i>{{$carro->placa}}</i></strong></td>
                         <td class="warning"><strong><i>{{$carro->modelo}}</i></strong></td>
                         <td class="warning">
-                          <a href="{{route('automoviles.edit',$carro->id)}}" class="btn btn-warning" title="Editar">
+                          <a href="{{route('automoviles.edits',[$carro->id,  $apartamento->id])}}" class="btn btn-warning" title="Editar">
                             <i class="fa fa-pencil-square-o"></i></a>
                         </td>
                       </tr>
@@ -106,12 +106,12 @@
             <div class="col-md-3">
               <table class="table table-hover">
                   <thead>
-                    <th>NUMERO PARQUEO</th>
+                    <th>PARQUEOS ASIGNADOS</th>
                   </thead>
                   <tbody>
                       @foreach($parqueos as $parqueo)
                       <tr>
-                        <td class="success">Asignado <strong><i>{{$parqueo->numero}}</i></strong></td>
+                        <td class="success"># <strong><i>{{$parqueo->numero}}</i></strong></td>
                       </tr>
                       @endforeach
                   </tbody>
