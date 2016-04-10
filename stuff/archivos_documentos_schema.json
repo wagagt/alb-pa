@@ -17,11 +17,17 @@
 		"inForm" :	true,
 		"inIndex" :	true
 	},
+   {
+        "fieldInput": "tipo:enum",
+        "htmlType": "enum:pdf,html,xls,ppt,jpg,png,avi,mov,mp3,wav",
+        "searchable": true,
+        "inForm"	: true,
+        "inIndex"	: true
+    },
 	{
 		"fieldInput" : "disponible:boolean",
-		"htmlType" : "checkbox",
-		"validations" : "required",
-		"searchable" :	true,
+		"htmlType" : "checkbox:Activo",
+		"validations" : "",
 		"inForm" :	true,
 		"inIndex" :	true		
 	}
