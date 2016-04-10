@@ -18,6 +18,11 @@ class Marca_vehiculo extends Model
     protected $fillable = ['marca'];
     protected $dates =  ['deleted_at'];
 
+    public function automoviles(){
+      return $this->hasMany('App\Automoviles_apto');
+    }
+
+
     public function scopeSearch($query, $marca)
     {
       return $query->where('marca', 'LIKE', '%'.$marca.'%');

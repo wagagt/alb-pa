@@ -1,10 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Http\Requests\AutoRequest;
 use App\Http\Controllers\Controller;
-use App\Automoviles_apto;
 use Amranidev\Ajaxis\Ajaxis;
+use Laracasts\Flash\Flash;
+use App\Automoviles_apto;
+use App\Apartamento;
+use App\Marca_vehiculo;
 use URL;
 
 /**
@@ -22,8 +27,8 @@ class Automoviles_aptoController extends Controller
      */
     public function index()
     {
-        $automoviles_aptos = Automoviles_apto::all();
-        return view('automoviles_apto.index',compact('automoviles_aptos'));
+        $automoviles_aptos = Automoviles_apto::orderBy('apto_id','ASC')->paginate(5);
+        return view('automoviles_apto.index')->with('autos',$automoviles_aptos);
     }
 
     /**
@@ -33,9 +38,12 @@ class Automoviles_aptoController extends Controller
      */
     public function create()
     {
-        
-        return view('automoviles_apto.create'
-                );
+          $marcas = Marca_Vehiculo::orderBy('marca', 'ASC')->lists('marca','id');
+          $aptos = Apartamento::orderBy('numero', 'ASC')->lists('numero','id');
+
+        return view('automoviles_apto.create')
+        ->with('marcas',$marcas)
+        ->with('aptos', $aptos);
     }
 
     /**
@@ -44,23 +52,12 @@ class Automoviles_aptoController extends Controller
      * @param    \Illuminate\Http\Request  $request
      * @return  \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AutoRequest $request)
     {
-        $input = Request::except('_token');
-
-        $automoviles_apto = new Automoviles_apto();
-
-        
-        $automoviles_apto->modelo = $input['modelo'];
-
-        
-        $automoviles_apto->placa = $input['placa'];
-
-        
-        
-        $automoviles_apto->save();
-
-        return redirect('automoviles_apto');
+        $auto  =  new Automoviles_apto($request->all());
+        $auto->save();
+        Flash::success('Automóvil matricula # '.$auto->placa.' Ha sido añadido con éxito');
+        return redirect()->route('automoviles.index');
     }
 
     /**
@@ -71,13 +68,7 @@ class Automoviles_aptoController extends Controller
      */
     public function show($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('automoviles_apto/'.$id);
-        }
 
-        $automoviles_apto = Automoviles_apto::findOrfail($id);
-        return view('automoviles_apto.show',compact('automoviles_apto'));
     }
 
     /**
@@ -88,16 +79,16 @@ class Automoviles_aptoController extends Controller
      */
     public function edit($id)
     {
-        if(Request::ajax())
-        {
-            return URL::to('automoviles_apto/'. $id . '/edit');
-        }
+        $marcas = Marca_Vehiculo::orderBy('marca', 'ASC')->lists('marca','id');
+        $aptos  = Apartamento::orderBy('numero', 'ASC')->lists('numero','id') ;
 
-        
-        $automoviles_apto = Automoviles_apto::findOrfail($id);
-        return view('automoviles_apto.edit',compact('automoviles_apto'
-                )
-                );
+        $auto = Automoviles_apto::findOrfail($id);
+        $auto->apto_id;
+        $auto->marca_id;
+        return view('automoviles_apto.edit')
+        ->with('aptos', $aptos)
+        ->with('marcas', $marcas)
+        ->with('auto', $auto);
     }
 
     /**
@@ -107,20 +98,14 @@ class Automoviles_aptoController extends Controller
      * @param    int  $id
      * @return  \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        $input = Request::except('_token');
+      $auto = Automoviles_apto::findOrfail($id);
+      $auto->fill($request->all());
+      $auto->save();
+      Flash::warning('Las asignacion para el vehículo matricula '.$auto->placa.' se ha realizado con éxito!!.');
 
-        $automoviles_apto = Automoviles_apto::findOrfail($id);
-    	
-        $automoviles_apto->modelo = $input['modelo'];
-        
-        $automoviles_apto->placa = $input['placa'];
-        
-        
-        $automoviles_apto->save();
-
-        return redirect('automoviles_apto');
+      return redirect()->route('automoviles.index');
     }
 
     /**

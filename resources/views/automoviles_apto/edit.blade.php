@@ -1,40 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Edit Automoviles_apto</title>
-    </head>
-    <body>
-        <div class = 'container'>
-            <h1>Edit Automoviles_apto</h1>
-            <form method = 'get' action = 'http://localhost:8000/automoviles_apto'>
-                <button class = 'btn blue'>Automoviles_apto Index</button>
-            </form>
-            <br>
-            <form method = 'POST' action = 'http://localhost:8000/automoviles_apto/{{$automoviles_apto->id}}/update'>
-                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                
-                <div class="input-field col s6">
-                    <input id="modelo" name = "modelo" type="text" class="validate" value="{{$automoviles_apto->modelo}}">
-                    <label for="modelo">modelo</label>
+@extends('layouts.admin')
+@section('title', 'Editar Autos')
+@section('content')
+  <div class="col-xs-12">
+      <div class="box box-primary">
+          <div class="box-header">
+          <h3 class="box-title">Editar asignacion automoviles</h3>
+              <div class="box-tools">
+
+              </div>
+          </div>
+
+          <div class="box-body">
+            <div class="text-left">
+            <a href="{{ route('automoviles.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+              Listar Autos Asignados</a>
+            </div>
+            <div class="row col-md-12">
+                {!! Form::model($auto, ['route'=>['automoviles.update', $auto->id], 'method' => 'PUT']) !!}
+                <div class="form-gorup">
+                    <div class="col-md-3">
+                        {!! Form::label('modelo', 'Modelo:') !!}
+                        {!! Form::text('modelo', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el modelo del vehículo', 'required'])!!}
+                    </div>
                 </div>
-                
-                <div class="input-field col s6">
-                    <input id="placa" name = "placa" type="text" class="validate" value="{{$automoviles_apto->placa}}">
-                    <label for="placa">placa</label>
+                <div class="form-gorup">
+                    <div class="col-md-3">
+                        {!! Form::label('placa', 'Placa:') !!}
+                        {!! Form::text('placa', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la placa del vehículo', 'required'])!!}
+                    </div>
                 </div>
-                                
-                <button class = 'btn red' type ='submit'>Update</button>
-            </form>
-        </div>
-    </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
-    <script type="text/javascript">
-    $('select').material_select();
-    </script>
-</html>
+                <div class="form-gorup">
+                    <div class="col-md-3">
+                        {!! Form::label('marca_id', 'Marca:') !!}
+                        {!! Form::select('marca_id', $marcas , null, ['class' => 'form-control select-mark', 'placeholder' => 'Seleccione una marca', 'required'])!!}
+                    </div>
+                </div>
+                <div class="form-gorup">
+                    <div class="col-md-3">
+                        {!! Form::label('apto_id', 'Apartamento Asignado:') !!}
+                        {!! Form::select('apto_id', $aptos , null, ['class' => 'form-control select-apto', 'placeholder' => 'Asigne un apartamentos', 'required'])!!}
+                    </div>
+                </div>
+
+
+                <div class="form-gorup">
+                  <div class="col-md-12">
+                    {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
+                    </div>
+                </div>
+                {!! Form::close()!!}
+
+          </div>
+      </div>
+  </div>
+  </div>
+
+@endsection
+
+@section('script')
+  <script type="text/javascript">
+
+         $('.select-mark').chosen({
+            no_results_text:'Ningún resultado coincide con: '
+          });
+          $('.select-apto').chosen({
+             no_results_text:'Ningún resultado coincide con: '
+           });
+
+
+      </script>
+@endsection

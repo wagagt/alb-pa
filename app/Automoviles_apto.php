@@ -2,6 +2,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Automoviles_aptoController
@@ -11,9 +12,25 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Automoviles_apto extends Model
 {
+      use softDeletes;
 
-    
+
     protected $table = 'automoviles_aptos';
+    protected $fillable = ['modelo', 'placa','apto_id','marca_id'];
+    protected $dates = ['deleted_at'];
+
+    public function apartamento(){
+      return $this->belongsTo('App\Apartamento','apto_id');
+    }
+
+    public function marca(){
+      return $this->belongsTo('App\Marca_vehiculo', 'marca_id');
+    }
+
+    public function scopeSearch($query, $placa)
+    {
+        return $query->where('numero', 'LIKE', '%'.$placa.'%');
+    }
 
 
 }

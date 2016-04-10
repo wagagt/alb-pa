@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\OficinaRequest;
+use App\Http\Controllers\Controller;
 use Amranidev\Ajaxis\Ajaxis;
 use Laracasts\Flash\Flash;
 use App\Oficina;

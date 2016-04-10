@@ -51,6 +51,10 @@ class Apartamento extends Model
     return $this->hasMany('App\Parqueo');
   }
 
+  public function automoviles(){
+    return $this->hasMany('App\Automoviles_apto');
+  }
+
   public function  scopeSearch($query, $numero)
   {
     return $query->where('numero', 'LIKE', '%'.$numero.'%');
