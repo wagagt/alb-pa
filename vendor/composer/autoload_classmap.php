@@ -528,6 +528,6 @@ return array(
     'TipoDocumentos' => $baseDir . '/database/migrations/2016_03_12_012424_tipo_documentos.php',
     'TipoDocumentosTableSeeder' => $baseDir . '/database/seeds/TipoDocumentosTableSeeder.php.php',
     'Torres' => $baseDir . '/database/migrations/2016_03_02_080248_torres.php',
-    'TorresTableSeeder' => $baseDir . '/database/seeds/TorresTableSeeder.php',
+    'TorresTableSeeder' => $baseDir . '/database/seeds/TorresTableSeeder.php.php',
     'UserTableSeeder' => $baseDir . '/database/seeds/UserTableSeeder.php',
 );
