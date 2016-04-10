@@ -176,3 +176,11 @@ Route::get('documento/{id}/destroy', [
     'as'    => 'documento.destroy'
   ]);
 /********************************************************/
+
+//Archivos_documento Resources
+/*******************************************************/
+Route::resource('archivos_documento','Archivos_documentoController');
+Route::post('archivos_documento/{id}/update','Archivos_documentoController@update');
+Route::get('archivos_documento/{id}/delete','Archivos_documentoController@destroy');
+Route::get('archivos_documento/{id}/deleteMsg','Archivos_documentoController@DeleteMsg');
+/********************************************************/
