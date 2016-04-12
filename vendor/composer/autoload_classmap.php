@@ -70,6 +70,7 @@ return array(
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\ApartamentoRequest' => $baseDir . '/app/Http/Requests/ApartamentoRequest.php',
+    'App\\Http\\Requests\\AutoRequest' => $baseDir . '/app/Http/Requests/AutoRequest.php',
     'App\\Http\\Requests\\DocumentoRequest' => $baseDir . '/app/Http/Requests/DocumentoRequest.php',
     'App\\Http\\Requests\\MarcaVehiculoRequest' => $baseDir . '/app/Http/Requests/MarcaVehiculoRequest.php',
     'App\\Http\\Requests\\OficinaRequest' => $baseDir . '/app/Http/Requests/OficinaRequest.php',
