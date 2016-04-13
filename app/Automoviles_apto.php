@@ -29,7 +29,7 @@ class Automoviles_apto extends Model
 
     public function scopeSearch($query, $placa)
     {
-        return $query->where('numero', 'LIKE', '%'.$placa.'%');
+        return $query->where('placa', 'LIKE', '%'.$placa.'%');
     }
 
 

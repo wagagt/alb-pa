@@ -27,7 +27,7 @@ class ApartamentoController extends Controller
 
   public function index(Request $request)
   {
-    $apartamentos = Apartamento::search($request->apartamento)->orderBy('numero', 'ASC')->paginate(5);
+    $apartamentos = Apartamento::search($request->numero)->orderBy('numero', 'ASC')->paginate(5);
     return view('apartamento.index')->with('apartamentos', $apartamentos);
   }
 

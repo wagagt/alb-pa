@@ -25,9 +25,9 @@ class Automoviles_aptoController extends Controller
      *
      * @return  \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $automoviles_aptos = Automoviles_apto::orderBy('apto_id','ASC')->paginate(5);
+        $automoviles_aptos = Automoviles_apto::search($request->placa)->orderBy('apto_id','ASC')->paginate(5);
         return view('automoviles_apto.index')->with('autos',$automoviles_aptos);
     }
 
