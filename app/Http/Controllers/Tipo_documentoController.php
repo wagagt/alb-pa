@@ -24,7 +24,7 @@ class Tipo_documentoController extends Controller
      */
     public function index(Request $request)
     {
-        $tipo_documentos = Tipo_documento::search($request->descripcion)->orderBy('descripcion', 'ASC')->paginate(5);
+        $tipo_documentos = Tipo_documento::search($request->tipo_documento)->orderBy('descripcion', 'ASC')->paginate(5);
         return view('tipo_documento.index')->with('tipo_documentos', $tipo_documentos);
     }
 

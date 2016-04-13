@@ -60,48 +60,6 @@
 
                 <div class="form-gorup">
                     <div class="col-md-6">
-                        {!! Form::label('marca_v_1', 'Marca Vehículo 1:') !!}
-                        {!! Form::text('marca_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: BMW', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
-                        {!! Form::label('modelo_v_1', 'Modelo Vehículo 1:') !!}
-                        {!! Form::text('modelo_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 2014', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
-                        {!! Form::label('Placa_v_1', 'Placa Vehículo 1:') !!}
-                        {!! Form::text('Placa_v_1', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: PR 2365', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
-                        {!! Form::label('marca_v_2', 'Marca Vehículo 2:') !!}
-                        {!! Form::text('marca_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: BMW', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
-                        {!! Form::label('modelo_v_2', 'Modelo Vehículo 2:') !!}
-                        {!! Form::text('modelo_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: 2014', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
-                        {!! Form::label('Placa_v_2', 'Placa Vehículo 2:') !!}
-                        {!! Form::text('Placa_v_2', null, ['class' => 'form-control', 'placeholder' => 'Ejemplo: PR 2365', 'required'])!!}
-                    </div>
-                </div>
-
-                <div class="form-gorup">
-                    <div class="col-md-6">
                         {!! Form::label('torre_id', 'Torre:') !!}
                         {!! Form::select('torre_id', $torres , null, ['class' => 'form-control select-torre', 'placeholder' => 'Seleccione un Torre', 'required'])!!}
                     </div>
@@ -121,8 +79,13 @@
                     </div>
                 </div>
                 {!! Form::close()!!}
-
           </div>
+        <div class="col-md-12">
+          <h3>Autos / Parqueos asignados</h3>
+        </div>
+
+
+
       </div>
   </div>
   </div>

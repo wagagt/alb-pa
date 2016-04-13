@@ -20,13 +20,15 @@ class Documento extends Model
 
     protected $table = 'documentos';
 
-    protected $fillable =['nombre', 'tipo_documentos_id', 'fecha_del', 'fecha_al', 'user_id'];
-	
+    protected $fillable =['nombre', 'tipo_documentos_id', 'fecha_del', 'fecha_al', 'torre_id'];
+		protected $dates = ['deleted_at'];
+
   public function  scopeSearch($query, $name)
   {
     return $query->where('nombre', 'LIKE', '%'.$name.'%');
   }
 
+<<<<<<< HEAD
   public function tipo_documento(){
   	return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
   }
@@ -36,6 +38,14 @@ class Documento extends Model
     return $this->belongsTo('App\User');
   }
 
+=======
+public function torre(){
+	return $this.belongsTo('App\Torre');
+>>>>>>> as-localdev-13
 }
 
+public function tipo_documento(){
+	return $this.belongsTo('App\Tipo_documento','tipo_documento_id');
+}
 
+}

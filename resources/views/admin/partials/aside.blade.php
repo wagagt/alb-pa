@@ -39,8 +39,11 @@
           <ul class="treeview-menu">
             <li><a href="{{route('pais.index')}}"><i class="fa fa-flag"></i><span>Países</span></a></li>
             <li><a href="{{route('oficina.index')}}"><i class="fa fa-briefcase"></i><span>Oficinas</span></a></li>
-            <li><a href="{{route('apartamento.index')}}"><i class="fa fa-home"></i></i><span>Apartamentos</span></a></li>
-            <li><a href="{{route('tipo_documento.index')}}"><i class="fa fa-book"></i></i><span>Tipo Documentos</span></a></li>
+            <li><a href="{{route('apartamento.index')}}"><i class="fa fa-home"></i><span>Apartamentos</span></a></li>
+            <li><a href="{{route('tipo_documento.index')}}"><i class="fa fa-book"></i><span>Tipo Documentos</span></a></li>
+            <li><a href="{{route('marca-vehiculo.index')}}"><i class="fa fa-car"></i><span>Marcas de vehículos</span></a></li>
+            <li><a href="{{route('parqueo.index')}}"><i class="fa fa-ticket"></i><span>Parqueos</span></a></li>
+            <li><a href="{{route('automoviles.index')}}"><i class="fa fa-car"></i><i class="fa fa-home"></i><span>Autos Apartamentos</span></a></li>
           </ul>
         </li>
         <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Torres</span></a></li>

@@ -22,7 +22,7 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::search($request->name)->orderBy('name', 'ASC')->paginate(15);
+        $users = User::search($request->name)->orderBy('name', 'ASC')->paginate(5);
         return view('user.index')
             ->with('users', $users);
     }

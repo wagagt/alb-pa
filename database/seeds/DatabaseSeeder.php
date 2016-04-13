@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ApartamentoTableSeeder::class);
         $this->call(TipoDocumentosTableSeeder::class);
         $this->call(DocumentosTableSeeder::class);
+        $this->call(MarcaAutosTableSeeder::class);
 
         Model::reguard();
     }

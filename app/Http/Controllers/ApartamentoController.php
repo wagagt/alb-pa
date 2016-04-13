@@ -11,6 +11,9 @@ use Laracasts\Flash\Flash;
 use URL;
 use App\Torre;
 use App\User;
+use App\Parqueo;
+use App\Automoviles_apto;
+use DB;
 
 
 /**
@@ -24,7 +27,7 @@ class ApartamentoController extends Controller
 
   public function index(Request $request)
   {
-    $apartamentos = Apartamento::search($request->apartamento)->orderBy('numero', 'ASC')->paginate(5);
+    $apartamentos = Apartamento::search($request->numero)->orderBy('numero', 'ASC')->paginate(5);
     return view('apartamento.index')->with('apartamentos', $apartamentos);
   }
 
@@ -33,7 +36,7 @@ class ApartamentoController extends Controller
   {
 
     $torres = Torre::orderBy('nombre', 'ASC')->lists('nombre','id'); // Lista de torres
-    $users = User::orderBy('name', 'ASC')->lists('name','id'); // Lista de torres
+    $users = User::where()->orderBy('name', 'ASC')->lists('name','id'); // Lista de torres
 
     return view('apartamento.create')
     ->with('torres',$torres)
@@ -55,26 +58,32 @@ class ApartamentoController extends Controller
 
   }
 
-  
+
   public function edit($id)
   {
 
     $torres = Torre::orderBy('nombre','ASC')->lists('nombre','id');
     $users = User::orderBy('name','ASC')->lists('name','id');
+    $parqueos = DB::table('parqueos')->where('apto_id','=',$id)->get();
+    $autos = DB::table('automoviles_aptos')->where('apto_id','=',$id)->get();
+
     $apartamento = Apartamento::findOrfail($id);
     $apartamento->torre_id;
     $apartamento->user_id;
+
     return view('apartamento.edit')
     ->with('torres', $torres)
     ->with('apartamento', $apartamento)
-    ->with('users', $users);
+    ->with('users', $users)
+    ->with('parqueos',$parqueos)
+    ->with('autos',$autos);
 }
 
 public function update(Request $request, $id)
 {
   $apartamento = Apartamento::findOrfail($id);
   $apartamento->fill($request->all());
-    //dd($apartamento);
+
   $apartamento->save();
 
   Flash::warning('El apartamento <strong>"' .$apartamento->numero.'"</strong> ha sido actualizada con éxito!!..');

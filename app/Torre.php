@@ -36,4 +36,8 @@ class Torre extends Model
     return $query->where('nombre', 'LIKE', '%'.$name.'%');
   }
 
+  public function documentos(){
+    return $this.hasMany('App\Documento');
+  }
+
 }

@@ -21,17 +21,21 @@ class Documentos extends Migration
 
         $table->increments('id');
         $table->string('nombre');
-        $table->integer('tipo_documentos_id');
+        $table->integer('tipo_documentos_id')->unsigned();
         $table->date('fecha_del');
         $table->date('fecha_al');
-        $table->integer('user_id');
         $table->softDeletes();
         $table->timestamps();
-        
+
+        $table->foreign('tipo_documentos_id')->references('id')->on('tipo_documentos');
+
+        $table->integer('torre_id')->unsigned();
+        $table->foreign('torre_id')->references('id')->on('torres');
+
         /**
          * Foreignkeys section
          */
-        
+
         // type your addition here
 
         });

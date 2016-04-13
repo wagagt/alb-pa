@@ -16,13 +16,13 @@
                     <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
                   </div>
               {!! Form::close() !!}
-            </div> 
+            </div>
             <!-- Fin del buscador -->
           </div>
         </div>
 
         <div class="box-body">
-              <div class="col-md-12 text-left"><a href="{{route('tipo_documento.create')}}" class="btn btn-primary"><i class="fa fa-flag"></i>  CREAR TIPO DOCUMENTO </a>  
+              <div class="col-md-12 text-left"><a href="{{route('tipo_documento.create')}}" class="btn btn-primary"><i class="fa fa-flag"></i>  CREAR TIPO DOCUMENTO </a>
               </div>
 
             <table class="table table-hover">
@@ -37,7 +37,7 @@
                         <td>
                             <a href="{{ route('tipo_documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
                                 <i class="fa fa-pencil-square-o"></i>
-                            </a> 
+                            </a>
                             <a href="{{ route('tipo_documento.destroy', $value->id) }}" class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                                 <i class="fa fa-trash"></i>
                             </a>

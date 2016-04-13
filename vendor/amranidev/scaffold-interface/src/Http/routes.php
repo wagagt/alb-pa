@@ -5,7 +5,7 @@
 |--------------------------------------------------------------------------
 |
  */
-##::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function () {
 
     Route::get('scaffold', '\Amranidev\ScaffoldInterface\Http\Controllers\GuiController@index');
 
@@ -26,4 +26,4 @@
     Route::get('scaffold/migrate', '\Amranidev\ScaffoldInterface\Http\Controllers\GuiController@migrate');
 
     Route::get('scaffold/rollback', '\Amranidev\ScaffoldInterface\Http\Controllers\GuiController@rollback');
-#});
+});

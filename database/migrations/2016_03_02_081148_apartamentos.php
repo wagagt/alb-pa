@@ -26,12 +26,6 @@ class Apartamentos extends Migration
         $table->string('metros_cuadrados');
         $table->string('ambientes');
         $table->string('dormitorios');
-        $table->string('marca_v_1');
-        $table->integer('modelo_v_1');
-        $table->string('placa_v_1');
-        $table->string('marca_v_2');
-        $table->integer('modelo_v_2');
-        $table->string('placa_v_2');
         $table->softDeletes();
         $table->timestamps();
 
