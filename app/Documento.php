@@ -28,7 +28,6 @@ class Documento extends Model
     return $query->where('nombre', 'LIKE', '%'.$name.'%');
   }
 
-<<<<<<< HEAD
   public function tipo_documento(){
   	return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
   }
@@ -38,14 +37,8 @@ class Documento extends Model
     return $this->belongsTo('App\User');
   }
 
-=======
 public function torre(){
 	return $this.belongsTo('App\Torre');
->>>>>>> as-localdev-13
-}
 
-public function tipo_documento(){
-	return $this.belongsTo('App\Tipo_documento','tipo_documento_id');
-}
 
 }
