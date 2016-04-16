@@ -30,11 +30,6 @@ class Documento extends Model {
   	return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
   }
 
-	public function tipo_documento() {
-		return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
-	}
-
-
 	public function user() {
 		return $this->belongsTo('App\User');
 	}
