@@ -15,7 +15,7 @@ class Documento extends Model {
 
 	use softDeletes;
 
-	public $timestamps = false;
+	//public $timestamps = false;
 
 	protected $table = 'documentos';
 
