@@ -39,7 +39,7 @@ class ApartamentoTableSeeder extends Seeder
         'ambientes' => '4',
         'dormitorios'   => '3',
         'torre_id'  => '2',
-        'user_id'=> '4'],
+        'user_id'=> '1'],
 
         ['numero'   => '11-B',
         'nivel' => 'N11',
@@ -48,7 +48,7 @@ class ApartamentoTableSeeder extends Seeder
         'ambientes' => '5',
         'dormitorios'   => '4',
         'torre_id'  => '1',
-        'user_id'=> '4']
+        'user_id'=> '2']
         ];
 
         foreach($apartamentos as $apartamento){
