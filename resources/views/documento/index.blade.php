@@ -31,7 +31,7 @@
                 <td><strong>TIPO DOC.</strong></td>
                 <td><strong>DESDE</strong></td>
                 <td><strong>HASTA</strong></td>
-
+                <td><strong>EDIFICIO</strong></td>
                 <td><strong>ACCIONES</strong></td>
             </thead>
             <tbody>
@@ -41,8 +41,8 @@
                     <td>{{$value->tipo_documento->descripcion}}</td>
                     <td>{{$value->fecha_del}}</td>
                     <td>{{$value->fecha_al}}</td>
-
-                   <td>
+                    <td>{{$value->torre->nombre}}</td>
+                    <td>
                     <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
                       <i class="fa fa-pencil-square-o"></i></a>
                     <a href="{{ route('documento.destroy', $value->id) }}"
