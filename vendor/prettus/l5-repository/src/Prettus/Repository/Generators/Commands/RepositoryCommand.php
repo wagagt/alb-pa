@@ -3,6 +3,7 @@ namespace Prettus\Repository\Generators\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Prettus\Repository\Generators\FileAlreadyExistsException;
 use Prettus\Repository\Generators\MigrationGenerator;
 use Prettus\Repository\Generators\ModelGenerator;
 use Prettus\Repository\Generators\RepositoryEloquentGenerator;
@@ -28,10 +29,16 @@ class RepositoryCommand extends Command
     protected $description = 'Create a new repository.';
 
     /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Repository';
+
+    /**
      * @var Collection
      */
     protected $generators = null;
-
 
 
     /**
@@ -48,7 +55,7 @@ class RepositoryCommand extends Command
             'fields' => $this->option('fillable'),
             'force'  => $this->option('force'),
         ]));
-        
+
         $modelGenerator = new ModelGenerator([
             'name'     => $this->argument('name'),
             'fillable' => $this->option('fillable'),
@@ -62,22 +69,30 @@ class RepositoryCommand extends Command
             'force' => $this->option('force'),
         ]));
 
-        $model = $modelGenerator->getRootNamespace() . '\\' . $modelGenerator->getName();
-        $model = str_replace([ "\\", '/' ], '\\', $model);
-
-        $this->generators->push(new RepositoryEloquentGenerator([
-            'name'  => $this->argument('name'),
-            'rules' => $this->option('rules'),
-            'validator' => $this->option('validator'),
-            'force' => $this->option('force'),
-            'model' => $model
-        ]));
-
         foreach ($this->generators as $generator) {
             $generator->run();
         }
 
-        $this->info("Repository created successfully.");
+        $model = $modelGenerator->getRootNamespace() . '\\' . $modelGenerator->getName();
+        $model = str_replace([
+            "\\",
+            '/'
+        ], '\\', $model);
+
+        try {
+            (new RepositoryEloquentGenerator([
+                'name'      => $this->argument('name'),
+                'rules'     => $this->option('rules'),
+                'validator' => $this->option('validator'),
+                'force'     => $this->option('force'),
+                'model'     => $model
+            ]))->run();
+            $this->info("Repository created successfully.");
+        } catch (FileAlreadyExistsException $e) {
+            $this->error($this->type . ' already exists!');
+
+            return false;
+        }
     }
 
 
@@ -89,7 +104,12 @@ class RepositoryCommand extends Command
     public function getArguments()
     {
         return [
-            [ 'name', InputArgument::REQUIRED, 'The name of class being generated.', null ],
+            [
+                'name',
+                InputArgument::REQUIRED,
+                'The name of class being generated.',
+                null
+            ],
         ];
     }
 
@@ -102,10 +122,34 @@ class RepositoryCommand extends Command
     public function getOptions()
     {
         return [
-            [ 'fillable', null, InputOption::VALUE_OPTIONAL, 'The fillable attributes.', null ],
-            [ 'rules', null, InputOption::VALUE_OPTIONAL, 'The rules of validation attributes.', null ],
-            [ 'validator', null, InputOption::VALUE_OPTIONAL, 'Adds validator reference to the repository.', null ],
-            [ 'force', 'f', InputOption::VALUE_NONE, 'Force the creation if file already exists.', null ]
+            [
+                'fillable',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fillable attributes.',
+                null
+            ],
+            [
+                'rules',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The rules of validation attributes.',
+                null
+            ],
+            [
+                'validator',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Adds validator reference to the repository.',
+                null
+            ],
+            [
+                'force',
+                'f',
+                InputOption::VALUE_NONE,
+                'Force the creation if file already exists.',
+                null
+            ]
         ];
     }
 }

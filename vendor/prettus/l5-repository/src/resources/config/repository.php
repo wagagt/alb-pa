@@ -109,7 +109,7 @@ return [
             ]
         ],
 
-        'params'  => [
+        'params'     => [
             /*
             |--------------------------------------------------------------------------
             | Skip Cache Params
@@ -137,7 +137,7 @@ return [
        |
        | 'except'  =>['find'],
        */
-        'allowed' => [
+        'allowed'    => [
             'only'   => null,
             'except' => null
         ]
@@ -168,7 +168,8 @@ return [
         |
         */
         'acceptedConditions' => [
-            '=','like'
+            '=',
+            'like'
         ],
         /*
         |--------------------------------------------------------------------------
@@ -227,6 +228,8 @@ return [
             'transformers' => 'Transformers',
             'presenters'   => 'Presenters',
             'validators'   => 'Validators',
+            'controllers'  => 'Http/Controllers',
+            'provider'     => 'RepositoryServiceProvider',
         ]
     ]
 ];

@@ -3,6 +3,7 @@ namespace Prettus\Repository\Generators\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use Prettus\Repository\Generators\FileAlreadyExistsException;
 use Prettus\Repository\Generators\ValidatorGenerator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -24,6 +25,13 @@ class ValidatorCommand extends Command
      */
     protected $description = 'Create a new validator.';
 
+    /**
+     * The type of class being generated.
+     *
+     * @var string
+     */
+    protected $type = 'Validator';
+
 
     /**
      * Execute the command.
@@ -32,12 +40,18 @@ class ValidatorCommand extends Command
      */
     public function fire()
     {
-        (new ValidatorGenerator([
-            'name'  => $this->argument('name'),
-            'rules' => $this->option('rules'),
-            'force' => $this->option('force'),
-        ]))->run();
-        $this->info("Validator created successfully.");
+        try {
+            (new ValidatorGenerator([
+                'name' => $this->argument('name'),
+                'rules' => $this->option('rules'),
+                'force' => $this->option('force'),
+            ]))->run();
+            $this->info("Validator created successfully.");
+        } catch (FileAlreadyExistsException $e) {
+            $this->error($this->type . ' already exists!');
+
+            return false;
+        }
     }
 
 
@@ -49,7 +63,12 @@ class ValidatorCommand extends Command
     public function getArguments()
     {
         return [
-            [ 'name', InputArgument::REQUIRED, 'The name of model for which the validator is being generated.', null ],
+            [
+                'name',
+                InputArgument::REQUIRED,
+                'The name of model for which the validator is being generated.',
+                null
+            ],
         ];
     }
 
@@ -62,8 +81,20 @@ class ValidatorCommand extends Command
     public function getOptions()
     {
         return [
-            [ 'rules', null, InputOption::VALUE_OPTIONAL, 'The rules of validation attributes.', null ],
-            [ 'force', 'f', InputOption::VALUE_NONE, 'Force the creation if file already exists.', null ],
+            [
+                'rules',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The rules of validation attributes.',
+                null
+            ],
+            [
+                'force',
+                'f',
+                InputOption::VALUE_NONE,
+                'Force the creation if file already exists.',
+                null
+            ],
         ];
     }
 }

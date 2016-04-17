@@ -15,8 +15,6 @@ class Documento extends Model {
 
 	use softDeletes;
 
-	public $timestamps = false;
-
 	protected $table = 'documentos';
 
 	protected $fillable = ['nombre', 'tipo_documentos_id', 'fecha_del', 'fecha_al', 'torre_id'];
@@ -26,23 +24,17 @@ class Documento extends Model {
 		return $query->where('nombre', 'LIKE', '%'.$name.'%');
 	}
 
-  public function tipo_documento(){
-  	return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
-  }
+	public function tipo_documento() {
+		return $this->belongsTo('App\Tipo_documento', 'tipo_documentos_id');
+	}
 
 	public function user() {
 		return $this->belongsTo('App\User');
 	}
 
-
-public function torre(){
-	return $this.belongsTo('App\Torre');
-
-
 	public function torre() {
 		return $this->belongsTo('App\Torre', 'torre_id');
 
 	}
-
 
 }

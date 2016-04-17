@@ -7,9 +7,7 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "laracasts/flash": "~2.0",
         "laravelcollective/html": "5.1",
-        "laravelcollective/html": "^5.1",
         "nesbot/carbon": "^1.21",
         "infyomlabs/laravel-generator": "dev-master",
         "infyomlabs/core-templates": "dev-master",

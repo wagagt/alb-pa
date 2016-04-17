@@ -4,6 +4,7 @@ Laravel 5 Repositories is used to abstract the data layer, making our applicatio
 
 [![Latest Stable Version](https://poser.pugx.org/prettus/l5-repository/v/stable)](https://packagist.org/packages/prettus/l5-repository) [![Total Downloads](https://poser.pugx.org/prettus/l5-repository/downloads)](https://packagist.org/packages/prettus/l5-repository) [![Latest Unstable Version](https://poser.pugx.org/prettus/l5-repository/v/unstable)](https://packagist.org/packages/prettus/l5-repository) [![License](https://poser.pugx.org/prettus/l5-repository/license)](https://packagist.org/packages/prettus/l5-repository)
 [![Analytics](https://ga-beacon.appspot.com/UA-61050740-1/l5-repository/readme)](https://packagist.org/packages/prettus/l5-repository)
+[![Code Climate](https://codeclimate.com/github/andersao/l5-repository/badges/gpa.svg)](https://codeclimate.com/github/andersao/l5-repository)
 
 #### See versions: [1.0.*](https://github.com/andersao/l5-repository/tree/1.0.4) / [2.0.*](https://github.com/andersao/l5-repository/tree/2.0.14)
 #### Migrate to: [2.0](migration-to-2.0.md) / [2.1](migration-to-2.1.md)
@@ -90,7 +91,9 @@ php artisan vendor:publish
 - findWhereNotIn($field, array $where, $columns = [*])
 - create(array $attributes)
 - update(array $attributes, $id)
+- updateOrCreate(array $attributes, array $values = [])
 - delete($id)
+- orderBy($column, $direction = 'asc');
 - with(array $relations);
 - hidden(array $fields);
 - visible(array $fields);
@@ -102,7 +105,8 @@ php artisan vendor:publish
 
 ### Prettus\Repository\Contracts\RepositoryCriteriaInterface
 
-- pushCriteria(CriteriaInterface $criteria)
+- pushCriteria($criteria)
+- popCriteria($criteria)
 - getCriteria()
 - getByCriteria(CriteriaInterface $criteria)
 - skipCriteria($status = true)
@@ -190,11 +194,14 @@ You must first configure the storage location of the repository files. By defaul
         'basePath'=>app_path(),
         'rootNamespace'=>'App\\',
         'paths'=>[
-            'models'=>'Entities',
-            'repositories'=>'Repositories',
-            'interfaces'=>'Repositories',
-            'transformers'=>'Transformers',
-            'presenters'=>'Presenters'
+            'models'       => 'Entities',
+            'repositories' => 'Repositories',
+            'interfaces'   => 'Repositories',
+            'transformers' => 'Transformers',
+            'presenters'   => 'Presenters',
+            'validators'   => 'Validators',
+            'controllers'  => 'Http/Controllers',
+            'provider'     => 'RepositoryServiceProvider',
         ]
     ]
 ```
@@ -221,6 +228,9 @@ Additionally, you may wish to customize where your generated classes end up bein
             'interfaces'=>'Contracts\\Repositories',
             'transformers'=>'Transformers',
             'presenters'=>'Presenters'
+            'validators'   => 'Validators',
+            'controllers'  => 'Http/Controllers',
+            'provider'     => 'RepositoryServiceProvider',
         ]
     ]
 ```
@@ -233,7 +243,15 @@ To generate everything you need for your Model, run this command:
 php artisan make:entity Post
 ```
 
-This will create the Model, the Repository, the Presenter and the Transformer classes. You can also pass the options from the ```repository``` command, since this command is just a wrapper.
+This will create the Controller, the Validator, the Model, the Repository, the Presenter and the Transformer classes.
+It will also create a new service provider that will be used to bind the Eloquent Repository with its corresponding Repository Interface.
+To load it, just add this to your AppServiceProvider@register method:
+
+```php
+    $this->app->register(RepositoryServiceProvider::class);
+```
+
+You can also pass the options from the ```repository``` command, since this command is just a wrapper.
 
 To generate a repository for your Post model, use the following command
 
@@ -253,7 +271,19 @@ Added fields that are fillable
 php artisan make:repository "Blog\Post" --fillable="title,content"
 ```
 
-When running commado, you will be creating the "Entities" folder and "Repositories" inside the folder that you set as the default.
+To add validations rules directly with your command you need to pass the `--rules` option and create migrations as well:
+
+```terminal
+php artisan make:entity Cat --fillable="title:string,content:text" --rules="title=>required|min:2, content=>sometimes|min:10"
+```
+
+The command will also create your basic RESTfull controller so just add this line into your `routes.php` file and you will have a basic CRUD:
+
+ ```php
+ Route::resource('cats', CatsController::class);
+ ```
+
+When running the command, you will be creating the "Entities" folder and "Repositories" inside the folder that you set as the default.
 
 Done, done that just now you do bind its interface for your real repository, for example in your own Repositories Service Provider.
 
@@ -424,7 +454,8 @@ class PostsController extends BaseController {
 
     public function index()
     {
-        $this->repository->pushCriteria(new MyCriteria());
+        $this->repository->pushCriteria(new MyCriteria1());
+        $this->repository->pushCriteria(MyCriteria2::class);
         $posts = $this->repository->all();
 		...
     }
@@ -447,7 +478,8 @@ class PostRepository extends BaseRepository {
 
     public function boot(){
         $this->pushCriteria(new MyCriteria());
-        $this->pushCriteria(new AnotherCriteria());
+        // or
+        $this->pushCriteria(AnotherCriteria::class);
         ...
     }
 
@@ -463,6 +495,16 @@ Use `skipCriteria` before any other chaining method
 
 ```php
 $posts = $this->repository->skipCriteria()->all();
+```
+
+### Popping criteria
+
+Use `popCriteria` to remove a criteria
+
+```php
+$this->repository->popCriteria(new Criteria1());
+// or
+$this->repository->popCriteria(Criteria1::class);
 ```
 
 
@@ -504,12 +546,13 @@ class PostRepository extends BaseRepository {
 
 Remember, you need to define which fields from the model can be searchable.
 
-In your repository set **$fieldSearchable** with the name of the fields to be searchable.
+In your repository set **$fieldSearchable** with the name of the fields to be searchable or a relation to fields.
 
 ```php
 protected $fieldSearchable = [
 	'name',
-	'email'
+	'email',
+	'product.name'
 ];
 ```
 
@@ -522,6 +565,7 @@ protected $fieldSearchable = [
 	'your_field'=>'condition'
 ];
 ```
+
 
 ####Enabling in your Controller
 

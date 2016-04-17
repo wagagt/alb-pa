@@ -1342,86 +1342,6 @@
         ]
     },
     {
-        "name": "monolog/monolog",
-        "version": "1.18.2",
-        "version_normalized": "1.18.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Seldaek/monolog.git",
-            "reference": "064b38c16790249488e7a8b987acf1c9d7383c09"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/064b38c16790249488e7a8b987acf1c9d7383c09",
-            "reference": "064b38c16790249488e7a8b987acf1c9d7383c09",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "psr/log": "~1.0"
-        },
-        "provide": {
-            "psr/log-implementation": "1.0.0"
-        },
-        "require-dev": {
-            "aws/aws-sdk-php": "^2.4.9",
-            "doctrine/couchdb": "~1.0@dev",
-            "graylog2/gelf-php": "~1.0",
-            "jakub-onderka/php-parallel-lint": "0.9",
-            "php-amqplib/php-amqplib": "~2.4",
-            "php-console/php-console": "^3.1.3",
-            "phpunit/phpunit": "~4.5",
-            "phpunit/phpunit-mock-objects": "2.3.0",
-            "raven/raven": "^0.13",
-            "ruflin/elastica": ">=0.90 <3.0",
-            "swiftmailer/swiftmailer": "~5.3"
-        },
-        "suggest": {
-            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
-            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
-            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
-            "ext-mongo": "Allow sending log messages to a MongoDB server",
-            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
-            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
-            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-            "php-console/php-console": "Allow sending log messages to Google Chrome",
-            "raven/raven": "Allow sending log messages to a Sentry server",
-            "rollbar/rollbar": "Allow sending log messages to Rollbar",
-            "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
-        },
-        "time": "2016-04-02 13:12:58",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Monolog\\": "src/Monolog"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jordi Boggiano",
-                "email": "j.boggiano@seld.be",
-                "homepage": "http://seld.be"
-            }
-        ],
-        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
-        "homepage": "http://github.com/Seldaek/monolog",
-        "keywords": [
-            "log",
-            "logging",
-            "psr-3"
-        ]
-    },
-    {
         "name": "league/flysystem",
         "version": "1.0.20",
         "version_normalized": "1.0.20.0",
@@ -2599,113 +2519,6 @@
         ]
     },
     {
-        "name": "infyomlabs/core-templates",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/InfyOmLabs/core-templates.git",
-            "reference": "5fdec371270c91f34c3b376639e26ab6e2bdd1a9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/5fdec371270c91f34c3b376639e26ab6e2bdd1a9",
-            "reference": "5fdec371270c91f34c3b376639e26ab6e2bdd1a9",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "~5.0",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-03-26 10:42:06",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "InfyOm\\CoreTemplates\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mitul Golakiya",
-                "email": "me@mitul.me"
-            }
-        ],
-        "description": "Core Bootstrap templates for InfyOm Laravel Generator",
-        "keywords": [
-            "bootstrap",
-            "generator",
-            "laravel",
-            "templates"
-        ]
-    },
-    {
-        "name": "prettus/l5-repository",
-        "version": "2.1.8",
-        "version_normalized": "2.1.8.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/andersao/l5-repository.git",
-            "reference": "efe486eecf883272c2a7edd53fa6e1aad77627e4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/andersao/l5-repository/zipball/efe486eecf883272c2a7edd53fa6e1aad77627e4",
-            "reference": "efe486eecf883272c2a7edd53fa6e1aad77627e4",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/config": "~5.0",
-            "illuminate/console": "~5.0",
-            "illuminate/database": "~5.0",
-            "illuminate/filesystem": "~5.0",
-            "illuminate/http": "~5.0",
-            "illuminate/pagination": "~5.0",
-            "illuminate/support": "~5.0"
-        },
-        "suggest": {
-            "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
-            "prettus/laravel-validation": "Required to use the Repository Validators (1.1.*)",
-            "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
-        },
-        "time": "2016-03-01 18:33:39",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-develop": "2.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Prettus\\Repository\\": "src/Prettus/Repository/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Anderson Andrade",
-                "email": "contato@andersonandra.de",
-                "role": "Developer"
-            }
-        ],
-        "description": "Laravel 5 - Repositories to  the database layer",
-        "keywords": [
-            "cache",
-            "eloquent",
-            "laravel",
-            "model",
-            "repository"
-        ]
-    },
-    {
         "name": "laracasts/flash",
         "version": "2.0.0",
         "version_normalized": "2.0.0.0",
@@ -2749,63 +2562,6 @@
             }
         ],
         "description": "Easy flash notifications"
-    },
-    {
-        "name": "infyomlabs/laravel-generator",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-            "reference": "1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14",
-            "reference": "1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/support": "~5.0",
-            "laracasts/flash": "~2.0",
-            "php": ">=5.5.9",
-            "prettus/l5-repository": "~2.1"
-        },
-        "time": "2016-03-26 11:41:47",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "InfyOm\\Generator\\": "src/"
-            },
-            "files": [
-                "src/helpers.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mitul Golakiya",
-                "email": "me@mitul.me"
-            }
-        ],
-        "description": "InfyOm Laravel Generator",
-        "keywords": [
-            "api",
-            "crud",
-            "generator",
-            "laravel",
-            "migration",
-            "model",
-            "repository",
-            "request",
-            "swagger",
-            "test",
-            "view"
-        ]
     },
     {
         "name": "infyomlabs/swagger-generator",
@@ -2954,58 +2710,6 @@
             "l5",
             "laravel",
             "swagger"
-        ]
-    },
-    {
-        "name": "laravelcollective/html",
-        "version": "v5.1.0",
-        "version_normalized": "5.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/LaravelCollective/html.git",
-            "reference": "28a91965be7579aa159171e75cb66ee9e927c882"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/LaravelCollective/html/zipball/28a91965be7579aa159171e75cb66ee9e927c882",
-            "reference": "28a91965be7579aa159171e75cb66ee9e927c882",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/http": "5.1.*",
-            "illuminate/routing": "5.1.*",
-            "illuminate/session": "5.1.*",
-            "illuminate/support": "5.1.*",
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "mockery/mockery": "~0.9",
-            "phpunit/phpunit": "~4.0"
-        },
-        "time": "2015-06-18 02:13:55",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Collective\\Html\\": "src/"
-            },
-            "files": [
-                "src/helpers.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            },
-            {
-                "name": "Adam Engebretson",
-                "email": "adam@laravelcollective.com"
-            }
         ]
     },
     {
@@ -4225,6 +3929,344 @@
             "phpunit",
             "testing",
             "xunit"
+        ]
+    },
+    {
+        "name": "monolog/monolog",
+        "version": "1.19.0",
+        "version_normalized": "1.19.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Seldaek/monolog.git",
+            "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+            "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "psr/log": "~1.0"
+        },
+        "provide": {
+            "psr/log-implementation": "1.0.0"
+        },
+        "require-dev": {
+            "aws/aws-sdk-php": "^2.4.9",
+            "doctrine/couchdb": "~1.0@dev",
+            "graylog2/gelf-php": "~1.0",
+            "jakub-onderka/php-parallel-lint": "0.9",
+            "php-amqplib/php-amqplib": "~2.4",
+            "php-console/php-console": "^3.1.3",
+            "phpunit/phpunit": "~4.5",
+            "phpunit/phpunit-mock-objects": "2.3.0",
+            "raven/raven": "^0.13",
+            "ruflin/elastica": ">=0.90 <3.0",
+            "swiftmailer/swiftmailer": "~5.3"
+        },
+        "suggest": {
+            "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+            "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+            "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+            "ext-mongo": "Allow sending log messages to a MongoDB server",
+            "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+            "mongodb/mongodb": "Allow sending log messages to a MongoDB server via PHP Driver",
+            "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
+            "php-console/php-console": "Allow sending log messages to Google Chrome",
+            "raven/raven": "Allow sending log messages to a Sentry server",
+            "rollbar/rollbar": "Allow sending log messages to Rollbar",
+            "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
+        },
+        "time": "2016-04-12 18:29:35",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Monolog\\": "src/Monolog"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jordi Boggiano",
+                "email": "j.boggiano@seld.be",
+                "homepage": "http://seld.be"
+            }
+        ],
+        "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+        "homepage": "http://github.com/Seldaek/monolog",
+        "keywords": [
+            "log",
+            "logging",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "prettus/laravel-validation",
+        "version": "1.1.4",
+        "version_normalized": "1.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/andersao/laravel-validator.git",
+            "reference": "c3501ba6b6312b8e98098783901060c0aff2b29d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/andersao/laravel-validator/zipball/c3501ba6b6312b8e98098783901060c0aff2b29d",
+            "reference": "c3501ba6b6312b8e98098783901060c0aff2b29d",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0|~5.1",
+            "illuminate/validation": "~5.0|~5.1",
+            "php": ">=5.4.0"
+        },
+        "time": "2015-06-08 23:53:46",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Prettus\\Validator\\": "src/Prettus/Validator/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "authors": [
+            {
+                "name": "Anderson Andrade",
+                "email": "contato@andersonandra.de"
+            }
+        ],
+        "description": "Laravel Validation Service",
+        "keywords": [
+            "laravel",
+            "service",
+            "validation"
+        ]
+    },
+    {
+        "name": "prettus/l5-repository",
+        "version": "2.3.0",
+        "version_normalized": "2.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/andersao/l5-repository.git",
+            "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/andersao/l5-repository/zipball/e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
+            "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/config": "~5.0",
+            "illuminate/console": "~5.0",
+            "illuminate/database": "~5.0",
+            "illuminate/filesystem": "~5.0",
+            "illuminate/http": "~5.0",
+            "illuminate/pagination": "~5.0",
+            "illuminate/support": "~5.0",
+            "prettus/laravel-validation": "1.1.*"
+        },
+        "suggest": {
+            "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
+            "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
+        },
+        "time": "2016-04-15 19:54:15",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-develop": "2.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Prettus\\Repository\\": "src/Prettus/Repository/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Anderson Andrade",
+                "email": "contato@andersonandra.de",
+                "role": "Developer"
+            }
+        ],
+        "description": "Laravel 5 - Repositories to  the database layer",
+        "keywords": [
+            "cache",
+            "eloquent",
+            "laravel",
+            "model",
+            "repository"
+        ]
+    },
+    {
+        "name": "infyomlabs/laravel-generator",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/InfyOmLabs/laravel-generator.git",
+            "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
+            "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0",
+            "laracasts/flash": "~2.0",
+            "php": ">=5.5.9",
+            "prettus/l5-repository": "~2.1"
+        },
+        "time": "2016-04-12 18:21:26",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "InfyOm\\Generator\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mitul Golakiya",
+                "email": "me@mitul.me"
+            }
+        ],
+        "description": "InfyOm Laravel Generator",
+        "keywords": [
+            "api",
+            "crud",
+            "generator",
+            "laravel",
+            "migration",
+            "model",
+            "repository",
+            "request",
+            "swagger",
+            "test",
+            "view"
+        ]
+    },
+    {
+        "name": "laravelcollective/html",
+        "version": "v5.1.0",
+        "version_normalized": "5.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/LaravelCollective/html.git",
+            "reference": "28a91965be7579aa159171e75cb66ee9e927c882"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/LaravelCollective/html/zipball/28a91965be7579aa159171e75cb66ee9e927c882",
+            "reference": "28a91965be7579aa159171e75cb66ee9e927c882",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/http": "5.1.*",
+            "illuminate/routing": "5.1.*",
+            "illuminate/session": "5.1.*",
+            "illuminate/support": "5.1.*",
+            "php": ">=5.5.9"
+        },
+        "require-dev": {
+            "mockery/mockery": "~0.9",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-06-18 02:13:55",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Collective\\Html\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            },
+            {
+                "name": "Adam Engebretson",
+                "email": "adam@laravelcollective.com"
+            }
+        ]
+    },
+    {
+        "name": "infyomlabs/core-templates",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/InfyOmLabs/core-templates.git",
+            "reference": "1b141e5e0c27d584ac9f35872be009a38affaf08"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/1b141e5e0c27d584ac9f35872be009a38affaf08",
+            "reference": "1b141e5e0c27d584ac9f35872be009a38affaf08",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/support": "~5.0",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-04-17 07:55:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "InfyOm\\CoreTemplates\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mitul Golakiya",
+                "email": "me@mitul.me"
+            }
+        ],
+        "description": "Core Bootstrap templates for InfyOm Laravel Generator",
+        "keywords": [
+            "bootstrap",
+            "generator",
+            "laravel",
+            "templates"
         ]
     }
 ]

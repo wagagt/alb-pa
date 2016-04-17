@@ -57,12 +57,26 @@ class EntityCommand extends Command
             ]);
         }
 
+        if ($this->confirm('Would you like to create a Controller? [y|N]')) {
+
+            // Generate a controller resource
+            $this->call('make:resource', [
+                'name'    => $this->argument('name'),
+                '--force' => $this->option('force')
+            ]);
+        }
+
         $this->call('make:repository', [
             'name'        => $this->argument('name'),
             '--fillable'  => $this->option('fillable'),
             '--rules'     => $this->option('rules'),
             '--validator' => $validator,
             '--force'     => $this->option('force')
+        ]);
+
+        $this->call('make:bindings', [
+            'name'    => $this->argument('name'),
+            '--force' => $this->option('force')
         ]);
     }
 
@@ -75,7 +89,12 @@ class EntityCommand extends Command
     public function getArguments()
     {
         return [
-            [ 'name', InputArgument::REQUIRED, 'The name of class being generated.', null ],
+            [
+                'name',
+                InputArgument::REQUIRED,
+                'The name of class being generated.',
+                null
+            ],
         ];
     }
 
@@ -88,10 +107,34 @@ class EntityCommand extends Command
     public function getOptions()
     {
         return [
-            [ 'fillable', null, InputOption::VALUE_OPTIONAL, 'The fillable attributes.', null ],
-            [ 'rules', null, InputOption::VALUE_OPTIONAL, 'The rules of validation attributes.', null ],
-            [ 'validator', null, InputOption::VALUE_OPTIONAL, 'Adds validator reference to the repository.', null ],
-            [ 'force', 'f', InputOption::VALUE_NONE, 'Force the creation if file already exists.', null ]
+            [
+                'fillable',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The fillable attributes.',
+                null
+            ],
+            [
+                'rules',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The rules of validation attributes.',
+                null
+            ],
+            [
+                'validator',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'Adds validator reference to the repository.',
+                null
+            ],
+            [
+                'force',
+                'f',
+                InputOption::VALUE_NONE,
+                'Force the creation if file already exists.',
+                null
+            ]
         ];
     }
 }
