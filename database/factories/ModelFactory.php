@@ -1,6 +1,6 @@
 <?php
-use Faker\Generator;
 use App\User;
+use Faker\Generator;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +11,7 @@ use App\User;
 | you a convenient way to create models for testing and seeding your
 | database. Just tell the factory how a default model should look.
 |
-*/
+ */
 
 /*$factory->define(App\User::class, function (Faker\Generator $faker) {
 return [
@@ -22,16 +22,17 @@ return [
 ];
 });*/
 
-$factory->define(User::class,function(Generator $faker){
-  $array = [
-    'name'          => $faker->name,
-    'usuario'       => $faker->userName,
-    'email'         => $faker->email,
-    'pasaporte'     => str_random(15),
-    'cedula'        => str_random(15),
-    'password'      => bcrypt('123456'),
+$factory->define(User::
+class , function (Generator $faker) {
+		$array = [
+			'name'      => $faker->name,
+			'usuario'   => $faker->userName,
+			'email'     => $faker->email,
+			'pasaporte' => str_random(15),
+			'cedula'    => str_random(15),
+			'password'  => \Hash::make('123456'),
 
-  ];
+		];
 
-  return $array;
-});
+		return $array;
+	});

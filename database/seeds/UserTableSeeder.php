@@ -1,50 +1,35 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
-class UserTableSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-          \DB::table('users')->insert(array (
-<<<<<<< HEAD
-            'name'=>'Wiler Gonzalez', 
-            'usuario' => 'wagagt', 
-            'email' => 'wagagt@gmail.com', 
-            'pasaporte' => '2757 70419 0101', 
-            'cedula' => 'a-1 881712', 
-            'password' => \Hash::make('wagapass'), 
-            'tipo' => 'admin', 
-            'status' => 1 
-            ));
-          
-          factory(App\User::class, 5)->create();
-=======
-          	'name'=>'Wiler Gonzalez',
-          	'usuario' => 'wagagt',
-          	'email' => 'wagagt@gmail.com',
-          	'pasaporte' => '2757 70419 0101',
-          	'cedula' => 'a-1 881712',
-          	'password' => \Hash::make('wagapass'),
-          	'tipo' => 'admin',
-          	'status' => 1
-          	));
-            \DB::table('users')->insert(array (
-            	'name'=>'Axel Sarceño',
-            	'usuario' => 'axelsarce',
-            	'email' => 'axel.sarceno@hosannaweb.com',
-            	'pasaporte' => '2546 09139 0101',
-            	'cedula' => 'a-1 1024861',
-            	'password' => \Hash::make('123456'),
-            	'tipo' => 'admin', 
-            	'status' => 1
-            	));
->>>>>>> as-localdev-13
-    }
+class UserTableSeeder extends Seeder {
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run() {
+		\DB::table('users')->insert(array(
+				'name'      => 'Wiler Gonzalez',
+				'usuario'   => 'wagagt',
+				'email'     => 'wagagt@gmail.com',
+				'pasaporte' => '2757 70419 0101',
+				'cedula'    => 'a-1 881712',
+				'password'  => \Hash::make('wagapass'),
+				'tipo'      => 'admin',
+				'status'    => 1,
+			));
+
+		\DB::table('users')->insert(array(
+				'name'      => 'Axel Sarceño',
+				'usuario'   => 'axelsarce',
+				'email'     => 'axel.sarceno@hosannaweb.com',
+				'pasaporte' => '2546 09139 0101',
+				'cedula'    => 'a-1 1024861',
+				'password'  => \Hash::make('123456'),
+				'tipo'      => 'admin',
+				'status'    => 1,
+			));
+
+	}
 }
