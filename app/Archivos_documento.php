@@ -16,5 +16,11 @@ class Archivos_documento extends Model
 
     protected $table = 'archivos_documentos';
 
-	
+    protected $fillable =['id', 'nombre', 'tipo', 'activo', 'documentos_id'];
+
+    protected $dates = ['delete_at'];
+
+	public function documento(){
+		return $this->belongsTo('App\Documento', 'documentos_id');
+	}
 }
