@@ -6,25 +6,24 @@
         <div class="box-header">
           <h3 class="box-title">Lista de Documentos</h3>
           <div class="box-tools">
+
             <!-- Buscador de Tags -->
-             <div class="input-group input-group-sm">
+            <div class="input-group input-group-sm">
               {!! Form::open(['route'=>'documento.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
               <div class="input-group">
 
-                {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Buscar Documento...',
+                {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Buscar Documento...',
                   'aria-describedby'=>'search','autofocus']) !!}
                   <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
                 </div>
 
                 {!! Form::close() !!}
               </div>
-               <!-- Fin del buscador -->
+              <!-- Fin del buscador -->
             </div>
           </div>
-
-          <div class="box-body">
-            <div class="col-md-12 text-left"><a href="{{route('documento.create')}}" class="btn btn-primary"><i class="fa fa-briefcase"></i> Crear Documentos </a>  </div>
-
+        <div class="box-body">
+          <div class="col-md-12 text-left"><a href="{{route('apartamento.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Documento </a>  </div>
         <table class="table table-hover">
             <thead>
                 <td><strong>NOMBRE</strong></td>
@@ -44,10 +43,16 @@
                     <td>{{$value->torre->nombre}}</td>
                     <td>
                     <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
-                      <i class="fa fa-pencil-square-o"></i></a>
+                      <i class="fa fa-pencil-square-o"></i>
+                    </a>
                     <a href="{{ route('documento.destroy', $value->id) }}"
                       class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                       <i class="fa fa-trash"></i>
+                    </a>
+                      <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                    <a href="{{ route('documento.archivos', $value->id) }}" 
+                      class="btn btn-success" title="Archivo">
+                      <i class="fa fa-file-pdf-o"></i>
                     </a>
                   </td>
                     </td>
@@ -61,4 +66,4 @@
             </div>
           </div>
 
-        @endsection
+ @endsection

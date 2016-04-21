@@ -189,7 +189,6 @@ Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg')
 Route::get('tipo_documento/{id}/destroy', [
       'uses'  => 'Tipo_documentoController@destroy',
       'as'    => 'tipo_documento.destroy'
-
 ]);
 /********************************************************/
 
@@ -203,6 +202,10 @@ Route::get('documento/{id}/destroy', [
     'uses'  => 'DocumentoController@destroy',
     'as'    => 'documento.destroy'
   ]);
+Route::get('documento/{id}/archivos_documento',[
+    'uses'  =>  'Archivos_documentoController@archivosxDocumento',
+    'as'    =>  'documento.archivos'
+  ]);
 /********************************************************/
 
 //Archivos_documento Resources
@@ -211,4 +214,8 @@ Route::resource('archivos_documento','Archivos_documentoController');
 Route::post('archivos_documento/{id}/update','Archivos_documentoController@update');
 Route::get('archivos_documento/{id}/delete','Archivos_documentoController@destroy');
 Route::get('archivos_documento/{id}/deleteMsg','Archivos_documentoController@DeleteMsg');
+Route::get('archivos_documento/{id}/destroy', [
+    'uses'  => 'Archivos_documentoController@destroy',
+    'as'    => 'archivos_documento.destroy'
+  ]);
 /********************************************************/

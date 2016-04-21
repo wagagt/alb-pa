@@ -4,13 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-
-    "hash": "30cf0dd6f6559d8e5ae34e2f99e898ab",
-    "content-hash": "a0ffeac5b9af4c73c316097255c1832c",
-
-    "hash": "e1fa47a2b3933e977f22a851b96c42c9",
-    "content-hash": "775e2021cd5f8ea15d97da5c1cac528b",
-
+    "hash": "c391552e9924d50fc668f290893bb7c2",
+    "content-hash": "7875f0d7f638c20f7b443fbf7ca1cba6",
     "packages": [
         {
             "name": "amranidev/ajaxis",
@@ -860,12 +855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14"
+                "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14",
-                "reference": "1fdf182e443f7f48d8ecbe941ea9ae511ce8dc14",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
+                "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
                 "shasum": ""
             },
             "require": {
@@ -907,7 +902,7 @@
                 "test",
                 "view"
             ],
-            "time": "2016-03-26 11:41:47"
+            "time": "2016-04-12 18:21:26"
         },
         {
             "name": "infyomlabs/swagger-generator",
@@ -1309,16 +1304,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.1.0",
+            "version": "v5.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "28a91965be7579aa159171e75cb66ee9e927c882"
+                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/28a91965be7579aa159171e75cb66ee9e927c882",
-                "reference": "28a91965be7579aa159171e75cb66ee9e927c882",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/f62269629b2a1093039733517bd7e75b3f98dffb",
+                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb",
                 "shasum": ""
             },
             "require": {
@@ -1355,7 +1350,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-06-18 02:13:55"
+            "time": "2015-11-28 08:27:09"
         },
         {
             "name": "league/flysystem",
@@ -1442,16 +1437,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.18.2",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "064b38c16790249488e7a8b987acf1c9d7383c09"
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/064b38c16790249488e7a8b987acf1c9d7383c09",
-                "reference": "064b38c16790249488e7a8b987acf1c9d7383c09",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5f56ed5212dc509c8dc8caeba2715732abb32dbf",
+                "reference": "5f56ed5212dc509c8dc8caeba2715732abb32dbf",
                 "shasum": ""
             },
             "require": {
@@ -1516,7 +1511,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2016-04-02 13:12:58"
+            "time": "2016-04-12 18:29:35"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -1710,16 +1705,16 @@
         },
         {
             "name": "prettus/l5-repository",
-            "version": "2.1.8",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andersao/l5-repository.git",
-                "reference": "efe486eecf883272c2a7edd53fa6e1aad77627e4"
+                "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/efe486eecf883272c2a7edd53fa6e1aad77627e4",
-                "reference": "efe486eecf883272c2a7edd53fa6e1aad77627e4",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
+                "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
                 "shasum": ""
             },
             "require": {
@@ -1729,11 +1724,11 @@
                 "illuminate/filesystem": "~5.0",
                 "illuminate/http": "~5.0",
                 "illuminate/pagination": "~5.0",
-                "illuminate/support": "~5.0"
+                "illuminate/support": "~5.0",
+                "prettus/laravel-validation": "1.1.*"
             },
             "suggest": {
                 "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
-                "prettus/laravel-validation": "Required to use the Repository Validators (1.1.*)",
                 "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
             },
             "type": "library",
@@ -1766,7 +1761,47 @@
                 "model",
                 "repository"
             ],
-            "time": "2016-03-01 18:33:39"
+            "time": "2016-04-15 19:54:15"
+        },
+        {
+            "name": "prettus/laravel-validation",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andersao/laravel-validator.git",
+                "reference": "c3501ba6b6312b8e98098783901060c0aff2b29d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andersao/laravel-validator/zipball/c3501ba6b6312b8e98098783901060c0aff2b29d",
+                "reference": "c3501ba6b6312b8e98098783901060c0aff2b29d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0|~5.1",
+                "illuminate/validation": "~5.0|~5.1",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Prettus\\Validator\\": "src/Prettus/Validator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Anderson Andrade",
+                    "email": "contato@andersonandra.de"
+                }
+            ],
+            "description": "Laravel Validation Service",
+            "keywords": [
+                "laravel",
+                "service",
+                "validation"
+            ],
+            "time": "2015-06-08 23:53:46"
         },
         {
             "name": "psr/log",

@@ -13,19 +13,6 @@ class UserTableSeeder extends Seeder
     public function run()
     {
           \DB::table('users')->insert(array (
-<<<<<<< HEAD
-            'name'=>'Wiler Gonzalez', 
-            'usuario' => 'wagagt', 
-            'email' => 'wagagt@gmail.com', 
-            'pasaporte' => '2757 70419 0101', 
-            'cedula' => 'a-1 881712', 
-            'password' => \Hash::make('wagapass'), 
-            'tipo' => 'admin', 
-            'status' => 1 
-            ));
-          
-          factory(App\User::class, 5)->create();
-=======
           	'name'=>'Wiler Gonzalez',
           	'usuario' => 'wagagt',
           	'email' => 'wagagt@gmail.com',
@@ -45,6 +32,5 @@ class UserTableSeeder extends Seeder
             	'tipo' => 'admin', 
             	'status' => 1
             	));
->>>>>>> as-localdev-13
     }
 }

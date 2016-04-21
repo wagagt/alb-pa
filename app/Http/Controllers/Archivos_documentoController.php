@@ -1,83 +1,66 @@
 <?php
 namespace App\Http\Controllers;
 
-use Request;
 use App\Http\Controllers\Controller;
 use App\Archivos_documento;
+use App\Documento;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Input;
+use App\Http\Controllers\Flash;
 
-/**
- * Class Archivos_documentoController
- *
- * @author  The scaffold-interface created at 2016-04-09 11:48:37pm
- * @link  https://github.com/amranidev/scaffold-interfac
- */
 class Archivos_documentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return  \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $archivos_documentos = Archivos_documento::all();
+        //dd($archivos_documentos);
         return view('archivos_documento.index',compact('archivos_documentos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return  \Illuminate\Http\Response
-     */
+    public function archivosxDocumento($id){
+        //$documento = \DB::table('documentos')->where('id', $id)->first();
+        $documento  = Documento::with('Tipo_documento', 'Torre')->where('id',$id)->first();
+        $archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
+        //dd($documento);
+        return view ('archivos_documento.index')
+        ->with('documento',$documento)
+        ->with('archivos',$archivos_documento);
+
+    }
+
     public function create()
     {
-        
-        return view('archivos_documento.create'
-                );
+        return view('archivos_documento.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param    \Illuminate\Http\Request  $request
-     * @return  \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $input = Request::except('_token');
+        $input = $request->all();
+        if( isset($input['archivo'])){
+            $file = $input['archivo'];
+            $file = $request->file('archivo');
+            //dd($file->getClientOriginalName(), $file->getClientOriginalExtension());
+            $archivos_documento = new Archivos_documento();
+            $archivos_documento->nombre = $file->getClientOriginalName();
+            $archivos_documento->tipo = $file->getClientOriginalExtension();
+            $archivos_documento->activo = '0';
+            $archivos_documento->documentos_id = $input['documento_id'];
+            $archivos_documento->save();
 
-        $archivos_documento = new Archivos_documento();
-
-        
-        $archivos_documento->id = $input['id'];
-
-        
-        $archivos_documento->nombre = $input['nombre'];
-
-        
-        $archivos_documento->tipo = $input['tipo'];
-
-        
-        $archivos_documento->activo = $input['activo'];
-
-        
-        $archivos_documento->documentos_id = $input['documentos_id'];
-
-        
-        
-        $archivos_documento->save();
-
-        return redirect('archivos_documento');
+            $destinationPath = 'uploads'; 
+            $extension = $file->getClientOriginalExtension();
+            $fileName = $file->getClientOriginalName();
+            $file->move($destinationPath, $fileName); 
+            \Flash::success('Archivo subido exitosamente.'); 
+        }else{
+            \Flash::error('Seleccione un archivo');
+        }
+        return redirect ('documento/'.$input['documento_id'].'/archivos_documento');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
     public function show($id)
     {
         if(Request::ajax())
@@ -89,12 +72,6 @@ class Archivos_documentoController extends Controller
         return view('archivos_documento.show',compact('archivos_documento'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         if(Request::ajax())
@@ -109,42 +86,22 @@ class Archivos_documentoController extends Controller
                 );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param    \Illuminate\Http\Request  $request
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
-    public function update($id)
-    {
-        $input = Request::except('_token');
+    public function update($archivo_id, Request $request)
+    {   
+        $input = $request->all();
+        $documento_id = $input['documento_id'];
+        $affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
+        //dd($affectedRows);
 
-        $archivos_documento = Archivos_documento::findOrfail($id);
-    	
-        $archivos_documento->id = $input['id'];
-        
-        $archivos_documento->nombre = $input['nombre'];
-        
-        $archivos_documento->tipo = $input['tipo'];
-        
-        $archivos_documento->activo = $input['activo'];
-        
-        $archivos_documento->documentos_id = $input['documentos_id'];
-        
-        
-        $archivos_documento->save();
-
-        return redirect('archivos_documento');
+        if($archivo_id>0){
+            // $input = Request::except('_token');
+            $archivos_documento = Archivos_documento::findOrfail($archivo_id);
+            $archivos_documento->activo = "1";
+            $archivos_documento->save();
+        }
+        return redirect('documento/'.$documento_id.'/archivos_documento');
     }
 
-    /**
-     * Delete confirmation message by Ajaxis
-     *
-     * @link  https://github.com/amranidev/ajaxis
-     *
-     * @return  String
-     */
     public function DeleteMsg($id)
     {
         $msg = Ajaxis::MtDeleting('Warning!!','Would you like to remove This?','/archivos_documento/'. $id . '/delete/');
@@ -155,17 +112,12 @@ class Archivos_documentoController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param    int  $id
-     * @return  \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
      	$archivos_documento = Archivos_documento::findOrfail($id);
+        $id_documento = $archivos_documento->documentos_id;
      	$archivos_documento->delete();
-        return URL::to('archivos_documento');
+        return redirect('documento/'.$id_documento.'/archivos_documento');
     }
 
 }
