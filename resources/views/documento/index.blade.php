@@ -23,7 +23,7 @@
             </div>
           </div>
         <div class="box-body">
-          <div class="col-md-12 text-left"><a href="{{route('apartamento.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Documento </a>  </div>
+          <div class="col-md-12 text-left"><a href="{{route('documento.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Documento </a>  </div>
         <table class="table table-hover">
             <thead>
                 <td><strong>NOMBRE</strong></td>
@@ -50,7 +50,7 @@
                       <i class="fa fa-trash"></i>
                     </a>
                       <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
-                    <a href="{{ route('documento.archivos', $value->id) }}" 
+                    <a href="{{ route('documento.archivos', $value->id) }}"
                       class="btn btn-success" title="Archivo">
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
