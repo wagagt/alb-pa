@@ -21,7 +21,7 @@
               </div>
               <div class="col-md-6" >
                 {!! Form::email('email', null, [
-                  'class'=>'form-control'])!!}
+                  'class'=>'form-control', 'autofocus'])!!}
 
                 </div>
               </div>
@@ -33,7 +33,7 @@
                 <div class="col-md-6">
                   {!! Form::password('password', [
                     'class'=>'form-control',
-                    'placeholder'=>'**********', 'autofocus']) !!}
+                    'placeholder'=>'**********']) !!}
 
                   </div>
                 </div>
