@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c391552e9924d50fc668f290893bb7c2",
-    "content-hash": "7875f0d7f638c20f7b443fbf7ca1cba6",
+    "hash": "01d35b3042ecde07be6e3b195911182c",
+    "content-hash": "a0ffeac5b9af4c73c316097255c1832c",
     "packages": [
         {
             "name": "amranidev/ajaxis",
@@ -812,12 +812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/core-templates.git",
-                "reference": "5fdec371270c91f34c3b376639e26ab6e2bdd1a9"
+                "reference": "20d7f4eb45bac2d0907c51120d3072bd69dac63e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/5fdec371270c91f34c3b376639e26ab6e2bdd1a9",
-                "reference": "5fdec371270c91f34c3b376639e26ab6e2bdd1a9",
+                "url": "https://api.github.com/repos/InfyOmLabs/core-templates/zipball/20d7f4eb45bac2d0907c51120d3072bd69dac63e",
+                "reference": "20d7f4eb45bac2d0907c51120d3072bd69dac63e",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "laravel",
                 "templates"
             ],
-            "time": "2016-03-26 10:42:06"
+            "time": "2016-04-19 19:56:06"
         },
         {
             "name": "infyomlabs/laravel-generator",
@@ -855,12 +855,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InfyOmLabs/laravel-generator.git",
-                "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9"
+                "reference": "15977899b6be04b77213c3a3bf917ade701ebe5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
-                "reference": "b16d8aeb1c4fbaa35290192e576c21ad71a3d9c9",
+                "url": "https://api.github.com/repos/InfyOmLabs/laravel-generator/zipball/15977899b6be04b77213c3a3bf917ade701ebe5c",
+                "reference": "15977899b6be04b77213c3a3bf917ade701ebe5c",
                 "shasum": ""
             },
             "require": {
@@ -902,7 +902,7 @@
                 "test",
                 "view"
             ],
-            "time": "2016-04-12 18:21:26"
+            "time": "2016-04-20 05:36:38"
         },
         {
             "name": "infyomlabs/swagger-generator",
@@ -1304,16 +1304,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.1.9",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb"
+                "reference": "28a91965be7579aa159171e75cb66ee9e927c882"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/f62269629b2a1093039733517bd7e75b3f98dffb",
-                "reference": "f62269629b2a1093039733517bd7e75b3f98dffb",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/28a91965be7579aa159171e75cb66ee9e927c882",
+                "reference": "28a91965be7579aa159171e75cb66ee9e927c882",
                 "shasum": ""
             },
             "require": {
@@ -1350,7 +1350,7 @@
                     "email": "adam@laravelcollective.com"
                 }
             ],
-            "time": "2015-11-28 08:27:09"
+            "time": "2015-06-18 02:13:55"
         },
         {
             "name": "league/flysystem",
@@ -1606,16 +1606,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "ce5be709d59b32dd8a88c80259028759991a4206"
+                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ce5be709d59b32dd8a88c80259028759991a4206",
-                "reference": "ce5be709d59b32dd8a88c80259028759991a4206",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
+                "reference": "47b254ea51f1d6d5dc04b9b299e88346bf2369e3",
                 "shasum": ""
             },
             "require": {
@@ -1631,7 +1631,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -1653,7 +1653,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-02-28 19:48:28"
+            "time": "2016-04-19 13:41:41"
         },
         {
             "name": "paragonie/random_compat",
@@ -1705,16 +1705,16 @@
         },
         {
             "name": "prettus/l5-repository",
-            "version": "2.3.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andersao/l5-repository.git",
-                "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c"
+                "reference": "4f34bd3e38b29c9cbb562ab5ea545a6d4aae1f34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
-                "reference": "e4cfef3de00f0ad039a4bcdb8e9772ad4c11879c",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/4f34bd3e38b29c9cbb562ab5ea545a6d4aae1f34",
+                "reference": "4f34bd3e38b29c9cbb562ab5ea545a6d4aae1f34",
                 "shasum": ""
             },
             "require": {
@@ -1761,7 +1761,7 @@
                 "model",
                 "repository"
             ],
-            "time": "2016-04-15 19:54:15"
+            "time": "2016-04-21 08:53:47"
         },
         {
             "name": "prettus/laravel-validation",
