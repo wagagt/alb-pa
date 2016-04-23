@@ -28,7 +28,7 @@ return [
 	|
 	 */
 
-	'host' => env('MAIL_HOST', 'mail.hosannaweb.com'),
+	'host' => env('MAIL_HOST', 'mail.albpanama.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
 	 */
 
 	//'from' => ['address' => null, 'name' => null],
-	'from' => ['address' => 'info@hosannaweb.com', 'name' => 'Manager Real State'],
+	'from' => ['address' => 'info@albpanama.com', 'name' => 'Manager Real State'],
 
 	/*
 	|--------------------------------------------------------------------------
