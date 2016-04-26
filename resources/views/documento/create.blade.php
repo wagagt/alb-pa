@@ -27,8 +27,18 @@
           </div>
 </div>
       </div>
-      
+
   </div>
   </div>
 
+@endsection
+@section('script')
+  <script type="text/javascript">
+
+         $('.select-torre').chosen({
+            no_results_text:'Ningún resultado coincide con: '
+          });
+
+
+      </script>
 @endsection

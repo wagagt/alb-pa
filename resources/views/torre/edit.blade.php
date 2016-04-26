@@ -19,17 +19,23 @@
                 {!! Form::model($torre, ['route'=>['torre.update', $torre->id],  'method' => 'PUT']) !!}
                 <div class="row col-md-12">
                     <div class="form-gorup">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {!! Form::label('nombre', 'Nombre:') !!}
                             {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del edificio', 'required'])!!}
                         </div>
                     </div>
                   <div class="form-gorup">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             {!! Form::label('direccion', 'Dirección:') !!}
                             {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la dirección de la torre', 'required'])!!}
                         </div>
                     </div>
+
+                    <div class="form-gorup">
+                        <div class="col-md-4">
+                            {!! Form::label('torre_numero', 'Correlativo Edificio:') !!}
+                            {!! Form::text('torre_numero', null, ['class' => 'form-control', 'placeholder' => 'Numeración interna', 'required'])!!}
+                        </div>
 
                     <div class="form-gorup">
                         <div class="col-md-6">

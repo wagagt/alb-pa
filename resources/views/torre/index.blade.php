@@ -31,6 +31,7 @@
                 <th><strong>NOMBRE</strong></th>
                 <th><strong>NIVELES</strong></th>
                 <th><strong>OFICINA</strong></th>
+                <td><strong>CORRELATIVO EDIFICIO</strong></td>
                 <td><strong>ACCIONES</strong></td>
 
               </thead>
@@ -40,7 +41,9 @@
                     <td>{{$torre->nombre}}</td>
                     <td>{{$torre->niveles}}</td>
                     <td>{{$torre->oficina->nombre}}</td>
+                      <td>{{$torre->torre_numero}}</td>
                     <td>
+                    <a href="" class="btn btn-primary" title="Documento edificio"><i class="fa fa-file-o" aria-hidden="true"></i></a>
                       <a href="{{ route('apartamento.Torres', $torre->id) }}"
                         class="btn btn-info" title="Apartamentos"><i class="fa fa-building-o"></i></a>
                       <a href="{{ route('torre.edit', $torre->id) }}" class="btn btn-warning" title="Editar">

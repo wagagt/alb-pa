@@ -21,29 +21,29 @@
             </div>
           </div>
 <br>
-        <div class="box-body" style="background: #e6e6ff;">  
+        <div class="box-body" style="background: #e6e6ff;">
             {!! Form::open(array('route'=>'archivos_documento.store','method'=>'POST', 'files'=>true)) !!}
               <div class="col-md-6 text-left">
-                {!! Form::file('archivo', null, ['class'=>'input-group-addon']) !!}  
+                {!! Form::file('archivo', null, ['class'=>'input-group-addon']) !!}
               </div>
               <div class="col-md-6 text-left"><a href="{{route('apartamento.create')}}" >
-                </a>  
+                </a>
               </div>
               <button class="btn btn-primary"><i class="fa fa-building-o"></i> ^ Subir Archivo </button>
-               <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id; ?>">
+               <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
             {!! Form::close() !!}
-        </div>            
+        </div>
 <hr>
 
             <!-- DOCUMENTO -->
-             <div class="box-body">   
+             <div class="box-body">
                  <div class="row col-md-6">
-                 
+
                  <h4>Nombre: <strong>{{$documento->nombre}}</h4></strong>
                  </div>
 
                 <div class="row col-md-6">
-                 <h4>Tipo de Documento: {{$documento->tipo_documento->descripcion}}</h4> 
+                 <h4>Tipo de Documento: {{$documento->tipo_documento->descripcion}}</h4>
                  <!-- ->descripcion -->
                 </div>
 
@@ -68,35 +68,35 @@
                     <th>nombre</th>
                     <th>tipo</th>
                     <th>Acciones</th>
-                    <th>Visible 
+                    <th>Visible
 
                     <form method = 'POST' action = '/archivos_documento/0/update'>
                             <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                            
+
                             <a href="#" onclick="$(this).closest('form').submit()">
                                 <i class="fa fa-eye-slash" aria-hidden="true"></i> Ocultar todos
                             </a>
-                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id; ?>">
+                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
                         {!! Form::close() !!}
                         </th>
                 </thead>
 
                 <tbody>
                     @foreach($archivos as $value)
-                    <?php 
-                    switch ($value->activo){
-                        case '1':
-                                    $buttonColor='success';
-                                    $icon       ='<i class="fa fa-check-circle" aria-hidden="true"></i>';
-                        break;
-                        case '0':
-                                    $buttonColor='danger';
-                                    $icon       ='<i class="fa fa-times-circle" aria-hidden="true"></i>';
-                        break;                            
-                    }
+<?php
+switch ($value->activo) {
+	case '1':
+		$buttonColor = 'success';
+		$icon        = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
+		break;
+	case '0':
+		$buttonColor = 'danger';
+		$icon        = '<i class="fa fa-times-circle" aria-hidden="true"></i>';
+		break;
+}
 
-                    $updateActivo = $documento->id."_".$value->id;
-                    ?>
+$updateActivo = $documento->id."_".$value->id;
+?>
                     <tr>
                         <td>{{$value->id}}</td>
                         <td>{{$value->nombre}}</td>
@@ -114,9 +114,10 @@
                         <td>
                         <form method = 'POST' action = '/archivos_documento/{{$value->id}}/update'>
                             <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
-                            
-                            <button type="submit" class="btn btn-<?php echo $buttonColor; ?>"><?php echo $icon;?></button>
-                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id; ?>">
+
+                            <button type="submit" class="btn btn-<?php echo $buttonColor;?>"><?php echo $icon;
+?></button>
+                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
                         {!! Form::close() !!}
                         </td>
                     </tr>
