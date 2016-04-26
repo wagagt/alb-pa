@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', 'Editar torre')
+@section('title', 'Editar edificio')
 @section('content')
   <div class="col-xs-12">
       <div class="box box-primary">
           <div class="box-header">
-          <h3 class="box-title">Editar torre</h3>
+          <h3 class="box-title">Editar edificio</h3>
               <div class="box-tools">
               </div>
           </div>
@@ -12,7 +12,7 @@
           <div class="box-body">
             <div class="text-left">
             <a href="{{ route('torre.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
-              Listar torres</a>
+              Listar edificios</a>
             </div>
 
             <div class="row col-md-12">
@@ -21,7 +21,7 @@
                     <div class="form-gorup">
                         <div class="col-md-6">
                             {!! Form::label('nombre', 'Nombre:') !!}
-                            {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la torre', 'required'])!!}
+                            {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del edificio', 'required'])!!}
                         </div>
                     </div>
                   <div class="form-gorup">

@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', 'Crear torre')
+@section('title', 'Crear edificio')
 @section('content')
   <div class="col-xs-12">
       <div class="box box-primary">
           <div class="box-header">
-          <h3 class="box-title">Crear torre</h3>
+          <h3 class="box-title">Crear edificio</h3>
               <div class="box-tools">
 
               </div>
@@ -21,13 +21,13 @@
                 <div class="form-gorup">
                     <div class="col-md-6">
                         {!! Form::label('nombre', 'Nombre:') !!}
-                        {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de la torre', 'required'])!!}
+                        {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del edificio', 'required'])!!}
                     </div>
                 </div>
                 <div class="form-gorup">
                     <div class="col-md-6">
                         {!! Form::label('direccion', 'Dirección:') !!}
-                        {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder' => 'Indese direccion de la torre', 'required'])!!}
+                        {!! Form::text('direccion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese dirección del edificio', 'required'])!!}
                     </div>
                 </div>
                 <div class="form-gorup">

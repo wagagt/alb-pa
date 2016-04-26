@@ -1,10 +1,10 @@
 @extends('layouts.admin')
-@section('title', 'Torres Listado')
+@section('title', 'Torres edificios')
   @section('content')
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Lista de Torres</h3>
+          <h3 class="box-title">Listado de edificios</h3>
           <div class="box-tools">
 
             <!-- Buscador de Tags -->
@@ -12,7 +12,7 @@
               {!! Form::open(['route'=>'torre.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
               <div class="input-group">
 
-                {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Buscar Torre...',
+                {!! Form::text('nombre', null, ['class'=>'form-control', 'placeholder'=>'Buscar edificio...',
                   'aria-describedby'=>'search','autofocus']) !!}
                   <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
                 </div>
@@ -24,7 +24,7 @@
           </div>
 
           <div class="box-body">
-            <div class="col-md-12 text-left"><a href="{{route('torre.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Agregar Torre </a>  </div>
+            <div class="col-md-12 text-left"><a href="{{route('torre.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Agregar Edificio </a>  </div>
             <table class="table table-hover">
               <thead>
 
