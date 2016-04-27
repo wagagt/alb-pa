@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Amranidev\Ajaxis\Ajaxis;
 use Laracasts\Flash\Flash;
 use App\Documento;
+use App\Torre;
 use App\Tipo_documento;
 use URL;
 
@@ -30,7 +31,10 @@ class DocumentoController extends Controller
     public function create()
     {
         $tipoDocumentos = Tipo_documento::orderBy('descripcion','ASC')->lists('descripcion','id'); // se listan los paises
-        return view('documento.create')->with('tipo_documentos_list', $tipoDocumentos);
+        $torres = Torre::orderBy('nombre','ASC')->lists('nombre','id');
+        return view('documento.create')
+        ->with('tipo_documentos_list', $tipoDocumentos)
+        ->with('torres_list', $torres);
     }
 
     public function store(Request $request)
@@ -51,10 +55,12 @@ class DocumentoController extends Controller
     public function edit($id)
     {
         $tipo_documentos_list = Tipo_documento::orderBy('descripcion','ASC')->lists('descripcion','id'); 
+        $torres = Torre::orderBy('nombre','ASC')->lists('nombre','id');
         $documento = Documento::findOrfail($id);
         return view('documento.edit')
         ->with('documento', $documento)
-        ->with('tipo_documentos_list', $tipo_documentos_list);
+        ->with('tipo_documentos_list', $tipo_documentos_list)
+        ->with('torres_list', $torres);
     }
 
     public function update(Request $request, $id)
