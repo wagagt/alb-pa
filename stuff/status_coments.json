@@ -1,0 +1,21 @@
+[
+	{
+		"fieldInput"	: "id:increments",
+		"htmlType"		: "",
+        "validations"	: "",
+        "searchable"	: false,
+        "fillable"		: false,
+        "primary"		: true,
+        "inForm"		: false,
+        "inIndex"		: false
+	},
+	{
+		"fieldInput" 	: "tipo:string,100",
+		"htmlType" 		: "text",
+		"validations" 	: "required",
+		"searchable" 	: true,
+		"inForm" 		: true,
+		"inIndex" 		: true
+	}
+   
+]

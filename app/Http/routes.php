@@ -211,3 +211,10 @@ Route::get('archivos_documento/{id}/destroy', [
 		'as'   => 'archivos_documento.destroy'
 	]);
 /********************************************************/
+
+
+Route::resource('documentosChats', 'documentos_chatController');
+
+Route::resource('statusComents', 'status_comentsController');
+
+Route::resource('chatDocts', 'chat_doctsController');
