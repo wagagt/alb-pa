@@ -4,7 +4,7 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Lista de Documentos</h3>
+          <h3 class="box-title">Lista de Documentos en torre: <strong>{{$torre->nombre}}</strong></h3>
           <div class="box-tools">
 
             <!-- Buscador de Tags -->

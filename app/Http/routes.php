@@ -109,6 +109,11 @@ Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
       'as'    => 'torre.destroy'
 
     ]);
+    Route::get('torre/{id}/documentos', [
+      'uses'  => 'TorreController@documentos',
+      'as'    => 'torre.documentos'
+    ]);
+
     /********************************************************/
 
     //Apartamento Resources

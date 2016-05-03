@@ -34,8 +34,7 @@ class Documento extends Model {
 		return $this->belongsTo('App\User');
 	}
 
-
-public function torre(){
+	public function torre(){
 		return $this->belongsTo('App\Torre', 'torre_id');
 	}
 
