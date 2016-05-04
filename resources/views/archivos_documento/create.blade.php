@@ -45,6 +45,7 @@
                 
                 
                 <button class = 'btn red' type ='submit'>Create</button>
+                <a href="{{ $previousUrl }}" class="btn btn-danger">Cancelar</a>
             </form>
         </div>
     </body>

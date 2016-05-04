@@ -12,7 +12,7 @@
 
           <div class="box-body">
             <div class="text-left">
-            <a href="{{ route('documento.index') }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
+            <a href="{{ $previousUrl }}" class="btn btn-primary"><i class="fa fa-th-list"></i>
               Lista de Documentos</a>
             </div>
         <br>
