@@ -15,6 +15,7 @@ use App\Paise;
 // Authentication routes...
 
 Route::get('/',
+
 function () {
 		return redirect()->route('admin.auth.login');
 	});
@@ -155,6 +156,13 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 					]);
 				/********************************************************/
 			});
+
+		// Integrate Routes for chats
+		Route::resource('documentosChats', 'documentos_chatController');
+
+		Route::resource('statusComents', 'status_comentsController');
+
+		Route::resource('chatDocts', 'chat_doctsController');
 	});
 
 // Restablecer la contraseña
@@ -213,8 +221,4 @@ Route::get('archivos_documento/{id}/destroy', [
 /********************************************************/
 
 
-Route::resource('documentosChats', 'documentos_chatController');
-
-Route::resource('statusComents', 'status_comentsController');
-
-Route::resource('chatDocts', 'chat_doctsController');
+Route::resource('notificaionesChats', 'notificaionesChatController');
