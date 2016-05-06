@@ -29,9 +29,18 @@
         {!! Form::text('fecha_al', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final (año-mes-dia)', 'required'])!!}
     </div>
 </div>
+<div class="form-gorup">
+    <div class="col-md-6">
+        {!! Form::label('torre_id', 'Torre:') !!}
+        {!! Form::select('torre_id', $torres_list, null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione una torre', 'required'])!!}
+    </div>
+</div>
 
 <div class="form-gorup">
   <div class="col-md-12">
     <br>
     {!! Form::hidden('user_id', Auth::user()->id ,null) !!}
     {!! Form::submit('Grabar',  ['class' => 'btn btn-primary']) !!}
+   {!! Form::hidden('urlBack', $previousUrl) !!}
+
+    <a href="{{ $previousUrl }}" class="btn btn-danger">Cancelar</a>

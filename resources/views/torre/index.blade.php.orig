@@ -31,8 +31,11 @@
                 <th><strong>NOMBRE</strong></th>
                 <th><strong>NIVELES</strong></th>
                 <th><strong>OFICINA</strong></th>
+<<<<<<< HEAD
                 <td><strong>CORRELATIVO EDIFICIO</strong></td>
+=======
                 <th><strong>DOCUMENTOS</strong>
+>>>>>>> develop
                 <td><strong>ACCIONES</strong></td>
 
               </thead>
@@ -42,8 +45,11 @@
                     <td>{{$torre->nombre}}</td>
                     <td>{{$torre->niveles}}</td>
                     <td>{{$torre->oficina->nombre}}</td>
+<<<<<<< HEAD
                       <td>{{$torre->torre_numero}}</td>
+=======
                     <td><a href="torre/{{$torre->id}}/documentos">{{$torre->documentos->count()}}</a></td>
+>>>>>>> develop
                     <td>
                     <a href="" class="btn btn-primary" title="Documento edificio"><i class="fa fa-file-o" aria-hidden="true"></i></a>
                       <a href="{{ route('apartamento.Torres', $torre->id) }}"

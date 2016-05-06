@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Routing\UrlGenerator;
 use App\Archivos_documento;
 use App\Documento;
 use Amranidev\Ajaxis\Ajaxis;
@@ -33,7 +34,9 @@ class Archivos_documentoController extends Controller
 
     public function create()
     {
-        return view('archivos_documento.create');
+        $previousUrl =  Url::previous(); 
+        return view('archivos_documento.create')
+        ->with('previousUrl', $previousUrl);
     }
 
     public function store(Request $request)

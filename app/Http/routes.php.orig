@@ -45,6 +45,7 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 // end Authentication routes .....
 
+<<<<<<< HEAD
 Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 
 		//  Dashboard
@@ -106,11 +107,6 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 						'as'   => 'torre.destroy'
 
 					]);
-    Route::get('torre/{id}/documentos', [
-      'uses'  => 'TorreController@documentos',
-      'as'    => 'torre.documentos'
-    ]);
-
 				/********************************************************/
 
 				//Apartamento Resources
@@ -169,6 +165,128 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 
 		Route::resource('chatDocts', 'chat_doctsController');
 	});
+=======
+Route::group(['prefix' => '/', 'middleware' => 'auth' ],function(){
+
+  //  Dashboard
+  Route::get('/dash', ['as' => 'admin.index', function(){
+    return view('admin.index');
+  } ]);
+
+  Route::group(['middleware' => ['admin']], function(){
+
+    // Users Crud Route
+    Route::resource('users','UsersController');
+    Route::get('users/{id}/destroy', [
+      'uses'  => 'UsersController@destroy',
+      'as'    => 'users.destroy'
+
+    ]);
+
+    /////////
+
+    Route::get('csv',function(){
+      if(($handle = fopen(public_path().'/uploads/paises.csv','r')) !== FALSE)
+      {
+        while(($data = fgetcsv($handle, 1000, ',')) !== FALSE)
+        {
+          $pais = new Paise();
+          $pais->pais = $data[0];
+          $pais->ciudad = $data[1];
+          $pais->save();
+        }
+        fclose($handle);
+      }
+      return redirect()->route('admin.index');
+    });
+
+
+    ////////
+    //Paise Resources
+    /*******************************************************/
+    Route::resource('pais','PaiseController');
+    Route::get('pais/{id}/destroy', [
+      'uses'  => 'PaiseController@destroy',
+      'as'    => 'pais.destroy'
+
+    ]);
+    /********************************************************/
+
+    //Oficina Resources
+    /*******************************************************/
+    Route::resource('oficina','OficinaController');
+    Route::get('oficina/{id}/destroy', [
+      'uses'  => 'OficinaController@destroy',
+      'as'    => 'oficina.destroy'
+
+    ]);
+    /********************************************************/
+
+    //Torre Resources
+    /*******************************************************/
+    Route::resource('torre','TorreController');
+    Route::get('torre/{id}/destroy', [
+      'uses'  => 'TorreController@destroy',
+      'as'    => 'torre.destroy'
+
+    ]);
+    Route::get('torre/{id}/documentos', [
+      'uses'  => 'TorreController@documentos',
+      'as'    => 'torre.documentos'
+    ]);
+
+    /********************************************************/
+
+    //Apartamento Resources
+    /*******************************************************/
+    Route::resource('apartamento','ApartamentoController');
+
+    // Lista los apartamentos segun torre_id
+    Route::get('apartamento/{id}/aptoTorres', [
+      'uses'    =>  'ApartamentoController@aptoTorres',
+      'as'      =>  'apartamento.Torres'
+    ]);
+
+    Route::get('apartamento/{id}/destroy', [
+      'uses'  => 'ApartamentoController@destroy',
+      'as'    => 'apartamento.destroy'
+
+    ]);
+    /********************************************************/
+
+    //Marca_vehiculo Resources
+    /*******************************************************/
+    Route::resource('marca-vehiculo','Marca_vehiculoController');
+    Route::get('marca-vehiculo/{id}/destroy',[
+        'uses'   => 'Marca_vehiculoController@destroy',
+        'as'     => 'marca-vehiculo.destroy'
+    ]);
+    /********************************************************/
+
+    //Parqueo Resources
+    /*******************************************************/
+    Route::resource('parqueo','ParqueoController');
+    Route::get('parqueo/{id}/destroy',[
+        'uses'   => 'ParqueoController@destroy',
+        'as'     => 'parqueo.destroy'
+    ]);
+    /********************************************************/
+
+    //Automoviles_apto Resources
+    /*******************************************************/
+    Route::resource('automoviles','Automoviles_aptoController');
+    Route::get('automoviles/{id}/edits/{apto}',[
+      'uses' => 'Automoviles_aptoController@edits',
+      'as'   => 'automoviles.edits'
+    ]);
+    Route::get('automoviles/{id}/destroy',[
+        'uses'   => 'Automoviles_aptoController@destroy',
+        'as'     => 'automoviles.destroy'
+    ]);
+    /********************************************************/
+  });
+});
+>>>>>>> develop
 
 // Restablecer la contraseña
 //Route::resource('mail', 'MailController');
