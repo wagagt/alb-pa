@@ -23,7 +23,9 @@
             </div>
           </div>
         <div class="box-body">
-          <div class="col-md-12 text-left"><a href="{{route('documento.create')}}" class="btn btn-primary"><i class="fa fa-building-o"></i> Crear Documento </a>  </div>
+          <div class="col-md-3 text-left"><a href="{{route('documento.create')}}" class="btn btn-primary"><i class="fa fa-file-o" aria-hidden="true"></i> Crear Documento </a>  </div>
+          <div class="col-md-1 text-left"> </div>
+          <div class="col-md-3 text-left"><a href="{{route('torre.index')}}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar </a>  </div>
         <table class="table table-hover">
             <thead>
                 <td><strong>NOMBRE</strong></td>

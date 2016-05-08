@@ -29,18 +29,22 @@
               <div class="col-md-6 text-left"><a href="{{route('apartamento.create')}}" >
                 </a>
               </div>
-              <button class="btn btn-primary"><i class="fa fa-building-o"></i> ^ Subir Archivo </button>
+              <button class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivo </button>
                <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
             {!! Form::close() !!}
         </div>
+        <div class="col-md-3 text-left"><a href="{{ route('torre.documentos', $documento->torre->id) }}" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Lista documentos </a>  </div>
 <hr>
 
             <!-- DOCUMENTO -->
+
+
              <div class="box-body">
                  <div class="row col-md-6">
 
-                 <h4>Nombre: <strong>{{$documento->nombre}}</h4></strong>
+                 <h4>Nombre: <strong>{{$documento->nombre}}</strong></h4>
                  </div>
+
 
                 <div class="row col-md-6">
                  <h4>Tipo de Documento: {{$documento->tipo_documento->descripcion}}</h4>
@@ -59,30 +63,39 @@
                  <h4>Torre: {{$documento->torre->nombre}}</h4>
                 </div>
             </div>
+
             <hr>
+             <div class="row">
+             <div class="col-md-4">
+               chat users content
+             </div>
+             <div class="col-md-4">
+               chat messages
+             </div>
 
-            <!-- ARCHIVOS DEL DOCUMENTO -->
-            <table class="table table-hover">
-                <thead>
-                    <th>id</th>
-                    <th>nombre</th>
-                    <th>tipo</th>
-                    <th>Acciones</th>
-                    <th>Visible
+                  <div class="col-md-4">
+                                <!-- ARCHIVOS DEL DOCUMENTO -->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <th>id</th>
+                                        <th>nombre</th>
+                                        <th>tipo</th>
+                                        <th>Acciones</th>
+                                        <th>Visible
 
-                    <form method = 'POST' action = '/archivos_documento/0/update'>
-                            <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+                                        <form method = 'POST' action = '/archivos_documento/0/update'>
+                                                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 
-                            <a href="#" onclick="$(this).closest('form').submit()">
-                                <i class="fa fa-eye-slash" aria-hidden="true"></i> Ocultar todos
-                            </a>
-                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
-                        {!! Form::close() !!}
-                        </th>
-                </thead>
+                                                <a href="#" onclick="$(this).closest('form').submit()">
+                                                    <i class="fa fa-eye-slash" aria-hidden="true"></i> Ocultar todos
+                                                </a>
+                                                <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
+                                            </form>
+                                            </th>
+                                    </thead>
 
-                <tbody>
-                    @foreach($archivos as $value)
+                                    <tbody>
+                                        @foreach($archivos as $value)
 <?php
 switch ($value->activo) {
 	case '1':
@@ -97,36 +110,38 @@ switch ($value->activo) {
 
 $updateActivo = $documento->id."_".$value->id;
 ?>
-                    <tr>
-                        <td>{{$value->id}}</td>
-                        <td>{{$value->nombre}}</td>
-                        <td>{{$value->tipo}}</td>
-                        <td>
-                            <div class = 'row'>
-                                <a href="{{ route('archivos_documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
-                                <i class="fa fa-pencil-square-o"></i></a>
-                                <a href="{{ route('archivos_documento.destroy', $value->id) }}"
-                                class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
-                                <i class="fa fa-trash"></i>
-                                </a>
-                            </div>
-                        </td>
-                        <td>
-                        <form method = 'POST' action = '/archivos_documento/{{$value->id}}/update'>
-                            <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
+                                        <tr>
+                                            <td>{{$value->id}}</td>
+                                            <td>{{$value->nombre}}</td>
+                                            <td>{{$value->tipo}}</td>
+                                            <td>
+                                                <div class = 'row'>
+                                                    <a href="{{ route('archivos_documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
+                                                    <i class="fa fa-pencil-square-o"></i></a>
+                                                    <a href="{{ route('archivos_documento.destroy', $value->id) }}"
+                                                    class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
+                                                    <i class="fa fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                            <form method = 'POST' action = '/archivos_documento/{{$value->id}}/update'>
+                                                <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 
-                            <button type="submit" class="btn btn-<?php echo $buttonColor;?>"><?php echo $icon;
+                                                <button type="submit" class="btn btn-<?php echo $buttonColor;?>"><?php echo $icon;
 ?></button>
-                            <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
-                        {!! Form::close() !!}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                                <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
+                                            </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                      </div>
 
         </div>
+      </div>
 
     </div>
-</div>
+
 @endsection

@@ -169,6 +169,18 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 
 		Route::resource('chatDocts', 'chat_doctsController');
 		Route::resource('notificaionesChats', 'notificaionesChatController');
+
+		//Archivos_documento Resources
+		/*******************************************************/
+		Route::resource('archivos_documento', 'Archivos_documentoController');
+		Route::post('archivos_documento/{id}/update', 'Archivos_documentoController@update');
+		Route::get('archivos_documento/{id}/delete', 'Archivos_documentoController@destroy');
+		Route::get('archivos_documento/{id}/deleteMsg', 'Archivos_documentoController@DeleteMsg');
+		Route::get('archivos_documento/{id}/destroy', [
+				'uses' => 'Archivos_documentoController@destroy',
+				'as'   => 'archivos_documento.destroy'
+			]);
+		/********************************************************/
 	});
 
 Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
@@ -180,9 +192,6 @@ Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 //Tipo_documento Resources
 /*******************************************************/
 Route::resource('tipo_documento', 'Tipo_documentoController');
-/*Route::post('tipo_documento/{id}/update','Tipo_documentoController@update');
-Route::get('tipo_documento/{id}/delete','Tipo_documentoController@destroy');
-Route::get('tipo_documento/{id}/deleteMsg','Tipo_documentoController@DeleteMsg');*/
 Route::get('tipo_documento/{id}/destroy', [
 		'uses' => 'Tipo_documentoController@destroy',
 		'as'   => 'tipo_documento.destroy'
@@ -192,9 +201,6 @@ Route::get('tipo_documento/{id}/destroy', [
 //Documento Resources
 /*******************************************************/
 Route::resource('documento', 'DocumentoController');
-/*Route::post('documento/{id}/update','DocumentoController@update');
-Route::get('documento/{id}/delete','DocumentoController@destroy');
-Route::get('documento/{id}/deleteMsg','DocumentoController@DeleteMsg');*/
 Route::get('documento/{id}/destroy', [
 		'uses' => 'DocumentoController@destroy',
 		'as'   => 'documento.destroy'
