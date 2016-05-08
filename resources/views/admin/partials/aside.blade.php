@@ -47,8 +47,8 @@
           </ul>
         </li>
         <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Edificios</span></a></li>
-        <<li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
-        <li><a href="{{route('documento.index')}}"><i class="fa fa-book"/></i> <span>Documentos Contables</span></a></li>
+        <li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
+        <!--li><a href="{{route('documento.index')}}"><i class="fa fa-book"/></i> <span>Documentos Contables</span></a></li-->
         <li><a href="#"><i class="fa fa-exclamation-triangle"/></i> <span>Notificación General</span></a></li>
         <li><a href="#"><i class="fa fa-commenting-o"/></i> <span>Notificación de Incidencias</span></a></li>
         <li><a href="{{route('admin.auth.logout')}}"><i class="fa fa-sign-out"/></i> <span>Salir</span></a></li>
