@@ -106,10 +106,10 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 						'as'   => 'torre.destroy'
 
 					]);
-    Route::get('torre/{id}/documentos', [
-      'uses'  => 'TorreController@documentos',
-      'as'    => 'torre.documentos'
-    ]);
+				Route::get('torre/{id}/documentos', [
+						'uses' => 'TorreController@documentos',
+						'as'   => 'torre.documentos'
+					]);
 
 				/********************************************************/
 
@@ -168,16 +168,8 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 		Route::resource('statusComents', 'status_comentsController');
 
 		Route::resource('chatDocts', 'chat_doctsController');
+		Route::resource('notificaionesChats', 'notificaionesChatController');
 	});
-
-// Restablecer la contraseña
-//Route::resource('mail', 'MailController');
-
-/*
-|--------------------------------------------------------------------------
-| API routes
-|--------------------------------------------------------------------------
- */
 
 Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 		Route::group(['prefix' => 'v1'], function () {
@@ -224,6 +216,3 @@ Route::get('archivos_documento/{id}/destroy', [
 		'as'   => 'archivos_documento.destroy'
 	]);
 /********************************************************/
-
-
-Route::resource('notificaionesChats', 'notificaionesChatController');
