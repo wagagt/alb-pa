@@ -1,0 +1,72 @@
+[
+	{
+		"fieldInput"	: "id:increments",
+		"htmlType"		: "",
+        "validations"	: "",
+        "searchable"	: false,
+        "fillable"		: false,
+        "primary"		: true,
+        "inForm"		: false,
+        "inIndex"		: false
+	},
+	{
+		"fieldInput" 	: "texto:string,255",
+		"htmlType" 		: "textarea",
+		"validations" 	: "required",
+		"fillable"		: true,
+		"searchable" 	: true,
+		"inForm" 		: true,
+		"inIndex" 		: true
+	},
+   {
+        "fieldInput"	: "documento_id:integer",
+        "htmlType"		: "select:Option1,Option2,Option3",
+        "validations" 	: "required",
+        "fillable"		: true,
+        "searchable"	: false,
+        "inForm"		: true,
+        "inIndex"		: true
+    },
+	{
+        "fieldInput"	: "status_id:integer",
+        "htmlType"		: "select:Option1,Option2,Option3",
+        "validations" 	: "required",
+        "fillable"		: true,
+        "searchable"	: true,
+        "inForm"		: true,
+        "inIndex"		: true
+    },
+    {
+    	"fieldInput"	: "user_send_id:integer",
+        "htmlType"		: "number",
+        "validations" 	: "required",
+        "fillable"		: true,
+        "searchable"	: false,
+        "inForm"		: true,
+        "inIndex"		: true
+
+    },
+
+    {
+    	"fieldInput"	: "user_recibe_id:integer",
+        "htmlType"		: "number",
+        "validations" 	: "required",
+        "fillable"		: true,
+        "searchable"	: false,
+        "inForm"		: true,
+        "inIndex"		: true
+
+    },
+
+    {
+    	"fieldInput"	: "doc_chat_id:integer",
+        "htmlType"		: "number",
+        "validations" 	: "required",
+        "fillable"		: true,
+        "searchable"	: false,
+        "inForm"		: true,
+        "inIndex"		: true
+
+    }
+	
+]

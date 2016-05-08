@@ -16,7 +16,7 @@ class Torre extends Model
 
     protected $table = 'torres';
 
-    protected $fillable = ['nombre',  'direccion', 'niveles', 'oficina_id'];
+    protected $fillable = ['nombre',  'direccion', 'niveles', 'oficina_id', 'torre_numero'];
     protected $dates = ['deleted_at'];
 
 
