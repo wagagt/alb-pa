@@ -7,3 +7,4 @@ Homestead.json
 20160421_alb_as_deploy.zip
 config/database.php
 public/uploads/*
+.env2
