@@ -5,70 +5,18 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @SWG\Definition(
- *      definition="chat_docts",
- *      required={texto, documento_id, status_id, user_send_id, user_recibe_id, doc_chat_id},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="texto",
- *          description="texto",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="documento_id",
- *          description="documento_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="status_id",
- *          description="status_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="user_send_id",
- *          description="user_send_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="user_recibe_id",
- *          description="user_recibe_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="doc_chat_id",
- *          description="doc_chat_id",
- *          type="integer",
- *          format="int32"
- *      )
- * )
- */
 class chat_docts extends Model
 {
     use SoftDeletes;
 
     public $table = 'chat_docts';
-    
+
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'texto',
-        'documento_id',
-        'status_id',
-        'user_send_id',
-        'user_recibe_id',
-        'doc_chat_id'
+        'texto', 'documento_id', 'status_id', 'user_send_id', 'user_recibe_id', 'doc_chat_id'
     ];
 
     /**
@@ -77,12 +25,12 @@ class chat_docts extends Model
      * @var array
      */
     protected $casts = [
-        'texto' => 'string',
-        'documento_id' => 'integer',
-        'status_id' => 'integer',
-        'user_send_id' => 'integer',
-        'user_recibe_id' => 'integer',
-        'doc_chat_id' => 'integer'
+        'texto'            => 'string',
+        'documento_id'     => 'integer',
+        'status_id'        => 'integer',
+        'user_send_id'     => 'integer',
+        'user_recibe_id'   => 'integer',
+        'doc_chat_id'      => 'integer'
     ];
 
     /**
@@ -91,11 +39,31 @@ class chat_docts extends Model
      * @var array
      */
     public static $rules = [
-        'texto' => 'required',
-        'documento_id' => 'required',
-        'status_id' => 'required',
-        'user_send_id' => 'required',
-        'user_recibe_id' => 'required',
-        'doc_chat_id' => 'required'
+        'texto'             => 'required',
+        'documento_id'      => 'required',
+        'status_id'         => 'required',
+        'user_send_id'      => 'required',
+        'user_recibe_id'    => 'required'
+
     ];
+
+    public function documento(){
+      return $this->belongsTo('App\Documento', 'documento_id');
+    }
+
+    public function status(){
+      return $this->belongsTo('App\Models\status_coments', 'status_id');
+    }
+
+    public function userS(){
+      return $this->bellongsTo('App\User', 'user_send_id');
+    }
+
+    public function userR(){
+      return $this->bellongsTo('App\User', 'user_recibe_id');
+    }
+
+    public function documentos_chat(){
+      return $this->belongsTo('App\Models\documentos_chat', 'doc_chat_id');
+    }
 }

@@ -38,5 +38,9 @@ class Documento extends Model {
 		return $this->belongsTo('App\Torre', 'torre_id');
 	}
 
+	public function chat_docts(){
+		return $this->hasMany('App\Models\chat_docst');
+	}
+
 
 }

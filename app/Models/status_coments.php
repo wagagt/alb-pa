@@ -27,7 +27,7 @@ class status_coments extends Model
     use SoftDeletes;
 
     public $table = 'status_coments';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -53,4 +53,8 @@ class status_coments extends Model
     public static $rules = [
         'tipo' => 'required'
     ];
+
+    public function chat_docts(){
+      return $this->hasMany('App\Models\chat_docts');
+    }
 }

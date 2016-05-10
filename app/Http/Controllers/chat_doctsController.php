@@ -8,6 +8,7 @@ use App\Repositories\chat_doctsRepository;
 use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
+use Carbon\Carbon;
 
 class chat_doctsController extends Controller {
 	/** @var  chat_doctsRepository */
@@ -27,7 +28,7 @@ class chat_doctsController extends Controller {
 		$this->chatDoctsRepository->pushCriteria(new RequestCriteria($request));
 		$chatDocts = $this->chatDoctsRepository->all();
 
-		return view('chatDocts.index')
+		return view('archivos_documento.index')
 			->with('chatDocts', $chatDocts);
 	}
 

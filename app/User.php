@@ -64,4 +64,8 @@ CanResetPasswordContract
         return $this->tipo !=  'propietario';
     }
 
+    public function chat_docts(){
+      return $this->hasMany('App\Models\chat_docts');
+    }
+
 }

@@ -5,81 +5,43 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @SWG\Definition(
- *      definition="documentos_chat",
- *      required={nombre, tipo_doc_id, doc_id},
- *      @SWG\Property(
- *          property="id",
- *          description="id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="nombre",
- *          description="nombre",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="tipo_doc_id",
- *          description="tipo_doc_id",
- *          type="integer",
- *          format="int32"
- *      ),
- *      @SWG\Property(
- *          property="path",
- *          description="path",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="archivo",
- *          description="archivo",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="doc_id",
- *          description="doc_id",
- *          type="integer",
- *          format="int32"
- *      )
- * )
- */
+// File upload in to chat
+
 class documentos_chat extends Model
 {
-    use SoftDeletes;
+  use SoftDeletes;
 
-    public $table = 'documentos_chats';
-    
-
-    protected $dates = ['deleted_at'];
+  public $table = 'documentos_chats';
 
 
-    public $fillable = [
-        'nombre',
-        'path',
-        'archivo'
-    ];
+  protected $dates = ['deleted_at'];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'nombre' => 'string',
-        'tipo_doc_id' => 'integer',
-        'path' => 'string',
-        'doc_id' => 'integer'
-    ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-    public static $rules = [
-        'nombre' => 'required',
-        'tipo_doc_id' => 'required',
-        'doc_id' => 'required'
-    ];
+  public $fillable = [
+    'nombre',
+    'path',
+    'archivo',
+    'tipo_doc_id',
+    'doc_id'
+  ];
+
+
+  protected $casts = [
+    'nombre'       => 'string',
+    'tipo_doc_id'  => 'integer',
+    'path'         => 'string',
+    'doc_id'       => 'integer'
+  ];
+
+
+  public static $rules = [
+    'nombre' => 'required',
+    'tipo_doc_id' => 'required',
+    'doc_id' => 'required'
+  ];
+
+public function chat_docts(){
+  return $this->hasMany('App\Models\chat_docts');
+}
+
 }
