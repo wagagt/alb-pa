@@ -1,0 +1,25 @@
+#users, #chats, #table{
+  overflow-y: scroll;
+  position: relative;
+  height: 200px;
+
+}
+
+#users{
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  padding-right:  2px;
+  padding-left:  2px;
+  background: #F5F5F5;
+}
+
+.icon-size{
+  font-size: 3.5em;
+}
+#chats{
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  padding-right:  2px;
+  padding-left:  3px;
+  background: #F5F5F5;
+}

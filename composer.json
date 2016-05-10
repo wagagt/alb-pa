@@ -9,14 +9,14 @@
         "laravel/framework": "5.1.*",
         "laracasts/flash": "~2.0",
         "laravelcollective/html": "5.1",
-        "nesbot/carbon": "^1.21",
         "infyomlabs/laravel-generator": "dev-master",
         "infyomlabs/core-templates": "dev-master",
         "infyomlabs/swagger-generator": "dev-master",
         "jlapp/swaggervel": "dev-master",
         "doctrine/dbal": "~2.3",
         "Amranidev/scaffold-interface": "v1.2.*",
-        "fzaninotto/faker": "^1.5"
+        "fzaninotto/faker": "^1.5",
+        "nesbot/carbon": "^1.21"
 
     },
     "require-dev": {

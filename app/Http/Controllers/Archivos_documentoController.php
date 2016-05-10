@@ -11,8 +11,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Input;
 use App\Http\Controllers\Flash;
 
+
 class Archivos_documentoController extends Controller
 {
+
 
     public function index()
     {
@@ -34,7 +36,7 @@ class Archivos_documentoController extends Controller
 
     public function create()
     {
-        $previousUrl =  Url::previous(); 
+        $previousUrl =  Url::previous();
         return view('archivos_documento.create')
         ->with('previousUrl', $previousUrl);
     }
@@ -53,11 +55,11 @@ class Archivos_documentoController extends Controller
             $archivos_documento->documentos_id = $input['documento_id'];
             $archivos_documento->save();
 
-            $destinationPath = 'uploads'; 
+            $destinationPath = 'uploads';
             $extension = $file->getClientOriginalExtension();
             $fileName = $file->getClientOriginalName();
-            $file->move($destinationPath, $fileName); 
-            \Flash::success('Archivo subido exitosamente.'); 
+            $file->move($destinationPath, $fileName);
+            \Flash::success('Archivo subido exitosamente.');
         }else{
             \Flash::error('Seleccione un archivo');
         }
@@ -82,7 +84,7 @@ class Archivos_documentoController extends Controller
             return URL::to('archivos_documento/'. $id . '/edit');
         }
 
-        
+
         $archivos_documento = Archivos_documento::findOrfail($id);
         return view('archivos_documento.edit',compact('archivos_documento'
                 )
@@ -90,7 +92,7 @@ class Archivos_documentoController extends Controller
     }
 
     public function update($archivo_id, Request $request)
-    {   
+    {
         $input = $request->all();
         $documento_id = $input['documento_id'];
         $affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
