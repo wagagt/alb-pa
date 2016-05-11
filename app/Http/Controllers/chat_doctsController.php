@@ -9,6 +9,7 @@ use Flash;
 use Illuminate\Http\Request;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Carbon\Carbon;
+use App\User;
 
 class chat_doctsController extends Controller {
 	/** @var  chat_doctsRepository */
@@ -27,9 +28,11 @@ class chat_doctsController extends Controller {
 	public function index(Request $request) {
 		$this->chatDoctsRepository->pushCriteria(new RequestCriteria($request));
 		$chatDocts = $this->chatDoctsRepository->all();
+		$users = User::orderBy('created_at', 'DESC')->get();
 
 		return view('archivos_documento.index')
-			->with('chatDocts', $chatDocts);
+			->with('chatDocts', $chatDocts)
+			->with('users', $users);
 	}
 
 	/**

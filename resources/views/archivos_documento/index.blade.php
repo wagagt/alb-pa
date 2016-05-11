@@ -71,13 +71,16 @@
           <div class="col-md-4"> <h3>Enviar mensaje</h3> </div>
 
           <div class="col-md-3" id="users">
+            @foreach($chats as $chat)
             <div class="row box box-success">
               <div class="box-body col-xs-12 ">
                 <div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div>
-                <div class="col-xs-8"> {{Auth::user()->name}}</div>
+                <div class="col-xs-8">{{$chat->usuario}}</div>
               </div>
             </div>
+              @endforeach
           </div>
+
 
           <div class="col-md-5" id="chats">
             <div class="row box box-primary">
@@ -119,20 +122,20 @@
 
               <tbody>
                 @foreach($archivos as $value)
-                  <?php
-                  switch ($value->activo) {
-                    case '1':
-                    $buttonColor = 'success';
-                    $icon        = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
-                    break;
-                    case '0':
-                    $buttonColor = 'danger';
-                    $icon        = '<i class="fa fa-times-circle" aria-hidden="true"></i>';
-                    break;
-                  }
+<?php
+switch ($value->activo) {
+	case '1':
+		$buttonColor = 'success';
+		$icon        = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
+		break;
+	case '0':
+		$buttonColor = 'danger';
+		$icon        = '<i class="fa fa-times-circle" aria-hidden="true"></i>';
+		break;
+}
 
-                  $updateActivo = $documento->id."_".$value->id;
-                  ?>
+$updateActivo = $documento->id."_".$value->id;
+?>
                   <tr>
                     <td>{{$value->id}}</td>
                     <td>{{$value->nombre}}</td>
@@ -152,7 +155,7 @@
                           <input type = 'hidden' name = '_token' value = '{{Session::token()}}'>
 
                           <button type="submit" class="btn btn-<?php echo $buttonColor;?>"><?php echo $icon;
-                          ?></button>
+?></button>
                           <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
                         </form>
                       </td>

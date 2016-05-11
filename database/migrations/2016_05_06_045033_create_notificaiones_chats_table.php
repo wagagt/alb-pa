@@ -28,10 +28,6 @@ class CreateNotificaionesChatsTable extends Migration {
 
 				$table->integer('user_recibe_id')->unsigned();
 				$table->foreign('user_recibe_id')->references('id')->on('users');
-
-				$table->integer('doc_chat_id')->unsigned();
-				$table->foreign('doc_chat_id')->references('id')->on('documentos_chats');
-
 			});
 	}
 

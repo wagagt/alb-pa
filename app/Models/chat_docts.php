@@ -55,11 +55,11 @@ class chat_docts extends Model
       return $this->belongsTo('App\Models\status_coments', 'status_id');
     }
 
-    public function userS(){
+    public function user(){
       return $this->bellongsTo('App\User', 'user_send_id');
     }
 
-    public function userR(){
+    public function usuario(){
       return $this->bellongsTo('App\User', 'user_recibe_id');
     }
 

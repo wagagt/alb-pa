@@ -24,6 +24,9 @@ class CreateDocumentosChatsTable extends Migration {
 
 				$table->integer('doc_id')->unsigned();
 				$table->foreign('doc_id')->references('id')->on('documentos');
+
+				$table->integer('chat_id')->unsigned();
+				$table->foreign('chat_id')->references('id')->on('chat_docts');
 			});
 
 	}
