@@ -103,8 +103,6 @@ $updateActivo = $documento->id."_".$value->id;
                         <td>{{$value->tipo}}</td>
                         <td>
                             <div class = 'row'>
-                                <a href="{{ route('archivos_documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
-                                <i class="fa fa-pencil-square-o"></i></a>
                                 <a href="{{ route('archivos_documento.destroy', $value->id) }}"
                                 class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                                 <i class="fa fa-trash"></i>
