@@ -38,14 +38,29 @@
               </thead>
               <tbody>
                 @foreach($torres as $torre)
+                <?php
+                if ($torre->documentos->count() > 0 ){
+                  $icon = '<i class="fa fa-book" aria-hidden="true"></i>';
+                }else{
+                  $icon = '<i class="fa fa-times-circle-o" aria-hidden="true"></i>';
+                }
+                ?>
                   <tr>
                     <td>{{$torre->nombre}}</td>
                     <td>{{$torre->niveles}}</td>
                     <td>{{$torre->oficina->nombre}}</td>
                       <td>{{$torre->torre_numero}}</td>
-                    <td><a href="torre/{{$torre->id}}/documentos">{{$torre->documentos->count()}}</a></td>
                     <td>
-                    <a href="" class="btn btn-primary" title="Documento edificio"><i class="fa fa-file-o" aria-hidden="true"></i></a>
+                      <a href="torre/{{$torre->id}}/documentos">
+                      <?php echo $icon; ?>
+                      {{$torre->documentos->count()}}
+                      </a>
+                    </td>
+                    
+                    <td>
+                    <a href="" class="btn btn-primary" title="Documento edificio">
+                      <i class="fa fa-file-o" aria-hidden="true"></i>
+                    </a>
                       <a href="{{ route('apartamento.Torres', $torre->id) }}"
                         class="btn btn-info" title="Apartamentos"><i class="fa fa-building-o"></i></a>
                       <a href="{{ route('torre.edit', $torre->id) }}" class="btn btn-warning" title="Editar">
