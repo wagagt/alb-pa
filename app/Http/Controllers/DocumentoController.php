@@ -10,8 +10,6 @@ use App\Torre;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;  
 use URL;
-
-//use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
 class DocumentoController extends Controller {
