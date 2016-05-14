@@ -17,7 +17,7 @@ class TipoDocumentosTableSeeder extends Seeder {
 			['descripcion' => 'Cuentas por Pagar'],
 			['descripcion' => 'Cuentas por Cobrar'],
 			['descripcion' => 'Recibo de Pago'],
-			['descripcion' => 'No domento']
+			['descripcion' => 'No definido']
 		];
 
 		foreach ($tiposdocumentos as $tipodoc) {

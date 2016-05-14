@@ -71,11 +71,11 @@
           <div class="col-md-4"> <h3>Enviar mensaje</h3> </div>
 
           <div class="col-md-3" id="users">
-            @foreach($chats as $chat)
+            @foreach($usuarios as $usuario)
             <div class="row box box-success">
               <div class="box-body col-xs-12 ">
                 <div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div>
-                <div class="col-xs-8">{{$chat->usuario}}</div>
+                <div class="col-xs-8">{{$usuario->usuario}}</div>
               </div>
             </div>
               @endforeach

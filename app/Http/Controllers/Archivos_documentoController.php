@@ -27,17 +27,17 @@ class Archivos_documentoController extends Controller {
 		// Chat Documentos
 		$usuarios = DB::table('users as u')
 			->join('chat_docts as c', 'u.id', '=', 'c.user_recibe_id')
-			->where('u.activo')
+			//->where('u.status', '=', 1)
 			->select('c.user_recibe_id as recibe', 'c.user_send_id as envia',
 			'u.usuario', 'c.texto', 'c.created_at', 'c.status_id as estado')
 			->get();
 
-		dd($usuarios);
+		//dd($usuarios);
 		//dd($documento);
 		return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
-			->with('chats', $chats);
+			->with('usuarios', $usuarios);
 
 	}
 
