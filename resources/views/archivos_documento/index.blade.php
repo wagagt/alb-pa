@@ -72,7 +72,7 @@
 
           <div class="col-md-3" id="users">
             @foreach($usuarios as $usuario)
-            <div class="row box box-success">
+            <div class="row box box-default">
               <div class="box-body col-xs-12 ">
                 <div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div>
                 <div class="col-xs-8">{{$usuario->usuario}}</div>
@@ -83,19 +83,23 @@
 
 
           <div class="col-md-5" id="chats">
+            
             <div class="row box box-primary">
               <div class="box-body col-xs-12 ">
-                <div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div>
-                <div class="col-xs-8"> {{Auth::user()->name}}</div>
+                <div class="col-xs-4"> {{Auth::user()->name}} :</div>
+
               </div>
             </div>
+            
           </div>
 
           <div class="col-md-4">
-            <form class="" action="index.html" method="post" files="true">
-              <textarea rows="3" cols="45" placeholder="Ingrese mensaje..." autofocus="true"></textarea>
-              <button type="button" name="button" class="btn btn-primary">Enviar </button>
-            </form>
+            <div class="form-group">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+            {!! Form::text('compositor', null,['class' => 'form-control', 'autocomplete' => 'off']) !!}
+              
+            </div>
+            
           </div>
 
 

@@ -25,12 +25,7 @@ class Archivos_documentoController extends Controller {
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
 
 		// Chat Documentos
-		$usuarios = DB::table('users as u')
-			->join('chat_docts as c', 'u.id', '=', 'c.user_recibe_id')
-			//->where('u.status', '=', 1)
-			->select('c.user_recibe_id as recibe', 'c.user_send_id as envia',
-			'u.usuario', 'c.texto', 'c.created_at', 'c.status_id as estado')
-			->get();
+		$usuarios = DB::table('users as u')->orderBy('usuario', 'ASC')->get();
 
 		//dd($usuarios);
 		//dd($documento);
