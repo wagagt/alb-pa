@@ -16,8 +16,8 @@
         "jlapp/swaggervel": "dev-master",
         "doctrine/dbal": "~2.3",
         "Amranidev/scaffold-interface": "v1.2.*",
-        "fzaninotto/faker": "^1.5"
-
+        "fzaninotto/faker": "^1.5",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
