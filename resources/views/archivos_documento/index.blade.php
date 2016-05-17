@@ -68,14 +68,15 @@
         <div class="box-body">
           <div class="col-md-4">    <h3>Usuarios con chats</h3></div>
           <div class="col-md-4"> <h3>Ultimos chats</h3> </div>
-          <div class="col-md-4"> <h3>Enviar mensaje</h3> </div>
+          <div class="col-md-4"> <h3>Escribir / Enviar mensajes</h3> </div>
 
           <div class="col-md-3" id="users">
             @foreach($usuarios as $usuario)
             <div class="row box box-default">
               <div class="box-body col-xs-12 ">
-                <div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div>
+                <a href="" title="{{$usuario->id}}"><div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div></a>
                 <div class="col-xs-8">{{$usuario->usuario}}</div>
+                <div class="col-xs-8">{{$usuario->tipo}}</div>
               </div>
             </div>
               @endforeach
@@ -83,22 +84,57 @@
 
 
           <div class="col-md-5" id="chats">
-            
-            <div class="row box box-primary">
-              <div class="box-body col-xs-12 ">
-                <div class="col-xs-4"> {{Auth::user()->name}} :</div>
 
-              </div>
-            </div>
             
+                  @foreach($chats as $chat)
+                       
+                    <?php
+                    
+                    if($chat->user->id ==  Auth::user()->id){
+                          
+                        ?>
+                        <div class="row box box-success col-md-5 ">
+                        <div class="box-body col-xs-12 ">
+                          <h5>Mensaje escrito por: </h5>
+                          <div class="col-xs-4">{{$chat->user->name}} :</div>
+                          <div class="col-xs-8">{{$chat->texto}}  </div>
+
+                        </div>
+                      </div>
+                  <?php
+                    }else{
+                    ?>
+
+                        <div class="row box box-primary col-md-5">
+                        <div class="box-body col-xs-12 ">
+                        <h5>Mensaje escrito por: </h5>
+                          <div class="col-xs-4">{{$chat->user->name}} :</div>
+                          <div class="col-xs-8">{{$chat->texto}}  </div>
+
+                        </div>
+                      </div>
+                      <?php
+                    }
+                      
+                      ?>                     
+
+
+                  @endforeach
+           
           </div>
 
           <div class="col-md-4">
-            <div class="form-group">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
-            {!! Form::text('compositor', null,['class' => 'form-control', 'autocomplete' => 'off']) !!}
+            
+              <div id="compositor">
               
-            </div>
+                  <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
+                  <input type="hidden" name="user_recibe" value= "1" id="user_recibe"> 
+                  <input type="hidden" name="_token" value=" {{ csrf_token() }}" id="token">
+                  <input type="hidden" name= "documento" value ="{{ $documento->id }}" id="docto_id">
+                  {!! Form::text('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off']) !!}
+     
+              </div>
+           
             
           </div>
 
@@ -174,3 +210,7 @@ $updateActivo = $documento->id."_".$value->id;
       </div>
 
     @endsection
+
+  @section('scripts')
+  <script type="text/javascript" src="{{ asset('ui/js/script.js')}}"></script>
+  @endsection

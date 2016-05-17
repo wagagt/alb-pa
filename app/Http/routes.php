@@ -168,6 +168,12 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 		Route::resource('statusComents', 'status_comentsController');
 
 		Route::resource('chatDocts', 'chat_doctsController');
+		
+		Route::post('/escribir', 'chat_doctsController@escribir');
+		Route::post('/llamando', 'chat_doctsController@llamando');
+
+
+
 		Route::resource('notificaionesChats', 'notificaionesChatController');
 
 		//Archivos_documento Resources

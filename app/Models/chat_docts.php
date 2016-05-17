@@ -56,11 +56,11 @@ class chat_docts extends Model
     }
 
     public function user(){
-      return $this->bellongsTo('App\User', 'user_send_id');
+      return $this->belongsTo('App\User', 'user_send_id');
     }
 
     public function usuario(){
-      return $this->bellongsTo('App\User', 'user_recibe_id');
+      return $this->belongsTo('App\User', 'user_recibe_id');
     }
 
     public function documentos_chat(){

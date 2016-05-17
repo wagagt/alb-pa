@@ -13,9 +13,9 @@
         <tr>
             <td>{!! $chatDocts->texto !!}</td>
             <td>{!! $chatDocts->documento_id !!}</td>
-            <td>{!! $chatDocts->status_id !!}</td>
-            <td>{!! $chatDocts->user_send_id !!}</td>
-            <td>{!! $chatDocts->user_recibe_id !!}</td>
+            <td>{!! $chatDocts->status->tipo !!}</td>
+            <td>{!! $chatDocts->user->usuario !!}</td>
+            <td>{!! $chatDocts->usuario->usuario !!}</td>
             <td>{!! $chatDocts->doc_chat_id !!}</td>
             <td>
                 {!! Form::open(['route' => ['chatDocts.destroy', $chatDocts->id], 'method' => 'delete']) !!}

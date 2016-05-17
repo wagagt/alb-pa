@@ -6,9 +6,10 @@ use App\Archivos_documento;
 use App\Documento;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Flash;
-
 use DB;
 use Illuminate\Http\Request;
+use App\User;
+use App\Models\chat_docts;
 use URL;
 
 class Archivos_documentoController extends Controller {
@@ -21,18 +22,25 @@ class Archivos_documentoController extends Controller {
 
 	public function archivosxDocumento($id) {
 		//$documento = \DB::table('documentos')->where('id', $id)->first();
+		
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
 
-		// Chat Documentos
-		$usuarios = DB::table('users as u')->orderBy('usuario', 'ASC')->get();
-
-		//dd($usuarios);
-		//dd($documento);
+		$usuarios = User::orderBy('usuario', 'ASC')->get();
+		$chats =  chat_docts::select('texto', 'user_send_id', 'user_recibe_id', 'documento_id')				
+				->where('user_send_id',  2)
+				->Where('user_recibe_id', '<>', 2 )
+				->where('documento_id', $id)
+				->get();
+		$chats->each(function($texto){
+				$info = $texto->texto;
+		});
+		
 		return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
-			->with('usuarios', $usuarios);
+			->with('usuarios', $usuarios)
+			->with('chats', $chats);		
 
 	}
 
@@ -116,4 +124,8 @@ class Archivos_documentoController extends Controller {
 		return redirect('documento/'.$id_documento.'/archivos_documento');
 	}
 
+	
+
+	
+	
 }

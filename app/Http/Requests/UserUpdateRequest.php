@@ -25,7 +25,7 @@ class UserUpdateRequest extends Request
     {
       return [
           'name'         => 'min:6|max:120|required',
-          'usuario'      => 'min:5|required|unique:users',
+          'usuario'      => 'min:2|required|unique:users',
           'email'        => 'min:4|required|unique:users',
           'pasaporte'    => 'min:5|unique:users',
           'cedula'       => 'min:5|unique:users'
