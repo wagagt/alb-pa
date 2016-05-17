@@ -11,6 +11,7 @@
 
 
               {!! Form::open(['route' => 'admin.auth.login', 'method' => 'POST']) !!}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <div class="form-group" style="padding-bottom:38px">
                 <div class="col-md-4">
                   {!! Form::label('usuario', 'Usuario:') !!}
