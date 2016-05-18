@@ -27,20 +27,21 @@ class Archivos_documentoController extends Controller {
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
 
 		$usuarios = User::orderBy('usuario', 'ASC')->get();
-		$chats =  chat_docts::select('texto', 'user_send_id', 'user_recibe_id', 'documento_id')				
+		
+		/*$chats =  chat_docts::select('texto', 'user_send_id', 'user_recibe_id', 'documento_id')
 				->where('user_send_id',  2)
 				->Where('user_recibe_id', '<>', 2 )
 				->where('documento_id', $id)
 				->get();
 		$chats->each(function($texto){
 				$info = $texto->texto;
-		});
-		
+		});*/
+		$chats = [];
 		return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('chats', $chats);		
+			->with('chats', $chats);
 
 	}
 

@@ -1,6 +1,6 @@
 $(document).ready(michat);
 function michat(){
-	 escucha();
+	 //escucha();
 	 $('#compositor').keypress(function(event){
 	 	 var keycode = (event.keycode ? event.keycode : event.which);
 	 	 if(keycode == '13'){
@@ -63,4 +63,56 @@ function michat(){
 
 	 	},1000);
 	 }
+
+	$('[id^=chat_]').click(function(event){
+		var thisId = $(this).attr('id'); //chat_3_3
+		var arrayParams = thisId.split('_');
+		var docId = arrayParams[1];
+		var inquilinoId = arrayParams[2];
+		$.ajax({
+			async: true,
+			headers:{'X-CSRF-TOKEN': token},
+			type: "GET",
+			dataType: "html",
+			contenType: "application/x-www-form-urlencoded",
+			url: "/getchat",
+			data:{
+				'docId' : docId,
+				'inquilinoId' : inquilinoId
+			},
+			success: function(data) {
+				// armar html
+
+				var newChat = '';
+
+                var obj = $.parseJSON(data);
+                $.each(obj, function(){
+                    newChat +="<div style='align-left'> " + this['texto']+"</div>";
+                    newChat+='<br>hora:'+this['created_at']+'<hr>';
+
+                     //    //si el mensaje es del inquilino newChat=HtML align-left &*azul
+                     //    //si el mensaje es del inquilino newChat=HtML align-right *verde
+
+				});
+                // inyectar en el contenedor de CHAT.
+                $("#chats").html(newChat);
+                //alert('exito');
+			},
+            error: function(response) {
+                // armar mensaje de error html
+                // inyectar al conteiner de 	CHAT.
+            }
+		});
+		return false;
+		function llegada(dato){
+			$('.compositor').val('');
+		}
+		function problemas(){
+			$("#chats").html('problemas... por favor actualiza el navegador');
+		}
+
+
+
+		});
+
 }

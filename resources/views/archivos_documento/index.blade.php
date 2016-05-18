@@ -74,7 +74,11 @@
             @foreach($usuarios as $usuario)
             <div class="row box box-default">
               <div class="box-body col-xs-12 ">
-                <a href="" title="{{$usuario->id}}"><div class="col-xs-4 icon-size"><i class="fa fa-user" aria-hidden="true"></i> </div></a>
+                <a href="" title="{{$usuario->id}}" id="chat_{{$documento->id}}_{{$usuario->id}}" >
+                    <div class="col-xs-4 icon-size">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </div>
+                </a>
                 <div class="col-xs-8">{{$usuario->usuario}}</div>
                 <div class="col-xs-8">{{$usuario->tipo}}</div>
               </div>
