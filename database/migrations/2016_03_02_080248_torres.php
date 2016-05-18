@@ -23,6 +23,7 @@ class Torres extends Migration
         $table->string('nombre');
         $table->string('direccion');
         $table->string('niveles');
+        $table->string('torre_numero');
         $table->softDeletes();
         $table->timestamps();
 
