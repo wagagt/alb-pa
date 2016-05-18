@@ -2,16 +2,22 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Flynsarmy\CsvSeeder\CsvSeeder;
 
-class UserTableSeeder extends Seeder
+class UserTableSeeder extends CsvSeeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+   
+    public function __construct()
+    {
+        $this->table = 'users';
+        $this->csv_delimiter = '|';
+        $this->filename = base_path().'/database/seeds/csvs/exp-propietarios.csv';
+    }
+
     public function run()
     {
+
+      parent::run();
           \DB::table('users')->insert(array (
           	'name'=>'Wiler Gonzalez',
           	'usuario' => 'wagagt',

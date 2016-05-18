@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->enum('tipo', ['propietario','admin','super_admin'])->default('propietario');
             $table->boolean('status')->default(0);
+            $table->text('observaciones');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
