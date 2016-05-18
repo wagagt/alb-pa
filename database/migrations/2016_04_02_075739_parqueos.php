@@ -23,6 +23,7 @@ class Parqueos extends Migration
         $table->string('numero');
         $table->integer('apto_id')->unsigned();
         $table->boolean('asignado')->default(0);
+        $table->timestamps();
 
         /**
          * Foreignkeys section
