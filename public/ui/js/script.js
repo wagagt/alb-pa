@@ -87,12 +87,19 @@ function michat(){
 
                 var obj = $.parseJSON(data);
                 $.each(obj, function(){
-                    newChat +="<div style='align-left'> " + this['texto']+"</div>";
-                    newChat+='<br>hora:'+this['created_at']+'<hr>';
+					var orientacionColumn = '';
+					if(this['user_send_id'] == inquilinoId) {
+                        orientacionColumn = 'success col-md-5 text-left';
+                    }else if(this['user_send_id'] !== inquilinoId){
+                        orientacionColumn = 'primary col-md-5 text-right';
+                    }
 
-                     //    //si el mensaje es del inquilino newChat=HtML align-left &*azul
-                     //    //si el mensaje es del inquilino newChat=HtML align-right *verde
-
+                    newChat += '<div class="row box box-'+orientacionColumn+'">';
+                    newChat += '<div class="box-body col-xs-12 ">';
+                    newChat +=  this['texto'] ;
+                    newChat += '<br>hora: ' + this['created_at'];
+                    newChat += '</div>';
+                    newChat += '</div>';
 				});
                 // inyectar en el contenedor de CHAT.
                 $("#chats").html(newChat);

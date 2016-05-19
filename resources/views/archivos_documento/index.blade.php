@@ -66,9 +66,9 @@
 
         <hr>
         <div class="box-body">
-          <div class="col-md-4">    <h3>Usuarios con chats</h3></div>
-          <div class="col-md-4"> <h3>Ultimos chats</h3> </div>
-          <div class="col-md-4"> <h3>Escribir / Enviar mensajes</h3> </div>
+          <div class="col-md-4">    <h3>Inquilinos</h3></div>
+          <div class="col-md-4"> <h3>Mensajes</h3> </div>
+          <div class="col-md-4"> <h3>Enviar mensajes</h3> </div>
 
           <div class="col-md-3" id="users">
             @foreach($usuarios as $usuario)
@@ -87,45 +87,7 @@
           </div>
 
 
-          <div class="col-md-5" id="chats">
-
-            
-                  @foreach($chats as $chat)
-                       
-                    <?php
-                    
-                    if($chat->user->id ==  Auth::user()->id){
-                          
-                        ?>
-                        <div class="row box box-success col-md-5 ">
-                        <div class="box-body col-xs-12 ">
-                          <h5>Mensaje escrito por: </h5>
-                          <div class="col-xs-4">{{$chat->user->name}} :</div>
-                          <div class="col-xs-8">{{$chat->texto}}  </div>
-
-                        </div>
-                      </div>
-                  <?php
-                    }else{
-                    ?>
-
-                        <div class="row box box-primary col-md-5">
-                        <div class="box-body col-xs-12 ">
-                        <h5>Mensaje escrito por: </h5>
-                          <div class="col-xs-4">{{$chat->user->name}} :</div>
-                          <div class="col-xs-8">{{$chat->texto}}  </div>
-
-                        </div>
-                      </div>
-                      <?php
-                    }
-                      
-                      ?>                     
-
-
-                  @endforeach
-           
-          </div>
+          <div class="col-md-5 text-center" id="chats"></div>
 
           <div class="col-md-4">
             
