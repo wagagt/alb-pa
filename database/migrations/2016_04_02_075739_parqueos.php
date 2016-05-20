@@ -23,23 +23,12 @@ class Parqueos extends Migration
         $table->string('numero');
         $table->integer('apto_id')->unsigned();
         $table->boolean('asignado')->default(0);
-
-        /**
-         * Foreignkeys section
-         */
-    
-         $table->foreign('apto_id')->references('id')->on('apartamentos');
-
-        // type your addition here
-
+        $table->timestamps();
+        $table->softDeletes();
+        $table->foreign('apto_id')->references('id')->on('apartamentos');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return  void
-     */
     public function down()
     {
         Schema::drop('parqueos');

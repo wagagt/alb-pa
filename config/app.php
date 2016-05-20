@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'SomeRandomString'),
+    'key' => env('APP_KEY', 'SomeRandomStringWith32Characters'),
 
     'cipher' => 'AES-256-CBC',
 
@@ -158,6 +158,9 @@ return [
         Amranidev\ScaffoldInterface\ScaffoldInterfaceServiceProvider::class,
         Amranidev\Ajaxis\AjaxisServiceProvider::class,
 
+        //excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -213,6 +216,7 @@ return [
         'Flash'     => Laracasts\Flash\Flash::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

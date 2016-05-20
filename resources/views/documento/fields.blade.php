@@ -1,22 +1,16 @@
  <div class="form-gorup">
-    <div class="col-md-4">
+    <div class="col-md-6">
         {!! Form::label('Nombre', 'Nombre:') !!}
         {!! Form::text('nombre', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre del documento', 'required'])!!}
     </div>
 </div>
 <div class="form-gorup">
-    <div class="col-md-4">
+    <div class="col-md-6">
         {!! Form::label('TipoDocumento', 'Tipo de Documento:') !!}
         {!! Form::select('tipo_documentos_id', $tipo_documentos_list, null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
 
     </div>
-    <div class="form-gorup">
-    <div class="col-md-4">
-        {!! Form::label('torre_id', 'Edificio:') !!}
-        {!! Form::select('torre_id', $edificios, null, ['class' => 'form-control select-torre', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
 
-    </div>
-</div>
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('fecha_del', 'Fecha Desde:') !!}

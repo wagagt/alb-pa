@@ -5,12 +5,11 @@ use Amranidev\Ajaxis\Ajaxis;
 use App\Documento;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Redirect;
-
 use App\Tipo_documento;
 use App\Torre;
 use Illuminate\Http\Request;
-
-//use Illuminate\Http\Request;
+use Illuminate\Routing\UrlGenerator;  
+use URL;
 use Laracasts\Flash\Flash;
 
 class DocumentoController extends Controller {

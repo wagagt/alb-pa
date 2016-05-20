@@ -26,6 +26,7 @@ class Apartamentos extends Migration
         $table->string('metros_cuadrados');
         $table->string('ambientes');
         $table->string('dormitorios');
+        $table->text('observaciones');
         $table->softDeletes();
         $table->timestamps();
 

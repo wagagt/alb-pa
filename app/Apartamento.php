@@ -32,7 +32,8 @@ class Apartamento extends Model
     'modelo_v_2',
     'placa_v_2',
     'torre_id',
-    'user_id'
+    'user_id', 
+    'observaciones'
   ];
 
   protected $dates = ['deleted_at'];
