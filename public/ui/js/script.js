@@ -1,6 +1,6 @@
 $(document).ready(michat);
+
 function michat(){
-	 escucha();
 	 $('#compositor').keypress(function(event){
 	 	 var keycode = (event.keycode ? event.keycode : event.which);
 	 	 if(keycode == '13'){
@@ -37,7 +37,6 @@ function michat(){
 	 	 }
 	 });
 
-
 	  function escucha(){
 	 	setInterval(function(){
 	 		$.ajax({
@@ -63,4 +62,59 @@ function michat(){
 
 	 	},1000);
 	 }
+
+	$('[id^=chat_]').click(function(event){
+		var thisId = $(this).attr('id'); //chat_3_3
+		var arrayParams = thisId.split('_');
+		var docId = arrayParams[1];
+		var inquilinoId = arrayParams[2];
+		$.ajax({
+			async: true,
+			headers:{'X-CSRF-TOKEN': token},
+			type: "GET",
+			dataType: "html",
+			contenType: "application/x-www-form-urlencoded",
+			url: "/getchat",
+			data:{
+				'docId' : docId,
+				'inquilinoId' : inquilinoId
+			},
+			success: function(data) {
+				var newChat = '';
+                var obj = $.parseJSON(data);
+                $.each(obj, function(){
+					var orientacionColumn = '';
+					if(this['user_send_id'] == inquilinoId) {
+                        orientacionColumn = 'success col-md-5 text-left';
+                    }else if(this['user_send_id'] !== inquilinoId){
+                        orientacionColumn = 'primary col-md-5 text-right';
+                    }
+
+                    newChat += '<div class="row box box-'+orientacionColumn+'">';
+                    newChat += '<div class="box-body col-xs-12 ">';
+                    newChat +=  this['texto'] ;
+                    newChat += '<br>hora: ' + this['created_at'];
+                    newChat += '</div>';
+                    newChat += '</div>';
+				});
+                // inyectar en el contenedor de CHAT.
+                $("#chats").html(newChat);
+			},
+            error: function(response) {
+                var newChat = 'ERROR: Problemas para retornar la conversación.';
+                $("#chats").html(newChat);
+            }
+		});
+		return false;
+		function llegada(dato){
+			$('.compositor').val('');
+		}
+		function problemas(){
+			$("#chats").html('problemas... por favor actualiza el navegador');
+		}
+
+
+
+		});
+
 }

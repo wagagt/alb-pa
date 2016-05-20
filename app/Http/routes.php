@@ -170,7 +170,7 @@ Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
 		Route::resource('chatDocts', 'chat_doctsController');
 		
 		Route::post('/escribir', 'chat_doctsController@escribir');
-		Route::post('/llamando', 'chat_doctsController@llamando');
+		Route::get('/getchat', 'chat_doctsController@getChat');
 
 
 

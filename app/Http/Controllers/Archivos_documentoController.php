@@ -16,31 +16,19 @@ class Archivos_documentoController extends Controller {
 
 	public function index() {
 		$archivos_documentos = Archivos_documento::all();
-		//dd($archivos_documentos);
 		return view('archivos_documento.index', compact('archivos_documentos'));
 	}
 
 	public function archivosxDocumento($id) {
-		//$documento = \DB::table('documentos')->where('id', $id)->first();
-		
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
-
 		$usuarios = User::orderBy('usuario', 'ASC')->get();
-		$chats =  chat_docts::select('texto', 'user_send_id', 'user_recibe_id', 'documento_id')				
-				->where('user_send_id',  2)
-				->Where('user_recibe_id', '<>', 2 )
-				->where('documento_id', $id)
-				->get();
-		$chats->each(function($texto){
-				$info = $texto->texto;
-		});
-		
+		$chats = [];
 		return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('chats', $chats);		
+			->with('chats', $chats);
 
 	}
 
@@ -55,14 +43,12 @@ class Archivos_documentoController extends Controller {
 		if (isset($input['archivo'])) {
 			$file = $input['archivo'];
 			$file = $request->file('archivo');
-			//dd($file->getClientOriginalName(), $file->getClientOriginalExtension());
 			$archivos_documento                = new Archivos_documento();
 			$archivos_documento->nombre        = $file->getClientOriginalName();
 			$archivos_documento->tipo          = $file->getClientOriginalExtension();
 			$archivos_documento->activo        = '0';
 			$archivos_documento->documentos_id = $input['documento_id'];
 			$archivos_documento->save();
-
 			$destinationPath = 'uploads';
 			$extension       = $file->getClientOriginalExtension();
 			$fileName        = $file->getClientOriginalName();
@@ -98,10 +84,8 @@ class Archivos_documentoController extends Controller {
 		$input        = $request->all();
 		$documento_id = $input['documento_id'];
 		$affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
-		//dd($affectedRows);
 
 		if ($archivo_id > 0) {
-			// $input = Request::except('_token');
 			$archivos_documento         = Archivos_documento::findOrfail($archivo_id);
 			$archivos_documento->activo = "1";
 			$archivos_documento->save();
