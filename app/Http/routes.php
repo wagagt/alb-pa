@@ -45,12 +45,28 @@ Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 // end Authentication routes .....
 
-Route::group(['prefix' => '/', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
+};
+
+			Route::get('propietario/documentos', function(){
+				dd('ruta propietario/documentos');
+			});
 
 		//  Dashboard
 		Route::get('dash', ['as' => 'admin.index', function () {
-					return view('admin.index');
-				}]);
+			//dd($this->)
+			return view('admin.index');
+		}]);
+
+		Route::group (['middleware' => ['propietario']], function()
+		{
+
+		});
+		
+		// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
+		// 	//dd($this->)
+		// 	return view('propietario.dash');
+		// }]);
 
 		Route::group(['middleware' => ['admin']], function () {
 
@@ -228,3 +244,4 @@ Route::get('archivos_documento/{id}/destroy', [
 		'as'   => 'archivos_documento.destroy'
 	]);
 /********************************************************/
+

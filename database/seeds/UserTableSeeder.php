@@ -38,5 +38,15 @@ class UserTableSeeder extends CsvSeeder
             	'tipo' => 'admin', 
             	'status' => 1
             	));
+            \DB::table('users')->insert(array (
+              'name'=>'Adolfo Arreaga',
+              'usuario' => 'wagagt2',
+              'email' => 'wagagt@hotmail.com',
+              'pasaporte' => '2546 09139 0101',
+              'cedula' => 'a-1 1024861',
+              'password' => \Hash::make('wagapass'),
+              'tipo' => 'propietario', 
+              'status' => 1
+              ));
     }
 }

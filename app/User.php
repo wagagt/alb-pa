@@ -60,11 +60,16 @@ CanResetPasswordContract
   }
 
   public function admin()
-    {
-        return $this->tipo !=  'propietario';
-    }
+  {
+    return $this->tipo !=  'propietario';
+  }
 
-    public function chat_docts(){
+  public function isPropietario()
+  {
+    return ($this->tipo ==  'propietario')?true:false;
+  }
+
+  public function chat_docts(){
       return $this->hasMany('App\Models\chat_docts');
     }
 
