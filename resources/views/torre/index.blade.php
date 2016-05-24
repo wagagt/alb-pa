@@ -51,9 +51,6 @@
                     <td>{{$torre->oficina->nombre}}</td>
                       <td>{{$torre->torre_numero}}</td>
                     <td>
-<<<<<<< HEAD
-                    <a href="torre/{{$torre->id}}/documentos" class="btn btn-primary" title="Hay: {{$torre->documentos->count()}} documentos"><i class="fa fa-file-o" aria-hidden="true"></i></a>
-=======
                       <a href="torre/{{$torre->id}}/documentos">
                       <?php echo $icon; ?>
                       {{$torre->documentos->count()}}
@@ -64,7 +61,6 @@
                     <a href="" class="btn btn-primary" title="Documento edificio">
                       <i class="fa fa-file-o" aria-hidden="true"></i>
                     </a>
->>>>>>> develop
                       <a href="{{ route('apartamento.Torres', $torre->id) }}"
                         class="btn btn-info" title="Apartamentos"><i class="fa fa-building-o"></i></a>
                       <a href="{{ route('torre.edit', $torre->id) }}" class="btn btn-warning" title="Editar">
