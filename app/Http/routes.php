@@ -46,7 +46,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 // end Authentication routes .....
 
 Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
-};
+// };
 
 			Route::get('propietario/documentos', function(){
 				dd('ruta propietario/documentos');
