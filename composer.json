@@ -18,7 +18,8 @@
         "fzaninotto/faker": "^1.5",
         "nesbot/carbon": "^1.21",
         "maatwebsite/excel": "~2.1.0",
-        "flynsarmy/csv-seeder": "1.0.*"
+        "flynsarmy/csv-seeder": "1.0.*",
+        "spatie/activitylog": "^2.4"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

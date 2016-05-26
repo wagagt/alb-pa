@@ -19,7 +19,7 @@ class UserTableSeeder extends CsvSeeder
 
       parent::run();
           \DB::table('users')->insert(array (
-          	'name'=>'Wiler Gonzalez',
+          	'name'=>'Wilver Gonzalez',
           	'usuario' => 'wagagt',
           	'email' => 'wagagt@gmail.com',
           	'pasaporte' => '2757 70419 0101',
