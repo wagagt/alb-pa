@@ -21,7 +21,8 @@ class Propietario
         if($this->auth->user()->isPropietario()){
             Activity::log('Logged in');
             if ( $this->auth->user()->isFirstLogin() ){
-                dd('is first login');
+                $userId = $this->auth->user()->id;
+                return \Redirect::route('propietario.edit', [$userId]);
             }
 
             return view('propietario.dash');
