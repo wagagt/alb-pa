@@ -25,6 +25,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
   protected $hidden = ['password', 'remember_token'];
   protected $dates = ['deleted_at'];
 
+  public static $rules = [
+        'name'                    => 'required',
+        'usuario'                 => 'required',
+        'status_id'               => 'required',
+        'email'                   => 'required',
+        'password'                => 'required|min:3|confirmed',
+        'password_confirmation'   => 'required|min:3'
+  ];
+
+
   public function apartamento()
   {
     return $this->hasOne('App\Apartamento');
@@ -61,8 +71,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
   public function isFirstLogin(){
       $userId = \Auth::user()->id;
-      return (Activity_log::where ('user_id', '=', $userId)->count()==1);
-      //return ( $logs > 0 )?true:false;
+      return (Activity_log::where ('user_id', '=', $userId)->count() == 1);
   }
 
 }

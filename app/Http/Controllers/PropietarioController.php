@@ -26,7 +26,7 @@ class PropietarioController extends Controller
 
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show($id)
@@ -49,7 +49,12 @@ class PropietarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $user = User::findOrfail($id);
+        $user->fill($request->all());
+        $user->save();
+        Flash::success('El perfil ha sido actualizado con éxito!!');
+        return redirect()->route('propietario.dash');
     }
 
     public function destroy($id)

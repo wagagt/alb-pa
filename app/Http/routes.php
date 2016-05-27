@@ -49,8 +49,16 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get ('propietario/edit/{id}',[
 	'uses' 	=> 'PropietarioController@edit',
 	'as'	=> 'propietario.edit'
-
 ]);
+
+Route::post('propietario/update/{id}', [
+	'uses' 	=> 'PropietarioController@update',
+	'as'	=> 'propietario.update'
+	]);
+
+Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
+	return view('propietario.dash');
+}]);
 
 // end Authentication routes .....
 
@@ -66,10 +74,6 @@ Route::get ('propietario/edit/{id}',[
 
 // });
 
-// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
-// 	//dd($this->)
-// 	return view('propietario.dash');
-// }]);
 
 Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 // };
