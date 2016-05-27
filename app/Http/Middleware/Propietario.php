@@ -19,7 +19,11 @@ class Propietario
     public function handle($request, Closure $next)
     {
         if($this->auth->user()->isPropietario()){
-            Activity::log('Logued in');
+            Activity::log('Logged in');
+            if ( $this->auth->user()->isFirstLogin() ){
+                dd('is first login');
+            }
+
             return view('propietario.dash');
         }
         return $next($request);

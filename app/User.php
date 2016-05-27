@@ -10,32 +10,18 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use App\Models\Activity_log;
+use Illuminate\Contracts\Auth\Guard;
 
-class User extends Model implements AuthenticatableContract,
-AuthorizableContract,
-CanResetPasswordContract
+class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
   use Authenticatable, Authorizable, CanResetPassword, softDeletes;
 
-  /**
-  * The database table used by the model.
-  *
-  * @var string
-  */
   protected $table = 'users';
 
-  /**
-  * The attributes that are mass assignable.
-  *
-  * @var array
-  */
   protected $fillable = ['name',  'usuario', 'email', 'pasaporte', 'cedula', 'password', 'tipo', 'status', 'observaciones'];
 
-  /**
-  * The attributes excluded from the model's JSON form.
-  *
-  * @var array
-  */
+
   protected $hidden = ['password', 'remember_token'];
   protected $dates = ['deleted_at'];
 
@@ -71,6 +57,12 @@ CanResetPasswordContract
 
   public function chat_docts(){
       return $this->hasMany('App\Models\chat_docts');
-    }
+  }
+
+  public function isFirstLogin(){
+      $userId = \Auth::user()->id;
+      return (Activity_log::where ('user_id', '=', $userId)->count()==1);
+      //return ( $logs > 0 )?true:false;
+  }
 
 }
