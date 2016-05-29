@@ -68,6 +68,7 @@ function michat(){
 		var arrayParams = thisId.split('_');
 		var docId = arrayParams[1];
 		var inquilinoId = arrayParams[2];
+
 		$.ajax({
 			async: true,
 			headers:{'X-CSRF-TOKEN': token},
@@ -80,25 +81,31 @@ function michat(){
 				'inquilinoId' : inquilinoId
 			},
 			success: function(data) {
-				var newChat = '';
+				var fullHtml ="";
                 var obj = $.parseJSON(data);
+                var txt = '<div class="direct-chat-msg {side}">\
+                <div class="direct-chat-info clearfix">\
+                <span class="direct-chat-name pull-{side}">NOMBRE DEL USUARIO</span>\
+                <span class="direct-chat-timestamp pull-{side}">{time}</span>\
+                </div>\
+                <div class="direct-chat-text">{text}</div>\
+                <img class="direct-chat-img" src="http://alb.app/ui/images/avataruser.png" alt="message user image">\
+                </div>';
                 $.each(obj, function(){
-					var orientacionColumn = '';
-					if(this['user_send_id'] == inquilinoId) {
-                        orientacionColumn = 'success col-md-5 text-left';
-                    }else if(this['user_send_id'] !== inquilinoId){
-                        orientacionColumn = 'primary col-md-5 text-right';
-                    }
-
-                    newChat += '<div class="row box box-'+orientacionColumn+'">';
-                    newChat += '<div class="box-body col-xs-12 ">';
-                    newChat +=  this['texto'] ;
-                    newChat += '<br>hora: ' + this['created_at'];
-                    newChat += '</div>';
-                    newChat += '</div>';
+                	var newChat = '';
+					var side = (this['user_send_id'] == inquilinoId)? "right" : "left";
+                    newChat = txt.replace("{side}", side);
+                    newChat = newChat.replace("{text}", this['texto'] + ' '+this['user_recibe_id']+ ' '+this['user_send_id']);
+                    newChat = newChat.replace("{time}", this['created_at']);
+                    newChat = newChat.replace("{time}", this['created_at']);
+                    fullHtml = fullHtml+newChat+"<hr>";
 				});
                 // inyectar en el contenedor de CHAT.
-                $("#chats").html(newChat);
+                $('*[id^="chat_"]').removeClass('chat-selected');
+                $('#chat_'+inquilinoId).addClass('chat-selected');
+                $("#user_recibe").attr('value',inquilinoId);
+                $('#chats').html(fullHtml);
+
 			},
             error: function(response) {
                 var newChat = 'ERROR: Problemas para retornar la conversación.';

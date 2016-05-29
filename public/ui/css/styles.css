@@ -17,9 +17,44 @@
   font-size: 3.5em;
 }
 #chats{
-  border: 1px solid #e3e3e3;
+  border: 1px solid #D9E2EF;
   border-radius: 4px;
   padding-right:  2px;
   padding-left:  3px;
-  background: #F5F5F5;
+  background: #94A9E3;
+}
+.chat-icon{
+  font-size:1.5em;
+}
+
+.chat-font{
+  font-size:.7em;
+}
+
+.box-chat{
+  border: 1px;
+  background: #DED6D5;
+  padding: 1px;
+  margin-bottom: 2px;
+}
+
+.chat-selected {
+  color: red;
+}
+/* General CSS Setup */
+
+body {
+  background-color: lightblue;
+  font-family: "Ubuntu-Italic", "Lucida Sans", helvetica, sans;
+}
+
+
+/* container */
+
+.container {
+  padding: 5% 5%;
+}
+
+.box-chat {
+    background-color: #C3C9C1;
 }
