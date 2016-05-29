@@ -42,7 +42,7 @@
       <div class="col-md-6 text-left"><a href="{{route('apartamento.create')}}" >
       </a>
       </div>
-      <button class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivo </button>
+      <button class="btn btn-p  mary"><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivo </button>
       <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
     {!! Form::close() !!}
     <div class="col-md-12" >
@@ -129,7 +129,14 @@
         </div>
         @endforeach
       </div>
-      <div class="col-md-6 text-center" id="chats"></div>
+      <div class="box box-warning direct-chat direct-chat-warning">
+        <div class="box-body">
+          <div class="direct-chat-messages">
+            <div class="col-md-6 text-center" id="chats">
+            </div>
+          </div>  
+        </div>
+      </div>
       <div class="col-md-4">
         <div id="compositor">
           <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
