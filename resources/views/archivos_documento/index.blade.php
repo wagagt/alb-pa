@@ -145,6 +145,7 @@
           <input type="hidden" name= "documento" value ="{{ $documento->id }}" id="docto_id">
           {!! Form::textarea('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off', 'size' => '30x5']) !!}
         </div>
+        [ENTER] para enviar.
       </div>
     </div>
 

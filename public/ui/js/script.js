@@ -21,7 +21,7 @@ function michat(){
 	 	 			'user_send' : user_send,
 	 	 			'user_recibe' : user_recibe,
 	 	 			'docto_id' : documento,
-	 	 			'status' : 2
+	 	 			'status' : 1
 	 	 			},	 	 		
 	 	 		success: llegada,
 	 	 		timeout: 10000,
