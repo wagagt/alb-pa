@@ -129,14 +129,10 @@
         </div>
         @endforeach
       </div>
-      <div class="box box-warning direct-chat direct-chat-warning">
-        <div class="box-body">
-          <div class="direct-chat-messages">
+      
             <div class="col-md-6 text-center" id="chats">
             </div>
-          </div>  
-        </div>
-      </div>
+      
       <div class="col-md-4">
         <div id="compositor">
           <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
