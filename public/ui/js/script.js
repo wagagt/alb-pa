@@ -38,6 +38,8 @@ function michat(){
 	 });
 
 	  function escucha(){
+	  	var docId = $('#docto_id').val();
+	  	//alert(docId);
 	 	setInterval(function(){
 	 		$.ajax({
 	 	 		async: true,
@@ -45,10 +47,25 @@ function michat(){
 	 	 		type: "GET",
 	 	 		dataType: "html",
 	 	 		contenType: "application/x-www-form-urlencoded",
-	 	 		url: "/llamando",
-	 	 		success: llegada,
-	 	 		timeout: 10000,
-	 	 		error: problemas
+	 	 		url: "/getNewMessages",
+	 	 		data:{
+				'docId' : docId
+				},
+	 	 		success: function(data) {
+	 	 			var obj = $.parseJSON(data);
+	 	 			$.each(obj, function(){
+                		var userSendId = this['user_send_id'];
+                		var total = this['total'];
+                		var domId = 'mensajeNuevo_'+userSendId;
+                		$('#'+domId).html(total);
+
+					});
+	 	 		},
+            	error: function(response) {
+	                var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
+	                $("#users").html(errorMessage);
+            	},
+	 	 		timeout: 10000
 	 	 	});
 	 	 		return false;
 	 	 		function llegada(dato){
@@ -60,7 +77,7 @@ function michat(){
 	 	 			$("#chats").html('problemas... por favor actualiza el navegador');
 	 	 		}
 
-	 	},1000);
+	 	},5000);
 	 }
 
 	$('[id^=chat_]').click(function(event){
@@ -93,7 +110,7 @@ function michat(){
                 </div>';
                 $.each(obj, function(){
                 	var newChat = '';
-					var msgSide = (this['user_send_id'] != inquilinoId)? "right" : "";
+					var msgSide = (this['user_send_id'] == inquilinoId)? "right" : "";
 					var msgInfoSide = (this['user_send_id'] != inquilinoId)? "right" : "left";
                     newChat = txt.replace("{msg-side}", msgSide);
                     newChat = newChat.replace("{msg-info-side}", msgInfoSide);
@@ -124,5 +141,7 @@ function michat(){
 
 
 		});
+
+escucha();
 
 }

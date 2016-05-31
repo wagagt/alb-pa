@@ -125,7 +125,10 @@
               <i class="fa fa-user fa-1" aria-hidden="true"></i>
             </div>
           </a>
-          <div class="col-xs-8 chat-font" id="chat_{{$usuario->id}}" >{{$usuario->usuario}}</div>
+             <span data-toggle="tooltip" title="" class="badge bg-yellow"  
+             id="mensajeNuevo_{{$usuario->id}}" data-original-title=""></span>
+
+          <div class="col-xs-8 chat-font" id="chat_{{$usuario->id}}">{{$usuario->usuario}}</div>
         </div>
         @endforeach
       </div>
@@ -138,7 +141,7 @@
           <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
           <input type="hidden" name="user_recibe" value= "" id="user_recibe"> 
           <input type="hidden" name="_token" value=" {{ csrf_token() }}" id="token">
-          <input type="hidden" name= "documento" value ="{{ $documento->id }}" id="docto_id">
+          <input type="hidden" name= "docto_id" value ="{{ $documento->id }}" id="docto_id">
           {!! Form::textarea('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off', 'size' => '30x5']) !!}
         </div>
         [ENTER] para enviar.

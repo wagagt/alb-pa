@@ -30,4 +30,16 @@ class chat_doctsController extends Controller {
 				->get();
         return $chats->toJson();
 	}
+
+	public function getNewMessages(Request $request){
+		$input = Request::except('_token');
+		$docId = $input['docId'];
+		$msgs = chat_docts::selectRaw('user_send_id, count(user_send_id)  as total')
+				->where('documento_id', $docId)
+				->where('status_id', '=', 1)
+				->groupBy('user_send_id')
+				->get();
+		//dd($msgs->toJson());
+		return $msgs->toJson();
+	}
 }
