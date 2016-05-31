@@ -87,7 +87,7 @@ class ApartamentoController extends Controller {
 	}
 
 	public function aptoTorres(Request $request, $id) {
-		$apartamentos = Apartamento::search($request->apartamento)->where('torre_id', '=', $id)->orderBy('numero', 'ASC')->paginate(5);
+		$apartamentos = Apartamento::search($request->apartamento)->where('torre_id', '=', $id)->orderBy('numero', 'ASC')->paginate(25);
 		return view('apartamento.index')->with('apartamentos', $apartamentos);
 
 	}
