@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Apartamento;
+use App\Documento;
 use Laracasts\Flash\Flash;
 
 class PropietarioController extends Controller
@@ -60,5 +62,15 @@ class PropietarioController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function documentos(Request $request)
+    {
+        $userId = \Auth::user()->id;
+        
+        $apto = Apartamento::where('user_id', '=', $userId)->select('torre_id')->first();
+     $documentos = Documento::where('torre_id', '=', $apto->torre_id)->orderBy('nombre', 'ASC')->paginate(25);
+        return view('documento.prop_index')
+        ->with('documentos', $documentos);
     }
 }

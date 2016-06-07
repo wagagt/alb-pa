@@ -32,6 +32,30 @@ class Archivos_documentoController extends Controller {
 
 	}
 
+	public function PropArchivosxDocumento($id) {
+	 
+	 $documento= Documento::with('Tipo_documento', 'Torre')
+	 ->where('id', $id)
+	 ->first();
+
+	 $archivos_documento = \DB::table('archivos_documentos')
+	 ->where('documentos_id', $id)
+	 ->where('activo', '1')
+	 ->get();
+	 
+	  $usuarios = User::where('tipo', 'admin')
+	  ->orderBy('usuario', 'ASC')->get();
+	 
+	 $chats = [];
+	 return view('propietario.archivos_documento.index')
+	 	->with('documento', $documento)
+	 	->with('archivos', $archivos_documento)
+	 	->with('usuarios', $usuarios)
+	 	->with('chats', $chats);
+	}
+
+	
+
 	public function create() {
 		$previousUrl = Url::previous();
 		return view('archivos_documento.create')
@@ -43,15 +67,17 @@ class Archivos_documentoController extends Controller {
 		if (isset($input['archivo'])) {
 			$file = $input['archivo'];
 			$file = $request->file('archivo');
+			$extension       = $file->getClientOriginalExtension();
+			$fileName        = $file->getClientOriginalName();
+			
 			$archivos_documento                = new Archivos_documento();
 			$archivos_documento->nombre        = $file->getClientOriginalName();
 			$archivos_documento->tipo          = $file->getClientOriginalExtension();
 			$archivos_documento->activo        = '0';
 			$archivos_documento->documentos_id = $input['documento_id'];
 			$archivos_documento->save();
+			
 			$destinationPath = 'uploads';
-			$extension       = $file->getClientOriginalExtension();
-			$fileName        = $file->getClientOriginalName();
 			$file->move($destinationPath, $fileName);
 			\Flash::success('Archivo subido exitosamente.');
 		} else {

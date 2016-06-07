@@ -60,6 +60,14 @@ Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
 	return view('propietario.dash');
 }]);
 
+Route::get('propietario/documentos', [
+					'uses' => 'PropietarioController@documentos',
+					'as'   => 'propietario.documentos'
+				]);
+Route::get('propietario/documento/{id}/archivos', [
+		'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
+		'as'   => 'propDocumento.archivos'
+	]);
 // end Authentication routes .....
 
 // Route::group (['middleware' => ['propietario']], function()
