@@ -205,9 +205,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], functio
 		Route::post('/escribir', 'chat_doctsController@escribir');
 		Route::get('/getchat', 'chat_doctsController@getChat');
 		Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
-		
-
-
+		Route::get('/updateMessages', 'chat_doctsController@updateMessages');
 
 		Route::resource('notificaionesChats', 'notificaionesChatController');
 

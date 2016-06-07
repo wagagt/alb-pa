@@ -24,7 +24,7 @@ class chat_doctsController extends Controller {
 		$input = Request::except('_token');
 		$docId = $input['docId'];
 		$inquilinoId = $input['inquilinoId'];
-		$chats = chat_docts::select('texto', 'user_send_id', 'user_recibe_id', 'created_at')
+		$chats = chat_docts::select('id','texto', 'user_send_id', 'user_recibe_id', 'created_at')
 				->where('documento_id', $docId)
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
 				->get();
@@ -41,5 +41,15 @@ class chat_doctsController extends Controller {
 				->get();
 		//dd($msgs->toJson());
 		return $msgs->toJson();
+	}
+
+	public function updateMessages(Request $request){
+		$input = Request::except('_token');
+		$data = $input['data'];
+		foreach ($data as $msgId){
+			$msg = chat_docts::findOrfail($msgId);
+			$msg->status_id = "2";
+			$msg->save();
+		}
 	}
 }
