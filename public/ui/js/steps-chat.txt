@@ -1,0 +1,15 @@
+CHAT ADMIN
+
+Usuarios con chats  -> INQUILINOS
+ - listar todos los usuarios tipo inquilino *filtrar where tipo_usiario = inquilino
+ - habilitar link para traer conversacion ( x id de inquilino )  CASI...
+
+Ultimos chats -> MENSAJES || CHAT
+- Mostrar la convesacion  -> mostrar nombre/ fecha/hora y colocar del lado que corresponde. CASI MAQUETADO.
+
+Escribir / Enviar mensajes -> ENVIAR MENSAJE
+- Guardar mensajes. *DONE!
+
+
+CHAT INQUILINO
+- no sufras aun ....

@@ -22,7 +22,7 @@ class Archivos_documentoController extends Controller {
 	public function archivosxDocumento($id) {
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
-		$usuarios = User::orderBy('usuario', 'ASC')->get();
+		$usuarios = User::where('tipo','propietario')->orderBy('id', 'ASC')->get();
 		$chats = [];
 		return view('archivos_documento.index')
 			->with('documento', $documento)

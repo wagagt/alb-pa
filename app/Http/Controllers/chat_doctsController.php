@@ -6,9 +6,15 @@ use App\Http\Controllers\Controller;
 use Request;
 use App\Models\chat_docts;
 use DB;
+use Carbon\Carbon;
 
 class chat_doctsController extends Controller {
-	
+
+	public function __construct()
+	{
+		Carbon::setLocale('es');
+	}
+
 	public function escribir(Request $request){
 		$input = Request::except('_token');
 		$registro = new chat_docts();
@@ -29,5 +35,9 @@ class chat_doctsController extends Controller {
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
 				->get();
         return $chats->toJson();
+	}
+
+	public function llamando(){
+        
 	}
 }

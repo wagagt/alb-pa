@@ -85,15 +85,15 @@ function michat(){
                 $.each(obj, function(){
 					var orientacionColumn = '';
 					if(this['user_send_id'] == inquilinoId) {
-                        orientacionColumn = 'success col-md-5 text-left';
+                        orientacionColumn = 'default col-md-5 text-left leftColor';
                     }else if(this['user_send_id'] !== inquilinoId){
-                        orientacionColumn = 'primary col-md-5 text-right';
+                        orientacionColumn = 'default col-md-5 text-right rightColor';
                     }
 
                     newChat += '<div class="row box box-'+orientacionColumn+'">';
-                    newChat += '<div class="box-body col-xs-12 ">';
+                    newChat += '<div  class="box-body col-xs-12 ">';
                     newChat +=  this['texto'] ;
-                    newChat += '<br>hora: ' + this['created_at'];
+                    newChat += '<br><span class="dateColor">hora: ' + this['created_at']+"</span>";
                     newChat += '</div>';
                     newChat += '</div>';
 				});
