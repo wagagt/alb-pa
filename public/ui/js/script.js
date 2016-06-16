@@ -6,9 +6,9 @@ function michat(){
 	 	 if(keycode == '13'){
 	 	 	var chat = $('.compositor').val();
 	 	 	var token = $('#token').val();
-	 	 	var user_send = $('#user_send').val();
+	 	 	var userSendId = $('#user_send').val();
 	 	 	var user_recibe = $('#user_recibe').val();
-	 	 	var documento = $('#docto_id').val();
+	 	 	var docId = $('#docto_id').val();
 	 	 	$.ajax({
 	 	 		async: true,
 	 	 		headers:{'X-CSRF-TOKEN': token},
@@ -18,9 +18,9 @@ function michat(){
 	 	 		url: "/escribir",
 	 	 		data:{
 	 	 			'chat' : chat,
-	 	 			'user_send' : user_send,
+	 	 			'user_send' : userSendId,
 	 	 			'user_recibe' : user_recibe,
-	 	 			'docto_id' : documento,
+	 	 			'docto_id' : docId,
 	 	 			'status' : 1
 	 	 			},	 	 		
 	 	 		success: llegada,
@@ -30,6 +30,7 @@ function michat(){
 	 	 		return false;
 	 	 		function llegada(dato){
 	 	 			$('.compositor').val('');
+	 	 			ajaxRefreshChat (docId, userSendId);
 	 	 		}
 	 	 		function problemas(){
 	 	 			$("#chats").html('problemas... por favor actualiza el navegador');
@@ -54,12 +55,14 @@ function michat(){
 	 	 		success: function(data) {
 	 	 			var obj = $.parseJSON(data);
 	 	 			$.each(obj, function(){
-	 	 				var userSendId = this['user_send_id'];
-	 	 				if (userSendId == $('#activeChatId').val() ){ // refrescar conversacion
-	 	 					ajaxRefreshChat (docId, userSendId);
+	 	 				var userRecibeId = this['user_recibe_id'];
+	 	 				if (userRecibeId == $('#activeChatId').val() ){ // refrescar conversacion
+	 	 					//ajaxRefreshChat (docId, userRecibeId);
+	 	 					var chatActive ="chat_"+docId+"_"+userRecibeId;
+	 	 					$("#"+chatActive).click();
 	               		}else{ // crear marca con numero de mensajes sin leer
 	                		var total = this['total'];
-	                		var domId = 'mensajeNuevo_'+userSendId;
+	                		var domId = 'mensajeNuevo_'+userRecibeId;
 	                		$('#'+domId).html(total);
 	                	}
 					});
@@ -119,8 +122,8 @@ function ajaxRefreshChat(docId, inquilinoId){
                 </div>';
                 $.each(obj, function(){
                 	var newChat = '';
-					var msgSide = (this['user_send_id'] == inquilinoId)? "right" : "";
-					var msgInfoSide = (this['user_send_id'] != inquilinoId)? "right" : "left";
+					var msgSide = (this['user_send_id'] == inquilinoId)? "" : "right";
+					var msgInfoSide = (this['user_send_id'] != inquilinoId)? "left" : "right";
                     newChat = txt.replace("{msg-side}", msgSide);
                     newChat = newChat.replace("{msg-info-side}", msgInfoSide);
                     newChat = newChat.replace("{time}", this['created_at']);
