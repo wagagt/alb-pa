@@ -114,6 +114,7 @@ function ajaxRefreshChat(docId, inquilinoId){
 				var fullHtml ="";
                 var obj = $.parseJSON(data);
                 var arrChangeStatusMessages = new Array();
+                var newMessages = 0;
                 var txt = '<div class="direct-chat-msg {msg-side}">\
                 <div class="direct-chat-info clearfix">\
                 <span class="direct-chat-name pull-{msg-info-side}">NOMBRE DEL USUARIO</span>\
@@ -133,6 +134,7 @@ function ajaxRefreshChat(docId, inquilinoId){
                     newChat = newChat.replace("{msgid}", '<small>(msgid:'+this['id']+')</small>');
                     fullHtml = fullHtml+newChat+"<hr>";
                     arrChangeStatusMessages.push(this['id']);
+                    newMessages++;
 				});
                 // inyectar en el contenedor de CHAT.
                 $('*[id^="chat_"]').removeClass('chat-selected');
@@ -143,8 +145,8 @@ function ajaxRefreshChat(docId, inquilinoId){
                 var total = "";
 				var domId = 'mensajeNuevo_'+inquilinoId;
 	            $('#'+domId).html(total);
-	            // cambiar status a mensajes ( de 1=enviado a 2=leido )
-	            updateMessages(arrChangeStatusMessages);
+	            // si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
+	            if(newMessages>0) updateMessages(arrChangeStatusMessages);
 			},
             error: function(response) {
                 var newChat = 'ERROR: Problemas para retornar la conversación.';
@@ -170,7 +172,7 @@ function updateMessages(arrMessages){
 				$("#notificacion").html("Mensaje nuevo recibido!");
 			},
 			error: function(response) {
-                var newChat = 'ERROR: Problemas para cambiar etado a los mensajes mostrados.';
+                var newChat = 'ERROR: Problemas para cambiar estado a los mensajes mostrados.';
                 $("#notificacion").html(newChat);
             }
 	});
