@@ -1,6 +1,6 @@
-$(document).ready(michat);
+$(document).ready(sendMessage);
 
-function michat(){
+function sendMessage(){
 	 $('#compositor').keypress(function(event){
 	 	 var keycode = (event.keycode ? event.keycode : event.which);
 	 	 if(keycode == '13'){
@@ -38,7 +38,7 @@ function michat(){
 	 	 }
 	 });
 
-	  function escucha(){
+	  function searchNewMessageByDoc(){
 	  	var docId = $('#docto_id').val();
 	  	//alert(docId);
 	 	setInterval(function(){
@@ -66,25 +66,27 @@ function michat(){
 	                		$('#'+domId).html(total);
 	                	}
 					});
+					$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
 	 	 		},
             	error: function(response) {
+            		$("#notificacion").html("Error:chat activo >" + $("#activeChatId").val());
 	                var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
 	                $("#users").html(errorMessage);
             	},
 	 	 		timeout: 10000
 	 	 	});
 	 	 		return false;
-	 	 		function llegada(dato){
-	 	 			$("#chats").html(dato);
-	 	 			var objDiv = document.getElementById('chats');
-	 	 				objDiv.scrollTop = objDiv.scrollHeight;
-	 	 		}
-	 	 		function problemas(){
-	 	 			$("#chats").html('problemas... por favor actualiza el navegador');
-	 	 		}
+	 	 		// function llegada(dato){
+	 	 		// 	$("#chats").html(dato);
+	 	 		// 	var objDiv = document.getElementById('chats');
+	 	 		// 		objDiv.scrollTop = objDiv.scrollHeight;
+	 	 		// }
+	 	 		// function problemas(){
+	 	 		// 	$("#chats").html('problemas... por favor actualiza el navegador');
+	 	 		// }
 
 	 	},5000);
-	 	$("#notificacion").html("...");
+	 	$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	 }
 
 	$('[id^=chat_]').click(function(event){
@@ -175,7 +177,7 @@ function updateMessages(arrMessages){
 };
 
 
-escucha();
+searchNewMessageByDoc();
 
 $('#accordion2').collapse({
   toggle: false

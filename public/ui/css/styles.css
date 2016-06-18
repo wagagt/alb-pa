@@ -58,3 +58,22 @@ body {
 .box-chat {
     background-color: #C3C9C1;
 }
+
+.bg-yellow{
+  margin-left:3px;
+}
+
+.alb-table{
+   display: table;
+   border-collapse: separate;
+  border-spacing: 1px;
+}
+
+.alb-row  {
+    display: table-row;
+}
+
+.alb-left-cell, .alb-middle-cell, .alb-right-cell{
+  display: table-cell;
+  padding:1px;
+}

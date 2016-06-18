@@ -23,11 +23,17 @@ class Archivos_documentoController extends Controller {
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
 		$usuarios = User::orderBy('usuario', 'ASC')->get();
+
+		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id'); 
+		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id'); 
+		$usersChatActive = $senderActive->union($receiverActive)->get();
+		//dd($usersChatActive);
 		$chats = [];
 		return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
+			->with('usersChatActive', $usersChatActive)
 			->with('chats', $chats);
 
 	}

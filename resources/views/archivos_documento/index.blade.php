@@ -137,27 +137,43 @@
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
                   <div class="box-body box-chat">
-                        <div class="col-md-2"> <h4>Inquilinos</h4></div>
-                        <div class="col-md-6"> <h4>Mensajes</h4> </div>
-                        <div class="col-md-4"> <h4>Enviar mensajes</h4> </div>
+                        <div class="col-md-3"> <h4>Inquilinos</h4></div>
+                        <div class="col-md-5"> <h4>Mensajes</h4> </div>
+                        <div class="col-md-4"> <h4>Enviar</h4> </div>
 
-                        <div class="col-md-2" id="users">
+                        <div class="col-md-3" id="users">
+                        <?php
+                          $userChatActiveId = array_column($usersChatActive, 'user_send_id')
+                        ?>
                           @foreach($usuarios as $usuario)
-                          <div class="box-chat col-xs-12 ">
-                            <a href="#" title="{{$usuario->name}}" id="chat_{{$documento->id}}_{{$usuario->id}}" >
-                              <div class="col-xs-4 chat-icon">
-                                <i class="fa fa-user fa-1" aria-hidden="true"></i>
-                              </div>
-                            </a>
+                          <?php 
+                            $haveChat = (in_array($usuario->id, $userChatActiveId, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
+                          ?>
+                          <div class="box-chat col-xs-12 alb-table">
+                          <div class="alb-row">
+                            <div class="alb-left-cell">  
+                              <a href="#" title="{{$usuario->name}}" id="chat_{{$documento->id}}_{{$usuario->id}}" >
+                                <div class="col-xs-4 chat-icon">
+                                  <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
+                                </div>
+                              </a>
+                            </div>
+
+                            <div class="alb-middle-cell">
                                <span data-toggle="tooltip" title="" class="badge bg-yellow"  
                                id="mensajeNuevo_{{$usuario->id}}" data-original-title=""></span>
+                            </div>
 
-                            <div class="col-xs-8 chat-font" id="chat_{{$usuario->id}}">{{$usuario->usuario}}</div>
+                            <div class="alb-right-cell">
+                              <div class="col-xs-8 chat-font" id="chat_{{$usuario->id}}">{{$usuario->usuario}} </div>
+                            </div>
+
+                          </div>  
                           </div>
                           @endforeach
                         </div>
                         
-                              <div class="col-md-6 text-center" id="chats">
+                              <div class="col-md-5 text-center" id="chats">
                               </div>
                         
                         <div class="col-md-4">
