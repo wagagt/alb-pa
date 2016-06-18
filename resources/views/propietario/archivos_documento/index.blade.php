@@ -118,7 +118,7 @@
                             <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
                             {!! Form::textarea('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off', 'size' => '30x5']) !!}
                           </div>
-                          [ENTER] para enviar.
+                          [ENTER] para enviar.xxxx
                         </div>
                       </div>
                 </div>

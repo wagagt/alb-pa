@@ -77,3 +77,7 @@ body {
   display: table-cell;
   padding:1px;
 }
+
+.btn{
+  float: right;
+}

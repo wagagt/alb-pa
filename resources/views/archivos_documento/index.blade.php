@@ -45,7 +45,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Archivos asociados al documento:</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Archivos asociados al documento:</a>
                 </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
@@ -131,15 +131,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Comentarios sobre el documento:</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-comment-o" aria-hidden="true"></i> Comentarios sobre el documento:</a>
                 </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
                   <div class="box-body box-chat">
-                        <div class="col-md-3"> <h4>Inquilinos</h4></div>
-                        <div class="col-md-5"> <h4>Mensajes</h4> </div>
-                        <div class="col-md-4"> <h4>Enviar</h4> </div>
+                        <div class="col-md-3"> <h5>Propietarios</h5></div>
+                        <div class="col-md-5"> <h5>Mensajes</h5> </div>
+                        <div class="col-md-4"> <h5>Enviar</h5> </div>
 
                         <div class="col-md-3" id="users">
                         <?php
@@ -153,7 +153,7 @@
                           <div class="alb-row">
                             <div class="alb-left-cell">  
                               <a href="#" title="{{$usuario->name}}" id="chat_{{$documento->id}}_{{$usuario->id}}" >
-                                <div class="col-xs-4 chat-icon">
+                                <div class="col-xs-4 chat-icon" id="userChatIcon_{{$usuario->id}}">
                                   <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
                                 </div>
                               </a>
@@ -185,7 +185,9 @@
                             <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
                             {!! Form::textarea('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off', 'size' => '30x5']) !!}
                           </div>
-                          [ENTER] para enviar.
+                          <span class="input-group-btn">
+                        <button type="submit" id="sendMessage" name="sendMessage" class="btn btn-success btn-flat right">Enviar</button>
+                      </span>
                         </div>
                       </div>
                 </div>
