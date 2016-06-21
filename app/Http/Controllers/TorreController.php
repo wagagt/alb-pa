@@ -19,7 +19,6 @@ class TorreController extends Controller {
   
 	public function index(Request $request) {
 		$torres = Torre::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(15);
-		//dd($torres);
 		return view('torre.index')->with('torres', $torres);
 	}
 
@@ -46,7 +45,7 @@ class TorreController extends Controller {
 		$oficinas = Oficina::orderBy('nombre', 'ASC')->lists('nombre', 'id');
 
 		$torre = Torre::findOrfail($id);
-		$torre->oficina;//traigo la oficina relacionada
+		$torre->oficina;
 
 		return view('torre.edit')
 			->with('oficinas', $oficinas)
@@ -56,7 +55,6 @@ class TorreController extends Controller {
 	public function update(Request $request, $id) {
 		$torre = Torre::findOrfail($id);
 		$torre->fill($request->all());
-		//dd($torre);
 		$torre->save();
 		Flash::warning('El edificio '.$torre->nombre.' ha sido actualizado con éxito!!..');
 
@@ -72,12 +70,32 @@ class TorreController extends Controller {
 
   public function documentos(Request $request, $id)
   {
-    $documentos = Documento::where('torre_id', '=', $id)->orderBy('nombre', 'ASC')->paginate(5);
+    $trim1 = Documento::where('torre_id', '=', $id)
+    ->whereMonth('fecha_del', '>=', '1')
+    ->whereMonth('fecha_del', '<=', '3')
+    ->orderBy('nombre', 'ASC')->paginate(25);
+
+    $trim2 = Documento::where('torre_id', '=', $id)
+    ->whereMonth('fecha_del', '>=', '4')
+    ->whereMonth('fecha_del', '<=', '6')
+    ->orderBy('nombre', 'ASC')->paginate(25);
+
+    $trim3 = Documento::where('torre_id', '=', $id)
+    ->whereMonth('fecha_del', '>=', '7')
+    ->whereMonth('fecha_del', '<=', '9')
+    ->orderBy('nombre', 'ASC')->paginate(25);
+
+    $trim4 = Documento::where('torre_id', '=', $id)
+    ->whereMonth('fecha_del', '>=', '10')
+    ->whereMonth('fecha_del', '<=', '12')
+    ->orderBy('nombre', 'ASC')->paginate(25);    
+
     $torre = Torre::findOrfail($id);
-    //dd($documentos);
-    //return view('torre.index')->with('torres', $torres);
     return view('documento.index')
-    ->with('documentos', $documentos)
+    ->with('trim1', $trim1)
+    ->with('trim2', $trim2)
+    ->with('trim3', $trim3)
+    ->with('trim4', $trim4)
     ->with('torre', $torre);
 	}
 

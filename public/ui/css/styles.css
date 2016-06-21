@@ -81,3 +81,31 @@ body {
 .btn{
   float: right;
 }
+
+.nav-tabs-custom>.nav-tabs{
+  margin-top:5px;
+  .active{
+    color: red;
+  }
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #3c8dbc;
+    font-weight: 800;
+    font-color:#3c8dbc;
+    background-color: gray;
+}
+
+.nav-tabs-custom>.tab-content {
+    background: #F5F3F3;
+    padding: 0px; 
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 3px solid transparent;
+    margin-bottom: -2px;
+    margin-right: 5px;
+    background-color: #FAEDC8;
+}
