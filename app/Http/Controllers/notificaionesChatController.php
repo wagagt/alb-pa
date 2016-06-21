@@ -11,7 +11,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
-class notificaionesChatController extends AppBaseController
+class notificaionesChatController extends Controller //AppBaseController
 {
     /** @var  notificaionesChatRepository */
     private $notificaionesChatRepository;
