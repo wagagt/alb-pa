@@ -125,12 +125,12 @@ function ajaxRefreshChat(docId, inquilinoId){
                 </div>';
                 $.each(obj, function(){
                 	var newChat = '';
-					var msgSide = (this['user_send_id'] == inquilinoId)? "" : "right";
-					var msgInfoSide = (this['user_send_id'] != inquilinoId)? "left" : "right";
+					var msgSide = (this['user_send_id'] != inquilinoId)? "right" : "left";
+					var msgInfoSide = (this['user_send_id'] != inquilinoId)? "right" : "left";
                     newChat = txt.replace("{msg-side}", msgSide);
                     newChat = newChat.replace("{msg-info-side}", msgInfoSide);
                     newChat = newChat.replace("{time}", this['created_at']);
-                    newChat = newChat.replace("{text}", this['texto']);// + ' '+this['user_recibe_id']+ ' '+this['user_send_id']);
+                    newChat = newChat.replace("{text}", this['texto'] + ' '+this['user_recibe_id']+ ' '+this['user_send_id']+ ' '+inquilinoId);
                     newChat = newChat.replace("{msgid}", '<small>(msgid:'+this['id']+')</small>');
                     fullHtml = fullHtml+newChat+"<hr>";
                     arrChangeStatusMessages.push(this['id']);
