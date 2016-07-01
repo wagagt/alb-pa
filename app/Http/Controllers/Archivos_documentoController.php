@@ -22,7 +22,9 @@ class Archivos_documentoController extends Controller {
 	public function archivosxDocumento($id) {
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
 		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
-		$usuarios = User::orderBy('usuario', 'ASC')->get();
+		$usuarios = User::orderBy('usuario', 'ASC')
+		->where('tipo', 'propietario')
+		->get();
 
 		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id); 
 		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id); 

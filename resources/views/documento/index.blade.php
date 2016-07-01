@@ -61,7 +61,11 @@
                 <tbody>
                   @foreach($trim1 as $value)
                   <tr>
-                    <td >{{$value->nombre}}</td>
+                    <td>                
+                      <a href="{{ route('documento.archivos', $value->id) }}" title="ver Archivos">
+                        {{$value->nombre}}
+                      </a>
+                    </td>
                     <td >{{$value->tipo_documento->descripcion}}</td>
                     <td >{{$value->fecha_del}}</td>
                     <td >{{$value->fecha_al}}</td>
@@ -76,7 +80,7 @@
                       </a>
                       <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
                       <a href="{{ route('documento.archivos', $value->id) }}"
-                        class="btn btn-success" title="Archivo">
+                        class="btn btn-success" title="ver Archivos">
                         <i class="fa fa-file-pdf-o"></i>
                       </a>
                     </td>
@@ -104,7 +108,11 @@
               <tbody>
                 @foreach($trim2 as $value)
                 <tr>
-                  <td>{{$value->nombre}}</td>
+                  <td>                
+                    <a href="{{ route('documento.archivos', $value->id) }}" title="ver Archivos">
+                      {{$value->nombre}}
+                    </a>
+                  </td>
                   <td>{{$value->tipo_documento->descripcion}}</td>
                   <td>{{$value->fecha_del}}</td>
                   <td>{{$value->fecha_al}}</td>
@@ -119,7 +127,7 @@
                     </a>
                     <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
                     <a href="{{ route('documento.archivos', $value->id) }}"
-                      class="btn btn-success" title="Archivo">
+                      class="btn btn-success" title="ver Archivos">
                       <i class="fa fa-file-pdf-o"></i>
                     </a>
                   </td>
@@ -147,7 +155,11 @@
             <tbody>
               @foreach($trim3 as $value)
               <tr>
-                <td>{{$value->nombre}}</td>
+                <td>                
+                <a href="{{ route('documento.archivos', $value->id) }}" title="ver Archivos">
+                  {{$value->nombre}}
+                </a>
+                </td>
                 <td>{{$value->tipo_documento->descripcion}}</td>
                 <td>{{$value->fecha_del}}</td>
                 <td>{{$value->fecha_al}}</td>
@@ -162,7 +174,7 @@
                   </a>
                   <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
                   <a href="{{ route('documento.archivos', $value->id) }}"
-                    class="btn btn-success" title="Archivo">
+                    class="btn btn-success" title="ver Archivos">
                     <i class="fa fa-file-pdf-o"></i>
                   </a>
                 </td>
@@ -191,7 +203,11 @@
           <tbody>
             @foreach($trim4 as $value)
             <tr>
-              <td>{{$value->nombre}}</td>
+              <td>                
+                <a href="{{ route('documento.archivos', $value->id) }}" title="ver Archivos">
+                  {{$value->nombre}}
+                </a>
+              </td>
               <td>{{$value->tipo_documento->descripcion}}</td>
               <td>{{$value->fecha_del}}</td>
               <td>{{$value->fecha_al}}</td>
@@ -206,7 +222,7 @@
                 </a>
                 <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
                 <a href="{{ route('documento.archivos', $value->id) }}"
-                  class="btn btn-success" title="Archivo">
+                  class="btn btn-success" title="ver Archivos">
                   <i class="fa fa-file-pdf-o"></i>
                 </a>
               </td>
