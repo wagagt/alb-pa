@@ -27,6 +27,7 @@ class chat_doctsController extends Controller {
 		$chats = chat_docts::select('id','texto', 'user_send_id', 'user_recibe_id', 'created_at')
 				->where('documento_id', $docId)
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
+				->orderBy('created_at', 'ASC')
 				->get();
         return $chats->toJson();
 	}
@@ -34,11 +35,12 @@ class chat_doctsController extends Controller {
 	public function getNewMessages(Request $request){
 		$input = Request::except('_token');
 		$docId = $input['docId'];
-		$msgs = chat_docts::selectRaw('user_recibe_id, count(user_recibe_id)  as total')
+		$msgs = chat_docts::selectRaw('user_send_id, count(user_send_id)  as total')
 				->where('documento_id', $docId)
 				->where('status_id', '=', 1)
-				->groupBy('user_recibe_id')
+				->groupBy('user_send_id')
 				->get();
+				//dd($msgs);
 		return $msgs->toJson();
 	}
 

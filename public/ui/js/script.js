@@ -55,14 +55,15 @@ function sendMessage(){
 	 	 		success: function(data) {
 	 	 			var obj = $.parseJSON(data);
 	 	 			$.each(obj, function(){
-	 	 				var userRecibeId = this['user_recibe_id'];
-	 	 				if (userRecibeId == $('#activeChatId').val() ){ // refrescar conversacion
-	 	 					//ajaxRefreshChat (docId, userRecibeId);
-	 	 					var chatActive ="chat_"+docId+"_"+userRecibeId;
+	 	 				var userSendId = this['user_send_id'];
+	 	 				if (userSendId == $('#activeChatId').val() ){ // refrescar conversacion
+	 	 					// ir atraer los mensajes de la conversacion activa
+	 	 					ajaxRefreshChat (docId, userSendId);
+	 	 					var chatActive ="chat_"+docId+"_"+userSendId;
 	 	 					$("#"+chatActive).click();
 	               		}else{ // crear marca con numero de mensajes sin leer
 	                		var total = this['total'];
-	                		var domId = 'mensajeNuevo_'+userRecibeId;
+	                		var domId = 'mensajeNuevo_'+userSendId;
 	                		$('#'+domId).html(total);
 	                	}
 					});
@@ -85,7 +86,7 @@ function sendMessage(){
 	 	 		// 	$("#chats").html('problemas... por favor actualiza el navegador');
 	 	 		// }
 
-	 	},5000);
+	 	},10000);
 	 	$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	 }
 
@@ -147,6 +148,7 @@ function ajaxRefreshChat(docId, inquilinoId){
 	            $('#'+domId).html(total);
 	            // si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
 	            if(newMessages>0) updateMessages(arrChangeStatusMessages);
+	             	$("#chats").scrollTop($("#chats").prop("scrollHeight")+800); //scroll top max
 			},
             error: function(response) {
                 var newChat = 'ERROR: Problemas para retornar la conversación.';
