@@ -66,10 +66,16 @@ class PropietarioController extends Controller
 
     public function documentos(Request $request)
     {
+        //dd('llego a propietario documentos');
+        $input = $request->all();
         $userId = \Auth::user()->id;
-        
-        $apto = Apartamento::where('user_id', '=', $userId)->select('torre_id')->first();
-     $documentos = Documento::where('torre_id', '=', $apto->torre_id)->orderBy('nombre', 'ASC')->paginate(25);
+        //dd($input, $userId);
+        $apto = Apartamento::where('user_id', '=', $userId)->select('torre_id')
+        ->first();
+        dd($apto);
+        $documentos = Documento::where('torre_id', '=', $apto->torre_id)
+        ->orderBy('nombre', 'ASC')
+        ->paginate(25);
         return view('documento.prop_index')
         ->with('documentos', $documentos);
     }

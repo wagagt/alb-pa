@@ -1,12 +1,13 @@
 <?php
 use App\Paise;
 
+
 Route::group(['middleware' => ['admin']], function () 
 {
-	//  Dashboard
-	Route::get('dash', ['as' => 'admin.index', function () {
-		return view('admin.index');
-	}]);
+	 // Route::get('dash', ['as' => 'admin.index', function () {
+	 // 	return view('admin.index');
+	 // }]);
+	 
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');
 
@@ -158,19 +159,33 @@ Route::group(['middleware' => ['admin']], function ()
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
 Route::group(['middleware' => ['propietario']], function () {
+
+		// Route::get('dash', ['as' => 'admin.index', function () {
+	 // 		return view('admin.index');
+	 // 	}]);
+
+		// Route::get('/home', function() {
+		// 		dd('test /home propietario');
+		// });
+
+		// Route::get('home', ['as' => 'propietario.index', function () {
+		// 	return view('propietario.index');
+		// }]);
+
 		Route::get('dash', ['as' => 'propietario.index', function () {
 			return view('propietario.index');
 		}]);
 
-		Route::get('propietario/documentos', function(){  //'PropietarioController@documentos'
-			dd('propietario-documento route');
-		});
+		Route::get('propietario/documentos',[
+			'uses'	=> 'PropietarioController@documentos',
+			'as'	=> 'propietario.documentos'
+		]);
 
 
-		// Route::get ('propietario/edit/{id}',[
-		// 'uses' 	=> 'PropietarioController@edit',
-		// 'as'	=> 'propietario.edit'
-		// ]);
+		Route::get ('propietario/edit/{id}',[
+		'uses' 	=> 'PropietarioController@edit',
+		'as'	=> 'propietario.edit'
+		]);
 
 		// Route::post('propietario/update/{id}', [
 		// 'uses' 	=> 'PropietarioController@update',
@@ -188,8 +203,6 @@ Route::group(['middleware' => ['propietario']], function () {
 
 	});
 /********************************************************/
-
-// Authentication routes...
 
 Route::get('/', function () {
 		return redirect()->route('admin.auth.login');
