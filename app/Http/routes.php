@@ -224,3 +224,17 @@ Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 				require config('infyom.laravel_generator.path.api_routes');
 			});
 	});
+
+ Route::get
+ ('user/login', 
+ 	['as' => 'user.login', function () 
+ 	{
+	 	if (\Auth::user()->isAdmin()){
+	 		return view('admin.index');	
+	 	}
+	 	if (\Auth::user()->isPropietario()){
+	 		return view('propietario.index');	
+	 	}
+ 	
+ 	}]
+);

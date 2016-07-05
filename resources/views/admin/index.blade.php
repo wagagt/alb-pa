@@ -18,7 +18,7 @@
         </div>
 
         <div class="box-body">
-            Contenidos de la caja
+            Contenidos de la caja <H2>LAYOUT ADMIN</H2>
         </div>
 
 

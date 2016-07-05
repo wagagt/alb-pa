@@ -55,9 +55,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     return $query->where('name', 'LIKE', '%'.$name.'%');
   }
 
-  public function admin()
+  public function isAdmin()
   {
-    return $this->tipo !=  'propietario';
+    return ($this->tipo ==  'admin')?true:false;
   }
 
   public function isPropietario()

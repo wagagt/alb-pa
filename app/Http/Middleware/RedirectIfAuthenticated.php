@@ -34,10 +34,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
+        //dd('pasoaca?', $this->auth->check() );
         if ($this->auth->check()) {
-            return redirect()->route('admin.index');
+           return redirect()->route('user.login');
         }
-
         return $next($request);
     }
 }
