@@ -4,26 +4,18 @@ use App\Paise;
 
 Route::group(['middleware' => ['admin']], function () 
 {
-	 // Route::get('dash', ['as' => 'admin.index', function () {
-	 // 	return view('admin.index');
-	 // }]);
+	Route::get('admin/home', ['as' => 'admin.home', function () {
+			return view('admin.index');
+	}]);
 	 
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');
-
 	Route::resource('statusComents', 'status_comentsController');
-
 	Route::resource('chatDocts', 'chat_doctsController');
-	
 	Route::post('/escribir', 'chat_doctsController@escribir');
 	Route::get('/getchat', 'chat_doctsController@getChat');
-	// Route::get('/getchat', function(){
-	// 	$input = Request::except('_token');
-	// dd($input);
-	// });
 	Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
 	Route::get('/updateMessages', 'chat_doctsController@updateMessages');
-
 	Route::resource('notificaionesChats', 'notificaionesChatController');
 
 	//Archivos_documento Resources
@@ -41,9 +33,7 @@ Route::group(['middleware' => ['admin']], function ()
 	Route::get('users/{id}/destroy', [
 			'uses' => 'UsersController@destroy',
 			'as'   => 'users.destroy'
-
 		]);
-
 	Route::get('csv', function () {
 			if (($handle = fopen(public_path().'/uploads/paises.csv', 'r')) !== FALSE) {
 				while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
@@ -78,7 +68,6 @@ Route::group(['middleware' => ['admin']], function ()
 	Route::get('torre/{id}/destroy', [
 			'uses' => 'TorreController@destroy',
 			'as'   => 'torre.destroy'
-
 		]);
 	Route::get('torre/{id}/documentos', [
 			'uses' => 'TorreController@documentos',
@@ -93,7 +82,6 @@ Route::group(['middleware' => ['admin']], function ()
 			'uses' => 'ApartamentoController@aptoTorres',
 			'as'   => 'apartamento.Torres'
 		]);
-
 	Route::get('apartamento/{id}/destroy', [
 			'uses' => 'ApartamentoController@destroy',
 			'as'   => 'apartamento.destroy'
@@ -159,29 +147,13 @@ Route::group(['middleware' => ['admin']], function ()
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
 Route::group(['middleware' => ['propietario']], function () {
-
-		// Route::get('dash', ['as' => 'admin.index', function () {
-	 // 		return view('admin.index');
-	 // 	}]);
-
-		// Route::get('/home', function() {
-		// 		dd('test /home propietario');
-		// });
-
-		// Route::get('home', ['as' => 'propietario.index', function () {
-		// 	return view('propietario.index');
-		// }]);
-
-		Route::get('dash', ['as' => 'propietario.index', function () {
+		Route::get('propietario/home', ['as' => 'propietario.home', function () {
 			return view('propietario.index');
 		}]);
-
 		Route::get('propietario/documentos',[
 			'uses'	=> 'PropietarioController@documentos',
 			'as'	=> 'propietario.documentos'
 		]);
-
-
 		Route::get ('propietario/edit/{id}',[
 		'uses' 	=> 'PropietarioController@edit',
 		'as'	=> 'propietario.edit'
@@ -200,53 +172,44 @@ Route::group(['middleware' => ['propietario']], function () {
 		// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
 		// 'as'   => 'propDocumento.archivos'
 		// ]);
-
 	});
-/********************************************************/
 
+/**************************  Routes without Authentication **********************/
 Route::get('/', function () {
 		return redirect()->route('admin.auth.login');
 	});
-
 Route::get('admin/auth/login', [
 
 		'uses' => 'Auth\AuthController@getLogin',
 		'as'   => 'admin.auth.login'
 	]);
-
 Route::post('admin/auth/login', [
-
 		'uses' => 'Auth\AuthController@postLogin',
 		'as'   => 'admin.auth.login'
 	]);
-
 Route::get('admin/auth/logout', [
-
 		'uses' => 'Auth\AuthController@getLogout',
 		'as'   => 'admin.auth.logout'
 	]);
-
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
-
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
-
 Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 		Route::group(['prefix' => 'v1'], function () {
 				require config('infyom.laravel_generator.path.api_routes');
 			});
 	});
-
+/***************** Route redirect user by 'tipo' ***********/
  Route::get
  ('user/login', 
  	['as' => 'user.login', function () 
  	{
 	 	if (\Auth::user()->isAdmin()){
-	 		return view('admin.index');	
+	 		return redirect()->route('admin.home');	
 	 	}
 	 	if (\Auth::user()->isPropietario()){
-	 		return view('propietario.index');	
+	 		return redirect()->route('propietario.home');	
 	 	}
  	
  	}]
