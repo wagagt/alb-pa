@@ -37,7 +37,7 @@
 
         </li>
 
-        <li><a href="/propietario/documentos"><i class="fa fa-building-o"/></i><span>Documentos</span></a></li>
+        <li><a href="torre/{{\Auth::user()->getTorre()}}/documentos"><i class="fa fa-building-o"/></i><span>Documentos</span></a></li>
 
 
 

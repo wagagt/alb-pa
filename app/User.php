@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use App\Models\Activity_log;
+use App\Apartamento;
 use Illuminate\Contracts\Auth\Guard;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
@@ -72,6 +73,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
   public function isFirstLogin(){
       $userId = \Auth::user()->id;
       return (Activity_log::where ('user_id', '=', $userId)->count() == 1);
+  }
+
+  public function getTorre(){
+    $userId = \Auth::user()->id;
+    $torre = Apartamento::where ('user_id', '=', $userId)->select('torre_id')->firstOrFail();
+    return($torre['torre_id']);
   }
 
 }
