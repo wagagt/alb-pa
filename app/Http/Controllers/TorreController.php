@@ -91,12 +91,22 @@ class TorreController extends Controller {
     ->orderBy('nombre', 'ASC')->paginate(25);    
 
     $torre = Torre::findOrfail($id);
-    return view('documento.index')
-    ->with('trim1', $trim1)
-    ->with('trim2', $trim2)
-    ->with('trim3', $trim3)
-    ->with('trim4', $trim4)
-    ->with('torre', $torre);
+    if(\Auth::user()->isAdmin()){
+	    return view('documento.index')
+	    ->with('trim1', $trim1)
+	    ->with('trim2', $trim2)
+	    ->with('trim3', $trim3)
+	    ->with('trim4', $trim4)
+	    ->with('torre', $torre);
+	}else{
+		return view('propietario.documento.index')
+	    ->with('trim1', $trim1)
+	    ->with('trim2', $trim2)
+	    ->with('trim3', $trim3)
+	    ->with('trim4', $trim4)
+	    ->with('torre', $torre);
+
 	}
+}
 
 }

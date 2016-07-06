@@ -155,9 +155,10 @@ Route::group(['middleware' => ['propietario']], function () {
 			'as'	=> 'propietario.documentos'
 		]);
 		Route::get ('propietario/edit/{id}',[
-		'uses' 	=> 'PropietarioController@edit',
-		'as'	=> 'propietario.edit'
+			'uses' 	=> 'PropietarioController@edit',
+			'as'	=> 'propietario.edit'
 		]);
+	//Apart
 
 		// Route::post('propietario/update/{id}', [
 		// 'uses' 	=> 'PropietarioController@update',
@@ -174,7 +175,20 @@ Route::group(['middleware' => ['propietario']], function () {
 		// ]);
 	});
 
+
 /**************************  Routes without Authentication **********************/
+
+
+Route::get('propietario/torre/{id}/documentos', [
+	'uses' => 'TorreController@documentos',
+	'as'   => 'propietario.torre.documentos'
+]);
+
+Route::get('propietario/documento/{id}/archivos_documento', [
+			'uses' => 'Archivos_documentoController@archivosxDocumento',
+			'as'   => 'documento.archivos'
+		]);
+
 Route::get('/', function () {
 		return redirect()->route('admin.auth.login');
 	});

@@ -21,7 +21,6 @@ class Archivos_documentoController extends Controller {
 
 	public function archivosxDocumento($id) {
 		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
-		$archivos_documento = \DB::table('archivos_documentos')->where('documentos_id', $id)->get();
 		$usuarios = User::orderBy('usuario', 'ASC')
 		->where('tipo', 'propietario')
 		->get();
@@ -31,13 +30,28 @@ class Archivos_documentoController extends Controller {
 		$usersChatActive = $senderActive->union($receiverActive)->get();
 		//dd($usersChatActive);
 		$chats = [];
-		return view('archivos_documento.index')
+		if(\Auth::user()->isAdmin()){
+			$archivos_documento = \DB::table('archivos_documentos')
+			->where('documentos_id', $id)->get();
+
+	    	return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
 			->with('usersChatActive', $usersChatActive)
 			->with('chats', $chats);
+		}else{
+			$archivos_documento = \DB::table('archivos_documentos')
+			->where('documentos_id', $id)
+			->where('activo', 1)->get();
 
+			return view('propietario.archivos_documento.index')
+			->with('documento', $documento)
+			->with('archivos', $archivos_documento)
+			->with('usuarios', $usuarios)
+			->with('usersChatActive', $usersChatActive)
+			->with('chats', $chats);
+		}
 	}
 
 	public function PropArchivosxDocumento($id) {

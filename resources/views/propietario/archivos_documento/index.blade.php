@@ -4,9 +4,8 @@
 <div class="col-xs-12">
 <div class="box box-primary"> </div>
     <div class="box-header">
-      <h3 class="box-title">Lista de Archivos x Documento</h3>
       <div class="box-tools">
-            <div class="col-md-3 text-left"><a href="/propietario/documentos" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Lista documentos </a>  
+            <div class="col-md-3 text-left"><a href="/propietario/torre/{{$documento->torre->id}}/documentos" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Volver </a>  
             </div>
       </div>
     </div>
@@ -52,7 +51,14 @@
                 <div class="panel-body">
                   <div class="box-body" style="background: #e6e6ff;">
                     <div class="col-md-12" >
+
                       <!-- ARCHIVOS DEL DOCUMENTO -->
+                      <?php 
+                      //dd($archivos);
+                      if( empty($archivos)) {
+                          echo "<h3>No se han ingresado documentos...</h3>";
+                        }else{?>
+
                       <table class="table table-hover" >
                         <thead>
                           <th>Nombre</th>
@@ -64,7 +70,7 @@
                           <tr>
                             <td>{{$value->nombre}}</td>
                             <td>
-                              <a href="/uploads/{{$value->nombre}}" target="_blank">
+                              <a href="/uploads/{{$value->nombre}}" target="popup" onclick="window.open('/uploads/{{$value->nombre}}','name','width=800,height=600')">
                                 <h2><i class="fa fa-eye fa-6" aria-hidden="true"></i></h2>
                               </a>
                               </td>
@@ -72,6 +78,7 @@
                             @endforeach
                           </tbody>
                         </table>
+                        <?php }?>
                     </div>
                   </div>
                 </div>
