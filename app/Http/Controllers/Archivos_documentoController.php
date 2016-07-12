@@ -131,11 +131,11 @@ class Archivos_documentoController extends Controller {
 	public function update($archivo_id, Request $request) {
 		$input        = $request->all();
 		$documento_id = $input['documento_id'];
-		$affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
+		//$affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
 
 		if ($archivo_id > 0) {
 			$archivos_documento         = Archivos_documento::findOrfail($archivo_id);
-			$archivos_documento->activo = "1";
+			$archivos_documento->activo = ($archivos_documento->activo=="1")?"0":"1";
 			$archivos_documento->save();
 		}
 		return redirect('documento/'.$documento_id.'/archivos_documento');
