@@ -120,4 +120,8 @@ class UsersController extends Controller
             return redirect()->route('users.index');
           }
     }
+    
+    public function profile(){
+        return view('admin.profile', array('user'=> \Auth::user()));
+    }
 }

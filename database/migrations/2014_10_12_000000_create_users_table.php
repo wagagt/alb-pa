@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('pasaporte');
             $table->string('cedula');
+            $table->string('avatar')->default('default.jpg');
             $table->string('password', 60);
             $table->enum('tipo', ['propietario','admin','super_admin'])->default('propietario');
             $table->boolean('status')->default(0);

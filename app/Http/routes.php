@@ -7,6 +7,8 @@ Route::group(['middleware' => ['admin']], function ()
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 			return view('admin.index');
 	}]);
+	
+	Route::get('profile', 'UsersController@profile');
 	 
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');

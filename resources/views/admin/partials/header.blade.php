@@ -124,12 +124,14 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                 <img src="{{asset('/ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
-
+                <img src="{{asset('/ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
+                <a style="color:white" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i>Perfil</a>
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
                   <small>Miembro desde:  {{Auth::user()->created_at}}</small>
+                  
                 </p>
+                
               </li>
               <!-- Menu Body -->
               <li class="user-body">
