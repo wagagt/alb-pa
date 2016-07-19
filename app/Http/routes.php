@@ -10,6 +10,8 @@ Route::group(['middleware' => ['admin']], function ()
 	
 	Route::get('profile', 'UsersController@profile');
 	 
+	Route::post('profile', 'UsersController@updateAvatar');
+	
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');
 	Route::resource('statusComents', 'status_comentsController');

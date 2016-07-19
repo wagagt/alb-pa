@@ -10,6 +10,7 @@ use App\User;
 use Laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
+use Image;
 
 class UsersController extends Controller
 {
@@ -123,5 +124,20 @@ class UsersController extends Controller
     
     public function profile(){
         return view('admin.profile', array('user'=> \Auth::user()));
+    }
+    
+    public function updateAvatar(Request $request){
+        // handle the user upload of avatar
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time().'.'. $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save( public_path('uploads/avatars/' . $filename ));
+            
+            $user = \Auth::user();
+            $user->avatar =$filename;
+            $user->save();
+        }
+        
+        return view('admin.profile', array('user' => \Auth::user() ));
     }
 }
