@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Request;
 use App\Models\chat_docts;
+use App\User;
 use DB;
 
 class chat_doctsController extends Controller {
@@ -29,6 +30,19 @@ class chat_doctsController extends Controller {
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
 				->orderBy('created_at', 'ASC')
 				->get();
+		//dd($chats[0]->user_recibe_id, $chats[0]->user_send_id);
+		
+		if ($chats->count() > 0){
+			// dd('cumplio', $chats->count());
+			$avatar_send = User::select('avatar')->where('id', $chats[0]->user_send_id)->get();
+			$avatar_receive = User::select('avatar')->where('id', $chats[0]->user_recibe_id)->get();
+			$chats = $chats->toBase();
+			$chats->push(['avatar_send'=>  $avatar_send, 
+				    'avatar_receive' => $avatar_receive]); 
+		}else{
+			return json_encode(array());
+		}
+		
         return $chats->toJson();
 	}
 
@@ -41,7 +55,13 @@ class chat_doctsController extends Controller {
 				->groupBy('user_send_id')
 				->get();
 				//dd($msgs);
-		return $msgs->toJson();
+		if ($msgs->count() > 0 ){
+			//dd($msg);
+			return $msgs->toJson();	
+		}else{
+			//dd('no hay ensajes');
+			return json_encode(array());
+		}
 	}
 
 	public function updateMessages(Request $request){
