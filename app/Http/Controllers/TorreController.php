@@ -70,43 +70,35 @@ class TorreController extends Controller {
 
   public function documentos(Request $request, $id)
   {
-    $trim1 = Documento::where('torre_id', '=', $id)
-    ->whereMonth('fecha_del', '>=', '1')
-    ->whereMonth('fecha_del', '<=', '3')
-    ->orderBy('nombre', 'ASC')->paginate(25);
-
-    $trim2 = Documento::where('torre_id', '=', $id)
-    ->whereMonth('fecha_del', '>=', '4')
-    ->whereMonth('fecha_del', '<=', '6')
-    ->orderBy('nombre', 'ASC')->paginate(25);
-
-    $trim3 = Documento::where('torre_id', '=', $id)
-    ->whereMonth('fecha_del', '>=', '7')
-    ->whereMonth('fecha_del', '<=', '9')
-    ->orderBy('nombre', 'ASC')->paginate(25);
-
-    $trim4 = Documento::where('torre_id', '=', $id)
-    ->whereMonth('fecha_del', '>=', '10')
-    ->whereMonth('fecha_del', '<=', '12')
-    ->orderBy('nombre', 'ASC')->paginate(25);    
-
-    $torre = Torre::findOrfail($id);
-    if(\Auth::user()->isAdmin()){
-	    return view('documento.index')
-	    ->with('trim1', $trim1)
-	    ->with('trim2', $trim2)
-	    ->with('trim3', $trim3)
-	    ->with('trim4', $trim4)
-	    ->with('torre', $torre);
-	}else{
-		return view('propietario.documento.index')
-	    ->with('trim1', $trim1)
-	    ->with('trim2', $trim2)
-	    ->with('trim3', $trim3)
-	    ->with('trim4', $trim4)
-	    ->with('torre', $torre);
-
+		$trim1 = Documento::where('torre_id', '=', $id)
+		->whereMonth('fecha_del', '>=', '1')
+		->whereMonth('fecha_del', '<=', '3')
+		->orderBy('nombre', 'ASC')->paginate(25);
+		
+		$trim2 = Documento::where('torre_id', '=', $id)
+		->whereMonth('fecha_del', '>=', '4')
+		->whereMonth('fecha_del', '<=', '6')
+		->orderBy('nombre', 'ASC')->paginate(25);
+		
+		$trim3 = Documento::where('torre_id', '=', $id)
+		->whereMonth('fecha_del', '>=', '7')
+		->whereMonth('fecha_del', '<=', '9')
+		->orderBy('nombre', 'ASC')->paginate(25);
+		
+		$trim4 = Documento::where('torre_id', '=', $id)
+		->whereMonth('fecha_del', '>=', '10')
+		->whereMonth('fecha_del', '<=', '12')
+		->orderBy('nombre', 'ASC')->paginate(25);    
+		
+		$torre = Torre::findOrfail($id);
+		$typeOfUser = (\Auth::user()->isAdmin()) ? "" : "propietario.";
+		//return view($typeOfUser.'.profile', array('user'=> \Auth::user()));
+		return view($typeOfUser.'documento.index')
+		->with('trim1', $trim1)
+		->with('trim2', $trim2)
+		->with('trim3', $trim3)
+		->with('trim4', $trim4)
+		->with('torre', $torre);
 	}
-}
-
-}
+  	
+ }

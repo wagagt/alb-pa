@@ -9,7 +9,6 @@ Route::group(['middleware' => ['admin']], function ()
 	}]);
 	
 	Route::get('profile', 'UsersController@profile');
-	 
 	Route::post('profile', 'UsersController@updateAvatar');
 	
 	// Integrate Routes for chats
@@ -151,36 +150,49 @@ Route::group(['middleware' => ['admin']], function ()
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
 Route::group(['middleware' => ['propietario']], function () {
-		Route::get('propietario/home', ['as' => 'propietario.home', function () {
-			return view('propietario.index');
-		}]);
-		Route::get('propietario/documentos',[
-			'uses'	=> 'PropietarioController@documentos',
-			'as'	=> 'propietario.documentos'
-		]);
-		Route::get ('propietario/edit/{id}',[
-			'uses' 	=> 'PropietarioController@edit',
-			'as'	=> 'propietario.edit'
-		]);
+
+	Route::get('propietario/documentos',[
+		'uses'	=> 'PropietarioController@documentos',
+		'as'	=> 'propietario.documentos'
+	]);
+		
+	Route::post('propietario/profile', 'UsersController@updateAvatar');
+	
+	Route::get('propietario/home', ['as' => 'propietario.home', 
+		function () {
+		return view('propietario.index');
+		}
+	]);
+	
+	Route::get ('propietario/edit/{id}',[
+		'uses' 	=> 'PropietarioController@edit',
+		'as'	=> 'propietario.edit'
+	]);
+	
 	//Apart
+	// Route::post('propietario/update/{id}', [
+	// 'uses' 	=> 'PropietarioController@update',
+	// 'as'	=> 'propietario.update'
+	// ]);
 
-		// Route::post('propietario/update/{id}', [
-		// 'uses' 	=> 'PropietarioController@update',
-		// 'as'	=> 'propietario.update'
-		// ]);
+	// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
+	// return view('propietario.dash');
+	// }]);
 
-		// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
-		// return view('propietario.dash');
-		// }]);
-
-		// Route::get('propietario/documento/{id}/archivos', [
-		// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
-		// 'as'   => 'propDocumento.archivos'
-		// ]);
-	});
+	// Route::get('propietario/documento/{id}/archivos', [
+	// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
+	// 'as'   => 'propDocumento.archivos'
+	// ]);
+});
 
 
 /**************************  Routes without Authentication **********************/
+
+	
+Route::get('propietario/profile', [
+	'uses' => 'UsersController@profile',
+	'as' => 'propietario.profile' 
+]);
 
 
 Route::get('propietario/torre/{id}/documentos', [
@@ -188,6 +200,8 @@ Route::get('propietario/torre/{id}/documentos', [
 	'as'   => 'propietario.torre.documentos'
 ]);
 
+Route::post('profile', 'UsersController@updateAvatar');
+	
 Route::get('propietario/documento/{id}/archivos_documento', [
 			'uses' => 'Archivos_documentoController@archivosxDocumento',
 			'as'   => 'documento.archivos'

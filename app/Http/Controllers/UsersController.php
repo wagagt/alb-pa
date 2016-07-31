@@ -16,11 +16,6 @@ class UsersController extends Controller
 {
 
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $users = User::search($request->name)->orderBy('name', 'ASC')->paginate(25);
@@ -28,86 +23,39 @@ class UsersController extends Controller
             ->with('users', $users);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('user.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(UserRequest  $request)
     {
         $user = new User($request->all());
         $user->password = bcrypt($request->password);
-        //dd($user);
-
         $user->save();
-
         Flash::success('Se ha registrado '.$user->name. ' de forma exitosa!!');
-
         return redirect()->route('users.index');
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::find($id);
-        //dd($user->id);
-
           return view('user.edit')->with('usuario', $user);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $user = User::find($id);
         $user->fill($request->all());
-        //dd($user);
         $user->save();
-
         Flash::warning('El usuario '.$user->name.' ha sido actualizado con éxito!!');
         return redirect()->route('users.index');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $user = User::find($id);
@@ -123,7 +71,8 @@ class UsersController extends Controller
     }
     
     public function profile(){
-        return view('admin.profile', array('user'=> \Auth::user()));
+        $typeOfUser = (\Auth::user()->isAdmin()) ? "admin" : "propietario";
+        return view($typeOfUser.'.profile', array('user'=> \Auth::user()));
     }
     
     public function updateAvatar(Request $request){
@@ -132,12 +81,11 @@ class UsersController extends Controller
             $avatar = $request->file('avatar');
             $filename = time().'.'. $avatar->getClientOriginalExtension();
             Image::make($avatar)->resize(300,300)->save( public_path('uploads/avatars/' . $filename ));
-            
             $user = \Auth::user();
             $user->avatar =$filename;
             $user->save();
         }
-        
-        return view('admin.profile', array('user' => \Auth::user() ));
+        $typeOfUser = (\Auth::user()->isAdmin()) ? "admin" : "propietario";
+        return view($typeOfUser.'.profile', array('user'=> \Auth::user()));
     }
 }

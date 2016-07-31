@@ -2,10 +2,10 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="/login/dash" class="logo">
-          <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
+    <a href="/propietario/home" class="logo">
+          <span class="logo-mini responsive"><img src="{{asset('/ui/images/logo-min.png')}}"></img></span>
 
-      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Administración</b> - </span>
+      <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"></img><b>Propietario</b> - </span>
     </a>
 
     <!-- Header Navbar -->
@@ -117,14 +117,15 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/ui/images/avataruser.png" class="user-image" alt="User Image">
+              <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="user-image" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                 <img src="{{asset('ui/images/avataruser.png')}}" class="img-circle" alt="User Image">
+                 <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
+                <a style="color:white" href="{{ url('/propietario/profile') }}"><i class="fa fa-btn fa-user"></i>Perfil</a>
 
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
