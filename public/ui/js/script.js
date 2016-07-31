@@ -1,5 +1,17 @@
 $(document).ready(sendMessage);
 
+function validateMessage(userReceiveId, chat){
+	if (userReceiveId=="") { 
+		alert('ALERTA: Elige un chat antes de enviar mensaje.');
+		return false;
+	};
+	if (chat.length<6) {
+		alert('ALERTA: El mensaje debe tener mas de 5 caracteres.');
+		return false;
+	};
+	return true;
+}
+
 function sendMessage(){
 	 $('#sendMessage').click(function(event){
 	 	 //var keycode = (event.keycode ? event.keycode : event.which);
@@ -7,9 +19,9 @@ function sendMessage(){
 	 	 	var chat = $('.compositor').val();
 	 	 	var token = $('#token').val();
 	 	 	var userSendId = $('#user_send').val();
-	 	 	var userReceiveId = $('#user_recibe').val();
+	 	 	var userReceiveId = $('#activeChatId').val();
 	 	 	var docId = $('#docto_id').val();
-	 	 	if (userReceiveId=="") alert('ALERTA: Elige un chat antes de enviar mensaje.');
+			if ( !validateMessage(userReceiveId, chat) ) return false;
 	 	 	$.ajax({
 	 	 		async: true,
 	 	 		headers:{'X-CSRF-TOKEN': token},
@@ -92,6 +104,7 @@ function sendMessage(){
 	 	$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	 }
 
+	// Event on click over user icon
 	$('[id^=chat_]').click(function(event){
 		var thisId = $(this).attr('id'); //chat_3_3
 		var arrayParams = thisId.split('_');
@@ -150,9 +163,10 @@ function ajaxRefreshChat(docId, inquilinoId){
 	                	 }
 					});
 	                // inyectar en el contenedor de CHAT.
-	                $('*[id^="chat_"]').removeClass('chat-selected');
-	                $('#chat_'+inquilinoId).addClass('chat-selected');
-	                $("#user_recibe").attr('value',inquilinoId);
+	                // $('*[id^="chat_"]').removeClass('chat-selected');
+	                // $('#chat_'+inquilinoId).addClass('chat-selected');
+	                // $("#user_recibe").attr('value',inquilinoId);
+	                updateActiveChat(inquilinoId);
 	                $('#chats').html(fullHtml);
 	                // limpiar el aviso de mensajes sin leer
 	                var total = "";
@@ -162,7 +176,9 @@ function ajaxRefreshChat(docId, inquilinoId){
 		            if(newMessages>0) updateMessages(arrChangeStatusMessages);
 		             	$("#chats").scrollTop($("#chats").prop("scrollHeight")+800); //scroll top max
                 }else{
-                	$('#chats').html("No existen mensajes");
+                	// update chatActiveId, Add chat-selected (RED), add user name on title.
+                	updateActiveChat(inquilinoId);
+	                
                 }
                 $("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
 			},
@@ -174,6 +190,16 @@ function ajaxRefreshChat(docId, inquilinoId){
 		$("html, body").animate({ scrollTop: $(document).height() }, 1000);
 };
 
+// update ActiveChat, Name on User, clear message textbox
+function updateActiveChat(inquilinoId){
+		$('.compositor').val('');
+		$('#chats').html("No existen mensajes");
+    	$('*[id^="chat_"]').removeClass('chat-selected');
+        $('#chat_'+inquilinoId).addClass('chat-selected');
+        $('#activeChatId').val(inquilinoId);
+        var userName = $("#chat_" + $("#docto_id").val() + "_" + inquilinoId).attr("title");
+        $("#enviarA").html(userName);
+}
 
 function updateMessages(arrMessages){
 	$.ajax({

@@ -6,7 +6,8 @@
     <div class="box-header">
       <h3 class="box-title">Lista de Archivos x Documento</h3>
       <div class="box-tools">
-            <div class="col-md-3 text-left"><a href="{{ route('torre.documentos', $documento->torre->id) }}" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Lista documentos </a>  
+            <div class="col-md-3 text-left"><a href="{{ route('torre.documentos', $documento->torre->id) }}" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i>
+            Lista documentos</a>  
             </div>
       </div>
     </div>
@@ -139,15 +140,13 @@
                   <div class="box-body box-chat">
                         <div class="col-md-3"> <h5>Propietarios</h5></div>
                         <div class="col-md-5"> <h5>Mensajes</h5> </div>
-                        <div class="col-md-4"> <h5>Enviar</h5> </div>
+                        <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
 
                         <div class="col-md-3" id="users">
-                        <?php
-                          $userChatActiveId = array_column($usersChatActive, 'user_send_id')
-                        ?>
                           @foreach($usuarios as $usuario)
                           <?php 
-                            $haveChat = (in_array($usuario->id, $userChatActiveId, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
+                            //echo "id------".$usuario->id;
+                            $haveChat = (in_array($usuario->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
                           <div class="alb-row">
@@ -185,10 +184,16 @@
                             <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
                             {!! Form::textarea('compositor', null, ['class' => 'compositor form-control', 'autocomplete' => 'off', 'size' => '30x5']) !!}
                           </div>
-                          <span class="input-group-btn">
-                        <button type="submit" id="sendMessage" name="sendMessage" class="btn btn-success btn-flat right">Enviar</button>
-                      </span>
                         </div>
+                        <div class="col-md-4">
+                          <p style="display:table-cell;">Mínimo 5 caracteres.</p>
+                        
+                          <span class="input-group-btn">
+                            <button type="submit" id="sendMessage" name="sendMessage" class="btn btn-success btn-flat right">Enviar</button>
+                          </span>
+                        </div>
+                        
+                        
                       </div>
                 </div>
             </div>
