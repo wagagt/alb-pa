@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.propietario')
 @section('title', 'Editar usuario')
 @section('content')
   <div class="col-xs-12">
