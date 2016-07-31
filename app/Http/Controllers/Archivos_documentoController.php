@@ -24,32 +24,35 @@ class Archivos_documentoController extends Controller {
 		$usuarios = User::orderBy('usuario', 'ASC')
 		->where('tipo', 'propietario')
 		->get();
-
-		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id); 
+		$arrayChats[] =array();
+	
+		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id);
 		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id); 
 		$usersChatActive = $senderActive->union($receiverActive)->get();
-		//dd($usersChatActive);
+        foreach($usersChatActive as $chat) {
+	        $arr = (array)$chat;
+    	    $arrayChats[] = $arr['user_send_id'];
+    	};
 		$chats = [];
+		
 		if(\Auth::user()->isAdmin()){
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)->get();
-
 	    	return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('usersChatActive', $usersChatActive)
+			->with('arrayChats', $arrayChats)
 			->with('chats', $chats);
 		}else{
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)
 			->where('activo', 1)->get();
-
 			return view('propietario.archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('usersChatActive', $usersChatActive)
+			->with('arrayChats', $arrayChats)
 			->with('chats', $chats);
 		}
 	}
