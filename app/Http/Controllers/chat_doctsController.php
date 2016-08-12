@@ -30,19 +30,16 @@ class chat_doctsController extends Controller {
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
 				->orderBy('created_at', 'ASC')
 				->get();
-		//dd($chats[0]->user_recibe_id, $chats[0]->user_send_id);
-		
 		if ($chats->count() > 0){
-			// dd('cumplio', $chats->count());
 			$avatar_send = User::select('avatar')->where('id', $chats[0]->user_send_id)->get();
 			$avatar_receive = User::select('avatar')->where('id', $chats[0]->user_recibe_id)->get();
 			$chats = $chats->toBase();
-			$chats->push(['avatar_send'=>  $avatar_send, 
-				    'avatar_receive' => $avatar_receive]); 
+			$avatars = array('avatar_'.$chats[0]->user_send_id => $avatar_send[0]->avatar, 
+							 'avatar_'.$chats[0]->user_recibe_id => $avatar_receive[0]->avatar);
+			$chats->push(['avatars'=> $avatars]); 
 		}else{
 			return json_encode(array());
 		}
-		
         return $chats->toJson();
 	}
 
@@ -54,12 +51,9 @@ class chat_doctsController extends Controller {
 				->where('status_id', '=', 1)
 				->groupBy('user_send_id')
 				->get();
-				//dd($msgs);
 		if ($msgs->count() > 0 ){
-			//dd($msg);
 			return $msgs->toJson();	
 		}else{
-			//dd('no hay ensajes');
 			return json_encode(array());
 		}
 	}

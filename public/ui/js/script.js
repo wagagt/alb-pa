@@ -1,19 +1,3 @@
-//$(document).ready(sendMessage);
-//$(document).ready(function() {
-
-	// Function validate message to post. ( not null && .len > 6 )
-	function validateMessage(userReceiveId, chat) {
-		if (userReceiveId == "") {
-			alert('ALERTA: Elige un chat antes de enviar mensaje.');
-			return false;
-		};
-		if (chat.length < 6) {
-			alert('ALERTA: El mensaje debe tener mas de 5 caracteres.');
-			return false;
-		};
-		return true;
-	};
-	
 	// Event Send message to post on chat
 	$('#sendMessage').click(function(event) {
 		var chat = $('.compositor').val();
@@ -52,51 +36,6 @@
 		return false;
 	});
 	
-	// Function get all messages by DocId
-	function searchNewMessageByDoc() {
-		var docId = $('#docto_id').val();
-		setInterval(function() {
-			$.ajax({
-				async: true,
-				type: "GET",
-				dataType: "html",
-				contenType: "application/x-www-form-urlencoded",
-				url: "/getNewMessages",
-				data: {
-					'docId': docId
-				},
-				success: function(data) {
-					if(!data) return false;
-					var obj = $.parseJSON(data);
-					if (obj.length > 0) {
-						$.each(obj, function() {
-							var userSendId = this['user_send_id'];
-							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
-								// ir atraer los mensajes de la conversacion activa
-								ajaxRefreshChat(docId, userSendId);
-								var chatActive = "chat_" + docId + "_" + userSendId;
-								$("#" + chatActive).click();
-							}
-							else { // crear marca con numero de mensajes sin leer
-								var total = this['total'];
-								var domId = 'mensajeNuevo_' + userSendId;
-								$('#' + domId).html(total);
-							}
-						});
-					};
-					$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
-				},
-				error: function(response) {
-					$("#notificacion").html("Error:chat activo >" + $("#activeChatId").val());
-					var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
-					$("#users").html(errorMessage);
-				},
-				timeout: 10000
-			});
-			return false;
-		}, 10000);
-		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
-	};
 	
 	// Event on click over user icon
 	$('[id^=chat_]').click(function(event) {
@@ -130,10 +69,8 @@
 				var arrChangeStatusMessages = new Array();
 				var newMessages = 0;
 				if (obj.length > 1) {
-					var avatar_send = obj[obj.length - 1].avatar_send[0].avatar;
-					var avatar_receive = obj[obj.length - 1].avatar_receive[0].avatar;
+					var arrAvatars = obj[obj.length-1]['avatars'];
 					delete obj[obj.length - 1];
-	
 					var txt = '<div class="direct-chat-msg {msg-side}">\
 	                <div class="direct-chat-info clearfix">\
 	                <span class="direct-chat-name pull-{msg-info-side}">{time}</span>\
@@ -146,14 +83,13 @@
 						if (!this.texto == '') {
 							var newChat = '';
 							var msgSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
-							var avatarSide = (this['user_send_id'] != inquilinoId) ? avatar_send : avatar_receive;
 							var msgInfoSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
 							newChat = txt.replace("{msg-side}", msgSide);
 							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
 							newChat = newChat.replace("{time}", this['created_at']);
 							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + inquilinoId);
 							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
-							newChat = newChat.replace("{avatar}", avatarSide);
+							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
 							fullHtml = fullHtml + newChat + "<hr>";
 							arrChangeStatusMessages.push(this['id']);
 							newMessages++;
@@ -220,10 +156,68 @@
 		});
 	};
 	
+	// Function validate message to post. ( not null && .len > 6 )
+	function validateMessage(userReceiveId, chat) {
+		if (userReceiveId == "") {
+			alert('ALERTA: Elige un chat antes de enviar mensaje.');
+			return false;
+		};
+		if (chat.length < 6) {
+			alert('ALERTA: El mensaje debe tener mas de 5 caracteres.');
+			return false;
+		};
+		return true;
+	};
 	
-	searchNewMessageByDoc();
-	
+	// Function get all messages by DocId
+	function searchNewMessageByDoc() {
+		var docId = $('#docto_id').val();
+		setInterval(function() {
+			$.ajax({
+				async: true,
+				type: "GET",
+				dataType: "html",
+				contenType: "application/x-www-form-urlencoded",
+				url: "/getNewMessages",
+				data: {
+					'docId': docId
+				},
+				success: function(data) {
+					if(!data) return false;
+					var obj = $.parseJSON(data);
+					if (obj.length > 0) {
+						$.each(obj, function() {
+							var userSendId = this['user_send_id'];
+							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
+								// ir atraer los mensajes de la conversacion activa
+								ajaxRefreshChat(docId, userSendId);
+								var chatActive = "chat_" + docId + "_" + userSendId;
+								$("#" + chatActive).click();
+							}
+							else { // crear marca con numero de mensajes sin leer
+								var total = this['total'];
+								var domId = 'mensajeNuevo_' + userSendId;
+								$('#' + domId).html(total);
+							}
+						});
+					};
+					$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
+				},
+				error: function(response) {
+					$("#notificacion").html("Error:chat activo >" + $("#activeChatId").val());
+					var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
+					$("#users").html(errorMessage);
+				},
+				timeout: 10000
+			});
+			return false;
+		}, 10000);
+		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
+	};
+
+	// Accordion js
 	$('#accordion2').collapse({
 		toggle: false
 	});
-//};
+
+	searchNewMessageByDoc();
