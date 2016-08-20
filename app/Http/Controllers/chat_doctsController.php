@@ -22,12 +22,13 @@ class chat_doctsController extends Controller {
 	}
 
 	public function getChat(Request $request){
+		dd('llego');
 		$input = Request::except('_token');
 		$docId = $input['docId'];
-		$inquilinoId = $input['inquilinoId'];
+		$userId = $input['userId'];
 		$chats = chat_docts::select('id','texto', 'user_send_id', 'user_recibe_id', 'created_at')
 				->where('documento_id', $docId)
-				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($inquilinoId, $inquilinoId))
+				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($userId, $userId))
 				->orderBy('created_at', 'ASC')
 				->get();
 		if ($chats->count() > 0){

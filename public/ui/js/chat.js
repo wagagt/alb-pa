@@ -48,7 +48,7 @@
 	});
 	
 	// Function refresh html to show chat conversation
-	function ajaxRefreshChat(docId, inquilinoId) {
+	function ajaxRefreshChat(docId, userId) {
 		$.ajax({
 			async: true,
 			headers: {
@@ -60,7 +60,7 @@
 			url: "/getchat",
 			data: {
 				'docId': docId,
-				'inquilinoId': inquilinoId
+				'userId': userId
 			},
 			success: function(data) {
 				var fullHtml = "";
@@ -82,12 +82,12 @@
 					$.each(obj, function() {
 						if (!this.texto == '') {
 							var newChat = '';
-							var msgSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
-							var msgInfoSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
+							var msgSide = (this['user_send_id'] != userId) ? "right" : "left";
+							var msgInfoSide = (this['user_send_id'] != userId) ? "right" : "left";
 							newChat = txt.replace("{msg-side}", msgSide);
 							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
 							newChat = newChat.replace("{time}", this['created_at']);
-							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + inquilinoId);
+							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + userId);
 							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
 							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
 							fullHtml = fullHtml + newChat + "<hr>";
@@ -95,11 +95,11 @@
 							newMessages++;
 						}
 					});
-					updateActiveChat(inquilinoId);
+					updateActiveChat(userId);
 					$('#chats').html(fullHtml);
 					// limpiar el aviso de mensajes sin leer
 					var total = "";
-					var domId = 'mensajeNuevo_' + inquilinoId;
+					var domId = 'mensajeNuevo_' + userId;
 					$('#' + domId).html(total);
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
 					if (newMessages > 0) updateMessages(arrChangeStatusMessages);
@@ -107,7 +107,7 @@
 				}
 				else {
 					// update chatActiveId, Add chat-selected (RED), add user name on title.
-					updateActiveChat(inquilinoId);
+					updateActiveChat(userId);
 				}
 				$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
 			},

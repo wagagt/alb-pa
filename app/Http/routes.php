@@ -169,6 +169,8 @@ Route::group(['middleware' => ['propietario']], function () {
 		'as'	=> 'propietario.edit'
 	]);
 	
+	Route::get('/propietario/getchat', 'chat_doctsController@getChat');
+	
 	//Apart
 	// Route::post('propietario/update/{id}', [
 	// 'uses' 	=> 'PropietarioController@update',
@@ -206,6 +208,11 @@ Route::get('propietario/documento/{id}/archivos_documento', [
 			'uses' => 'Archivos_documentoController@archivosxDocumento',
 			'as'   => 'documento.archivos'
 		]);
+		
+Route::get('admin/documento/{id}/archivos_documento', [
+	'uses' => 'Archivos_documentoController@archivosxDocumento',
+	'as'   => 'documento.archivos'
+]);
 
 Route::get('/', function () {
 		return redirect()->route('admin.auth.login');

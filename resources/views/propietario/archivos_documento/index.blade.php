@@ -92,9 +92,9 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                <img src="{{asset('ui/images/underconstruction.gif')}}" width="280" height="160" >
+                <!--<img src="{{asset('ui/images/underconstruction.gif')}}" width="280" height="160" >-->
 
-<!--                   <div class="box-body box-chat">
+                   <div class="box-body box-chat">
                         <div class="col-md-2"> <h4>Administradores</h4></div>
                         <div class="col-md-6"> <h4>Mensajes</h4> </div>
                         <div class="col-md-4"> <h4>Enviar mensajes</h4> </div>
@@ -129,7 +129,7 @@
                           </div>
                           [ENTER] para enviar.xxxx
                         </div>
-                      </div> -->
+                      </div> 
                 </div>
             </div>
         </div>
@@ -142,5 +142,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('ui/js/script.js')}}"></script>
+<script type="text/javascript" src="{{ asset('ui/js/chat_propietario.js')}}"></script>
 @endsection

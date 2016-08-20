@@ -45,39 +45,58 @@ class Archivos_documentoController extends Controller {
 			->with('arrayChats', $arrayChats)
 			->with('chats', $chats);
 		}else{
+			// $archivos_documento = \DB::table('archivos_documentos')
+			// ->where('documentos_id', $id)
+			// ->where('activo', 1)->get();
+			// return view('propietario.archivos_documento.index')
+			// ->with('documento', $documento)
+			// ->with('archivos', $archivos_documento)
+			// ->with('usuarios', $usuarios)
+			// ->with('arrayChats', $arrayChats)
+			// ->with('chats', $chats);
+			// propietarioArchivosxDocumento($id);
+			$documento= Documento::with('Tipo_documento', 'Torre')
+			->where('id', $id)
+			->first();
+			
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)
-			->where('activo', 1)->get();
+			->where('activo', '1')
+			->get();
+			
+			$usuarios = User::where('tipo', 'admin')
+			->orderBy('usuario', 'ASC')->get();
+			
+			$chats = [];
 			return view('propietario.archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('arrayChats', $arrayChats)
 			->with('chats', $chats);
 		}
 	}
 
-	public function PropArchivosxDocumento($id) {
+	// public function propietarioArchivosxDocumento($id) {
 	 
-	 $documento= Documento::with('Tipo_documento', 'Torre')
-	 ->where('id', $id)
-	 ->first();
+	//  $documento= Documento::with('Tipo_documento', 'Torre')
+	//  ->where('id', $id)
+	//  ->first();
 
-	 $archivos_documento = \DB::table('archivos_documentos')
-	 ->where('documentos_id', $id)
-	 ->where('activo', '1')
-	 ->get();
+	//  $archivos_documento = \DB::table('archivos_documentos')
+	//  ->where('documentos_id', $id)
+	//  ->where('activo', '1')
+	//  ->get();
 	 
-	  $usuarios = User::where('tipo', 'admin')
-	  ->orderBy('usuario', 'ASC')->get();
+	//   $usuarios = User::where('tipo', 'admin')
+	//   ->orderBy('usuario', 'ASC')->get();
 	 
-	 $chats = [];
-	 return view('propietario.archivos_documento.index')
-	 	->with('documento', $documento)
-	 	->with('archivos', $archivos_documento)
-	 	->with('usuarios', $usuarios)
-	 	->with('chats', $chats);
-	}
+	//  $chats = [];
+	//  return view('propietario.archivos_documento.index')
+	//  	->with('documento', $documento)
+	//  	->with('archivos', $archivos_documento)
+	//  	->with('usuarios', $usuarios)
+	//  	->with('chats', $chats);
+	// }
 
 	
 
