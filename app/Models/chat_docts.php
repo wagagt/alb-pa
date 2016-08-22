@@ -64,6 +64,6 @@ class chat_docts extends Model
     }
 
     public function documentos_chat(){
-      return $this->belongsTo('App\Models\documentos_chat', 'doc_chat_id');
+      return $this->hasMany('App\Models\documentos_chat');
     }
 }

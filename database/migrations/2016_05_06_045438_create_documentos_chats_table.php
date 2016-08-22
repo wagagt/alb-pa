@@ -19,9 +19,7 @@ class CreateDocumentosChatsTable extends Migration {
 				$table->timestamps();
 				$table->softDeletes();
 
-				$table->integer('tipo_doc_id')->unsigned();
-				$table->foreign('tipo_doc_id')->references('id')->on('tipo_documentos');
-
+				
 				$table->integer('doc_id')->unsigned();
 				$table->foreign('doc_id')->references('id')->on('documentos');
 
