@@ -16,7 +16,7 @@ class chat_docts extends Model
 
 
     public $fillable = [
-        'texto', 'documento_id', 'status_id', 'user_send_id', 'user_recibe_id', 'doc_chat_id'
+        'texto', 'documento_id', 'status_id', 'user_send_id', 'user_recibe_id', 'doc_chat_id', 'mensaje_tipo'
     ];
 
     /**
@@ -30,7 +30,8 @@ class chat_docts extends Model
         'status_id'        => 'integer',
         'user_send_id'     => 'integer',
         'user_recibe_id'   => 'integer',
-        'doc_chat_id'      => 'integer'
+        'doc_chat_id'      => 'integer',
+        'mensaje_tipo'     => 'string'
     ];
 
     /**
@@ -64,6 +65,6 @@ class chat_docts extends Model
     }
 
     public function documentos_chat(){
-      return $this->belongsTo('App\Models\documentos_chat', 'doc_chat_id');
+      return $this->hasMany('App\Models\documentos_chat');
     }
 }
