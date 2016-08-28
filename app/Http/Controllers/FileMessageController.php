@@ -19,16 +19,33 @@ class FileMessageController extends Controller
         $chat = new chat_docts($request->all());
         $archivo = new documentos_chat($request->all());
         
-        //add fillables
-           
-            $chat->message = '<a href="/uploads/files/'.$fileName.">File Upload: ".$fileName." </a>";
-            $chat->user_id = 1;
+        
+        foreach($files as $file){
+            $fileName = $file->getClientOriginalName();
+            $file->move($path,$fileName);
+            
+            $chat->texto = '/uploads/files/'.$fileName;
+            $chat->documento_id   = $request['docto_id'];
+            $chat->status_id      = 1;
+            $chat->user_send_id   = $request['user_send'];
+            $chat->user_recibe_id = $request['chatActive'];
+            $chat->mensaje_tipo   = "link";
+            //dd($chat);
             $chat->save();
-
-                $archivo->archivo = $fileName;
+            
+                $archivo->nombre  = $fileName;
                 $archivo->path    = $path;
+                $archivo->archivo = $path.$fileName;
+                $archivo->doc_id  = $chat->documento_id;
                 $archivo->chat_id = $chat->id;
+            
                 $archivo->save();
+            
+        }
+           
+            
+
+               
         
     }
 

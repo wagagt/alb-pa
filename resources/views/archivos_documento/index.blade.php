@@ -194,14 +194,15 @@
                         </div>
                         <div class="col-md-4">
                           {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
+                          
                         <div class="dz-message" style="height:5px; width: auto;">
                                Arrastra tu archivo aquí
                         </div>
                         <div class="dropzone-previews"></div>
                         <input type="hidden" name= "docto_id" value ="{{ $documento->id }}" id="docto_id">
                         <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
-                        <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
-                        <button type="submit" class="btn btn-success" id="submit" title="Subir archivo"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                        <input type="hidden" name="chatActive" value="" id="chatActive"/>
+                        <button type="submit" class="btn btn-success" id="subir" title="Subir archivo"><i class="fa fa-upload" aria-hidden="true"></i></button>
                         {!! Form::close() !!}
                         </div>
                         
@@ -221,4 +222,4 @@
 @section('scripts')
 <script type="text/javascript" src="{{ asset('ui/js/script.js')}}"></script>
 <script type="text/javascript" src="{{ asset('ui/js/uploadfile.js' )}}"></script>
-@endsection
+@endsectionñov
