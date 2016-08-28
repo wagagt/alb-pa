@@ -53,7 +53,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
   public function  scopeSearch($query, $name)
   {
-    return $query->where('name', 'LIKE', '%'.$name.'%');
+    return $query->where('name', 'LIKE', '%'.$name.'%')
+    ->orWhere('usuario', 'like', "%" . $name . "%");
   }
 
   public function isAdmin()
