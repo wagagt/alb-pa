@@ -1,15 +1,20 @@
 
+
     $('#subir').click(function(){
       
       var chatId =  $('#activeChatId').val(); 
       if(chatId == ""){
         alert('ALERTA: Elige un chat antes de enviar un archivo ');
+        return false;
       }else{
       var charActive = $('#chatActive').attr('value', chatId);
+      uploadFile();
       
       }
       
   });
+  
+  function uploadFile(){
     Dropzone.options.myDropzone = {
             autoProcessQueue: false,
             uploadMultiple: true,
@@ -40,6 +45,8 @@
                     });
             }
     };
+  };
+    
     
     
 
