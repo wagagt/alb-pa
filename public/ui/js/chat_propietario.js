@@ -31,7 +31,7 @@
 			error: function() {
 				$("#chats").html('problemas... para enviar el mensaje!');
 			},
-			timeout: 10000,
+			timeout: 1000,
 		});
 		return false;
 	});
@@ -63,7 +63,7 @@
 				'userId': userId
 			},
 			success: function(data) {
-				alert('llego...con user: ' + userId +' doc: ' + docId);
+				//alert('llego...con user: ' + userId +' doc: ' + docId);
 				var fullHtml = "";
 				var obj = $.parseJSON(data);
 				// console.log(obj.length);
@@ -83,8 +83,8 @@
 					$.each(obj, function() {
 						if (!this.texto == '') {
 							var newChat = '';
-							var msgSide = (this['user_send_id'] != userId) ? "right" : "left";
-							var msgInfoSide = (this['user_send_id'] != userId) ? "right" : "left";
+							var msgSide = (this['user_send_id'] == userId) ? "right" : "left";
+							var msgInfoSide = (this['user_send_id'] == userId) ? "right" : "left";
 							newChat = txt.replace("{msg-side}", msgSide);
 							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
 							newChat = newChat.replace("{time}", this['created_at']);

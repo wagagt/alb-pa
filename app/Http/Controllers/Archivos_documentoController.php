@@ -72,6 +72,7 @@ class Archivos_documentoController extends Controller {
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
+			->with('arrayChats', $arrayChats)
 			->with('chats', $chats);
 		}
 	}

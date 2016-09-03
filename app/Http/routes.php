@@ -2,8 +2,15 @@
 use App\Paise;
 
 
+
+
 Route::group(['middleware' => ['admin']], function () 
 {
+	
+	// Route::get('/getchat', function(){
+	// 	return ('getchat-admin');
+	// });
+	
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 			return view('admin.index');
 	}]);
@@ -150,10 +157,19 @@ Route::group(['middleware' => ['admin']], function ()
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
 Route::group(['middleware' => ['propietario']], function () {
+	
+	//Route::get('/getchat', function(){return ('getchat-propietario');});
+	Route::get('/getchat', 'chat_doctsController@getChat');
+	Route::post('/escribir', 'chat_doctsController@escribir');	
 
 	Route::get('propietario/documentos',[
 		'uses'	=> 'PropietarioController@documentos',
 		'as'	=> 'propietario.documentos'
+	]);
+		
+	Route::get('propietario/documento/{id}/archivos_documento', [
+		'uses' => 'Archivos_documentoController@archivosxDocumento',
+		'as'   => 'propietario.documento.archivos'
 	]);
 		
 	Route::post('propietario/profile', 'UsersController@updateAvatar');
@@ -170,21 +186,11 @@ Route::group(['middleware' => ['propietario']], function () {
 	]);
 	
 	Route::get('/propietario/getchat', 'chat_doctsController@getChat');
-	
-	//Apart
-	// Route::post('propietario/update/{id}', [
-	// 'uses' 	=> 'PropietarioController@update',
-	// 'as'	=> 'propietario.update'
-	// ]);
 
-	// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
-	// return view('propietario.dash');
-	// }]);
-
-	// Route::get('propietario/documento/{id}/archivos', [
-	// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
-	// 'as'   => 'propDocumento.archivos'
-	// ]);
+	Route::get('propietario/torre/{id}/documentos', [
+		'uses' => 'TorreController@documentos',
+		'as'   => 'propietario.torre.documentos'
+	]);
 });
 
 
@@ -197,17 +203,10 @@ Route::get('propietario/profile', [
 ]);
 
 
-Route::get('propietario/torre/{id}/documentos', [
-	'uses' => 'TorreController@documentos',
-	'as'   => 'propietario.torre.documentos'
-]);
+
 
 Route::post('profile', 'UsersController@updateAvatar');
-	
-Route::get('propietario/documento/{id}/archivos_documento', [
-			'uses' => 'Archivos_documentoController@archivosxDocumento',
-			'as'   => 'documento.archivos'
-		]);
+
 		
 Route::get('admin/documento/{id}/archivos_documento', [
 	'uses' => 'Archivos_documentoController@archivosxDocumento',
