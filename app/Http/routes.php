@@ -6,11 +6,6 @@ use App\Paise;
 
 Route::group(['middleware' => ['admin']], function () 
 {
-	
-	// Route::get('/getchat', function(){
-	// 	return ('getchat-admin');
-	// });
-	
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 			return view('admin.index');
 	}]);
@@ -157,10 +152,11 @@ Route::group(['middleware' => ['admin']], function ()
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
 Route::group(['middleware' => ['propietario']], function () {
-	
-	//Route::get('/getchat', function(){return ('getchat-propietario');});
+
 	Route::get('/getchat', 'chat_doctsController@getChat');
-	Route::post('/escribir', 'chat_doctsController@escribir');	
+	Route::post('/sendMessage', 'chat_doctsController@sendMessage');	
+	Route::get('/updateMessages', 'chat_doctsController@updateMessages');
+	Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
 
 	Route::get('propietario/documentos',[
 		'uses'	=> 'PropietarioController@documentos',
@@ -185,8 +181,6 @@ Route::group(['middleware' => ['propietario']], function () {
 		'as'	=> 'propietario.edit'
 	]);
 	
-	Route::get('/propietario/getchat', 'chat_doctsController@getChat');
-
 	Route::get('propietario/torre/{id}/documentos', [
 		'uses' => 'TorreController@documentos',
 		'as'   => 'propietario.torre.documentos'

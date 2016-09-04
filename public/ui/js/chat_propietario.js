@@ -14,7 +14,7 @@
 			type: "POST",
 			dataType: "html",
 			contenType: "application/x-www-form-urlencoded",
-			url: "/escribir",
+			url: "/sendMessage",
 			data: {
 				'chat': chat,
 				'user_send': userSendId,
@@ -31,7 +31,7 @@
 			error: function() {
 				$("#chats").html('problemas... para enviar el mensaje!');
 			},
-			timeout: 1000,
+			timeout: 10000,
 		});
 		return false;
 	});
@@ -173,6 +173,8 @@
 	// Function get all messages by DocId
 	function searchNewMessageByDoc() {
 		var docId = $('#docto_id').val();
+		var userId = $('#user_send').val();
+		
 		setInterval(function() {
 			$.ajax({
 				async: true,
@@ -181,7 +183,8 @@
 				contenType: "application/x-www-form-urlencoded",
 				url: "/getNewMessages",
 				data: {
-					'docId': docId
+					'docId': docId,
+					'userId': userId
 				},
 				success: function(data) {
 					if(!data) return false;
@@ -189,9 +192,10 @@
 					if (obj.length > 0) {
 						$.each(obj, function() {
 							var userSendId = this['user_send_id'];
+							var userReceiveId = this['user_re_id'];
 							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
-								ajaxRefreshChat(docId, userSendId);
+								ajaxRefreshChat(docId, userId);
 								var chatActive = "chat_" + docId + "_" + userSendId;
 								$("#" + chatActive).click();
 							}
@@ -221,4 +225,4 @@
 		toggle: false
 	});
 
-	//searchNewMessageByDoc();
+	searchNewMessageByDoc();

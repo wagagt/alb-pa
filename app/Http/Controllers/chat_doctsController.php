@@ -10,19 +10,19 @@ use DB;
 
 class chat_doctsController extends Controller {
 	
-	public function escribir(Request $request){
+	public function sendMessage(Request $request){
 		$input = Request::except('_token');
 		$registro = new chat_docts();
 		$registro->texto = $input['chat'];
 		$registro->user_send_id = $input['user_send'];
 		$registro->user_recibe_id = $input['user_recibe'];
 		$registro->documento_id = $input['docto_id'];
-		$registro->status_id = $input['status'];
+		$registro->status_id = $input['status']; 
 		$registro->save();
-	}
+	} 
 
 	public function getChat(Request $request){
-		dd('llego');
+		//dd('llego');
 		$input = Request::except('_token');
 		$docId = $input['docId'];
 		$userId = $input['userId'];
@@ -41,16 +41,20 @@ class chat_doctsController extends Controller {
 		}else{
 			return json_encode(array());
 		}
+		//dd($chats->toJson());
         return $chats->toJson();
 	}
 
 	public function getNewMessages(Request $request){
 		$input = Request::except('_token');
+		//dd($input);
 		$docId = $input['docId'];
-		$msgs = chat_docts::selectRaw('user_send_id, count(user_send_id)  as total')
+		$userId = $input['userId'];
+		$msgs = chat_docts::selectRaw('user_recibe_id, count(user_recibe_id)  as total')
 				->where('documento_id', $docId)
 				->where('status_id', '=', 1)
-				->groupBy('user_send_id')
+				->where('user_recibe_id', $userId)
+				->groupBy('user_recibe_id')
 				->get();
 		if ($msgs->count() > 0 ){
 			return $msgs->toJson();	

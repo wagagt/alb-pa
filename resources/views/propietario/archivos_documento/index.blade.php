@@ -205,7 +205,7 @@
         </div>
         
     </div>
-  <!-- <p id="notificacion"></p> -->
+  <p id="notificacion"></p>
 </div>
 
 </div>
