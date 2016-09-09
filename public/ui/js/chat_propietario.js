@@ -83,8 +83,8 @@
 					$.each(obj, function() {
 						if (!this.texto == '') {
 							var newChat = '';
-							var msgSide = (this['user_send_id'] == userId) ? "right" : "left";
-							var msgInfoSide = (this['user_send_id'] == userId) ? "right" : "left";
+							var msgSide = (this['user_send_id'] == userId) ? "left" : "right";
+							var msgInfoSide = (this['user_send_id'] == userId) ? "left" : "right";
 							newChat = txt.replace("{msg-side}", msgSide);
 							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
 							newChat = newChat.replace("{time}", this['created_at']);
@@ -174,6 +174,7 @@
 	function searchNewMessageByDoc() {
 		var docId = $('#docto_id').val();
 		var userId = $('#user_send').val();
+		var userRecibe = $('#user_recibe').val();
 		
 		setInterval(function() {
 			$.ajax({
@@ -184,7 +185,7 @@
 				url: "/getNewMessages",
 				data: {
 					'docId': docId,
-					'userId': userId
+					'userId': userRecibe
 				},
 				success: function(data) {
 					if(!data) return false;
@@ -192,7 +193,7 @@
 					if (obj.length > 0) {
 						$.each(obj, function() {
 							var userSendId = this['user_send_id'];
-							var userReceiveId = this['user_re_id'];
+							var userReceiveId = this['user_recibe_id'];
 							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
 								ajaxRefreshChat(docId, userId);

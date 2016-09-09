@@ -4,7 +4,7 @@ use App\Paise;
 
 
 
-Route::group(['middleware' => ['admin']], function () 
+Route::group(['middleware' => ['auth','admin']], function () 
 {
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 			return view('admin.index');
@@ -146,12 +146,16 @@ Route::group(['middleware' => ['admin']], function ()
 			'uses' => 'Tipo_documentoController@destroy',
 			'as'   => 'tipo_documento.destroy'
 		]);
+	Route::get('admin/documento/{id}/archivos_documento', [
+		'uses' => 'Archivos_documentoController@archivosxDocumento',
+		'as'   => 'documento.archivos'
+	]);
 });
 
 /********************************************************/
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
-Route::group(['middleware' => ['propietario']], function () {
+Route::group(['middleware' => ['auth','propietario']], function () {
 
 	Route::get('/getchat', 'chat_doctsController@getChat');
 	Route::post('/sendMessage', 'chat_doctsController@sendMessage');	
@@ -200,12 +204,6 @@ Route::get('propietario/profile', [
 
 
 Route::post('profile', 'UsersController@updateAvatar');
-
-		
-Route::get('admin/documento/{id}/archivos_documento', [
-	'uses' => 'Archivos_documentoController@archivosxDocumento',
-	'as'   => 'documento.archivos'
-]);
 
 Route::get('/', function () {
 		return redirect()->route('admin.auth.login');
