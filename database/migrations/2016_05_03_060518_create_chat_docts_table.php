@@ -28,6 +28,8 @@ class CreateChatDoctsTable extends Migration {
 
 				$table->integer('user_recibe_id')->unsigned();
 				$table->foreign('user_recibe_id')->references('id')->on('users');
+				
+				$table->enum('mensaje_tipo',['message','link'])->default('message');
 
 			});
 	}

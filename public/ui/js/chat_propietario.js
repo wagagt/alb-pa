@@ -44,7 +44,10 @@
 		var docId = arrayParams[1];
 		var userId = arrayParams[2];
 		$("#activeChatId").val(userId);
+		$('#file-box').show();
+		$('#file-box-message').hide();
 		ajaxRefreshChat(docId, userId);
+
 	});
 	
 	// Function refresh html to show chat conversation

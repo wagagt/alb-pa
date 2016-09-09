@@ -21,27 +21,34 @@ class documentos_chat extends Model
     'nombre',
     'path',
     'archivo',
-    'tipo_doc_id',
-    'doc_id'
+    'doc_id',
+    'chat_id'
   ];
 
 
   protected $casts = [
     'nombre'       => 'string',
-    'tipo_doc_id'  => 'integer',
     'path'         => 'string',
-    'doc_id'       => 'integer'
+    'archivo'      => 'string',
+    'doc_id'       => 'integer',
+    'chat_id'      => 'integer'
   ];
 
 
   public static $rules = [
     'nombre' => 'required',
-    'tipo_doc_id' => 'required',
-    'doc_id' => 'required'
+    'path'         => 'required',
+    'archivo'      => 'required',
+    'doc_id'       => 'required',
+    'chat_id'      => 'required'
   ];
 
-public function chat_docts(){
-  return $this->hasMany('App\Models\chat_docts');
+  public function chat_docts(){
+    return $this->belongsTo('App\Models\chat_docts', 'chat_id');
+  }
+
+public function documentos(){
+  return $this->belongsTo('App\Models\documento', 'doc_id');
 }
 
 }
