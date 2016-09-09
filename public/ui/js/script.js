@@ -44,6 +44,8 @@
 		var docId = arrayParams[1];
 		var inquilinoId = arrayParams[2];
 		$("#activeChatId").val(inquilinoId);
+		$('#file-box').show();
+    	$('#file-box-message').hide();
 		ajaxRefreshChat(docId, inquilinoId);
 	});
 	
