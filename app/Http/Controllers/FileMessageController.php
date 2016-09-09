@@ -24,7 +24,7 @@ class FileMessageController extends Controller
             $fileName = $file->getClientOriginalName();
             $file->move($path,$fileName);
             
-            $chat->texto = '/uploads/files/'.$fileName;
+            $chat->texto = '/uploads/files_chat/'.$fileName;
             $chat->documento_id   = $request['docto_id'];
             $chat->status_id      = 1;
             $chat->user_send_id   = $request['user_send'];
