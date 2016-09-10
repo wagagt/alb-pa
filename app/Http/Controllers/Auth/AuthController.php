@@ -64,7 +64,7 @@ class AuthController extends Controller {
 				'usuario'  => $data['usuario'],
 			]);
 	}
-	protected function getLogin() {
+	public function getLogin() {
 		return view('auth.login');
 	}
 }

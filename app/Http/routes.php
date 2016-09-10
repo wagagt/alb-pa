@@ -151,6 +151,8 @@ Route::group(['middleware' => ['admin']], function ()
 
 Route::group(['middleware' => ['propietario']], function () {
 
+	Route::resource('propietario','PropietarioController');
+
 	Route::get('propietario/documentos',[
 		'uses'	=> 'PropietarioController@documentos',
 		'as'	=> 'propietario.documentos'
@@ -164,10 +166,10 @@ Route::group(['middleware' => ['propietario']], function () {
 		}
 	]);
 	
-	Route::get ('propietario/edit/{id}',[
+	/*Route::get ('propietario/{id}/edit',[
 		'uses' 	=> 'PropietarioController@edit',
 		'as'	=> 'propietario.edit'
-	]);
+	]);*/
 	
 	//Apart
 	// Route::post('propietario/update/{id}', [
@@ -240,9 +242,15 @@ Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 	 	if (\Auth::user()->isAdmin()){
 	 		return redirect()->route('admin.home');	
 	 	}
-	 	if (\Auth::user()->isPropietario()){
-	 		return redirect()->route('propietario.home');	
-	 	}
+			$hashType='$2y$10$cCOppp.HKq6h2BbfAMvc5eGbrA9ED/J97.4BEOLEl/OoAEd463ioi';
+			$userId = Auth::user()->id;
+
+	 	if ((\Auth::user()->tipo == 'propietario') && (\Auth::user()->password === $hashType)){
+			return redirect('propietario/'.$userId.'/edit');
+
+	 	}else{
+			return view('propietario.dash');
+		}
  	
  	}]
 );

@@ -23,7 +23,7 @@
             </div>
           </div>
         <div class="box-body">
-          <div class="col-md-3 text-left"><a href="{{route('torre.index')}}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar </a>  </div>
+          <div class="col-md-3 text-left"><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar </a>  </div>
         <table class="table table-hover">
             <thead>
                 <td><strong>NOMBRE</strong></td>

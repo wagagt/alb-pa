@@ -10,6 +10,7 @@ use App\User;
 use App\Apartamento;
 use App\Documento;
 use Laracasts\Flash\Flash;
+use Illuminate\Support\Facades\Auth;
 
 class PropietarioController extends Controller
 {
@@ -38,15 +39,17 @@ class PropietarioController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
-        if (\Auth::user()->id == $id){
+        $user = User::findOrfail($id);
+      // dd($user);
+
+        //if (Auth::user()->id == $id){
             Flash::warning('Debe completar los datos de su perfil.');
             return view('propietario.edit')
             ->with('usuario',$user);
-        }else{
-            Flash::success('No es posible accesar la URL requerida');
-            return view('propietario.dash');
-        }
+        //}else{
+          //  Flash::success('No es posible accesar la URL requerida');
+            //return view('propietario.dash');
+        //}
     }
 
     public function update(Request $request, $id)
@@ -56,7 +59,7 @@ class PropietarioController extends Controller
         $user->fill($request->all());
         $user->save();
         Flash::success('El perfil ha sido actualizado con éxito!!');
-        return redirect()->route('propietario.dash');
+        return view('propietario.dash');
     }
 
     public function destroy($id)

@@ -10,3 +10,4 @@ config/database.php
 public/uploads/*
 composer.lock
 .idea
+.ftpconfig

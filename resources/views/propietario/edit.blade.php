@@ -11,7 +11,7 @@
 
           <div class="box-body">
 
-            {!! Form::model($usuario, ['route'=>['propietario.update', $usuario->id],  'method' => 'POST']) !!}
+            {!! Form::model($usuario, ['route'=>['propietario.update', $usuario->id],  'method' => 'PUT']) !!}
             <div class="row col-md-12">
                 <div class="form-group">
                     <div class="col-md-6">
@@ -68,4 +68,33 @@
   </div>
 </div>
 
+@endsection
+
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('#getDocuments').css('display','none')
+
+            var password = document.getElementById("password")
+                    , confirm_password = document.getElementById("password_confirmation");
+
+            function validatePassword(){
+                if(password.value != confirm_password.value) {
+                    confirm_password.setCustomValidity("Contraseñas no coinciden");
+
+
+                } else {
+                    confirm_password.setCustomValidity('');
+                }
+            }
+
+            password.onchange = validatePassword;
+            confirm_password.onkeyup = validatePassword;
+        })
+
+
+    </script>
 @endsection
