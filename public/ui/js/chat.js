@@ -102,7 +102,7 @@
 					var domId = 'mensajeNuevo_' + userId;
 					$('#' + domId).html(total);
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
-					if (newMessages > 0) updateMessages(arrChangeStatusMessages);
+					//if (newMessages > 0) updateMessages(arrChangeStatusMessages);
 					$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
 				}
 				else {
