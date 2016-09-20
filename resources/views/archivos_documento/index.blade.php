@@ -224,6 +224,6 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('ui/js/script.js')}}"></script>
+<script type="text/javascript" src="{{ asset('ui/js/chat.js')}}"></script>
 <script type="text/javascript" src="{{ asset('ui/js/uploadfile.js' )}}"></script>
-@endsectionñov
+@endsection

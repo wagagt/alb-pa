@@ -14,7 +14,7 @@
 			type: "POST",
 			dataType: "html",
 			contenType: "application/x-www-form-urlencoded",
-			url: "/escribir",
+			url: "/sendMessage",
 			data: {
 				'chat': chat,
 				'user_send': userSendId,
@@ -42,15 +42,15 @@
 		var thisId = $(this).attr('id'); //chat_3_3
 		var arrayParams = thisId.split('_');
 		var docId = arrayParams[1];
-		var inquilinoId = arrayParams[2];
-		$("#activeChatId").val(inquilinoId);
+		var userId = arrayParams[2];
+		$("#activeChatId").val(userId);
 		$('#file-box').show();
     	$('#file-box-message').hide();
-		ajaxRefreshChat(docId, inquilinoId);
+		ajaxRefreshChat(docId, userId);
 	});
 	
 	// Function refresh html to show chat conversation
-	function ajaxRefreshChat(docId, inquilinoId) {
+	function ajaxRefreshChat(docId, userId) {
 		$.ajax({
 			async: true,
 			headers: {
@@ -62,9 +62,10 @@
 			url: "/getchat",
 			data: {
 				'docId': docId,
-				'inquilinoId': inquilinoId
+				'userId': userId
 			},
 			success: function(data) {
+				//alert('llego...con user: ' + userId +' doc: ' + docId);
 				var fullHtml = "";
 				var obj = $.parseJSON(data);
 				// console.log(obj.length);
@@ -84,12 +85,12 @@
 					$.each(obj, function() {
 						if (!this.texto == '') {
 							var newChat = '';
-							var msgSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
-							var msgInfoSide = (this['user_send_id'] != inquilinoId) ? "right" : "left";
+							var msgSide = (this['user_send_id'] == userId) ? "left" : "right";
+							var msgInfoSide = (this['user_send_id'] == userId) ? "left" : "right";
 							newChat = txt.replace("{msg-side}", msgSide);
 							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
 							newChat = newChat.replace("{time}", this['created_at']);
-							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + inquilinoId);
+							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + userId);
 							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
 							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
 							fullHtml = fullHtml + newChat + "<hr>";
@@ -97,11 +98,11 @@
 							newMessages++;
 						}
 					});
-					updateActiveChat(inquilinoId);
+					updateActiveChat(userId);
 					$('#chats').html(fullHtml);
 					// limpiar el aviso de mensajes sin leer
 					var total = "";
-					var domId = 'mensajeNuevo_' + inquilinoId;
+					var domId = 'mensajeNuevo_' + userId;
 					$('#' + domId).html(total);
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
 					if (newMessages > 0) updateMessages(arrChangeStatusMessages);
@@ -109,7 +110,7 @@
 				}
 				else {
 					// update chatActiveId, Add chat-selected (RED), add user name on title.
-					updateActiveChat(inquilinoId);
+					updateActiveChat(userId);
 				}
 				$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
 			},
@@ -174,6 +175,9 @@
 	// Function get all messages by DocId
 	function searchNewMessageByDoc() {
 		var docId = $('#docto_id').val();
+		var userId = $('#user_send').val();
+		var userRecibe = $('#user_recibe').val();
+		
 		setInterval(function() {
 			$.ajax({
 				async: true,
@@ -182,7 +186,8 @@
 				contenType: "application/x-www-form-urlencoded",
 				url: "/getNewMessages",
 				data: {
-					'docId': docId
+					'docId': docId,
+					'userId': userRecibe
 				},
 				success: function(data) {
 					if(!data) return false;
@@ -190,9 +195,10 @@
 					if (obj.length > 0) {
 						$.each(obj, function() {
 							var userSendId = this['user_send_id'];
+							var userReceiveId = this['user_recibe_id'];
 							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
-								ajaxRefreshChat(docId, userSendId);
+								ajaxRefreshChat(docId, userId);
 								var chatActive = "chat_" + docId + "_" + userSendId;
 								$("#" + chatActive).click();
 							}
