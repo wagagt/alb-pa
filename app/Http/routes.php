@@ -144,6 +144,8 @@ Route::group(['middleware' => ['admin']], function ()
 			'uses' => 'Tipo_documentoController@destroy',
 			'as'   => 'tipo_documento.destroy'
 		]);
+		
+	Route::resource('file','FileMessageController');
 });
 
 /********************************************************/
