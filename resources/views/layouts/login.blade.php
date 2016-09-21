@@ -10,7 +10,8 @@
 <body class="skin-blue">
         <div class="wrapper">
             @include('admin.partials.header-login')
-            
+
+
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
                 
