@@ -164,9 +164,8 @@ return [
         Spatie\Activitylog\ActivitylogServiceProvider::class,
     
         Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class
         
-        // debug bar
-        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -225,8 +224,7 @@ return [
         'Html'      => Collective\Html\HtmlFacade::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Activity'  => Spatie\Activitylog\ActivitylogFacade::class,
-        
-        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

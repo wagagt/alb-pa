@@ -42,7 +42,7 @@
                     <td>{{$value->fecha_al}}</td>
                     <td>{{$value->torre->nombre}}</td>
                     <td>
-                      <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                      <!-- <a href="documento/{--{$value->id}--}/archivos_documento" -->
                     <a href="{{ route('propDocumento.archivos', $value->id) }}"
                       class="btn btn-success" title="VER DOCUMENTOS">
                       <i class="fa fa-file-pdf-o"></i>

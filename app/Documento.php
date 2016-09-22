@@ -41,6 +41,10 @@ class Documento extends Model {
 	public function chat_docts(){
 		return $this->hasMany('App\Models\chat_docst');
 	}
+	
+	public function documentosChat(){
+		return $this->hasMany('App\Models\documentos_chat');
+	}
 
 
 }

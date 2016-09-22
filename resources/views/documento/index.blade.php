@@ -78,7 +78,7 @@
                         class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                         <i class="fa fa-trash"></i>
                       </a>
-                      <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                      <!-- <a href="documento/{--{$value->id}--}/archivos_documento" -->
                       <a href="{{ route('documento.archivos', $value->id) }}"
                         class="btn btn-success" title="ver Archivos">
                         <i class="fa fa-file-pdf-o"></i>
@@ -125,7 +125,7 @@
                       class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                       <i class="fa fa-trash"></i>
                     </a>
-                    <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                    <!-- <a href="documento/{--{$value->id}--}/archivos_documento" -->
                     <a href="{{ route('documento.archivos', $value->id) }}"
                       class="btn btn-success" title="ver Archivos">
                       <i class="fa fa-file-pdf-o"></i>
@@ -172,7 +172,7 @@
                     class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                     <i class="fa fa-trash"></i>
                   </a>
-                  <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                  <!-- <a href="documento/{--{$value->id}--}/archivos_documento" -->
                   <a href="{{ route('documento.archivos', $value->id) }}"
                     class="btn btn-success" title="ver Archivos">
                     <i class="fa fa-file-pdf-o"></i>
@@ -220,7 +220,7 @@
                   class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
                   <i class="fa fa-trash"></i>
                 </a>
-                <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
+                <!-- <a href="documento/{--{$value->id}--}/archivos_documento" -->
                 <a href="{{ route('documento.archivos', $value->id) }}"
                   class="btn btn-success" title="ver Archivos">
                   <i class="fa fa-file-pdf-o"></i>

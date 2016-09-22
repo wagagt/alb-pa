@@ -2,7 +2,7 @@
 use App\Paise;
 
 
-Route::group(['middleware' => ['admin']], function ()
+Route::group(['middleware' => 'admin'], function ()
 {
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 		return view('admin.index');
@@ -144,12 +144,14 @@ Route::group(['middleware' => ['admin']], function ()
 		'uses' => 'Tipo_documentoController@destroy',
 		'as'   => 'tipo_documento.destroy'
 	]);
+
+	Route::resource('file','FileMessageController');
 });
 
 /********************************************************/
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
-Route::group(['middleware' => ['propietario']], function () {
+Route::group(['middleware' => ['auth','propietario']], function () {
 
 	Route::resource('propietario','PropietarioController');
 
@@ -157,6 +159,8 @@ Route::group(['middleware' => ['propietario']], function () {
 		'uses'	=> 'PropietarioController@documentos',
 		'as'	=> 'propietario.documentos'
 	]);
+
+
 
 	Route::post('propietario/profile', 'UsersController@updateAvatar');
 
@@ -202,9 +206,16 @@ Route::get('propietario/torre/{id}/documentos', [
 	'as'   => 'propietario.torre.documentos'
 ]);
 
+Route::get('propietario/documento/{id}/archivos_documento', [
+	'uses' => 'Archivos_documentoController@archivosxDocumento',
+	'as'   => 'propietario.documento.archivos'
+]);
+
+
+
 Route::post('profile', 'UsersController@updateAvatar');
 
-Route::get('propietario/documento/{id}/archivos_documento', [
+Route::get('documento/{id}/archivos_documento', [
 	'uses' => 'Archivos_documentoController@archivosxDocumento',
 	'as'   => 'documento.archivos'
 ]);
