@@ -16,7 +16,7 @@
                 <div class="col-md-4">
                   {!! Form::label('usuario', 'Usuario:') !!}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-8">
                   {!! Form::text('usuario', null, [
                     'class'=>'form-control',
                     'placeholder'=>'Ingrese usuario asignado',
@@ -30,7 +30,7 @@
                     {!! Form::label('password', 'Contraseña:') !!}
                   </div>
 
-                  <div class="col-md-4">
+                  <div class="col-md-8">
                     {!! Form::password('password', [
                       'class'=>'form-control',
                       'placeholder'=>'**********', 'autofocus']) !!}

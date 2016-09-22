@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use App\Http\Controllers\Auth;
 
 class PasswordController extends Controller {
 	/*
@@ -28,7 +29,8 @@ class PasswordController extends Controller {
 	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
 	 * @return void
 	 */
-	protected $redirect = 'dash';
+	
+	protected $redirectTo = '/';
 
 	public function __construct(Guard $auth, PasswordBroker $passwords) {
 		$this->auth      = $auth;
