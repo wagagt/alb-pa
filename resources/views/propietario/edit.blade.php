@@ -14,13 +14,13 @@
             {!! Form::model($usuario, ['route'=>['propietario.update', $usuario->id],  'method' => 'PUT']) !!}
             <div class="row col-md-12">
                 <div class="form-group">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         {!! Form::label('name', 'Nombres:') !!}
                         {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingrese los nombres del propietario', 'required'])!!}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         {!! Form::label('usuario', 'Usuario:') !!}
                         {!! Form::text('usuario', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de usuario', 'required'])!!}
                     </div>
@@ -33,36 +33,36 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         {!! Form::label('pasaporte', 'Pasaporte:') !!}
                         {!! Form::text('pasaporte', null, ['class' => 'form-control', 'placeholder' => 'numero-pasaporte', 'required'])!!}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         {!! Form::label('cedula', 'Documento de Identificación:') !!}
                         {!! Form::text('cedula', null, ['class' => 'form-control', 'placeholder' => 'numero-documento-id', 'required'])!!}
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-6">
-                      {!! Form::label('password', 'Contraseña') !!}
+                    <div class="col-md-3">
+                      {!! Form::label('password', 'Contraseña:') !!}
                       {!! Form::password('password',  ['class' => 'form-control', 'placeholder' => '**************',]) !!}
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-md-6">
-                      {!! Form::label('confirm_password', 'Confirmar Contraseña') !!}
+                <div class="form-group" >
+                    <div class="col-md-3">
+                      {!! Form::label('confirm_password', 'Confirmar Contraseña:') !!}
                       {!! Form::password('confirm_password',  ['class' => 'form-control', 'placeholder' => '**************',]) !!}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="padding-top:38px;">
                         {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
-          </div>
+           </div>
       </div>
           {!! Form::close()!!}
   </div>

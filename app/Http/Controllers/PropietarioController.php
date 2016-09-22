@@ -43,7 +43,7 @@ class PropietarioController extends Controller
         // dd($user);
 
         //if (Auth::user()->id == $id){
-        Flash::warning('Debe completar los datos de su perfil.');
+        Flash::warning('Debe completar los datos de su perfil y cambiar su contraseña!.');
         return view('propietario.edit')
             ->with('usuario',$user);
         //}else{
