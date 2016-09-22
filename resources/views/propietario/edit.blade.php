@@ -11,7 +11,7 @@
 
           <div class="box-body">
 
-            {!! Form::model($usuario, ['route'=>['propietario.update', $usuario->id],  'method' => 'POST']) !!}
+            {!! Form::model($usuario, ['route'=>['propietario.update', $usuario->id],  'method' => 'PUT']) !!}
             <div class="row col-md-12">
                 <div class="form-group">
                     <div class="col-md-6">
@@ -53,19 +53,36 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-6">
-                      {!! Form::label('password_confirmation', 'Confirmar Contraseña') !!}
-                      {!! Form::password('password_confirmation',  ['class' => 'form-control', 'placeholder' => '**************',]) !!}
+                      {!! Form::label('confirm_password', 'Confirmar Contraseña') !!}
+                      {!! Form::password('confirm_password',  ['class' => 'form-control', 'placeholder' => '**************',]) !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
                     </div>
                 </div>
           </div>
       </div>
-          <div class="form-group">
-              <div class="col-md-12">
-                {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}
-                </div>
-          </div>
           {!! Form::close()!!}
   </div>
 </div>
+@endsection
+@section('scripts')
+    <script>
+       $(document).ready(function(){
+           var password = document.getElementById("password")
+                   , confirm_password = document.getElementById("confirm_password");
+           function validatePassword(){
+               if(password.value != confirm_password.value) {
+                   confirm_password.setCustomValidity("Contraseñas no coinciden");
+               } else {
+                   confirm_password.setCustomValidity('');
+               }
+           }
+           password.onchange = validatePassword;
+           confirm_password.onkeyup = validatePassword;
+       })
 
+    </script>
 @endsection

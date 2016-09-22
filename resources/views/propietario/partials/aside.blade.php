@@ -32,16 +32,18 @@
       <ul class="sidebar-menu">
           <li class="header">Menú</li>
         <!-- Optionally, you can add icons to the links -->
-        <li class="treeview">
-          <a href="#"><i class="fa fa-cogs"></i> <span>Configuraciones</span> <i class="fa fa-angle-left pull-right"></i></a>
 
+        <li>
+          <a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos">
+              <i class="fa fa-building-o"/></i><span>Documentos</span>
+          </a>
         </li>
 
-        <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos"><i class="fa fa-building-o"/></i><span>Documentos</span></a></li>
-
-
-
-        <li><a href="{{route('admin.auth.logout')}}"><i class="fa fa-sign-out"/></i> <span>Salir</span></a></li>
+        <li>
+          <a href="{{route('admin.auth.logout')}}">
+              <i class="fa fa-sign-out"/></i> <span>Salir</span>
+          </a>
+        </li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

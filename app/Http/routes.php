@@ -2,15 +2,15 @@
 use App\Paise;
 
 
-Route::group(['middleware' => ['admin']], function () 
+Route::group(['middleware' => ['admin']], function ()
 {
 	Route::get('admin/home', ['as' => 'admin.home', function () {
-			return view('admin.index');
+		return view('admin.index');
 	}]);
-	
+
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateAvatar');
-	
+
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');
 	Route::resource('statusComents', 'status_comentsController');
@@ -28,93 +28,93 @@ Route::group(['middleware' => ['admin']], function ()
 	Route::get('archivos_documento/{id}/delete', 'Archivos_documentoController@destroy');
 	Route::get('archivos_documento/{id}/deleteMsg', 'Archivos_documentoController@DeleteMsg');
 	Route::get('archivos_documento/{id}/destroy', [
-			'uses' => 'Archivos_documentoController@destroy',
-			'as'   => 'archivos_documento.destroy'
-		]);
+		'uses' => 'Archivos_documentoController@destroy',
+		'as'   => 'archivos_documento.destroy'
+	]);
 	/********************************************************/
 	Route::resource('users', 'UsersController');
 	Route::get('users/{id}/destroy', [
-			'uses' => 'UsersController@destroy',
-			'as'   => 'users.destroy'
-		]);
+		'uses' => 'UsersController@destroy',
+		'as'   => 'users.destroy'
+	]);
 	Route::get('csv', function () {
-			if (($handle = fopen(public_path().'/uploads/paises.csv', 'r')) !== FALSE) {
-				while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
-					$pais = new Paise();
-					$pais->pais = $data[0];
-					$pais->ciudad = $data[1];
-					$pais->save();
-				}
-				fclose($handle);
+		if (($handle = fopen(public_path().'/uploads/paises.csv', 'r')) !== FALSE) {
+			while (($data = fgetcsv($handle, 1000, ',')) !== FALSE) {
+				$pais = new Paise();
+				$pais->pais = $data[0];
+				$pais->ciudad = $data[1];
+				$pais->save();
 			}
-			return redirect()->route('admin.index');
-		});
+			fclose($handle);
+		}
+		return redirect()->route('admin.index');
+	});
 	//Paise Resources
 	/*******************************************************/
 	Route::resource('pais', 'PaiseController');
 	Route::get('pais/{id}/destroy', [
-			'uses' => 'PaiseController@destroy',
-			'as'   => 'pais.destroy'
+		'uses' => 'PaiseController@destroy',
+		'as'   => 'pais.destroy'
 
-		]);
+	]);
 	//Oficina Resources
 	/*******************************************************/
 	Route::resource('oficina', 'OficinaController');
 	Route::get('oficina/{id}/destroy', [
-			'uses' => 'OficinaController@destroy',
-			'as'   => 'oficina.destroy'
+		'uses' => 'OficinaController@destroy',
+		'as'   => 'oficina.destroy'
 
-		]);
+	]);
 	//Torre Resources
 	/*******************************************************/
 	Route::resource('torre', 'TorreController');
 	Route::get('torre/{id}/destroy', [
-			'uses' => 'TorreController@destroy',
-			'as'   => 'torre.destroy'
-		]);
+		'uses' => 'TorreController@destroy',
+		'as'   => 'torre.destroy'
+	]);
 	Route::get('torre/{id}/documentos', [
-			'uses' => 'TorreController@documentos',
-			'as'   => 'torre.documentos'
-		]);
+		'uses' => 'TorreController@documentos',
+		'as'   => 'torre.documentos'
+	]);
 	//Apartamento Resources
 	/*******************************************************/
 	Route::resource('apartamento', 'ApartamentoController');
 
 	// Lista los apartamentos segun torre_id
 	Route::get('apartamento/{id}/aptoTorres', [
-			'uses' => 'ApartamentoController@aptoTorres',
-			'as'   => 'apartamento.Torres'
-		]);
+		'uses' => 'ApartamentoController@aptoTorres',
+		'as'   => 'apartamento.Torres'
+	]);
 	Route::get('apartamento/{id}/destroy', [
-			'uses' => 'ApartamentoController@destroy',
-			'as'   => 'apartamento.destroy'
+		'uses' => 'ApartamentoController@destroy',
+		'as'   => 'apartamento.destroy'
 
-		]);
+	]);
 	//Marca_vehiculo Resources
 	/*******************************************************/
 	Route::resource('marca-vehiculo', 'Marca_vehiculoController');
 	Route::get('marca-vehiculo/{id}/destroy', [
-			'uses' => 'Marca_vehiculoController@destroy',
-			'as'   => 'marca-vehiculo.destroy'
-		]);
+		'uses' => 'Marca_vehiculoController@destroy',
+		'as'   => 'marca-vehiculo.destroy'
+	]);
 	//Parqueo Resources
 	/*******************************************************/
 	Route::resource('parqueo', 'ParqueoController');
 	Route::get('parqueo/{id}/destroy', [
-			'uses' => 'ParqueoController@destroy',
-			'as'   => 'parqueo.destroy'
-		]);
+		'uses' => 'ParqueoController@destroy',
+		'as'   => 'parqueo.destroy'
+	]);
 	//Automoviles_apto Resources
 	/*******************************************************/
 	Route::resource('automoviles', 'Automoviles_aptoController');
 	Route::get('automoviles/{id}/edits/{apto}', [
-			'uses' => 'Automoviles_aptoController@edits',
-			'as'   => 'automoviles.edits'
-		]);
+		'uses' => 'Automoviles_aptoController@edits',
+		'as'   => 'automoviles.edits'
+	]);
 	Route::get('automoviles/{id}/destroy', [
-			'uses' => 'Automoviles_aptoController@destroy',
-			'as'   => 'automoviles.destroy'
-		]);
+		'uses' => 'Automoviles_aptoController@destroy',
+		'as'   => 'automoviles.destroy'
+	]);
 	//Archivos_documento Resources
 	/*******************************************************/
 	Route::resource('archivos_documento', 'Archivos_documentoController');
@@ -122,28 +122,28 @@ Route::group(['middleware' => ['admin']], function ()
 	Route::get('archivos_documento/{id}/delete', 'Archivos_documentoController@destroy');
 	Route::get('archivos_documento/{id}/deleteMsg', 'Archivos_documentoController@DeleteMsg');
 	Route::get('archivos_documento/{id}/destroy', [
-			'uses' => 'Archivos_documentoController@destroy',
-			'as'   => 'archivos_documento.destroy'
-		]);
+		'uses' => 'Archivos_documentoController@destroy',
+		'as'   => 'archivos_documento.destroy'
+	]);
 	/********************************************************/
 	//Documento Resources
 	/*******************************************************/
 	Route::resource('documento', 'DocumentoController');
 	Route::get('documento/{id}/destroy', [
-			'uses' => 'DocumentoController@destroy',
-			'as'   => 'documento.destroy'
-		]);
+		'uses' => 'DocumentoController@destroy',
+		'as'   => 'documento.destroy'
+	]);
 	Route::get('documento/{id}/archivos_documento', [
-			'uses' => 'Archivos_documentoController@archivosxDocumento',
-			'as'   => 'documento.archivos'
-		]);
+		'uses' => 'Archivos_documentoController@archivosxDocumento',
+		'as'   => 'documento.archivos'
+	]);
 	//Tipo_documento Resources
 	/*******************************************************/
 	Route::resource('tipo_documento', 'Tipo_documentoController');
 	Route::get('tipo_documento/{id}/destroy', [
-			'uses' => 'Tipo_documentoController@destroy',
-			'as'   => 'tipo_documento.destroy'
-		]);
+		'uses' => 'Tipo_documentoController@destroy',
+		'as'   => 'tipo_documento.destroy'
+	]);
 });
 
 /********************************************************/
@@ -151,24 +151,26 @@ Route::group(['middleware' => ['admin']], function ()
 
 Route::group(['middleware' => ['propietario']], function () {
 
+	Route::resource('propietario','PropietarioController');
+
 	Route::get('propietario/documentos',[
 		'uses'	=> 'PropietarioController@documentos',
 		'as'	=> 'propietario.documentos'
 	]);
-		
+
 	Route::post('propietario/profile', 'UsersController@updateAvatar');
-	
-	Route::get('propietario/home', ['as' => 'propietario.home', 
+
+	Route::get('propietario/home', ['as' => 'propietario.home',
 		function () {
-		return view('propietario.index');
+			return view('propietario.index');
 		}
 	]);
-	
-	Route::get ('propietario/edit/{id}',[
+
+	/*Route::get ('propietario/{id}/edit',[
 		'uses' 	=> 'PropietarioController@edit',
 		'as'	=> 'propietario.edit'
-	]);
-	
+	]);*/
+
 	//Apart
 	// Route::post('propietario/update/{id}', [
 	// 'uses' 	=> 'PropietarioController@update',
@@ -188,10 +190,10 @@ Route::group(['middleware' => ['propietario']], function () {
 
 /**************************  Routes without Authentication **********************/
 
-	
+
 Route::get('propietario/profile', [
 	'uses' => 'UsersController@profile',
-	'as' => 'propietario.profile' 
+	'as' => 'propietario.profile'
 ]);
 
 
@@ -201,37 +203,37 @@ Route::get('propietario/torre/{id}/documentos', [
 ]);
 
 Route::post('profile', 'UsersController@updateAvatar');
-	
+
 Route::get('propietario/documento/{id}/archivos_documento', [
-			'uses' => 'Archivos_documentoController@archivosxDocumento',
-			'as'   => 'documento.archivos'
-		]);
+	'uses' => 'Archivos_documentoController@archivosxDocumento',
+	'as'   => 'documento.archivos'
+]);
 
 Route::get('/', function () {
-		return redirect()->route('admin.auth.login');
-	});
+	return redirect()->route('admin.auth.login');
+});
 Route::get('admin/auth/login', [
 
-		'uses' => 'Auth\AuthController@getLogin',
-		'as'   => 'admin.auth.login'
-	]);
+	'uses' => 'Auth\AuthController@getLogin',
+	'as'   => 'admin.auth.login'
+]);
 Route::post('admin/auth/login', [
-		'uses' => 'Auth\AuthController@postLogin',
-		'as'   => 'admin.auth.login'
-	]);
+	'uses' => 'Auth\AuthController@postLogin',
+	'as'   => 'admin.auth.login'
+]);
 Route::get('admin/auth/logout', [
-		'uses' => 'Auth\AuthController@getLogout',
-		'as'   => 'admin.auth.logout'
-	]);
+	'uses' => 'Auth\AuthController@getLogout',
+	'as'   => 'admin.auth.logout'
+]);
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
-		Route::group(['prefix' => 'v1'], function () {
-				require config('infyom.laravel_generator.path.api_routes');
-			});
+	Route::group(['prefix' => 'v1'], function () {
+		require config('infyom.laravel_generator.path.api_routes');
 	});
+});
 /***************** Route redirect user by 'tipo' ***********/
 Route::get
 ('user/login',
