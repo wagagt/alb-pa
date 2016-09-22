@@ -71,6 +71,7 @@
 @section('scripts')
     <script>
        $(document).ready(function(){
+           $('#getDocuments').css('display','none');
            var password = document.getElementById("password")
                    , confirm_password = document.getElementById("confirm_password");
            function validatePassword(){

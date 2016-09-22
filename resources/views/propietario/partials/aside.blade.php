@@ -10,7 +10,7 @@
              <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="img-circle" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
         </div>
         <div class="pull-left info">
-          <p>{{Auth::user()->name}}</p>
+          <p>{{Auth::user()->usuario}}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
         </div>
@@ -34,7 +34,7 @@
         <!-- Optionally, you can add icons to the links -->
 
         <li>
-          <a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos">
+          <a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos" id="getDocuments">
               <i class="fa fa-building-o"/></i><span>Documentos</span>
           </a>
         </li>
