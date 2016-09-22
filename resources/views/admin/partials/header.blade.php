@@ -68,7 +68,7 @@
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/uploads/avatars/avatar-alb.png" class="img-circle" alt="User Image">
+                <img src="/uploads/avatars/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
                 <!--<a style="color:white" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i>Perfil</a>-->
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
