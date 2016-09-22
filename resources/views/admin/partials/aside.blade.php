@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <!-- search form (Optional) -->
+      <!-- search form (Optional)
       <form action="#" method="get" class="sidebar-form">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
@@ -26,11 +26,11 @@
               </span>
         </div>
       </form>
-      <!-- /.search form -->
+    .search form -->
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
-          <li class="header">Menú</li>
+          <li class="header">MENÚ</li>
         @if((Auth::user()->tipo == 'admin')|| (Auth::user()->tipo == 'super_admin'))
 
         <!-- Optionally, you can add icons to the links -->
