@@ -18,14 +18,14 @@ class Propietario
 
     public function handle($request, Closure $next)
     {
-        if($this->auth->user()->isPropietario()){
+        if($this->auth->user()->tipo= 'propietario'){
             Activity::log('Logged in');
-            if ( $this->auth->user()->isFirstLogin() ){
-                $userId = $this->auth->user()->id;
-                return \Redirect::route('propietario.edit', [$userId]);
-            }
 
-            return view('propietario.dash');
+
+            if ( $this->auth->user()->password != '$2y$10$cCOppp.HKq6h2BbfAMvc5eGbrA9ED/J97.4BEOLEl/OoAEd463ioi' ){
+
+                return view('propietario.dash');
+            }
         }
         return $next($request);
     }
