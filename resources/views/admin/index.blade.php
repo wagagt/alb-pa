@@ -4,7 +4,7 @@
 <div class="col-xs-12">
     <div class="box box-primary">
         <div class="box-header">
-        <h3 class="box-title"><i>Building Magement</i></h3>
+        <h3 class="box-title"><i>Building Management</i></h3>
             <!--div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px">
                     <input type="text" placeholder="Buscar" name="search_table" class="form-control">

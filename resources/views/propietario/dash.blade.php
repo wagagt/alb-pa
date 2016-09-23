@@ -4,7 +4,7 @@
   <div class="col-xs-12">
     <div class="box box-primary">
       <div class="box-header">
-        <h3 class="box-title"><i>Building Magement</i></h3>
+        <h3 class="box-title"><i>Building Management</i></h3>
 
       </div>
 
