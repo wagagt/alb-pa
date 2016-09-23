@@ -11,13 +11,13 @@ class TipoDocumentosTableSeeder extends Seeder {
 	public function run() {
 		//
 		$tiposdocumentos = [
-			['descripcion' => 'Estado de Cuenta'],
-			['descripcion' => 'Estado Financiero'],
-			['descripcion' => 'Bancos'],
+			['descripcion' => 'Cuentas por cobrar'],
+			['descripcion' => 'Conciliación bancaria'],
+			['descripcion' => 'Balance general'],
 			['descripcion' => 'Cuentas por Pagar'],
-			['descripcion' => 'Cuentas por Cobrar'],
-			['descripcion' => 'Recibo de Pago'],
-			['descripcion' => 'No definido']
+			['descripcion' => 'Estado de resultados'],
+			['descripcion' => 'Boletines'],
+			['descripcion' => 'Proyectos de mejoras']
 		];
 
 		foreach ($tiposdocumentos as $tipodoc) {
