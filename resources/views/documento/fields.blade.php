@@ -7,26 +7,26 @@
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('TipoDocumento', 'Tipo de Documento:') !!}
-        {!! Form::select('tipo_documentos_id', $tipo_documentos_list, null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
+        {!! Form::select('tipo_documentos_id', $tipo_documentos_list, null, ['class' => 'form-control select-type', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
 
     </div>
-
+</div>
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('fecha_del', 'Fecha Desde:') !!}
-        {!! Form::text('fecha_del', null, ['class' => 'form-control', 'placeholder' => 'Fecha Inicio (año-mes-dia)', 'required'])!!}
+        {!! Form::date('fecha_del', null, ['class' => 'form-control', 'placeholder' => 'Fecha Inicio (año-mes-dia)', 'required', 'id' =>'datepicker'])!!}
     </div>
 </div>
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('fecha_al', 'Fecha Hasta:') !!}
-        {!! Form::text('fecha_al', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final (año-mes-dia)', 'required'])!!}
+        {!! Form::date('fecha_al', null, ['class' => 'form-control', 'placeholder' => 'Fecha Final (año-mes-dia)', 'required'])!!}
     </div>
 </div>
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('torre_id', 'Torre:') !!}
-        {!! Form::select('torre_id', $torres_list, null, ['class' => 'form-control select-country', 'placeholder' => 'Seleccione una torre', 'required'])!!}
+        {!! Form::select('torre_id', $torres_list, null, ['class' => 'form-control select-torre', 'placeholder' => 'Seleccione una torre', 'required'])!!}
     </div>
 </div>
 
@@ -38,3 +38,5 @@
    {!! Form::hidden('urlBack', $previousUrl) !!}
 
     <a href="{{ $previousUrl }}" class="btn btn-danger">Cancelar</a>
+</div>
+</div>
