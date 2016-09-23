@@ -67,25 +67,29 @@ class TorreController extends Controller {
 		Flash::error('el edificio '.$torre->nombre.' ha sido borrado de forma exitosa');
 		return redirect()->route('torre.index');
 	}
-
-	public function documentos(Request $request, $id)
+	
+	public function documento(Request $request, $id,$tipo)
 	{
 		$trim1 = Documento::where('torre_id', '=', $id)
+			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '1')
 			->whereMonth('fecha_del', '<=', '3')
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim2 = Documento::where('torre_id', '=', $id)
+			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '4')
 			->whereMonth('fecha_del', '<=', '6')
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim3 = Documento::where('torre_id', '=', $id)
+			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '7')
 			->whereMonth('fecha_del', '<=', '9')
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim4 = Documento::where('torre_id', '=', $id)
+			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '10')
 			->whereMonth('fecha_del', '<=', '12')
 			->orderBy('nombre', 'ASC')->paginate(25);

@@ -5,7 +5,7 @@
 <div class="box box-primary"> </div>
     <div class="box-header">
       <div class="box-tools">
-            <div class="col-md-3 text-left"><a href="/propietario/torre/{{$documento->torre->id}}/documentos" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Volver </a>  
+            <div class="col-md-3 text-left"><a href="/propietario/torre/{{$documento->torre->id}}/{{$documento->tipo_documento->id}}/documentos" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i> Volver </a>
             </div>
       </div>
     </div>

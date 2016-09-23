@@ -7,24 +7,24 @@
       <h3 class="box-title">Lista de Documentos en torre: <strong>{{$torre->nombre}}</strong></h3>
       <div class="box-tools">
 
-        <!-- Buscador de Tags -->
+        <!-- Buscador de Tags
         <div class="input-group input-group-sm">
-          {!! Form::open(['route'=>'documento.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!}
+          {--!! Form::open(['route'=>'documento.index', 'method'=>'GET', 'class'=>'navbar-form pull-right']) !!--}
           <div class="input-group">
 
-            {!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Buscar Documento...',
-            'aria-describedby'=>'search','autofocus']) !!}
+            {--!! Form::text('numero', null, ['class'=>'form-control', 'placeholder'=>'Buscar Documento...',
+            'aria-describedby'=>'search','autofocus']) !!--}
             <span class="input-group-addon" id="search"><i class="fa fa-search"></i></span>
           </div>
 
-          {!! Form::close() !!}
+          {--!! Form::close() !!--}
         </div>
-        <!-- Fin del buscador -->
+        < Fin del buscador -->
       </div>
     </div>
     <div class="box-body">
 
-      <div class="col-md-12 text-left"><a href="{{route('torre.index')}}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar </a>  </div>
+      <!--div class="col-md-12 text-left"><a href="{{route('torre.index')}}" class="btn btn-primary"><i class="fa fa-chevron-left" aria-hidden="true"></i> Regresar </a>  </-div-->
 
       <div class="col-md-12 col-xd-1 ">
         <!-- Custom Tabs -->

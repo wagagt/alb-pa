@@ -7,7 +7,7 @@ Homestead.json
 .tmp
 .phpintel
 config/database.php
-
+public/uploads/
 composer.lock
 .idea
 storage/debugbar
