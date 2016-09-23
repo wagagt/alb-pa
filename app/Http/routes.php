@@ -201,10 +201,15 @@ Route::get('propietario/profile', [
 ]);
 
 
-
 Route::get('propietario/torre/{id}/{tipo}/documentos', [
 	'uses' => 'TorreController@documento',
 	'as'   => 'propietario.torre.documento'
+]);
+
+
+Route::get('propietario/torre/{id}/documentos', [
+	'uses' => 'TorreController@documentos',
+	'as'   => 'propietario.torre.documentos'
 ]);
 
 Route::get('propietario/documento/{id}/archivos_documento', [
