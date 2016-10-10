@@ -143,7 +143,7 @@
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
                   <div class="box-body box-chat">
-                        <div class="col-md-3"> <h5>Propietarios</h5></div>
+                        <div class="col-md-3"> <h5>Administradores</h5></div>
                         <div class="col-md-5"> <h5>Mensajes</h5> </div>
                         <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
 
