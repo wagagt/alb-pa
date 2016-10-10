@@ -47,10 +47,9 @@ class chat_doctsController extends Controller {
 
 	public function getNewMessages(Request $request){
 		$input = Request::except('_token');
-		//dd($input);
 		$docId = $input['docId'];
 		$userId = $input['userId'];
-		$msgs = chat_docts::selectRaw('user_recibe_id, count(user_recibe_id)  as total')
+		$msgs = chat_docts::selectRaw('user_recibe_id, user_send_id, count(user_recibe_id)  as total')
 				->where('documento_id', $docId)
 				->where('status_id', '=', 1)
 				->where('user_recibe_id', $userId)

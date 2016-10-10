@@ -65,7 +65,7 @@
 			success: function(data) {
 				var fullHtml = "";
 				var obj = $.parseJSON(data);
-				// console.log(obj.length);
+				console.log(obj.length);
 				var arrChangeStatusMessages = new Array();
 				var newMessages = 0;
 				if (obj.length > 1) {
@@ -103,6 +103,7 @@
 					$('#' + domId).html(total);
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
 					//if (newMessages > 0) updateMessages(arrChangeStatusMessages);
+					updateMessages(arrChangeStatusMessages);
 					$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
 				}
 				else {
@@ -191,6 +192,7 @@
 					if (obj.length > 0) {
 						$.each(obj, function() {
 							var userReceiveId = this['user_recibe_id'];
+							var userSendId = this['user_send_id'];
 							if (userReceiveId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
 								ajaxRefreshChat(docId, userReceiveId);
@@ -199,7 +201,7 @@
 							}
 							else { // crear marca con numero de mensajes sin leer
 								var total = this['total'];
-								var domId = 'mensajeNuevo_' + userReceiveId;
+								var domId = 'mensajeNuevo_' + userSendId;
 								$('#' + domId).html(total);
 							}
 						});

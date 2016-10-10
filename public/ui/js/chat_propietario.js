@@ -68,7 +68,7 @@
 				//alert('llego...con user: ' + userId +' doc: ' + docId);
 				var fullHtml = "";
 				var obj = $.parseJSON(data);
-				// console.log(obj.length);
+				console.log(obj.length);
 				var arrChangeStatusMessages = new Array();
 				var newMessages = 0;
 				if (obj.length > 1) {
@@ -105,7 +105,8 @@
 					var domId = 'mensajeNuevo_' + userId;
 					$('#' + domId).html(total);
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
-					if (newMessages > 0) updateMessages(arrChangeStatusMessages);
+					//if (newMessages > 0) 
+					updateMessages(arrChangeStatusMessages);
 					$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
 				}
 				else {
@@ -176,7 +177,6 @@
 	function searchNewMessageByDoc() {
 		var docId = $('#docto_id').val();
 		var userId = $('#user_send').val();
-		var userRecibe = $('#user_recibe').val();
 		
 		setInterval(function() {
 			$.ajax({
@@ -187,15 +187,15 @@
 				url: "/getNewMessages",
 				data: {
 					'docId': docId,
-					'userId': userRecibe
+					'userId': userId
 				},
 				success: function(data) {
 					if(!data) return false;
 					var obj = $.parseJSON(data);
 					if (obj.length > 0) {
 						$.each(obj, function() {
-							var userSendId = this['user_send_id'];
 							var userReceiveId = this['user_recibe_id'];
+							var userSendId = this['user_send_id'];
 							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
 								ajaxRefreshChat(docId, userId);
