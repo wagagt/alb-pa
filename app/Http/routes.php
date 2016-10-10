@@ -10,6 +10,7 @@ Route::group(['middleware' => 'admin'], function ()
 
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateAvatar');
+	Route::post('/sendMessage', 'chat_doctsController@sendMessage');	
 
 	// Integrate Routes for chats
 	Route::resource('documentosChats', 'documentos_chatController');
@@ -151,15 +152,18 @@ Route::group(['middleware' => 'admin'], function ()
 /********************************************************/
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
-Route::group(['middleware' => ['auth','propietario']], function () {
+Route::group(['middleware' => 'propietario'], function () {
 
 	Route::resource('propietario','PropietarioController');
+	Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
+	Route::post('/sendMessage', 'chat_doctsController@sendMessage');
+	Route::get('/updateMessages', 'chat_doctsController@updateMessages');
+	Route::get('/getchat', 'chat_doctsController@getChat');
 
 	Route::get('propietario/documentos',[
 		'uses'	=> 'PropietarioController@documentos',
 		'as'	=> 'propietario.documentos'
 	]);
-
 
 
 	Route::post('propietario/profile', 'UsersController@updateAvatar');
@@ -189,10 +193,13 @@ Route::group(['middleware' => ['auth','propietario']], function () {
 	// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
 	// 'as'   => 'propDocumento.archivos'
 	// ]);
+	
+	
 });
 
 
 /**************************  Routes without Authentication **********************/
+
 
 
 Route::get('propietario/profile', [
