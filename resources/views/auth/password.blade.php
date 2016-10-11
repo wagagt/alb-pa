@@ -4,14 +4,17 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+      <small>@include('flash::message')</small>
+          @include('admin.partials.errors')
         <div class="panel panel-default">
+        
           <div class="panel-heading">Restablecer contraseña</div>
 
           <div class="panel-body">
             <div class="col-md-12">
                 <p>Ingrese su correo electrónico para restablecer</p>
             </div>
-            @include('admin.partials.errors')
+            
             {!! Form::open(['url' => 'password/email']) !!}
             <div class="form-group" style="padding-bottom:38px">
               <div class="col-md-4">
@@ -27,7 +30,7 @@
                 <div class="form-group">
 
                   <div class="col-md-8">
-                    {!! Form::submit('Enviar',['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Enviar',['class' => 'btn btn-primary','style' => 'margin-top:5px']) !!}
                   </div>
 
                 </div>

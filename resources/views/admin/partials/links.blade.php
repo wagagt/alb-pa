@@ -7,3 +7,4 @@
   <link href="{{ asset('bower_components/AdminLTE/dist/css/skins/skin-green.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('/ui/css/styles.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('/ui/css/dropzone.min.css') }}" rel="stylesheet" type="text/css">
+  <link  href="{{asset('/ui/plugins/dataTables/dataTables.css')}}" rel="stylesheet" type="text/css">

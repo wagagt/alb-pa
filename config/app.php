@@ -164,7 +164,11 @@ return [
         Spatie\Activitylog\ActivitylogServiceProvider::class,
     
         Intervention\Image\ImageServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class
+        Barryvdh\Debugbar\ServiceProvider::class,
+
+        // DataTables Implementation
+
+        Yajra\Datatables\DatatablesServiceProvider::class,
         
     ],
 
@@ -225,6 +229,9 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Activity'  => Spatie\Activitylog\ActivitylogFacade::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+
 
     ],
 

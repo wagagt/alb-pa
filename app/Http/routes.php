@@ -146,6 +146,14 @@ Route::group(['middleware' => 'admin'], function ()
 	]);
 
 	Route::resource('file','FileMessageController');
+
+	// Route DataTables Api
+	// Data Table Apartamentos
+	Route::get('api/apartamentos', 'ApartamentoController@getDataTable');
+	// Data Table Usuarios
+	Route::get('api/users', 'UsersController@getDataTable');
+
+
 });
 
 /********************************************************/
