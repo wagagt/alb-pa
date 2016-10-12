@@ -91,7 +91,9 @@
 							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
 							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
 							fullHtml = fullHtml + newChat + "<hr>";
-							arrChangeStatusMessages.push(this['id']);
+							if (this['user_send_id'] != userId) { // actualizar solo mensajes NO MIOS
+								arrChangeStatusMessages.push(this['id']);
+							}
 							newMessages++;
 						}
 					});
