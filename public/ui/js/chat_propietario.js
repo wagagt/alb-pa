@@ -39,18 +39,19 @@
 	
 	// Event on click over user icon
 	$('[id^=chat_]').click(function(event) {
-		var thisId = $(this).attr('id'); //chat_3_3
+		var thisId = $(this).attr('id'); //chat_3_3_userId
 		var arrayParams = thisId.split('_');
 		var docId = arrayParams[1];
-		var userId = arrayParams[2];
-		$("#activeChatId").val(userId);
+		var chatUserId = arrayParams[2];
+		var userId = arrayParams[3];
+		$("#activeChatId").val(chatUserId);
 		$('#file-box').show();
     	$('#file-box-message').hide();
-		ajaxRefreshChat(docId, userId);
+		ajaxRefreshChat(docId, chatUserId, userId);
 	});
 	
 	// Function refresh html to show chat conversation
-	function ajaxRefreshChat(docId, userId) {
+	function ajaxRefreshChat(docId, chatUserId, userId) {
 		$.ajax({
 			async: true,
 			headers: {
@@ -62,7 +63,8 @@
 			url: "/getchat",
 			data: {
 				'docId': docId,
-				'userId': userId
+				'userId': userId,
+				'chatUserId': chatUserId
 			},
 			success: function(data) {
 				//alert('llego...con user: ' + userId +' doc: ' + docId);
@@ -94,7 +96,9 @@
 							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
 							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
 							fullHtml = fullHtml + newChat + "<hr>";
-							arrChangeStatusMessages.push(this['id']);
+							if (this['user_send_id'] != userId) { // actualizar solo mensajes NO MIOS
+								arrChangeStatusMessages.push(this['id']);
+							}
 							newMessages++;
 						}
 					});

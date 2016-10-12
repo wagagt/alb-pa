@@ -26,9 +26,11 @@ class chat_doctsController extends Controller {
 		$input = Request::except('_token');
 		$docId = $input['docId'];
 		$userId = $input['userId'];
+		$chatUserId = $input['chatUserId'];
 		$chats = chat_docts::select('id','texto', 'user_send_id', 'user_recibe_id', 'created_at')
 				->where('documento_id', $docId)
 				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($userId, $userId))
+				->whereRaw("(user_send_id = ? OR user_recibe_id = ? )", array($chatUserId, $chatUserId))
 				->orderBy('created_at', 'ASC')
 				->get();
 		if ($chats->count() > 0){
