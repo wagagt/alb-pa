@@ -50,8 +50,11 @@ class PasswordController extends Controller {
             case \Password::RESET_LINK_SENT:
             	Flash::success('Se ha enviado un correo a la dirección registrada con las instrucciones para restablecer la contraseña por favor verifique');
                 return redirect()->back()->with('status', trans($response));
+			break;
             case \Password::INVALID_USER:
+
                 return redirect()->back()->withErrors(['email' => trans($response)]);
+			break;
         }
     }
 
@@ -60,6 +63,36 @@ class PasswordController extends Controller {
     {
         return property_exists($this, 'subject') ? $this->subject : 'Enlace de reinicio de contraseña';
     }
+
+/// to reset without apartamento
+	public function postReset(Request $request)
+	{
+
+		$this->validate($request, [
+			'token' => 'required',
+			'email' => 'required|email',
+			'password' => 'required|confirmed|min:6',
+		]);
+
+		$credentials = $request->only(
+			'email', 'password', 'password_confirmation', 'token'
+		);
+
+		$response = Password::reset($credentials, function ($user, $password) {
+			$this->resetPassword($user, $password);
+		});
+
+		switch ($response) {
+			case Password::PASSWORD_RESET:
+				return redirect($this->redirectPath())->with('status', trans($response));
+			break;
+			default:
+				return redirect()->back()
+					->withInput($request->only('email'))
+					->withErrors(['email' => trans($response)]);
+			break;
+		}
+	}
 
 
 
