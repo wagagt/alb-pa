@@ -48,11 +48,11 @@ class UsersController extends Controller
           return view('user.edit')->with('usuario', $user);
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
         $user->fill($request->all());
-        $user->save();
+        $user->update();
         Flash::warning('El usuario '.$user->name.' ha sido actualizado con éxito!!');
         return redirect()->route('users.index');
     }
