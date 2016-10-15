@@ -59,7 +59,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
   public function isAdmin()
   {
-    return ($this->tipo ==  'admin')?true:false;
+      if($this->tipo == 'admin'){
+        return true;
+      }else{
+        return false;
+      }
+    
   }
 
   public function isPropietario()

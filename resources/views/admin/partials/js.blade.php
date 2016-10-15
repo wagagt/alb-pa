@@ -6,5 +6,6 @@
 <script type="text/javascript" src="{{ asset('ui/js/dropzone.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('ui/plugins/dataTables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('ui/plugins/dataTables/datatables.bootstrap.js') }}"></script>
+<script type="text/javascript" src="{{ asset('ui/plugins/select2/js/select2.min.js')}}"></script>
 
 @yield('scripts') 

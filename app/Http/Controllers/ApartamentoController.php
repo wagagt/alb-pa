@@ -29,11 +29,13 @@ class ApartamentoController extends Controller {
 
 	public function create() {
 
-		$torres = Torre::orderBy('nombre', 'ASC')->lists('nombre', 'id');// Lista de torres
-		$users  = User::where("status", "=", "1")
-			->where("tipo", "=", "propietario")
-			->orderBy('name', 'ASC')
-			->lists('name', 'id');// Lista de usuarios
+		$torres = Torre::orderBy('id', 'ASC')->lists('nombre', 'id')->prepend('Seleccione un edificio');
+		$users = DB::table('users')
+					->select('users.id', 'users.name')
+					->leftJoin('apartamentos', 'users.id', '=' ,'apartamentos.user_id')
+					->where("users.tipo", "=" , "propietario")
+					->whereNull('apartamentos.user_id')
+					->lists('users.name', 'users.id');
 
 		return view('apartamento.create')
 			->with('torres', $torres)
