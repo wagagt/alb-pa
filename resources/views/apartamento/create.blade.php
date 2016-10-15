@@ -75,7 +75,7 @@
 
                 <div class="form-gorup">
                   <div class="col-md-12">
-                    {!! Form::submit('Registrar',  ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Registrar',  ['class' => 'btn btn-primary', 'style' => 'margin-top:15px']) !!}
                     </div>
                 </div>
                 {!! Form::close()!!}
@@ -92,16 +92,21 @@
 
 @endsection
 
-@section('script')
+@section('scripts')
   <script type="text/javascript">
 
-         $('.select-user').chosen({
-            no_results_text:'Ningún resultado coincide con: '
-          });
 
-          $('.select-torre').chosen({
-             no_results_text:'Ningún resultado coincide con: '
-           });
+      $(document).ready(function(){
+          $('.select-torre').select2({
+              allowClear: true,
+          });
+          $('.select-user').select2({
+              allowClear: true,
+          });
+      });
+
+
+
 
 
       </script>

@@ -4,8 +4,13 @@
   <div class="col-xs-12">
       <div class="box box-primary">
           <div class="box-header">
-          <h3 class="box-title">Editar Perfil</h3>
+          <h3 class="box-title col-md-12">Editar Perfil</h3>
+          <div class="alert alert-warning col-md-12" style="margin-top:10px;">
+            <button type="button" class="close" data-dismiss="alert" area-hidden="true">x</button>
+                    <i class="fa fa-exclamation-circle"></i> Todos los campos son obligatorios
+                </div>
               <div class="box-tools">
+                
               </div>
           </div>
 
@@ -22,7 +27,7 @@
                 <div class="form-group">
                     <div class="col-md-3">
                         {!! Form::label('usuario', 'Usuario:') !!}
-                        {!! Form::text('usuario', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de usuario', 'required'])!!}
+                        {!! Form::text('usuario', null, ['class' => 'form-control', 'placeholder' => 'Ingrese el nombre de usuario', 'disabled'])!!}
                     </div>
                 </div>
                 <div class="form-group">

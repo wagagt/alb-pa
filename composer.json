@@ -21,7 +21,8 @@
         "flynsarmy/csv-seeder": "1.0.*",
         "spatie/activitylog": "^2.4",
         "intervention/image": "^2.3",
-        "barryvdh/laravel-debugbar": "^2.2"
+        "barryvdh/laravel-debugbar": "^2.2",
+        "yajra/laravel-datatables-oracle": "^6.19"
        
     },
     "require-dev": {

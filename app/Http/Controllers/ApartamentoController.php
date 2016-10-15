@@ -12,6 +12,7 @@ use App\User;
 use DB;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
+use Yajra\Datatables\Facades\Datatables;
 
 /**
  * Class ApartamentoController
@@ -23,17 +24,18 @@ use Laracasts\Flash\Flash;
 class ApartamentoController extends Controller {
 
 	public function index(Request $request) {
-		$apartamentos = Apartamento::search($request->numero)->orderBy('numero', 'ASC')->paginate(5);
-		return view('apartamento.index')->with('apartamentos', $apartamentos);
+		return view('apartamento.index');
 	}
 
 	public function create() {
 
-		$torres = Torre::orderBy('nombre', 'ASC')->lists('nombre', 'id');// Lista de torres
-		$users  = User::where("status", "=", "1")
-			->where("tipo", "=", "propietario")
-			->orderBy('name', 'ASC')
-			->lists('name', 'id');// Lista de usuarios
+		$torres = Torre::orderBy('id', 'ASC')->lists('nombre', 'id')->prepend('Seleccione un edificio');
+		$users = DB::table('users')
+					->select('users.id', 'users.name')
+					->leftJoin('apartamentos', 'users.id', '=' ,'apartamentos.user_id')
+					->where("users.tipo", "=" , "propietario")
+					->whereNull('apartamentos.user_id')
+					->lists('users.name', 'users.id');
 
 		return view('apartamento.create')
 			->with('torres', $torres)
@@ -91,5 +93,25 @@ class ApartamentoController extends Controller {
 		return view('apartamento.index')->with('apartamentos', $apartamentos);
 
 	}
+
+
+	public function getDataTable(){
+		$apartamentos = DB::table('apartamentos')								
+								->join('users', 'users.id', '=', 'apartamentos.user_id')
+								->join('torres', 'torres.id', '=','apartamentos.torre_id' )
+								->select(['apartamentos.id', 'apartamentos.numero', 'apartamentos.nivel', 'metros_cuadrados', 'torres.nombre as torre', 'users.name as propietario']);
+
+		return Datatables::of($apartamentos)
+		->addColumn('acciones', function($apartamento){
+			return '<a href="apartamento/'.$apartamento->id.'/edit" class="btn btn-warning" title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+                                    <a href="apartamento/'.$apartamento->id.'/destroy" class="btn btn-danger" title="Elimiar" onclick="return confirm(\'¿Seguro que desea eliminar el registro?\')">
+                                      <i class="fa fa-trash"></i></a>';
+		})
+		->make(true);
+	}
+
+
+
+
 
 }

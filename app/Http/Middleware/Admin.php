@@ -26,14 +26,18 @@ class Admin
     public function handle($request, Closure $next)
     {
 
+
       if($this->auth->user()->isAdmin())
       {
 
-        return $next($request);
+          return $next($request);
 
       }else
       {
-        abort(401);
+          //abort(401);
+          return redirect()->to('admin/auth/logout');
+
+
       }
 
     }
