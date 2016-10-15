@@ -73,6 +73,12 @@ body {
     display: table-row;
 }
 
+.row-pointer {
+  cursor:pointer;
+}
+.row-pointer:hover{
+  background-color: rgba(243, 198, 40, 0.65);
+}
 .alb-left-cell, .alb-middle-cell, .alb-right-cell{
   display: table-cell;
   padding:1px;
@@ -81,6 +87,7 @@ body {
 .btn{
   float: right;
 }
+
 
 .nav-tabs-custom>.nav-tabs{
   margin-top:5px;

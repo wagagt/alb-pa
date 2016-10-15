@@ -154,9 +154,9 @@
                             $haveChat = (in_array($usuario->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
-                            <div class="alb-row">
-                              <div class="alb-left-cell">  
-                                <a href="#" title="{{$usuario->name}}" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}" >
+                            <div class="alb-row row-pointer">
+                              <div class="alb-left-cell" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}" >  
+                                <a href="#" title="{{$usuario->name}}">
                                   <div class="col-xs-4 chat-icon" id="userChatIcon_{{$usuario->id}}">
                                     <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
                                   </div>

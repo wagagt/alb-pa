@@ -25,7 +25,7 @@
 			success: function(data) {
 				$('.compositor').val('');
 				$('#userChatIcon_' + userReceiveId).html('<i class="fa fa-user fa-1" aria-hidden="true"><i class="fa fa-comment-o" aria-hidden="true"></i></i>');
-				ajaxRefreshChat(docId, userReceiveId);
+				ajaxRefreshChat(docId, userReceiveId, userSendId);
 				return true;
 			},
 			error: function() {
@@ -202,7 +202,7 @@
 							var userSendId = this['user_send_id'];
 							if (userSendId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
-								ajaxRefreshChat(docId, userId);
+								ajaxRefreshChat(docId, userReceiveId, userSendId);
 								var chatActive = "chat_" + docId + "_" + userSendId;
 								$("#" + chatActive).click();
 							}

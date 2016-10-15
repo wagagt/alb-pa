@@ -25,7 +25,7 @@
 			success: function(data) {
 				$('.compositor').val('');
 				$('#userChatIcon_' + userReceiveId).html('<i class="fa fa-user fa-1" aria-hidden="true"><i class="fa fa-comment-o" aria-hidden="true"></i></i>');
-				ajaxRefreshChat(docId, userReceiveId);
+				ajaxRefreshChat(docId, userReceiveId, userSendId);
 				return true;
 			},
 			error: function() {
@@ -42,13 +42,16 @@
 		var thisId = $(this).attr('id'); //chat_3_3
 		var arrayParams = thisId.split('_');
 		var docId = arrayParams[1];
-		var inquilinoId = arrayParams[2];
-		$("#activeChatId").val(inquilinoId);
-		ajaxRefreshChat(docId, inquilinoId);
+		var chatUserId = arrayParams[2];
+		var userId = arrayParams[3];
+		$("#activeChatId").val(chatUserId);
+		$('#file-box').show();
+    	$('#file-box-message').hide();
+		ajaxRefreshChat(docId, chatUserId, userId);
 	});
 	
 	// Function refresh html to show chat conversation
-	function ajaxRefreshChat(docId, userId) {
+	function ajaxRefreshChat(docId, chatUserId, userId) {
 		$.ajax({
 			async: true,
 			headers: {
@@ -60,7 +63,8 @@
 			url: "/getchat",
 			data: {
 				'docId': docId,
-				'userId': userId
+				'userId': userId,
+				'chatUserId': chatUserId
 			},
 			success: function(data) {
 				var fullHtml = "";
@@ -197,7 +201,7 @@
 							var userSendId = this['user_send_id'];
 							if (userReceiveId == $('#activeChatId').val()) { // refrescar conversacion
 								// ir atraer los mensajes de la conversacion activa
-								ajaxRefreshChat(docId, userReceiveId);
+								ajaxRefreshChat(docId, userReceiveId, userSendId);
 								var chatActive = "chat_" + docId + "_" + userReceiveId;
 								$("#" + chatActive).click();
 							}
