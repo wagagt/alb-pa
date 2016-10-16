@@ -51,11 +51,11 @@ class chat_doctsController extends Controller {
 		$input = Request::except('_token');
 		$docId = $input['docId'];
 		$userId = $input['userId'];
-		$msgs = chat_docts::selectRaw('user_recibe_id, user_send_id, count(user_recibe_id)  as total')
+		$msgs = chat_docts::selectRaw('user_recibe_id, user_send_id, count(user_send_id)  as total')
 				->where('documento_id', $docId)
 				->where('status_id', '=', 1)
 				->where('user_recibe_id', $userId)
-				->groupBy('user_recibe_id')
+				->groupBy('user_send_id')
 				->get();
 		if ($msgs->count() > 0 ){
 			return $msgs->toJson();	
