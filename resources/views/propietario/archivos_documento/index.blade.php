@@ -54,7 +54,6 @@
 
                       <!-- ARCHIVOS DEL DOCUMENTO -->
                       <?php 
-                      //dd($archivos);
                       if( empty($archivos)) {
                           echo "<h3>No se han ingresado documentos...</h3>";
                         }else{?>
@@ -142,7 +141,13 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <div class="box-body box-chat">
+                  <!--aca va el chat-->
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="box-body box-chat">
                         <div class="col-md-3"> <h5>Administradores</h5></div>
                         <div class="col-md-5"> <h5>Mensajes</h5> </div>
                         <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
@@ -154,8 +159,8 @@
                             $haveChat = (in_array($usuario->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
-                            <div class="alb-row row-pointer">
-                              <div class="alb-left-cell" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}" >  
+                            <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}">
+                              <div class="alb-left-cell"  >  
                                 <a href="#" title="{{$usuario->name}}">
                                   <div class="col-xs-4 chat-icon" id="userChatIcon_{{$usuario->id}}">
                                     <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
@@ -200,18 +205,15 @@
                         
                         
                       </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
   <p id="notificacion"></p>
 </div>
-
+<a href="#" onclick="searchNewMessageByDoc();">searchNewMessageByDoc();</a>
+<hr>
+<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>
 </div>
 
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="{{ asset('ui/js/chat_propietario.js')}}"></script>
+<script type="text/javascript" src="{{ asset('ui/js/new_chat.js')}}"></script>
 @endsection
