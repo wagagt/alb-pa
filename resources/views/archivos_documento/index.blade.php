@@ -137,22 +137,27 @@
             </div>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <div class="box-body box-chat">
+                  <!--aca va el chat-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-body box-chat">
                         <div class="col-md-3"> <h5>Propietarios</h5></div>
                         <div class="col-md-5"> <h5>Mensajes</h5> </div>
                         <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
 
                         <div class="col-md-3" id="users">
-                          @foreach($usuarios as $usuario)
+                          @foreach($usuarios as $chatUser)
                           <?php 
-                            //echo "id------".$usuario->id;
-                            $haveChat = (in_array($usuario->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
+                            //echo "id------".$chatUser->id;
+                            $haveChat = (in_array($chatUser->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
-                          <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}" >
+                          <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$chatUser->id}}_{{ Auth::user()->id }}" >
                             <div class="alb-left-cell">  
-                              <a href="#" title="{{$usuario->name}}">
-                                <div class="col-xs-4 chat-icon" id="userChatIcon_{{$usuario->id}}">
+                              <a href="#" title="{{$chatUser->name}}">
+                                <div class="col-xs-4 chat-icon" id="userChatIcon_{{$chatUser->id}}">
                                   <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
                                 </div>
                               </a>
@@ -160,11 +165,11 @@
 
                             <div class="alb-middle-cell">
                                <span data-toggle="tooltip" title="" class="badge bg-yellow"  
-                               id="mensajeNuevo_{{$usuario->id}}" data-original-title=""></span>
+                               id="mensajeNuevo_{{$chatUser->id}}" data-original-title=""></span>
                             </div>
 
                             <div class="alb-right-cell">
-                              <div class="col-xs-8 chat-font" id="chat_{{$usuario->id}}">{{$usuario->usuario}} </div>
+                              <div class="col-xs-8 chat-font" id="chat_{{$chatUser->id}}">{{$chatUser->usuario}} </div>
                             </div>
 
                           </div>  
@@ -212,18 +217,17 @@
                         </div>
                         
                       </div>
-                </div>
-            </div>
-        </div>
-    </div>
   <p id="notificacion"></p>
 </div>
-
+<a href="#" onclick="searchNewMessageByDoc();">searchNewMessageByDoc();</a>
+<hr>
+<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>
 </div>
 
 @endsection
 
 @section('scripts')
 <script type="text/javascript" src="{{ asset('ui/js/chat.js')}}"></script>
+<script type="text/javascript" src="{{ asset('ui/js/new_chat.js')}}"></script>
 <script type="text/javascript" src="{{ asset('ui/js/uploadfile.js' )}}"></script>
 @endsection
