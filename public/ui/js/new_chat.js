@@ -1,9 +1,60 @@
-// Function get all messages by DocId
+	// Event Send message to post on chat
+	$('#sendMessage').click(function(event) {
+		var chat = $('.compositor').val();
+		var token = $('#token').val();
+		var userId = $('#user_send').val();
+		var chatUserId = $('#activeChatId').val();
+		var docId = $('#docto_id').val();
+		if (!validateMessage(chatUserId, chat)) return false;
+		$.ajax({
+			async: true,
+			headers: {
+				'X-CSRF-TOKEN': token
+			},
+			type: "POST",
+			dataType: "html",
+			contenType: "application/x-www-form-urlencoded",
+			url: "/sendMessage",
+			data: {
+				'chat': chat,
+				'user_send': userId,
+				'user_recibe': chatUserId,
+				'docto_id': docId,
+				'status': 1
+			},
+			success: function(data) {
+				$('.compositor').val('');
+				$('#userChatIcon_' + chatUserId).html('<i class="fa fa-user fa-1" aria-hidden="true"><i class="fa fa-comment-o" aria-hidden="true"></i></i>');
+				ajaxRefreshChat(docId, chatUserId, userId);
+				return true;
+			},
+			error: function() {
+				$("#chats").html('problemas... para enviar el mensaje!');
+			},
+			timeout: 10000,
+		});
+		return false;
+	});
+	
+// Function validate message to post. ( not null && .len > 6 )
+	function validateMessage(chatUserId, chat) {
+		if (chatUserId == "") {
+			alert('ALERTA: Elige un chat antes de enviar mensaje.');
+			return false;
+		};
+		if (chat.length < 6) {
+			alert('ALERTA: El mensaje debe tener mas de 5 caracteres.');
+			return false;
+		};
+		return true;
+	};
+	
+	// Function get all messages by DocId
 	function getAllChatsMessages() {
 		var docId = $('#docto_id').val();
 		var userId = $('#user_send').val();
 		
-		// setInterval(function() {
+		setInterval(function() {
 			$.ajax({
 				async: true,
 				type: "GET",
@@ -21,11 +72,15 @@
 						$.each(obj, function() {
 							var chatUserId  = this['user_recibe_id'];
 							var userId      = this['user_send_id'];
-							if (chatUserId == $('#activeChatId').val()) { // refrescar conversacion
-								// ir atraer los mensajes de la conversacion activa
+							if (this['user_send_id'] == $('#activeChatId').val()) { // si un mensaje viene del usuario con el mismo chatActivo
+								// este codigo deberia optimizarse para no 
+								// refrescar el chat, en cada mensaje que cumpla la condicion
+								// deberia verificar si 1 mensaje cumple, al final llamar la funcion 
+								// ajaxRefreshChat (xxx) 1 sola vez. 
+								// OJO: this['user_recibe_id'] y this['user_sed_id'] varian los ids segun la direccion del mensaje en c/iteracion.
 								ajaxRefreshChat(docId, chatUserId, userId);
-								var chatActive = "chat_" + docId + "_" + chatUserId;
-								$("#" + chatActive).click();
+								// var chatActive = "chat_" + docId + "_" + chatUserId;
+								 $("#" + chatActive).click();
 							}
 							else { // crear marca con numero de mensajes sin leer
 								var total = this['total'];
@@ -44,7 +99,7 @@
 				timeout: 10000
 			});
 			return false;
-		// }, 10000);
+		}, 3000);
 		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	};
 	
@@ -82,7 +137,6 @@
 				var obj = $.parseJSON(data);
 				console.log(obj.length);
 				var arrChangeStatusMessages = new Array();
-				var newMessages = 0;
 				if (obj.length > 1) {
 					var arrAvatars = obj[obj.length-1]['avatars'];
 					delete obj[obj.length - 1];
@@ -94,6 +148,7 @@
 	                <img class="direct-chat-img" src="/uploads/avatars/{avatar}" alt="{username}">\
 	                <div class="direct-chat-text">{text}</div>\
 	                </div>';
+	                msgCount=0;
 					$.each(obj, function() {
 						if (!this.texto == '') {
 							var newChat = '';
@@ -108,24 +163,21 @@
 							if (this['user_send_id'] != userId) { // actualizar solo mensajes NO MIOS
 								arrChangeStatusMessages.push(this['id']);
 							}
-							newMessages++;
 						}
+					    msgCount++;
 					});
 					$('#chats').html(fullHtml);
-					// limpiar el aviso de mensajes sin leer
-					var total = "";
-					var domId = 'mensajeNuevo_' + userId;
-					$('#' + domId).html(total);
+					$('#messagesCount').html('<h5>Mensajes = ( '+msgCount+' )</h5>');
 					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
-					//if (newMessages > 0) updateMessages(arrChangeStatusMessages);
-					//updateMessages(arrChangeStatusMessages);
-					updateActiveChat(chatUserId);
+					if ( arrChangeStatusMessages.length > 0 ) updateMessages(arrChangeStatusMessages);
 					$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
 				}
 				else {
 				// 	// update chatActiveId, Add chat-selected (RED), add user name on title.
 				 	$('#chats').html("No existen mensajes");
+				 	$('#messagesCount').html('<h5>Mensajes</h5>');
 				}
+				updateActiveChat(docId, chatUserId, userId) ;
 				$("#notificacion").html("Ok:chat activo >" + chatUserId);
 			},
 			error: function(response) {
@@ -139,10 +191,40 @@
 	};
 	
 	// Function update ActiveChat, Name on User, clear message textbox
-	function updateActiveChat(chatUserId) {
-		$('*[id^="chat_"]').removeClass('chat-selected');
-		$('#chat_' + chatUserId).addClass('chat-selected');
+	function updateActiveChat(docId, chatUserId, userId)  {
+	    // limpiar el aviso de mensajes sin leer
+		$('#' + 'mensajeNuevo_' + chatUserId).html('');
+		// set class chat-selected to active chat
+		//$('*[id^="chat_"]').removeClass('chat-selected');
+		$('[class^="alb-row"]').removeClass('chat-selected');
+		$('#chat_'+docId+'_'+chatUserId+'_'+userId).addClass('chat-selected');
+		//$('#chat_' + chatUserId).addClass('chat-selected');
 		$('#activeChatId').val(chatUserId);
 		var userName = $("#chat_" + $("#docto_id").val() + "_" + chatUserId).attr("title");
 		$("#enviarA").html(userName);
 	};
+	
+	// Function to Update Messages
+	function updateMessages(arrMessages) {
+		$.ajax({
+			async: true,
+			headers: {
+				'X-CSRF-TOKEN': token
+			},
+			type: "GET",
+			dataType: "html",
+			contenType: "application/x-www-form-urlencoded",
+			url: "/updateMessages",
+			data: {
+				'data': arrMessages
+			},
+			success: function(data) {
+				return;
+			},
+			error: function(response) {
+				$("#notificacion").html('ERROR: Problemas para cambiar estado a los mensajes mostrados.');
+			}
+		});
+	};
+	
+	getAllChatsMessages();

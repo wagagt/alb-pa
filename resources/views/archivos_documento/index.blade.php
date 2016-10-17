@@ -144,7 +144,7 @@
     </div>
     <div class="box-body box-chat">
                         <div class="col-md-3"> <h5>Propietarios</h5></div>
-                        <div class="col-md-5"> <h5>Mensajes</h5> </div>
+                        <div class="col-md-5" id="messagesCount"> <h5>Mensajes</h5> </div>
                         <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
 
                         <div class="col-md-3" id="users">
@@ -169,7 +169,7 @@
                             </div>
 
                             <div class="alb-right-cell">
-                              <div class="col-xs-8 chat-font" id="chat_{{$chatUser->id}}">{{$chatUser->usuario}} </div>
+                              <div class="col-xs-8 chat-font">{{$chatUser->usuario}} </div>
                             </div>
 
                           </div>  
@@ -219,9 +219,7 @@
                       </div>
   <p id="notificacion"></p>
 </div>
-<a href="#" onclick="searchNewMessageByDoc();">searchNewMessageByDoc();</a>
-<hr>
-<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>
+<!--<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>-->
 </div>
 
 @endsection
