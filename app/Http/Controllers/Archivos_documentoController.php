@@ -25,9 +25,8 @@ class Archivos_documentoController extends Controller {
 		->where('tipo', 'propietario')
 		->get();
 		$arrayChats[] =array();
-	
-		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id);
-		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id); 
+		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id)->where('user_recibe_id', \Auth::user()->id); 
+		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id)->where('user_send_id', \Auth::user()->id);
 		$usersChatActive = $senderActive->union($receiverActive)->get();
         foreach($usersChatActive as $chat) {
 	        $arr = (array)$chat;
@@ -36,25 +35,16 @@ class Archivos_documentoController extends Controller {
 		$chats = [];
 		
 		if(\Auth::user()->isAdmin()){
+
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)->get();
 	    	return view('archivos_documento.index')
 			->with('documento', $documento)
 			->with('archivos', $archivos_documento)
 			->with('usuarios', $usuarios)
-			->with('arrayChats', $arrayChats)
-			->with('chats', $chats);
+			->with('arrayChats', $arrayChats);
 		}else{
-			// $archivos_documento = \DB::table('archivos_documentos')
-			// ->where('documentos_id', $id)
-			// ->where('activo', 1)->get();
-			// return view('propietario.archivos_documento.index')
-			// ->with('documento', $documento)
-			// ->with('archivos', $archivos_documento)
-			// ->with('usuarios', $usuarios)
-			// ->with('arrayChats', $arrayChats)
-			// ->with('chats', $chats);
-			// propietarioArchivosxDocumento($id);
+
 			$documento= Documento::with('Tipo_documento', 'Torre')
 			->where('id', $id)
 			->first();
@@ -76,30 +66,6 @@ class Archivos_documentoController extends Controller {
 			->with('chats', $chats);
 		}
 	}
-
-	// public function propietarioArchivosxDocumento($id) {
-	 
-	//  $documento= Documento::with('Tipo_documento', 'Torre')
-	//  ->where('id', $id)
-	//  ->first();
-
-	//  $archivos_documento = \DB::table('archivos_documentos')
-	//  ->where('documentos_id', $id)
-	//  ->where('activo', '1')
-	//  ->get();
-	 
-	//   $usuarios = User::where('tipo', 'admin')
-	//   ->orderBy('usuario', 'ASC')->get();
-	 
-	//  $chats = [];
-	//  return view('propietario.archivos_documento.index')
-	//  	->with('documento', $documento)
-	//  	->with('archivos', $archivos_documento)
-	//  	->with('usuarios', $usuarios)
-	//  	->with('chats', $chats);
-	// }
-
-	
 
 	public function create() {
 		$previousUrl = Url::previous();
@@ -154,7 +120,6 @@ class Archivos_documentoController extends Controller {
 	public function update($archivo_id, Request $request) {
 		$input        = $request->all();
 		$documento_id = $input['documento_id'];
-		//$affectedRows = Archivos_documento::where('activo', '=', '1')->update(array('activo' => '0'));
 
 		if ($archivo_id > 0) {
 			$archivos_documento         = Archivos_documento::findOrfail($archivo_id);
@@ -178,9 +143,4 @@ class Archivos_documentoController extends Controller {
 		$archivos_documento->delete();
 		return redirect('documento/'.$id_documento.'/archivos_documento');
 	}
-
-	
-
-	
-	
 }
