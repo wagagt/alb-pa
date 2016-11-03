@@ -20,12 +20,12 @@ class Archivos_documentoController extends Controller {
 	}
 
 	public function archivosxDocumento($id) {
-		$documento          = Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
-		$usuarios = User::orderBy('usuario', 'ASC')
+		$documento	= Documento::with('Tipo_documento', 'Torre')->where('id', $id)->first();
+		$usuarios	= User::orderBy('usuario', 'ASC')
 		->where('tipo', 'propietario')
 		->get();
 		$arrayChats[] =array();
-		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id)->where('user_recibe_id', \Auth::user()->id); 
+		$senderActive	= \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id)->where('user_recibe_id', \Auth::user()->id); 
 		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id)->where('user_send_id', \Auth::user()->id);
 		$usersChatActive = $senderActive->union($receiverActive)->get();
         foreach($usersChatActive as $chat) {

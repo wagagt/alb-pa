@@ -7,7 +7,7 @@ Route::group(['middleware' => 'admin'], function ()
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 		return view('admin.index');
 	}]);
-
+	
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateAvatar');
 	Route::post('/sendMessage', 'chat_doctsController@sendMessage');	
@@ -146,6 +146,8 @@ Route::group(['middleware' => 'admin'], function ()
 		'as'   => 'tipo_documento.destroy'
 	]);
 
+	//Upload file on chat
+	/*******************************************************/
 	Route::resource('file','FileMessageController');
 
 	// Route DataTables Api
