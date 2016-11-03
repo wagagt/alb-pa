@@ -70,24 +70,25 @@
 					var obj = $.parseJSON(data);
 					if (obj.length > 0) {
 						$.each(obj, function() {
-							var chatUserId  = this['user_recibe_id'];
-							var userId      = this['user_send_id'];
-							if (this['user_send_id'] == $('#activeChatId').val()) { // si un mensaje viene del usuario con el mismo chatActivo
+							var chatUserId  	= this['user_recibe_id']; // cambia segun la via del mensaje.
+							var userSendId      = this['user_send_id'];
+							var activeChatId	= $('#activeChatId').val();
+							if (chatUserId == activeChatId || userSendId == activeChatId) { // si un mensaje viene del usuario con el mismo chatActivo
 								// este codigo deberia optimizarse para no 
 								// refrescar el chat, en cada mensaje que cumpla la condicion
 								// deberia verificar si 1 mensaje cumple, al final llamar la funcion 
 								// ajaxRefreshChat (xxx) 1 sola vez. 
 								// OJO: this['user_recibe_id'] y this['user_sed_id'] varian los ids segun la direccion del mensaje en c/iteracion.
-								ajaxRefreshChat(docId, chatUserId, userId);
+								ajaxRefreshChat(docId, activeChatId, userId); // DEBE ASEGURARSE DE ENVIAR SIEMPRE EL CHATUSERID CORRECTO PARA ADMIN & PROPIETARIO
 								// var chatActive = "chat_" + docId + "_" + chatUserId;
-								 $("#" + chatActive).click();
+								 //$("#" + chatActive).click();
 							}
 							else { // crear marca con numero de mensajes sin leer
-								var total = this['total'];
-								var domId = 'mensajeNuevo_' + userId;
-								$('#' + domId).html(total);
+								$('#' + 'mensajeNuevo_' + userSendId).html(this['total']);
 							}
 						});
+						//aca preguntar si Hay que refreschar el chat
+						// ajaxRefreshChat(docId, chatUserId, userId);
 					};
 					$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
 				},
@@ -199,7 +200,7 @@
 		$('[class^="alb-row"]').removeClass('chat-selected');
 		$('#chat_'+docId+'_'+chatUserId+'_'+userId).addClass('chat-selected');
 		//$('#chat_' + chatUserId).addClass('chat-selected');
-		$('#activeChatId').val(chatUserId);
+		//$('#activeChatId').val(chatUserId);
 		var userName = $("#chat_" + $("#docto_id").val() + "_" + chatUserId).attr("title");
 		$("#enviarA").html(userName);
 	};

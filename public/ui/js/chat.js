@@ -37,131 +37,131 @@
 	});
 	
 	
-	// Event on click over user icon
-	$('[id^=chat_]').click(function(event) {
-		var thisId = $(this).attr('id'); //chat_3_3
-		var arrayParams = thisId.split('_');
-		var docId = arrayParams[1];
-		var chatUserId = arrayParams[2];
-		var userId = arrayParams[3];
-		$("#activeChatId").val(chatUserId);
-		$('#file-box').show();
-    	$('#file-box-message').hide();
-		ajaxRefreshChat(docId, chatUserId, userId);
-	});
+	// // Event on click over user icon
+	// $('[id^=chat_]').click(function(event) {
+	// 	var thisId = $(this).attr('id'); //chat_3_3
+	// 	var arrayParams = thisId.split('_');
+	// 	var docId = arrayParams[1];
+	// 	var chatUserId = arrayParams[2];
+	// 	var userId = arrayParams[3];
+	// 	$("#activeChatId").val(chatUserId);
+	// 	$('#file-box').show();
+ //   	$('#file-box-message').hide();
+	// 	ajaxRefreshChat(docId, chatUserId, userId);
+	// });
 	
-	// Function refresh html to show chat conversation
-	function ajaxRefreshChat(docId, chatUserId, userId) {
-		$.ajax({
-			async: true,
-			headers: {
-				'X-CSRF-TOKEN': token
-			},
-			type: "GET",
-			dataType: "html",
-			contenType: "application/x-www-form-urlencoded",
-			url: "/getchat",
-			data: {
-				'docId': docId,
-				'userId': userId,
-				'chatUserId': chatUserId
-			},
-			success: function(data) {
-				var fullHtml = "";
-				var obj = $.parseJSON(data);
-				console.log(obj.length);
-				var arrChangeStatusMessages = new Array();
-				var newMessages = 0;
-				if (obj.length > 1) {
-					var arrAvatars = obj[obj.length-1]['avatars'];
-					delete obj[obj.length - 1];
-					var txt = '<div class="direct-chat-msg {msg-side}">\
-	                <div class="direct-chat-info clearfix">\
-	                <span class="direct-chat-name pull-{msg-info-side}">{time}</span>\
-	                <span class="direct-chat-timestamp pull-{msg-info-side}">{msgid}</span>\
-	                </div>\
-	                <img class="direct-chat-img" src="/uploads/avatars/{avatar}" alt="{username}">\
-	                <div class="direct-chat-text">{text}</div>\
-	                </div>';
-					$.each(obj, function() {
-						if (!this.texto == '') {
-							var newChat = '';
-							var msgSide = (this['user_send_id'] != userId) ? "right" : "left";
-							var msgInfoSide = (this['user_send_id'] != userId) ? "right" : "left";
-							newChat = txt.replace("{msg-side}", msgSide);
-							newChat = newChat.replace("{msg-info-side}", msgInfoSide);
-							newChat = newChat.replace("{time}", this['created_at']);
-							newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + userId);
-							newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
-							newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
-							fullHtml = fullHtml + newChat + "<hr>";
-							if (this['user_send_id'] != userId) { // actualizar solo mensajes NO MIOS
-								arrChangeStatusMessages.push(this['id']);
-							}
-							newMessages++;
-						}
-					});
-					updateActiveChat(userId);
-					$('#chats').html(fullHtml);
-					// limpiar el aviso de mensajes sin leer
-					var total = "";
-					var domId = 'mensajeNuevo_' + userId;
-					$('#' + domId).html(total);
-					// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
-					//if (newMessages > 0) updateMessages(arrChangeStatusMessages);
-					updateMessages(arrChangeStatusMessages);
-					$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
-				}
-				else {
-					// update chatActiveId, Add chat-selected (RED), add user name on title.
-					updateActiveChat(userId);
-				}
-				$("#notificacion").html("Ok:chat activo >" + $("#activeChatId").val());
-			},
-			error: function(response) {
-				var newChat = 'ERROR: Problemas para retornar la conversación.';
-				$("#chats").html(newChat);
-			}
-		});
-		$("html, body").animate({
-			scrollTop: $(document).height()
-		}, 1000);
-	};
+	// // Function refresh html to show chat conversation
+	// function ajaxRefreshChat(docId, chatUserId, userId) {
+	// 	$.ajax({
+	// 		async: true,
+	// 		headers: {
+	// 			'X-CSRF-TOKEN': token
+	// 		},
+	// 		type: "GET",
+	// 		dataType: "html",
+	// 		contenType: "application/x-www-form-urlencoded",
+	// 		url: "/getchat",
+	// 		data: {
+	// 			'docId': docId,
+	// 			'userId': userId,
+	// 			'chatUserId': chatUserId
+	// 		},
+	// 		success: function(data) {
+	// 			var fullHtml = "";
+	// 			var obj = $.parseJSON(data);
+	// 			console.log(obj.length);
+	// 			var arrChangeStatusMessages = new Array();
+	// 			var newMessages = 0;
+	// 			if (obj.length > 1) {
+	// 				var arrAvatars = obj[obj.length-1]['avatars'];
+	// 				delete obj[obj.length - 1];
+	// 				var txt = '<div class="direct-chat-msg {msg-side}">\
+	//                 <div class="direct-chat-info clearfix">\
+	//                 <span class="direct-chat-name pull-{msg-info-side}">{time}</span>\
+	//                 <span class="direct-chat-timestamp pull-{msg-info-side}">{msgid}</span>\
+	//                 </div>\
+	//                 <img class="direct-chat-img" src="/uploads/avatars/{avatar}" alt="{username}">\
+	//                 <div class="direct-chat-text">{text}</div>\
+	//                 </div>';
+	// 				$.each(obj, function() {
+	// 					if (!this.texto == '') {
+	// 						var newChat = '';
+	// 						var msgSide = (this['user_send_id'] != userId) ? "right" : "left";
+	// 						var msgInfoSide = (this['user_send_id'] != userId) ? "right" : "left";
+	// 						newChat = txt.replace("{msg-side}", msgSide);
+	// 						newChat = newChat.replace("{msg-info-side}", msgInfoSide);
+	// 						newChat = newChat.replace("{time}", this['created_at']);
+	// 						newChat = newChat.replace("{text}", this['texto']); //  + ' '+ this['user_recibe_id'] + ' ' + this['user_send_id'] + ' ' + userId);
+	// 						newChat = newChat.replace("{msgid}", '<small>(msgid:' + this['id'] + ')</small>');
+	// 						newChat = newChat.replace("{avatar}", arrAvatars['avatar_'+this['user_send_id']]);
+	// 						fullHtml = fullHtml + newChat + "<hr>";
+	// 						if (this['user_send_id'] != userId) { // actualizar solo mensajes NO MIOS
+	// 							arrChangeStatusMessages.push(this['id']);
+	// 						}
+	// 						newMessages++;
+	// 					}
+	// 				});
+	// 				updateActiveChat(chatUserId);
+	// 				$('#chats').html(fullHtml);
+	// 				// limpiar el aviso de mensajes sin leer
+	// 				var total = "";
+	// 				var domId = 'mensajeNuevo_' + userId;
+	// 				$('#' + domId).html(total);
+	// 				// si hay mensaje nuevo cambiar status ( de 1=enviado a 2=leido )
+	// 				//if (newMessages > 0) updateMessages(arrChangeStatusMessages);
+	// 				updateMessages(arrChangeStatusMessages);
+	// 				$("#chats").scrollTop($("#chats").prop("scrollHeight") + 800); //scroll top max
+	// 			}
+	// 			else {
+	// 				// update chatActiveId, Add chat-selected (RED), add user name on title.
+	// 				updateActiveChat(chatUserId);
+	// 			}
+	// 			$("#notificacion").html("Ok:chat activo >" + chatUserId);
+	// 		},
+	// 		error: function(response) {
+	// 			var newChat = 'ERROR: Problemas para retornar la conversación.';
+	// 			$("#chats").html(newChat);
+	// 		}
+	// 	});
+	// 	$("html, body").animate({
+	// 		scrollTop: $(document).height()
+	// 	}, 1000);
+	// };
 	
-	// Function update ActiveChat, Name on User, clear message textbox
-	function updateActiveChat(inquilinoId) {
-		$('.compositor').val('');
-		$('#chats').html("No existen mensajes");
-		$('*[id^="chat_"]').removeClass('chat-selected');
-		$('#chat_' + inquilinoId).addClass('chat-selected');
-		$('#activeChatId').val(inquilinoId);
-		var userName = $("#chat_" + $("#docto_id").val() + "_" + inquilinoId).attr("title");
-		$("#enviarA").html(userName);
-	};
+	// // Function update ActiveChat, Name on User, clear message textbox
+	// function updateActiveChat(inquilinoId) {
+	// 	$('.compositor').val('');
+	// 	$('#chats').html("No existen mensajes");
+	// 	$('*[id^="chat_"]').removeClass('chat-selected');
+	// 	$('#chat_' + inquilinoId).addClass('chat-selected');
+	// 	$('#activeChatId').val(inquilinoId);
+	// 	var userName = $("#chat_" + $("#docto_id").val() + "_" + inquilinoId).attr("title");
+	// 	$("#enviarA").html(userName);
+	// };
 	
 	// Function to Update Messages
-	function updateMessages(arrMessages) {
-		$.ajax({
-			async: true,
-			headers: {
-				'X-CSRF-TOKEN': token
-			},
-			type: "GET",
-			dataType: "html",
-			contenType: "application/x-www-form-urlencoded",
-			url: "/updateMessages",
-			data: {
-				'data': arrMessages
-			},
-			success: function(data) {
-				//$("#notificacion").html("Mensaje nuevo recibido!");
-			},
-			error: function(response) {
-				var newChat = 'ERROR: Problemas para cambiar estado a los mensajes mostrados.';
-				$("#notificacion").html(newChat);
-			}
-		});
-	};
+	// function updateMessages(arrMessages) {
+	// 	$.ajax({
+	// 		async: true,
+	// 		headers: {
+	// 			'X-CSRF-TOKEN': token
+	// 		},
+	// 		type: "GET",
+	// 		dataType: "html",
+	// 		contenType: "application/x-www-form-urlencoded",
+	// 		url: "/updateMessages",
+	// 		data: {
+	// 			'data': arrMessages
+	// 		},
+	// 		success: function(data) {
+	// 			$("#notificacion").html("Mensajes actualizados!");
+	// 		},
+	// 		error: function(response) {
+	// 			var newChat = 'ERROR: Problemas para cambiar estado a los mensajes mostrados.';
+	// 			$("#notificacion").html(newChat);
+	// 		}
+	// 	});
+	// };
 	
 	// Function validate message to post. ( not null && .len > 6 )
 	function validateMessage(userReceiveId, chat) {
@@ -181,7 +181,7 @@
 		var docId = $('#docto_id').val();
 		var userId = $('#user_send').val();
 		
-		setInterval(function() {
+		// setInterval(function() {
 			$.ajax({
 				async: true,
 				type: "GET",
@@ -222,7 +222,7 @@
 				timeout: 10000
 			});
 			return false;
-		}, 10000);
+		// }, 10000);
 		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	};
 
@@ -231,4 +231,4 @@
 		toggle: false
 	});
 
-	searchNewMessageByDoc();
+	//searchNewMessageByDoc();

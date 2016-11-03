@@ -151,28 +151,28 @@
                           @foreach($usuarios as $chatUser)
                           <?php 
                             //echo "id------".$chatUser->id;
-                            $haveChat = (in_array($chatUser->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
+                            $haveChat = (in_array($chatUser->id, $arrayChats, true)) ? '<p class="fa fa-comment-o" aria-hidden="true"></p>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
-                          <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$chatUser->id}}_{{ Auth::user()->id }}" >
-                            <div class="alb-left-cell">  
-                              <a href="#" title="{{$chatUser->name}}">
-                                <div class="col-xs-4 chat-icon" id="userChatIcon_{{$chatUser->id}}">
-                                  <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
-                                </div>
-                              </a>
-                            </div>
-
-                            <div class="alb-middle-cell">
-                               <span data-toggle="tooltip" title="" class="badge bg-yellow"  
-                               id="mensajeNuevo_{{$chatUser->id}}" data-original-title=""></span>
-                            </div>
-
-                            <div class="alb-right-cell">
-                              <div class="col-xs-8 chat-font">{{$chatUser->usuario}} </div>
-                            </div>
-
-                          </div>  
+                            <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$chatUser->id}}_{{ Auth::user()->id }}" >
+                              <div class="alb-left-cell">  
+                                <a href="#" title="{{$chatUser->name}}">
+                                  <div class="col-xs-4 chat-icon" id="userChatIcon_{{$chatUser->id}}">
+                                    <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
+                                  </div>
+                                </a>
+                              </div>
+  
+                              <div class="alb-middle-cell">
+                                 <span data-toggle="tooltip" title="" class="badge bg-yellow"  
+                                 id="mensajeNuevo_{{$chatUser->id}}" data-original-title=""></span>
+                              </div>
+  
+                              <div class="alb-right-cell">
+                                <div class="col-xs-8 chat-font">{{$chatUser->usuario}} </div>
+                              </div>
+  
+                            </div>  
                           </div>
                           @endforeach
                         </div>
@@ -219,7 +219,7 @@
                       </div>
   <p id="notificacion"></p>
 </div>
-<!--<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>-->
+<a href="#" onclick="getAllChatsMessages();">getAllChatsMessages();</a>
 </div>
 
 @endsection
