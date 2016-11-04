@@ -2,7 +2,7 @@
 use App\Paise;
 
 
-Route::group(['middleware' => 'admin'], function ()
+Route::group(['middleware' => 'auth', 'admin'], function ()
 {
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 		return view('admin.index');
@@ -160,7 +160,7 @@ Route::group(['middleware' => 'admin'], function ()
 /********************************************************/
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
-Route::group(['middleware' => 'propietario'], function () {
+Route::group(['middleware' => 'auth','propietario'], function () {
 
 	Route::resource('propietario','PropietarioController');
 	Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
@@ -182,10 +182,10 @@ Route::group(['middleware' => 'propietario'], function () {
 		}
 	]);
 
-	/*Route::get ('propietario/{id}/edit',[
+	Route::get ('propietario/{id}/edit',[
 		'uses' 	=> 'PropietarioController@edit',
 		'as'	=> 'propietario.edit'
-	]);*/
+	]);
 
 	//Apart
 	// Route::post('propietario/update/{id}', [

@@ -69,7 +69,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
   public function isPropietario()
   {
-    return ($this->tipo ==  'propietario')?true:false;
+
+    if($this->tipo == 'propietario'){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   public function chat_docts(){

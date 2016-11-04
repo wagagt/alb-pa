@@ -27,14 +27,14 @@ class Archivos_documentoController extends Controller {
 		$arrayChats[] =array();
 	
 		$senderActive = \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id);
-		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id); 
+		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id);
 		$usersChatActive = $senderActive->union($receiverActive)->get();
         foreach($usersChatActive as $chat) {
 	        $arr = (array)$chat;
     	    $arrayChats[] = $arr['user_send_id'];
     	};
 		$chats = [];
-		
+
 		if(\Auth::user()->isAdmin()){
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)->get();
