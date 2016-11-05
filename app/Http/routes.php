@@ -7,7 +7,7 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 		return view('admin.index');
 	}]);
-
+	
 	Route::get('profile', 'UsersController@profile');
 	Route::post('profile', 'UsersController@updateAvatar');
 	Route::post('/sendMessage', 'chat_doctsController@sendMessage');	
@@ -146,6 +146,8 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 		'as'   => 'tipo_documento.destroy'
 	]);
 
+	//Upload file on chat
+	/*******************************************************/
 	Route::resource('file','FileMessageController');
 
 	// Route DataTables Api
@@ -186,29 +188,16 @@ Route::group(['middleware' => 'auth','propietario'], function () {
 		'uses' 	=> 'PropietarioController@edit',
 		'as'	=> 'propietario.edit'
 	]);
-
-	//Apart
-	// Route::post('propietario/update/{id}', [
-	// 'uses' 	=> 'PropietarioController@update',
-	// 'as'	=> 'propietario.update'
-	// ]);
-
-	// Route::get('propietario.dash', ['as' => 'propietario.dash', function () {
-	// return view('propietario.dash');
-	// }]);
-
-	// Route::get('propietario/documento/{id}/archivos', [
-	// 'uses' => 'Archivos_documentoController@PropArchivosxDocumento',
-	// 'as'   => 'propDocumento.archivos'
-	// ]);
 	
+	Route::get('propietario/documento/{id}/archivos_documento', [
+		'uses' => 'Archivos_documentoController@archivosxDocumento',
+		'as'   => 'propietario.documento.archivos'
+	]);
 	
 });
 
 
 /**************************  Routes without Authentication **********************/
-
-
 
 Route::get('propietario/profile', [
 	'uses' => 'UsersController@profile',
@@ -227,19 +216,7 @@ Route::get('propietario/torre/{id}/documentos', [
 	'as'   => 'propietario.torre.documentos'
 ]);
 
-Route::get('propietario/documento/{id}/archivos_documento', [
-	'uses' => 'Archivos_documentoController@archivosxDocumento',
-	'as'   => 'propietario.documento.archivos'
-]);
-
-
-
 Route::post('profile', 'UsersController@updateAvatar');
-
-Route::get('documento/{id}/archivos_documento', [
-	'uses' => 'Archivos_documentoController@archivosxDocumento',
-	'as'   => 'documento.archivos'
-]);
 
 Route::get('/', function () {
 	return redirect()->route('admin.auth.login');

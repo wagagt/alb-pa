@@ -67,7 +67,7 @@
 
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
-                  <small>Miembro desde:  {{Auth::user()->created_at}}</small>
+                  <small>Miembro desde:  {{Auth::user()->created_at->format('d/m/Y')}}</small>
                 </p>
               </li>
               <!-- Menu Body -->

@@ -7,7 +7,9 @@
         @include('admin.partials.errors')
         <small>@include('flash::message')</small>
         <div class="panel panel-default">
+
           <div class="panel-heading">Login</div>
+         <div class="text-left container-fluid"><i> {{ date('d/m/Y H:i') }} </i></div>
           <div class="panel-body row container-fluid">
 
 
@@ -22,7 +24,7 @@
                 {!! Form::text('usuario', null, [
                   'class'=>'form-control',
                   'placeholder'=>'Ingrese usuario asignado',
-                  'value' => '{{ old("usuario") }}', 'autofocus']) !!}
+                  'value' => '{{ old("usuario") }}', 'autofocus', 'required']) !!}
 
               </div>
             </div>
@@ -35,7 +37,7 @@
               <div class="col-md-8">
                 {!! Form::password('password', [
                   'class'=>'form-control',
-                  'placeholder'=>'**********', 'autofocus']) !!}
+                  'placeholder'=>'**********', 'autofocus', 'required']) !!}
 
               </div>
             </div>

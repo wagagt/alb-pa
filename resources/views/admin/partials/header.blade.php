@@ -72,7 +72,7 @@
                 <!--<a style="color:white" href="{{ url('/profile') }}"><i class="fa fa-btn fa-user"></i>Perfil</a>-->
                 <p>
                   {{Auth::user()->name}} - {{Auth::user()->tipo}}<br>
-                  <small>Miembro desde:  {{Auth::user()->created_at}}</small>
+                  <small>Miembro desde:  {{ Auth::user()->created_at->format('d/m/Y') }}</small>
                   
                 </p>
                 
