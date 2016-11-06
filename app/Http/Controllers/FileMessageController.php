@@ -18,7 +18,8 @@ class FileMessageController extends Controller
         $files = $request->file('file');
         $chat = new chat_docts($request->all());
         $archivo = new documentos_chat($request->all());
-        
+
+        //dd($request->all());
         
         foreach($files as $file){
             $fileName = $file->getClientOriginalName();
@@ -30,7 +31,6 @@ class FileMessageController extends Controller
             $chat->user_send_id   = $request['user_send'];
             $chat->user_recibe_id = $request['chatActive'];
             $chat->mensaje_tipo   = "link";
-            //dd($chat);
             $chat->save();
             
                 $archivo->nombre  = $fileName;
