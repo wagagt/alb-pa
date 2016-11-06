@@ -1,20 +1,14 @@
 
 
     $('#subir').click(function(){
-      
-      var chatId =  $('#activeChatId').val(); 
-      if(chatId == ""){
-        alert('ALERTA: Elige un chat antes de enviar un archivo ');
-        return false;
-      }else{
-      var charActive = $('#chatActive').attr('value', chatId);
-      uploadFile();
-      
-      }
-      
+
+      var chatId =  $('#activeChatId').val();
+
+      $('#chatActive').attr('value', chatId);
+
   });
-  
-  function uploadFile(){
+
+
     Dropzone.options.myDropzone = {
             autoProcessQueue: false,
             uploadMultiple: true,
@@ -36,17 +30,16 @@
 
                     this.on("complete", function(file) {
                             myDropzone.removeFile(file);
-                             
+
                     });
 
                     this.on("success",function(file){
                             myDropzone.processQueue.bind(myDropzone);
-                            alert("Archivo enviado exitosamente");
+                            //alert("Archivo enviado exitosamente");
                     });
             }
     };
-  };
-    
+
     
     
 
