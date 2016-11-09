@@ -35,12 +35,7 @@
 
                     this.on("success",function(file){
                             myDropzone.processQueue.bind(myDropzone);
-                            //alert("Archivo enviado exitosamente");
+                            updateChatAfterUploadFile();
                     });
             }
     };
-
-    
-    
-
-

@@ -100,7 +100,7 @@
 				timeout: 10000
 			});
 			return false;
-		}, 3000);
+		}, 10000);
 		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	};
 	
@@ -188,7 +188,7 @@
 		});
 		$("html, body").animate({
 			scrollTop: $(document).height()
-		}, 1000);
+		}, 10000);
 	};
 	
 	// Function update ActiveChat, Name on User, clear message textbox
@@ -227,5 +227,13 @@
 			}
 		});
 	};
+	
+	// Refresh chat after upload file
+	function updateChatAfterUploadFile(){
+		docId = $('#documento_id').val();
+		chatUserId = $('#activeChatId').val();
+		userId = $('#user_send').val();
+		ajaxRefreshChat(docId, chatUserId, userId)	
+	}
 	
 	getAllChatsMessages();
