@@ -14,18 +14,49 @@ class FileMessageController extends Controller
     
     public function store(Request $request)
     {
-        $path = public_path().'/uploads/files_chat/';
+        $relative_path = '/uploads/files_chat/';
+        $path = public_path().$relative_path;
         $files = $request->file('file');
         $chat = new chat_docts($request->all());
         $archivo = new documentos_chat($request->all());
-
+        
         //dd($request->all());
         
         foreach($files as $file){
             $fileName = $file->getClientOriginalName();
+            //dd($file->getClientOriginalExtension());
+            switch($file->getClientOriginalExtension()){
+                case 'txt':
+                    $icon = '<img src="/ui/images/icon_text.png" height="40" width="40">';
+                    break;
+                    
+                case 'jpg'; 
+                case 'jpeg';
+                case 'gif';
+                case 'png';
+                    $icon = '<img src="/ui/images/icon_image.png" height="40" width="40">';
+                    break;
+                    
+                case 'doc': 
+                    $icon = '<img src="/ui/images/icon_doc.png" height="40" width="40">';
+                    break;
+                    
+                case 'xls': 
+                    $icon = '<img src="/ui/images/icon_xls.png" height="40" width="40">';
+                    break;
+                    
+                case 'pdf':
+                    $icon = '<img src="/ui/images/icon_pdf.png" height="40" width="40">';
+                    break;
+                    
+                default:
+                    $icon = '<img src="/ui/images/icon_clip.png" height="40" width="40">';
+                break;
+                
+            }
             $file->move($path,$fileName);
             
-            $chat->texto = '/uploads/files/'.$fileName;
+            $chat->texto = $icon.' -> <a href="'.$relative_path.$fileName.'" target="_blank">'.$fileName.'</a>';
             $chat->documento_id   = $request['docto_id'];
             $chat->status_id      = 1;
             $chat->user_send_id   = $request['user_send'];
@@ -42,12 +73,5 @@ class FileMessageController extends Controller
                 $archivo->save();
             
         }
-           
-            
-
-               
-        
     }
-
-   
 }
