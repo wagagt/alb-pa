@@ -188,7 +188,7 @@
 		});
 		$("html, body").animate({
 			scrollTop: $(document).height()
-		}, 10000);
+		},  10000);
 	};
 	
 	// Function update ActiveChat, Name on User, clear message textbox
