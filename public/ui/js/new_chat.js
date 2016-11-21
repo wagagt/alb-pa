@@ -85,6 +85,8 @@
 							}
 							else { // crear marca con numero de mensajes sin leer
 								$('#' + 'mensajeNuevo_' + userSendId).html(this['total']);
+								// subir el row de este mensaje hasta arriba. (x prioridad)
+								$('#row-'+userSendId).insertAfter('#row-0');
 							}
 						});
 						//aca preguntar si Hay que refreschar el chat

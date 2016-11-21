@@ -148,12 +148,14 @@
                         <div class="col-md-4"> <h5>Enviar a:</h5> <div id="enviarA"></div> </div>
 
                         <div class="col-md-3" id="users">
+                          <div class="box-chat col-xs-12 alb-table" id="row-0">
+                          </div>
                           @foreach($usuarios as $chatUser)
                           <?php 
                             //echo "id------".$chatUser->id;
                             $haveChat = (in_array($chatUser->id, $arrayChats, true)) ? '<p class="fa fa-comment-o" aria-hidden="true"></p>' : "";
                           ?>
-                          <div class="box-chat col-xs-12 alb-table">
+                          <div class="box-chat col-xs-12 alb-table" id="row-{{$chatUser->id}}">
                             <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$chatUser->id}}_{{ Auth::user()->id }}" >
                               <div class="alb-left-cell">  
                                 <a href="#" title="{{$chatUser->name}}">
