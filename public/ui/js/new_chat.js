@@ -97,7 +97,7 @@
 				error: function(response) {
 					$("#notificacion").html("Error:chat activo >" + $("#activeChatId").val());
 					var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
-					$("#users").html(errorMessage);
+					//$("#users").html(errorMessage);
 				},
 				timeout: 10000
 			});
