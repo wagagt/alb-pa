@@ -11,8 +11,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;  
 use URL;
 use Laracasts\Flash\Flash;
+use Carbon\Carbon;
 
 class DocumentoController extends Controller {
+
+	public function __construct()
+	{
+		Carbon::setLocale('es');
+	}
+
+
+
 	public function index(Request $request) {
 		$documentos = Documento::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
 		//dd($documentos->relations());
@@ -29,7 +38,12 @@ class DocumentoController extends Controller {
 	}
 	public function store(Request $request) {
 		$input     = $request->all();
+		$date_del  = new Carbon(date_create_from_format('Y-m-d',$input['fecha_del'] ));
+		$date_al   = new Carbon(date_create_from_format('Y-m-d', $input['fecha_al']));
 		$documento = new Documento($input);
+		$documento->fecha_del =   $date_del->format('Y-m-d');
+		$documento->fecha_al = 	  $date_al->format('Y-m-d');
+		$documento->save();
 		$documento->save();
 		Flash::success('Documento "'.$documento->nombre.'" ha sido agregado satisfactoriamente.');
 		return redirect($input["urlBack"]);

@@ -67,8 +67,8 @@
                       </a>
                     </td>
                     <td >{{$value->tipo_documento->descripcion}}</td>
-                    <td >{{$value->fecha_del}}</td>
-                    <td >{{$value->fecha_al}}</td>
+                    <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                    <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                     <td >{{$value->torre->nombre}}</td>
                     <td >
                       <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -114,8 +114,8 @@
                     </a>
                   </td>
                   <td>{{$value->tipo_documento->descripcion}}</td>
-                  <td>{{$value->fecha_del}}</td>
-                  <td>{{$value->fecha_al}}</td>
+                  <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                  <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                   <td>{{$value->torre->nombre}}</td>
                   <td>
                     <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -161,8 +161,8 @@
                 </a>
                 </td>
                 <td>{{$value->tipo_documento->descripcion}}</td>
-                <td>{{$value->fecha_del}}</td>
-                <td>{{$value->fecha_al}}</td>
+                <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                 <td>{{$value->torre->nombre}}</td>
                 <td>
                   <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -209,8 +209,8 @@
                 </a>
               </td>
               <td>{{$value->tipo_documento->descripcion}}</td>
-              <td>{{$value->fecha_del}}</td>
-              <td>{{$value->fecha_al}}</td>
+              <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+              <td >{{$value->fecha_al->format('d/m/Y')}}</td>
               <td>{{$value->torre->nombre}}</td>
               <td>
                 <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">

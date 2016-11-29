@@ -20,7 +20,7 @@ class Documento extends Model {
 	protected $table = 'documentos';
 
 	protected $fillable = ['nombre', 'tipo_documentos_id', 'fecha_del', 'fecha_al', 'torre_id'];
-	protected $dates    = ['deleted_at'];
+	protected $dates    = ['deleted_at', 'fecha_del', 'fecha_al'];
 
 	public function scopeSearch($query, $name) {
 		return $query->where('nombre', 'LIKE', '%'.$name.'%');

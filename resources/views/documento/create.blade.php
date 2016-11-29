@@ -28,13 +28,24 @@
 </div>
 
 @endsection
-@section('script')
+@section('scripts')
   <script type="text/javascript">
 
-         $('.select-torre').chosen({
-            no_results_text:'Ningún resultado coincide con: '
-          });
+      $(document).ready(function(){
 
+          $( function() {
+              $( '.dpk_date_del' ).datepicker({
+                  dateFormat: "d/m/yy",
+                  dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
+              });
+              $( '.dpk_date_al' ).datepicker({
+                  dateFormat: "d/m/yy",
+                  dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
+              });
+
+          } );
+
+      });
 
       </script>
 @endsection

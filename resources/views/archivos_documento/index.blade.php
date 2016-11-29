@@ -30,10 +30,10 @@
                     <!-- ->descripcion -->
                   </div>
                   <div class="row col-md-6">
-                    <h4>Desde: {{ $documento->fecha_del }}</h4>
+                    <h4>Desde: {{ $documento->fecha_del->format('d/m/Y') }}</h4>
                   </div>
                   <div class="row col-md-6">
-                    <h4>Hasta: {{$documento->fecha_al}}</h4>
+                    <h4>Hasta: {{$documento->fecha_al->format('d/m/Y')}}</h4>
                   </div>
                   <div class="row col-md-6">
                     <h4>Edificio: {{$documento->torre->nombre}}</h4>
