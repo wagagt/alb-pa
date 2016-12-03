@@ -37,16 +37,20 @@ class DocumentoController extends Controller {
 			->with('previousUrl', $previousUrl);
 	}
 	public function store(Request $request) {
-		$input     = $request->all();
-		$date_del  = new Carbon(date_create_from_format('Y-m-d',$input['fecha_del'] ));
-		$date_al   = new Carbon(date_create_from_format('Y-m-d', $input['fecha_al']));
-		$documento = new Documento($input);
-		$documento->fecha_del =   $date_del->format('Y-m-d');
-		$documento->fecha_al = 	  $date_al->format('Y-m-d');
-		$documento->save();
+
+		$input = $request->all();
+		$dateRepDel =  str_replace('/', '-',$input['del']);
+		$dataRepAl	=  str_replace('/', '-', $input['al']);
+		$toTimeDel  =  date('Y-m-d', strtotime($dateRepDel));
+		$toTimeAl   =  date('Y-m-d', strtotime($dataRepAl));
+		
+		$documento = new Documento($request->all());
+		$documento->fecha_del = $toTimeDel;
+		$documento->fecha_al  = $toTimeAl;
+
 		$documento->save();
 		Flash::success('Documento "'.$documento->nombre.'" ha sido agregado satisfactoriamente.');
-		return redirect($input["urlBack"]);
+		return redirect($request->urlBack);
 		//->route('documento.index');
 	}
 
@@ -71,9 +75,18 @@ class DocumentoController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
-		$input     = $request->all();
+
+		$input = $request->all();
+		$dateRepDel =  str_replace('/', '-',$input['del']);
+		$dataRepAl	=  str_replace('/', '-', $input['al']);
+		$toTimeDel  =  date('Y-m-d', strtotime($dateRepDel));
+		$toTimeAl   =  date('Y-m-d', strtotime($dataRepAl));
+
 		$documento = Documento::findOrfail($id);
 		$documento->fill($request->all());
+		$documento->fecha_del = $toTimeDel;
+		$documento->fecha_al  = $toTimeAl;
+
 		$documento->save();
 		Flash::warning('El documento "'.$documento->nombre.'" ha sido actualizado con éxito!!..');
 		return redirect($input["urlBack"]);

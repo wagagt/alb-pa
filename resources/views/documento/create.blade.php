@@ -35,11 +35,13 @@
 
           $( function() {
               $( '.dpk_date_del' ).datepicker({
-                  dateFormat: "d/m/yy",
+                 dateFormat: "dd/mm/yy",
+
                   dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
               });
               $( '.dpk_date_al' ).datepicker({
-                  dateFormat: "d/m/yy",
+                  dateFormat: "dd/mm/yy",
+
                   dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
               });
 
