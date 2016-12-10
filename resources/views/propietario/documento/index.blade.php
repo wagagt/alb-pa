@@ -66,8 +66,8 @@
                       </a>
                     </td>
                     <td >{{$value->tipo_documento->descripcion}}</td>
-                    <td >{{$value->fecha_del}}</td>
-                    <td >{{$value->fecha_al}}</td>
+                    <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                    <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                     <td >{{$value->torre->nombre}}</td>
                     <td class="text-center">
                       <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
@@ -106,8 +106,8 @@
                     </a>
                   </td>
                   <td>{{$value->tipo_documento->descripcion}}</td>
-                  <td>{{$value->fecha_del}}</td>
-                  <td>{{$value->fecha_al}}</td>
+                  <td>{{$value->fecha_del->format('d/m/Y')}}</td>
+                  <td>{{$value->fecha_al->format('d/m/Y')}}</td>
                   <td>{{$value->torre->nombre}}</td>
                   <td class="text-center">
                     <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
@@ -146,8 +146,8 @@
                 </a>
                 </td>
                 <td>{{$value->tipo_documento->descripcion}}</td>
-                <td>{{$value->fecha_del}}</td>
-                <td>{{$value->fecha_al}}</td>
+                <td>{{$value->fecha_del->format('d/m/Y')}}</td>
+                <td>{{$value->fecha_al->format('d/m/Y')}}</td>
                 <td>{{$value->torre->nombre}}</td>
                 <td class="text-center">
                   <!-- <a href="documento/{{$value->id}}/archivos_documento" -->
@@ -187,8 +187,8 @@
                 </a>
               </td>
               <td>{{$value->tipo_documento->descripcion}}</td>
-              <td>{{$value->fecha_del}}</td>
-              <td>{{$value->fecha_al}}</td>
+              <td>{{$value->fecha_del->format('d/m/Y')}}</td>
+              <td>{{$value->fecha_al->format('d/m/Y')}}</td>
               <td>{{$value->torre->nombre}}</td>
               <td class="text-center">
                 <!-- <a href="documento/{{$value->id}}/archivos_documento" -->

@@ -26,7 +26,7 @@ class Archivos_documentoController extends Controller {
 		->get();
 		$arrayChats[] =array();
 
-		$senderActive	= \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id)->where('user_recibe_id', \Auth::user()->id); 
+		$senderActive	= \DB::table('chat_docts')->distinct()->select('user_send_id')->where('documento_id', $id)->where('user_recibe_id', \Auth::user()->id);
 		$receiverActive = \DB::table('chat_docts')->distinct()->select('user_recibe_id')->where('documento_id', $id)->where('user_send_id', \Auth::user()->id);
 
 		$usersChatActive = $senderActive->union($receiverActive)->get();
@@ -50,15 +50,15 @@ class Archivos_documentoController extends Controller {
 			$documento= Documento::with('Tipo_documento', 'Torre')
 			->where('id', $id)
 			->first();
-			
+
 			$archivos_documento = \DB::table('archivos_documentos')
 			->where('documentos_id', $id)
 			->where('activo', '1')
 			->get();
-			
+
 			$usuarios = User::where('tipo', 'admin')
 			->orderBy('usuario', 'ASC')->get();
-			
+
 			$chats = [];
 			return view('propietario.archivos_documento.index')
 			->with('documento', $documento)
@@ -77,21 +77,23 @@ class Archivos_documentoController extends Controller {
 
 	public function store(Request $request) {
 		$input = $request->all();
-		if (isset($input['archivo'])) {
-			$file = $input['archivo'];
-			$file = $request->file('archivo');
-			$extension       = $file->getClientOriginalExtension();
-			$fileName        = $file->getClientOriginalName();
-			
+		if (isset($input['file'])) {
+			$files = $input['file'];
+			$files = $request->file('file');
+			$destinationPath = 'uploads/documentos';
+
+			foreach($files as $file){
+			$fileName      = $file->getClientOriginalName();
+			$file->move($destinationPath, $fileName);
 			$archivos_documento                = new Archivos_documento();
-			$archivos_documento->nombre        = $file->getClientOriginalName();
+			$archivos_documento->nombre        = $fileName;
 			$archivos_documento->tipo          = $file->getClientOriginalExtension();
 			$archivos_documento->activo        = '0';
 			$archivos_documento->documentos_id = $input['documento_id'];
 			$archivos_documento->save();
-			
-			$destinationPath = 'uploads';
-			$file->move($destinationPath, $fileName);
+
+			}
+
 			\Flash::success('Archivo subido exitosamente.');
 		} else {
 			\Flash::error('Seleccione un archivo');
