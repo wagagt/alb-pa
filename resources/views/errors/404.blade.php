@@ -12,7 +12,7 @@
         <div class="panel panel-warning">
             <div class="panel-heading">
                 @include('flash::message')
-                <div class="panel-title">Pagina no encontrada</div>
+                <div class="panel-title">Página no encontrada</div>
             </div>
             <div class="panel-body">
                 <img class="img-responsive center-block" src="{{asset('images/secure.png')}}"></div>
