@@ -19,7 +19,7 @@
 
             <div class="row col-md-12">
                 {!! Form::model($documento, ['route'=>['documento.update', $documento->id], 'method' => 'PUT']) !!}
-                    @include('documento.fields')
+                    @include('documento.fields2')
                 {!! Form::close()!!}
             </div>
             </div>
@@ -28,13 +28,26 @@
 </div>
 
 @endsection
-@section('script')
-  <script type="text/javascript">
+@section('scripts')
+    <script type="text/javascript">
 
-         $('.select-torre').chosen({
-            no_results_text:'Ningún resultado coincide con: '
-          });
+        $(document).ready(function(){
 
+            $( function() {
+                $( '.dpk_date_del' ).datepicker({
+                    dateFormat: "dd/mm/yy",
 
-      </script>
+                    dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
+                });
+                $( '.dpk_date_al' ).datepicker({
+                    dateFormat: "dd/mm/yy",
+
+                    dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
+                });
+
+            } );
+
+        });
+
+    </script>
 @endsection

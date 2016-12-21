@@ -18,7 +18,7 @@
                 <section class="content-header">
                     <h1>
                     AREA PRIVADA
-                    <small>Gestion de Edificios</small>
+                    <small>Building Management </small>
                     </h1>
                     
                 </section>

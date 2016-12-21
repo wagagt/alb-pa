@@ -40,14 +40,14 @@
                         <td>
                             <b><i>fecha_del : </i></b>
                         </td>
-                        <td>{{$documento->fecha_del}}</td>
+                        <td>{{$documento->fecha_del->format('d/m/Y')}}</td>
                     </tr>
                     
                     <tr>
                         <td>
                             <b><i>fecha_al : </i></b>
                         </td>
-                        <td>{{$documento->fecha_al}}</td>
+                        <td>{{$documento->fecha_al->format('d/m/Y')}}</td>
                     </tr>
                     
                     <tr>

@@ -12,8 +12,11 @@
     Dropzone.options.myDropzone = {
             autoProcessQueue: false,
             uploadMultiple: true,
-            maxFilezise: 10,
+            maxFilezise: 1024,
             maxFiles: 1,
+            previewsContainer: '#dz-Preview',
+            addRemoveLinks: true,
+            dictRemoveFile: 'Remove selection',
 
             init: function() {
                     var submitBtn = document.querySelector("#subir");

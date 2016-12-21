@@ -2,7 +2,7 @@
 use App\Paise;
 
 
-Route::group(['middleware' => 'admin'], function ()
+Route::group(['middleware' => 'auth', 'admin'], function ()
 {
 	Route::get('admin/home', ['as' => 'admin.home', function () {
 		return view('admin.index');
@@ -162,7 +162,7 @@ Route::group(['middleware' => 'admin'], function ()
 /********************************************************/
 //Route::group(['prefix' => '/', 'middleware' => ['auth', 'propietario']], function () {
 
-Route::group(['middleware' => 'propietario'], function () {
+Route::group(['middleware' => 'auth','propietario'], function () {
 
 	Route::resource('propietario','PropietarioController');
 	Route::get('/getNewMessages', 'chat_doctsController@getNewMessages');
@@ -183,6 +183,11 @@ Route::group(['middleware' => 'propietario'], function () {
 			return view('propietario.index');
 		}
 	]);
+
+	Route::get ('propietario/{id}/edit',[
+		'uses' 	=> 'PropietarioController@edit',
+		'as'	=> 'propietario.edit'
+	]);
 	
 	Route::get('propietario/documento/{id}/archivos_documento', [
 		'uses' => 'Archivos_documentoController@archivosxDocumento',
@@ -193,8 +198,6 @@ Route::group(['middleware' => 'propietario'], function () {
 
 
 /**************************  Routes without Authentication **********************/
-
-
 
 Route::get('propietario/profile', [
 	'uses' => 'UsersController@profile',

@@ -9,7 +9,7 @@
             </div>
       </div>
     </div>
-  
+
   <hr>
 
 <div class="bs-example">
@@ -28,10 +28,10 @@
                     <!-- ->descripcion -->
                   </div>
                   <div class="row col-md-6">
-                    <h4>Desde: {{ $documento->fecha_del }}</h4>
+                    <h4>Desde: {{ $documento->fecha_del->format('d/m/Y') }}</h4>
                   </div>
                   <div class="row col-md-6">
-                    <h4>Hasta: {{$documento->fecha_al}}</h4>
+                    <h4>Hasta: {{$documento->fecha_al->format('d/m/Y') }}</h4>
                   </div>
                   <div class="row col-md-6">
                     <h4>Edificio: {{$documento->torre->nombre}}</h4>
@@ -53,7 +53,7 @@
                     <div class="col-md-12" >
 
                       <!-- ARCHIVOS DEL DOCUMENTO -->
-                      <?php 
+                      <?php
                       if( empty($archivos)) {
                           echo "<h3>No se han ingresado documentos...</h3>";
                         }else{?>
@@ -69,7 +69,7 @@
                           <tr>
                             <td>{{$value->nombre}}</td>
                             <td>
-                              <a href="/uploads/{{$value->nombre}}" target="popup" onclick="window.open('/uploads/{{$value->nombre}}','name','width=800,height=600')">
+                              <a href="/uploads/{{$value->nombre}}" target="popup" onclick="window.open('/uploads/documentos/{{$value->nombre}}','name','width=800,height=600')">
                                 <h2><i class="fa fa-eye fa-6" aria-hidden="true"></i></h2>
                               </a>
                               </td>
@@ -113,10 +113,10 @@
         <!--                  </div>-->
         <!--                  @endforeach-->
         <!--                </div>-->
-                        
+
         <!--                      <div class="col-md-6 text-center" id="chats">-->
         <!--                      </div>-->
-                        
+
         <!--                <div class="col-md-4">-->
         <!--                  <div id="compositor">-->
         <!--                    <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">-->
@@ -132,7 +132,7 @@
         <!--        </div>-->
         <!--    </div>-->
         <!--</div>-->
-        
+
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -145,7 +145,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
     <div class="box-body box-chat">
                         <div class="col-md-3"> <h5>Administradores</h5></div>
@@ -154,41 +154,41 @@
 
                         <div class="col-md-3" id="users">
                           @foreach($usuarios as $usuario)
-                          <?php 
+                          <?php
                             //echo "id------".$usuario->id;
                             $haveChat = (in_array($usuario->id, $arrayChats, true)) ? '<i class="fa fa-comment-o" aria-hidden="true"></i>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table">
                             <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$usuario->id}}_{{ Auth::user()->id }}">
-                              <div class="alb-left-cell"  >  
+                              <div class="alb-left-cell"  >
                                 <a href="#" title="{{$usuario->name}}">
                                   <div class="col-xs-4 chat-icon" id="userChatIcon_{{$usuario->id}}">
                                     <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
                                   </div>
                                 </a>
                               </div>
-  
+
                               <div class="alb-middle-cell">
-                                 <span data-toggle="tooltip" title="" class="badge bg-yellow"  
+                                 <span data-toggle="tooltip" title="" class="badge bg-yellow"
                                  id="mensajeNuevo_{{$usuario->id}}" data-original-title=""></span>
                               </div>
-  
+
                               <div class="alb-right-cell">
                                 <div class="col-xs-8 chat-font">{{$usuario->usuario}} </div>
                               </div>
-  
-                            </div>  
+
+                            </div>
                           </div>
                           @endforeach
                         </div>
-                        
+
                               <div class="col-md-5 text-center" id="chats">
                               </div>
-                        
+
                         <div class="col-md-4">
                           <div id="compositor">
                             <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
-                            <input type="hidden" name="user_recibe" value= "" id="user_recibe"> 
+                            <input type="hidden" name="user_recibe" value= "" id="user_recibe">
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}" id="token">
                             <input type="hidden" name= "docto_id" value ="{{ $documento->id }}" id="docto_id">
                             <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
@@ -197,13 +197,13 @@
                         </div>
                         <div class="col-md-4">
                           <p style="display:table-cell;">Mínimo 5 caracteres.</p>
-                        
+
                           <span class="input-group-btn">
                             <button type="submit" id="sendMessage" name="sendMessage" class="btn btn-success btn-flat right">Enviar</button>
                           </span>
                         </div>
-                        
-                        
+
+
                       </div>
   <p id="notificacion"></p>
 </div>

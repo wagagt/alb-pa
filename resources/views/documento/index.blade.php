@@ -49,7 +49,7 @@
           <div class="tab-content">
             <div class="tab-pane active" id="t1">
             @if ($trim1->total() != 0)
-              <table class="table table-hover">
+              <table class="table table-hover table-bordered">
                 <thead>
                   <td ><h5><strong>NOMBRE</strong></h5></td>
                   <td ><h5><strong>TIPO DOC.</strong></h5></td>
@@ -67,8 +67,8 @@
                       </a>
                     </td>
                     <td >{{$value->tipo_documento->descripcion}}</td>
-                    <td >{{$value->fecha_del}}</td>
-                    <td >{{$value->fecha_al}}</td>
+                    <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                    <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                     <td >{{$value->torre->nombre}}</td>
                     <td >
                       <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -114,8 +114,8 @@
                     </a>
                   </td>
                   <td>{{$value->tipo_documento->descripcion}}</td>
-                  <td>{{$value->fecha_del}}</td>
-                  <td>{{$value->fecha_al}}</td>
+                  <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                  <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                   <td>{{$value->torre->nombre}}</td>
                   <td>
                     <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -161,8 +161,8 @@
                 </a>
                 </td>
                 <td>{{$value->tipo_documento->descripcion}}</td>
-                <td>{{$value->fecha_del}}</td>
-                <td>{{$value->fecha_al}}</td>
+                <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+                <td >{{$value->fecha_al->format('d/m/Y')}}</td>
                 <td>{{$value->torre->nombre}}</td>
                 <td>
                   <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -191,7 +191,7 @@
 
       <div class="tab-pane" id="t4">
       @if ($trim4->total() != 0)
-        <table class="table table-hover">
+        <table class="table table-hover table-bordered">
           <thead>
             <td><h5><strong>NOMBRE</strong></h5></td>
             <td><h5><strong>TIPO DOC.</strong></h5></td>
@@ -209,8 +209,8 @@
                 </a>
               </td>
               <td>{{$value->tipo_documento->descripcion}}</td>
-              <td>{{$value->fecha_del}}</td>
-              <td>{{$value->fecha_al}}</td>
+              <td >{{$value->fecha_del->format('d/m/Y')}}</td>
+              <td >{{$value->fecha_al->format('d/m/Y')}}</td>
               <td>{{$value->torre->nombre}}</td>
               <td>
                 <a href="{{ route('documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
@@ -233,6 +233,7 @@
       </table>
       @else
       <h4>No hay documentos para Trimestre 4 </h4>
+
       @endif
 
     </div>

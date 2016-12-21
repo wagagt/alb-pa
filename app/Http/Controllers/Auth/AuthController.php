@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Lang;
 
 class AuthController extends Controller {
 
-	protected $username = 'usuario';
 	use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+	protected $username = 'usuario';
 
 	public function __construct() {
 		$this->middleware('guest', ['except' => 'getLogout']);
@@ -67,17 +67,23 @@ class AuthController extends Controller {
 
 	public function postLogin(Request $request)
 	{
-		$user = User::select('id','tipo')->where('usuario', '=', $request->usuario)->get();
-		if($user[0]['tipo'] == 'propietario') {
-			$apto = Apartamento::select('id')->where('user_id', '=', $user[0]['id'])->get();
-			$hasApto = isset($apto[0]) ? $apto : false;
 
-			if($hasApto == false)
-			{
-				Flash::error('Lo sentimos no es posible ingresar al sistema por que el usuario no tiene asignado un apartamento, 
-								por favor comuníquese con el administrador del sistema. ');
-				return view('auth.login');
+		$user = User::select('id','tipo')->where('usuario', '=', $request->usuario)->get();
+		$state = isset($user[0]) ? $user[0] : false;
+
+		if($state){
+			if($user[0]['tipo'] == 'propietario') {
+				$apto = Apartamento::select('id')->where('user_id', '=', $user[0]['id'])->get();
+				$hasApto = isset($apto[0]) ? $apto : false;
+
+				if($hasApto == false)
+				{
+					Flash::error('Lo sentimos no es posible ingresar al sistema por que el usuario no tiene asignado un apartamento, 
+									por favor comuníquese con el administrador del sistema. ');
+					return view('auth.login');
+				}
 			}
+
 		}
 
 		$this->validate($request, [

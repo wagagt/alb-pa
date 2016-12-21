@@ -11,8 +11,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;  
 use URL;
 use Laracasts\Flash\Flash;
+use Carbon\Carbon;
 
 class DocumentoController extends Controller {
+
+	public function __construct()
+	{
+		Carbon::setLocale('es');
+	}
+
+
+
 	public function index(Request $request) {
 		$documentos = Documento::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
 		//dd($documentos->relations());
@@ -28,11 +37,20 @@ class DocumentoController extends Controller {
 			->with('previousUrl', $previousUrl);
 	}
 	public function store(Request $request) {
-		$input     = $request->all();
-		$documento = new Documento($input);
+
+		$input = $request->all();
+		$dateRepDel =  str_replace('/', '-',$input['del']);
+		$dataRepAl	=  str_replace('/', '-', $input['al']);
+		$toTimeDel  =  date('Y-m-d', strtotime($dateRepDel));
+		$toTimeAl   =  date('Y-m-d', strtotime($dataRepAl));
+		
+		$documento = new Documento($request->all());
+		$documento->fecha_del = $toTimeDel;
+		$documento->fecha_al  = $toTimeAl;
+
 		$documento->save();
 		Flash::success('Documento "'.$documento->nombre.'" ha sido agregado satisfactoriamente.');
-		return redirect($input["urlBack"]);
+		return redirect($request->urlBack);
 		//->route('documento.index');
 	}
 
@@ -57,9 +75,18 @@ class DocumentoController extends Controller {
 	}
 
 	public function update(Request $request, $id) {
-		$input     = $request->all();
+
+		$input = $request->all();
+		$dateRepDel =  str_replace('/', '-',$input['del']);
+		$dataRepAl	=  str_replace('/', '-', $input['al']);
+		$toTimeDel  =  date('Y-m-d', strtotime($dateRepDel));
+		$toTimeAl   =  date('Y-m-d', strtotime($dataRepAl));
+
 		$documento = Documento::findOrfail($id);
 		$documento->fill($request->all());
+		$documento->fecha_del = $toTimeDel;
+		$documento->fecha_al  = $toTimeAl;
+
 		$documento->save();
 		Flash::warning('El documento "'.$documento->nombre.'" ha sido actualizado con éxito!!..');
 		return redirect($input["urlBack"]);

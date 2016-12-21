@@ -7,11 +7,11 @@
       <h3 class="box-title">Lista de Archivos x Documento</h3>
       <div class="box-tools">
             <div class="col-md-3 text-left"><a href="{{ route('torre.documentos', $documento->torre->id) }}" class="btn btn-primary"><i class="fa fa-list-alt" aria-hidden="true"></i>
-            Lista documentos</a>  
+            Lista documentos</a>
             </div>
       </div>
     </div>
-  
+
   <hr>
 
 <div class="bs-example">
@@ -25,19 +25,20 @@
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
                   <div class="box-body">
-                  <div class="row col-md-6">
-                    <h4>Tipo de Documento: {{$documento->tipo_documento->descripcion}}</h4>
+                  <div class="row col-md-3">
+                    <h4><b>Tipo de Documento:</b> {{$documento->tipo_documento->descripcion}}</h4>
                     <!-- ->descripcion -->
                   </div>
-                  <div class="row col-md-6">
-                    <h4>Desde: {{ $documento->fecha_del }}</h4>
+                  <div class="row col-md-3">
+                      <h4><b>Edificio:</b> {{$documento->torre->nombre}}</h4>
                   </div>
-                  <div class="row col-md-6">
-                    <h4>Hasta: {{$documento->fecha_al}}</h4>
+                  <div class="row col-md-3">
+                    <h4><b>Desde:</b> {{ $documento->fecha_del->format('d/m/Y') }}</h4>
                   </div>
-                  <div class="row col-md-6">
-                    <h4>Edificio: {{$documento->torre->nombre}}</h4>
+                  <div class="row col-md-3">
+                    <h4><b>Hasta:</b> {{$documento->fecha_al->format('d/m/Y')}}</h4>
                   </div>
+
                 </div>
 
                 </div>
@@ -51,17 +52,27 @@
             </div>
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                  {!! Form::open(array('route'=>'archivos_documento.store','method'=>'POST', 'files'=>true)) !!}
-                  <div class="box-body" style="background: #e6e6ff;">
-                      <div class="col-md-6 text-left">
-                        {!! Form::file('archivo', null, ['class'=>'input-group-addon']) !!}
-                      </div>
-                      <div class="col-md-6 text-left"><a href="{{route('apartamento.create')}}" >
-                      </a>
-                      </div>
-                      <button class="btn btn-p  mary"><i class="fa fa-upload" aria-hidden="true"></i> Subir Archivo </button>
-                      <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
-                    {!! Form::close() !!}
+
+
+                  {!! Form::open(['route'=> 'archivos_documento.store', 'method' => 'POST', 'files'=>'true',
+                              'id' => 'filesDrop' , 'class' => 'dropzone', 'enctype' => 'multipart/form-data']) !!}
+                        <div class="dz-message" style="height:5px;">
+
+                        </div>
+                        <div class="fallback">
+                            <input name="file" type="file" id="file" multiple />
+                        </div>
+                        <div class="dropzone-previews" id="Preview"></div>
+
+                        <h4 style="text-align: center;color:#428bca;">Arrastre aquí un máximo de 5 imagenes a la vez <span class="glyphicon glyphicon-hand-down"></span></h4>
+                         <input type="hidden" name="documento_id" id="documento_id" value="{{ $documento->id }}">
+                        <button type="submit" class="btn btn-success" id="submit" style="margin-bottom:5px;"><i class="fa fa-cloud-upload" ></i> Subir</button>
+                  {!! Form::close() !!}
+
+
+                </div>
+                <div class="panel-body">
+
                     <div class="col-md-12" >
                       <!-- ARCHIVOS DEL DOCUMENTO -->
                       <table class="table table-hover" >
@@ -78,7 +89,7 @@
                               <a href="#" onclick="$(this).closest('form').submit()">
                                 <i class="fa fa-eye-slash" aria-hidden="true"></i> Ocultar todos
                               </a>
-                              <input type="hidden" name="documento_id" id="documento_id" value="<?php echo $documento->id;?>">
+                              <input type="hidden" name="documento_id" id="documento_id" value="{{ $documento->id }}">
                             </form>
                           </th>
                         </thead>
@@ -151,41 +162,41 @@
                           <div class="box-chat col-xs-12 alb-table" id="row-0">
                           </div>
                           @foreach($usuarios as $chatUser)
-                          <?php 
+                          <?php
                             //echo "id------".$chatUser->id;
                             $haveChat = (in_array($chatUser->id, $arrayChats, true)) ? '<p class="fa fa-comment-o" aria-hidden="true"></p>' : "";
                           ?>
                           <div class="box-chat col-xs-12 alb-table" id="row-{{$chatUser->id}}">
                             <div class="alb-row row-pointer" id="chat_{{$documento->id}}_{{$chatUser->id}}_{{ Auth::user()->id }}" >
-                              <div class="alb-left-cell">  
+                              <div class="alb-left-cell">
                                 <a href="#" title="{{$chatUser->name}}">
                                   <div class="col-xs-4 chat-icon" id="userChatIcon_{{$chatUser->id}}">
                                     <i class="fa fa-user fa-1" aria-hidden="true"><?php echo $haveChat;?></i>
                                   </div>
                                 </a>
                               </div>
-  
+
                               <div class="alb-middle-cell">
-                                 <span data-toggle="tooltip" title="" class="badge bg-yellow"  
+                                 <span data-toggle="tooltip" title="" class="badge bg-yellow"
                                  id="mensajeNuevo_{{$chatUser->id}}" data-original-title=""></span>
                               </div>
-  
+
                               <div class="alb-right-cell">
                                 <div class="col-xs-8 chat-font">{{$chatUser->usuario}} </div>
                               </div>
-  
-                            </div>  
+
+                            </div>
                           </div>
                           @endforeach
                         </div>
-                        
+
                               <div class="col-md-5 text-center" id="chats">
                               </div>
-                        
+
                         <div class="col-md-4">
                           <div id="compositor">
                             <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
-                            <input type="hidden" name="user_recibe" value= "" id="user_recibe"> 
+                            <input type="hidden" name="user_recibe" value= "" id="user_recibe">
                             <input type="hidden" name="_token" value=" {{ csrf_token() }}" id="token">
                             <input type="hidden" name= "docto_id" value ="{{ $documento->id }}" id="docto_id">
                             <input type="hidden" name= "activeChatId" value ="" id="activeChatId">
@@ -194,7 +205,7 @@
                         </div>
                         <div class="col-md-4">
                           <p style="display:table-cell;">Mínimo 5 caracteres.</p>
-                        
+
                           <span class="input-group-btn">
                             <button type="submit" id="sendMessage" name="sendMessage" class="btn btn-success btn-flat right">Enviar</button>
                           </span>
@@ -205,11 +216,11 @@
                         <div id='file-box' style='display:none;'>
                           <div class="col-md-4">
                             {!! Form::open(['route'=> 'file.store', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
-                            
+
                           <div class="dz-message" style="height:5px; width: auto;">
                                  Arrastra tu archivo aquí
                           </div>
-                          <div class="dropzone-previews"></div>
+                          <div class="dropzone-previews" id="dz-Preview"></div>
                           <input type="hidden" name= "docto_id" value ="{{ $documento->id }}" id="docto_id">
                           <input type="hidden" name="user_send" value="{{ Auth::user()->id }}" id="user_send">
                           <input type="hidden" name="chatActive" value="" id="chatActive"/>
@@ -217,7 +228,7 @@
                           {!! Form::close() !!}
                           </div>
                         </div>
-                        
+
                       </div>
   <p id="notificacion"></p>
 </div>
@@ -229,4 +240,10 @@
 @section('scripts')
 <script type="text/javascript" src="{{ asset('ui/js/new_chat.js')}}"></script>
 <script type="text/javascript" src="{{ asset('ui/js/uploadfile.js' )}}"></script>
+<script type="text/javascript" src="{{ asset('ui/js/upload-docs.js' )}}"></script>
+
+
+
+
+
 @endsection
