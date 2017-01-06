@@ -40,4 +40,8 @@ class Torre extends Model
     return $this->hasMany('App\Documento');
   }
 
+  public function cxc(){
+      return $this->hasMany('App\Models\Cxc','torre_id', 'id');
+  }
+
 }

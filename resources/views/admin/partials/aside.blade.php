@@ -46,6 +46,14 @@
             <li><a href="{{route('automoviles.index')}}"><i class="fa fa-car"></i><i class="fa fa-home"></i><span>Autos Apartamentos</span></a></li>
           </ul>
         </li>
+          <li class="treeview">
+            <a href="#"><i class="fa fa-credit-card-alt"></i> <span>Admón CXC</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a href="{{ route('cxc.index') }}"><i class="fa fa-credit-card"></i><sub><i class="fa fa-plus-circle"></i></sub> <span> Generación CXC</span></a></li>
+
+
+            </ul>
+          </li>
         <li><a href="{{route('torre.index')}}"><i class="fa fa-building-o"/></i><span>Edificios</span></a></li>
         <li><a href="{{route('users.index')}}"><i class="fa fa-users"/></i> <span>Usuarios</span></a></li>
         <li><a href="#"><i class="fa fa-exclamation-triangle"/></i> <span>Notificación General</span></a></li>

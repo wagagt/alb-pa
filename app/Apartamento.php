@@ -61,6 +61,11 @@ class Apartamento extends Model
     return $query->where('numero', 'LIKE', '%'.$numero.'%');
   }
 
+  public function cxc(){
+      return $this->belongsToMany('App\Models\Cxc','cxc_aptos', 'apto_id', 'cxc_id')
+                  ->withPivot('monto_mora','fecha_cobro','fecha_vence','status');
+  }
+
 
 
 }

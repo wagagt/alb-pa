@@ -150,11 +150,19 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	/*******************************************************/
 	Route::resource('file','FileMessageController');
 
+
+	// Cxc Route Administration
+    /*********************************************************/
+    Route::resource('cxc', 'CuentasPorCobrarController');
+
 	// Route DataTables Api
 	// Data Table Apartamentos
 	Route::get('api/apartamentos', 'ApartamentoController@getDataTable');
 	// Data Table Usuarios
 	Route::get('api/users', 'UsersController@getDataTable');
+
+	// Data Table CXC
+    Route::get('apu/cxc', 'CuentasPorCobrarController@getDataTable');
 
 
 });
