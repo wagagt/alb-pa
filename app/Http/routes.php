@@ -156,7 +156,13 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	// Data Table Usuarios
 	Route::get('api/users', 'UsersController@getDataTable');
 
-
+	//Refresh unread message notification
+	/*******************************************************/
+	// Route::resource('notifications/unread_messages','NotificationsController');
+	Route::get('notifications/user/{id}/unread_messages', [
+		'uses'	=> 'NotificationsController@getUnreadMessages',
+		'as'	=> 'notifications.getUnreadMessages'
+	]);
 });
 
 /********************************************************/
