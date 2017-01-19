@@ -11,9 +11,7 @@
             </div>
       </div>
     </div>
-
   <hr>
-
 <div class="bs-example">
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
