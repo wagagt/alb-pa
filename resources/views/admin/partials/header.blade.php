@@ -1,7 +1,7 @@
 <!-- Main Header -->
   <header class="main-header">
     <!-- Logo -->
-    <a href="/login/dash" class="logo">
+    <a href="/admin/home" class="logo">
           <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></span>
       <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"><b>Administración</b> - </span>
     </a>
@@ -29,25 +29,15 @@
               <li class="header" id="unreadCountText"></li>
               <li>
                 <!-- inner menu: contains the actual data -->
-                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;">
+                  <ul class="menu" style="overflow: hidden; width: 100%; height: 200px;" id="unreadLinks">
                   <!-- start message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Documento xx
-                        <small><i class="fa fa-clock-o"></i> fecha</small>
-                      </h4>
-                      <p>mensaje</p>
-                    </a>
-                  </li>
+                
                   <!-- end message -->
                 </ul>
                 <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 3px; position: absolute; top: 69px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 131.148px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a href="#">Click para ir al mensaje...</a></li>
             </ul>
           </li>
           <!-- Tasks Menu -->
