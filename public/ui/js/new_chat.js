@@ -99,10 +99,10 @@
 					var errorMessage = 'ERROR: Problemas para retornar los mensajes nuevos.';
 					//$("#users").html(errorMessage);
 				},
-				timeout: 10000
+				timeout: 1000
 			});
 			return false;
-		}, 10000);
+		}, 1000);
 		$("#notificacion").html("chat activo >" + $("#activeChatId").val());
 	};
 	
