@@ -3,7 +3,9 @@ function getUnReadMessages(){
 	console.log('llego a funcion');
 	var userId = $('#userid').val();
 	console.log("userid="+userId);
-	$.ajax({
+	
+	setInterval(function() {
+		$.ajax({
 		async: true,
 		type: "GET",
 		dataType: "html",
@@ -24,16 +26,16 @@ function getUnReadMessages(){
 						var docId   = this['documento_id'];
 						var type	= this['mensaje_tipo'];
 						var text	= this['texto'];
-						var sender	= this['user_send_id'];
+						var sender	= this.user_send.name;
 						var iconText = '';
-						if (type!='message'){
-							iconText='<i class="fa fa-commenting-o fa-2></i>';
+						if (type=='message'){
+							iconText='<i class="fa fa-commenting-o fa-2"></i>';
 						}else{
 							iconText='<i class="fa fa-picture-o fa-2"></i>';
 						}
 						link='<li><a href="/documento/'+docId+'/archivos_documento"><div class="pull-left">'+iconText+'</div>';
-						link=link+'<h4> Documento' + docId + '<small><i class="fa fa-clock-o"></i>';
-						link=link+' '+datec+'</small></h4><p>'+text+'...</p></a></li>';
+						link=link+'&nbsp;&nbsp;<small><i class="fa fa-clock-o"></i>'+datec;
+						link=link+'</small><h6>'+sender+'</h6><p>'+text+'...</p></a></li>';
 						links=links+link;
 					});
 					$('#unreadLinks').html(links);
@@ -43,6 +45,8 @@ function getUnReadMessages(){
 			return false;
 		}
 	});
+	return false;
+	}, 3000);
 };
 
 getUnReadMessages();

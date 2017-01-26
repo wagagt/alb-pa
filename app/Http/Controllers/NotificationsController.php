@@ -15,7 +15,7 @@ class NotificationsController extends Controller
                     ->where('status_id', 1)
                     ->orderBy('created_at', 'desc')
                     ->get();
-    
+    $json = json_decode($messagesUnRead);
     return $messagesUnRead;
     }
 }
