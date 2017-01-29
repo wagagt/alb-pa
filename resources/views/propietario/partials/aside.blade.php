@@ -36,13 +36,15 @@
         <li class="treeview" id="getDocuments">
           <a href="#"><i class="fa fa-book"></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/3/documentos">Balance general</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/5/documentos">Estado de resultados</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/4/documentos">Cuentas por pagar</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/1/documentos">Cuentas por cobrar</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/2/documentos">Conciliación bancaria</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/7/documentos">Proyectos de mejoras</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/6/documentos">Boletines</a></li>
+             @foreach ($tipoDocumentos as $tipoDoc)
+               <li><a href="/propietario/torre/{{$torreId}}/{{$tipoDoc['id']}}/documentos">{{ $tipoDoc['descripcion'] }}</a></li>
+            @endforeach
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/5/documentos">Estado de resultados</a></li>-->
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/4/documentos">Cuentas por pagar</a></li>-->
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/1/documentos">Cuentas por cobrar</a></li>-->
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/2/documentos">Conciliación bancaria</a></li>-->
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/7/documentos">Proyectos de mejoras</a></li>-->
+            <!--<li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/6/documentos">Boletines</a></li>-->
           </ul>
         </li>
 

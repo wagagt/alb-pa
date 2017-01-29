@@ -250,22 +250,7 @@ Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 	});
 });
 /***************** Route redirect user by 'tipo' ***********/
-Route::get
-('user/login',
-	['as' => 'user.login', function ()
-	{
-		if (\Auth::user()->isAdmin()){
-			return redirect()->route('admin.home');
-		}
-		$hashType='$2y$10$cCOppp.HKq6h2BbfAMvc5eGbrA9ED/J97.4BEOLEl/OoAEd463ioi';
-		$userId = Auth::user()->id;
-
-		if ((\Auth::user()->tipo == 'propietario') && (\Auth::user()->password === $hashType)){
-			return redirect('propietario/'.$userId.'/edit');
-
-		}else{
-			return view('propietario.dash');
-		}
-
-	}]
-);
+Route::get('user/login', [
+	'uses'	=>	'Auth\DashboardController@getDashboard',
+	'as'	=>	'user.login'
+]);
