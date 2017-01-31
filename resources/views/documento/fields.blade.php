@@ -35,7 +35,7 @@
     <br>
     {!! Form::hidden('user_id', Auth::user()->id ,null) !!}
     {!! Form::submit('Grabar',  ['class' => 'btn btn-primary']) !!}
-   {!! Form::hidden('urlBack', $previousUrl) !!}
+    {!! Form::hidden('urlBack', $previousUrl) !!}
 
     <a href="{{ $previousUrl }}" class="btn btn-danger">Cancelar</a>
 </div>

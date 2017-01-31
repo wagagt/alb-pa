@@ -154,6 +154,11 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	// Cxc Route Administration
     /*********************************************************/
     Route::resource('cxc', 'CuentasPorCobrarController');
+    Route::get('cxc/generate/{id}',
+        [
+            'uses'  => 'CuentasPorCobrarController@generarCxc',
+            'as'    =>  'cxc.generate'
+        ]);
 
 	// Route DataTables Api
 	// Data Table Apartamentos

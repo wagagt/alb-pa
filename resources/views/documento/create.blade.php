@@ -34,16 +34,14 @@
       $(document).ready(function(){
 
           $( function() {
-              $( '.dpk_date_del' ).datepicker({
-                 dateFormat: "dd/mm/yy",
+              $( '.dpk_date_del, .dpk_date_al' ).datepicker({
 
-                  dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
-              });
-              $( '.dpk_date_al' ).datepicker({
                   dateFormat: "dd/mm/yy",
+                  dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ],
+                  monthNames:["Enero","Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
 
-                  dayNamesMin: [ "Dom", "Lun", "Mar", "Mier", "Jue", "Vie", "Sab" ]
               });
+
 
           } );
 

@@ -21,7 +21,7 @@ class CreateCuentasPorCobrar extends Migration
             $table->dateTime('fecha_inicio_cobro');
             $table->dateTime('fecha_fin_cobro')->default('0000-00-00 00:00:00');
             $table->enum('recurrencia',['unico','semanal', 'mensual', 'trimestral']);
-            $table->integer('dia_del_mes');
+            $table->integer('dia_del_mes')->default(0);
             $table->enum('status',['creada', 'generada', 'procesada', 'inactiva']);
 
             $table->integer('torre_id')->unsigned();

@@ -1,11 +1,11 @@
 @extends('layouts.admin')
-@section('title','Crear Cxc')
+@section('title','Generación de cobros Cxc')
 @section('content')
 
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Crear CXC</h3>
+                <h3 class="box-title">Generación de cobros Cxc</h3>
                 <div class="box-tools">
 
                 </div>
@@ -21,7 +21,7 @@
                 <div class="row container-fluid">
                     <div class="col-md-12">
                         {!! Form::open(['route'=>'cxc.store', 'method' => 'POST']) !!}
-                        @include('cxc.fields')
+
                         {!! Form::close()!!}
                     </div>
                 </div>
