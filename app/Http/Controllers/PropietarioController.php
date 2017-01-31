@@ -46,10 +46,6 @@ class PropietarioController extends Controller
         Flash::warning('Debe completar los datos de su perfil y cambiar su contraseña!.');
         return view('propietario.edit')
             ->with('usuario',$user);
-        //}else{
-        //  Flash::success('No es posible accesar la URL requerida');
-        //return view('propietario.dash');
-        //}
     }
 
     public function update(Request $request, $id)
@@ -69,13 +65,10 @@ class PropietarioController extends Controller
 
     public function documentos(Request $request)
     {
-        //dd('llego a propietario documentos');
         $input = $request->all();
         $userId = \Auth::user()->id;
-        //dd($input, $userId);
         $apto = Apartamento::where('user_id', '=', $userId)->select('torre_id')
             ->first();
-        dd($apto);
         $documentos = Documento::where('torre_id', '=', $apto->torre_id)
             ->orderBy('nombre', 'ASC')
             ->paginate(25);

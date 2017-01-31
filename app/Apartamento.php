@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Apartamento extends Model
 {
 
-
-
   protected $table = 'apartamentos';
 
   protected $fillable =
@@ -60,7 +58,5 @@ class Apartamento extends Model
   {
     return $query->where('numero', 'LIKE', '%'.$numero.'%');
   }
-
-
 
 }

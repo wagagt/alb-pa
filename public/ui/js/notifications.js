@@ -1,9 +1,6 @@
 
 function getUnReadMessages(){
-	console.log('llego a funcion');
 	var userId = $('#userid').val();
-	console.log("userid="+userId);
-	
 	setInterval(function() {
 		$.ajax({
 		async: true,
