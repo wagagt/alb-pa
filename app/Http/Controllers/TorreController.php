@@ -8,13 +8,6 @@ use App\Torre;
 use Illuminate\Http\Request;
 use Laracasts\Flash\Flash;
 
-/**
- * Class TorreController
- *
- * @author  The scaffold-interface created at 2016-03-02 08:02:48pm
- * @link  https://github.com/amranidev/scaffold-interfac
- */
-
 class TorreController extends Controller {
 
 	public function index(Request $request) {
@@ -43,7 +36,6 @@ class TorreController extends Controller {
 
 	public function edit($id) {
 		$oficinas = Oficina::orderBy('nombre', 'ASC')->lists('nombre', 'id');
-
 		$torre = Torre::findOrfail($id);
 		$torre->oficina;
 
@@ -137,7 +129,4 @@ class TorreController extends Controller {
 			->with('trim4', $trim4)
 			->with('torre', $torre);
 	}
-
-
-
 }
