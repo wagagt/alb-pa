@@ -25,6 +25,12 @@
                     </div>
                 </div>
                  <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('torre_id', 'Edificio:') !!}
+                        {!! Form::select('torre_id', $torres , null, ['class' => 'form-control select-office', 'placeholder' => 'Seleccione una torre', 'required'])!!}
+                    </div>
+                </div>
+                 <div class="form-gorup">
                   <div class="col-md-12">
                     <br>
                     {!! Form::submit('Actualizar',  ['class' => 'btn btn-primary']) !!}

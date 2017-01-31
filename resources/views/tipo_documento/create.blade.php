@@ -26,6 +26,12 @@
                         {!! Form::text('descripcion', null, ['class' => 'form-control', 'placeholder' => 'Ingrese la descripción', 'required'])!!}
                     </div>
                 </div>
+                <div class="form-gorup">
+                    <div class="col-md-6">
+                        {!! Form::label('torre_id', 'Edificio:') !!}
+                        {!! Form::select('torre_id', $torres , null, ['class' => 'form-control select-office', 'placeholder' => 'Seleccione un edificio', 'required'])!!}
+                    </div>
+                </div>
                  <div class="form-gorup">
                   <div class="col-md-12">
                     <br>
