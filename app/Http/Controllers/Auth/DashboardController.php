@@ -56,9 +56,16 @@ class DashboardController extends Controller
 			return redirect('propietario/'.$userId.'/edit');
 
 		}else{
-		    $torreId = \Auth::user()->getTorre();
-		    $tipoDocumentos=\App\Tipo_documento::where('torre_id',$torreId)->orderBy('descripcion')->get();
-			return view('propietario.dash', ['tipoDocumentos'=>$tipoDocumentos ,'torreId'=> $torreId]);
+		    $tipoDocumentos=\App\Tipo_documento::where('torre_id',\Auth::user()->getTorre())->orderBy('descripcion')->get();
+			return view('propietario.dash', ['tipoDocumentos'=>$tipoDocumentos]);
 		}
     }
+    
+    public function getTiposDocumento()
+    {   
+        $tipoDocumentos=\App\Tipo_documento::where('torre_id',\Auth::user()->getTorre())->orderBy('descripcion')->get();
+        $jsonData = json_decode($tipoDocumentos);
+        return $jsonData;
+    }
+    
 }

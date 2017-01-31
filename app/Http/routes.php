@@ -200,6 +200,15 @@ Route::group(['middleware' => 'auth','propietario'], function () {
 		'as'   => 'propietario.documento.archivos'
 	]);
 	
+	//Get tipos Documento on Aside 
+	/*******************************************************/
+	Route::get('/user/propietario/tipo_documento',
+	[
+		'uses'	=> 'Auth\DashboardController@getTiposDocumento',
+		'as'	=> 'propietrio.getTiposDocumento'
+	]
+	);
+	
 });
 
 
