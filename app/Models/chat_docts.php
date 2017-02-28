@@ -10,10 +10,8 @@ class chat_docts extends Model
     use SoftDeletes;
 
     public $table = 'chat_docts';
-
-
+    protected $with = array('user_send');
     protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'texto', 'documento_id', 'status_id', 'user_send_id', 'user_recibe_id', 'doc_chat_id', 'mensaje_tipo'

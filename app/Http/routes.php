@@ -166,10 +166,20 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	// Data Table Usuarios
 	Route::get('api/users', 'UsersController@getDataTable');
 
+<<<<<<< HEAD
 	// Data Table CXC
     Route::get('apu/cxc', 'CuentasPorCobrarController@getDataTable');
 
 
+=======
+	//Refresh unread message notification
+	/*******************************************************/
+	// Route::resource('notifications/unread_messages','NotificationsController');
+	Route::get('notifications/user/{id}/unread_messages', [
+		'uses'	=> 'NotificationsController@getUnreadMessages',
+		'as'	=> 'notifications.getUnreadMessages'
+	]);
+>>>>>>> develop
 });
 
 /********************************************************/
@@ -206,6 +216,15 @@ Route::group(['middleware' => 'auth','propietario'], function () {
 		'uses' => 'Archivos_documentoController@archivosxDocumento',
 		'as'   => 'propietario.documento.archivos'
 	]);
+	
+	//Get tipos Documento on Aside 
+	/*******************************************************/
+	Route::get('/user/propietario/tipo_documento',
+	[
+		'uses'	=> 'Auth\DashboardController@getTiposDocumento',
+		'as'	=> 'propietrio.getTiposDocumento'
+	]
+	);
 	
 });
 
@@ -257,22 +276,7 @@ Route::group(['prefix'   => 'api', 'namespace'   => 'API'], function () {
 	});
 });
 /***************** Route redirect user by 'tipo' ***********/
-Route::get
-('user/login',
-	['as' => 'user.login', function ()
-	{
-		if (\Auth::user()->isAdmin()){
-			return redirect()->route('admin.home');
-		}
-		$hashType='$2y$10$cCOppp.HKq6h2BbfAMvc5eGbrA9ED/J97.4BEOLEl/OoAEd463ioi';
-		$userId = Auth::user()->id;
-
-		if ((\Auth::user()->tipo == 'propietario') && (\Auth::user()->password === $hashType)){
-			return redirect('propietario/'.$userId.'/edit');
-
-		}else{
-			return view('propietario.dash');
-		}
-
-	}]
-);
+Route::get('user/login', [
+	'uses'	=>	'Auth\DashboardController@getDashboard',
+	'as'	=>	'user.login'
+]);

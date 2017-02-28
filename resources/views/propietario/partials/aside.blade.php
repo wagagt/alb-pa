@@ -16,18 +16,6 @@
         </div>
       </div>
 
-      <!-- search form (Optional)
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      /.search form -->
-
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
           <li class="header">MENÚ</li>
@@ -35,22 +23,10 @@
 
         <li class="treeview" id="getDocuments">
           <a href="#"><i class="fa fa-book"></i> <span>Documentos</span> <i class="fa fa-angle-left pull-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/3/documentos">Balance general</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/5/documentos">Estado de resultados</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/4/documentos">Cuentas por pagar</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/1/documentos">Cuentas por cobrar</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/2/documentos">Conciliación bancaria</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/7/documentos">Proyectos de mejoras</a></li>
-            <li><a href="/propietario/torre/{{\Auth::user()->getTorre()}}/6/documentos">Boletines</a></li>
+          <ul class="treeview-menu" id="tiposDocumento">
+            <!--Loaded from Ajax-->
           </ul>
         </li>
-
-        <!--li>
-          <a href="/propietario/torre/{{\Auth::user()->getTorre()}}/documentos" id="getDocuments">
-              <i class="fa fa-building-o"/></i><span>Documentos Active</span>
-          </a>
-        </li-->
 
         <li>
           <a href="{{route('admin.auth.logout')}}">
@@ -62,3 +38,7 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <input type="hidden" name="userTorreId" id="userTorreId" value="{{Auth::user()->getTorre()}}">
+@section('scripts')
+<script type="text/javascript" src="{{ asset('ui/js/layoutData.js' )}}"></script>
+@endsection

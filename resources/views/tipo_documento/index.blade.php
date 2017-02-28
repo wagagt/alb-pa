@@ -28,12 +28,14 @@
             <table class="table table-hover">
                 <thead>
                     <th>descripcion</th>
+                    <th>Edificio</th>
                     <th>actions</th>
                 </thead>
                 <tbody>
                     @foreach($tipo_documentos as $value)
                     <tr>
                         <td>{{$value->descripcion}}</td>
+                        <td>{{$value->torre->nombre}}</td>
                         <td>
                             <a href="{{ route('tipo_documento.edit', $value->id) }}" class="btn btn-warning" title="Editar">
                                 <i class="fa fa-pencil-square-o"></i>

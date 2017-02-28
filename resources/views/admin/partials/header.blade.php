@@ -1,10 +1,8 @@
 <!-- Main Header -->
   <header class="main-header">
-
     <!-- Logo -->
-    <a href="/login/dash" class="logo">
+    <a href="/admin/home" class="logo">
           <span class="logo-mini"><img src="{{asset('/ui/images/logo-min.png')}}"></span>
-
       <span class="logo-lg"> <img src="{{asset('/ui/images/logo-b2.png')}}"><b>Administración</b> - </span>
     </a>
 
@@ -18,44 +16,31 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          
+        
           <!-- /.messages-menu -->
 
           <!-- Notifications Menu -->
-          
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            
+          <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-envelope-o"></i>
+              <span class="label label-success" id="unreadCount"></span>
+            </a>
             <ul class="dropdown-menu">
-              <li class="header">tiene 9 tareas</li>
+              <li class="header" id="unreadCountText"></li>
               <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
+                <!-- inner menu: contains the actual data -->
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;">
+                  <ul class="menu" style="overflow: hidden; width: 100%; height: 200px;" id="unreadLinks">
+                  <!-- start message -->
+                
+                  <!-- end message -->
                 </ul>
+                <div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 3px; position: absolute; top: 69px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 131.148px;"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
               </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
+              <li class="footer"><a href="#">Click para ir al mensaje...</a></li>
             </ul>
           </li>
+          <!-- Tasks Menu -->
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
@@ -97,4 +82,9 @@
         </ul>
       </div>
     </nav>
+    <input type="hidden" name="userid" id="userid" value="{{Auth::user()->id}}">
   </header>
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset('ui/js/notifications.js' )}}"></script>
+@endsection

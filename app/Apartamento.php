@@ -13,8 +13,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Apartamento extends Model
 {
 
-
-
   protected $table = 'apartamentos';
 
   protected $fillable =
@@ -65,7 +63,5 @@ class Apartamento extends Model
       return $this->belongsToMany('App\Models\Cxc','cxc_aptos', 'apto_id', 'cxc_id')
                   ->withPivot('monto_mora','fecha_cobro','fecha_vence','status');
   }
-
-
 
 }
