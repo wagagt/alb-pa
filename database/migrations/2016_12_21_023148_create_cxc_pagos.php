@@ -18,6 +18,7 @@ class CreateCxcPagos extends Migration
             $table->float('monto');
             $table->string('no_comprobante');
             $table->enum('tipo_pago',['cheque', 'efectivo','transferencia', 'deposito']);
+            $table->string('path_comprobante', 250)->nullable();
             $table->enum('status', ['pendiente', 'confirmado', 'invalido'])->default('pendiente');
 
             $table->integer('cxc_apto_id')->unsigned();
