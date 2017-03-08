@@ -24,7 +24,9 @@ class CuentasPorCobrarController extends Controller
 
     public function index()
     {
-        return view('cxc.index');
+        $cobros = Cxc::orderBy('id', 'ASC')->get();
+        return view('cxc.index')
+            ->with('cobros', $cobros);
     }
 
 
@@ -67,7 +69,7 @@ class CuentasPorCobrarController extends Controller
 
     public function show($id)
     {
-        //
+        
     }
 
 

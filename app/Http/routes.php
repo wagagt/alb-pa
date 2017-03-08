@@ -166,12 +166,10 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 	// Data Table Usuarios
 	Route::get('api/users', 'UsersController@getDataTable');
 
-<<<<<<< HEAD
 	// Data Table CXC
-    Route::get('apu/cxc', 'CuentasPorCobrarController@getDataTable');
+    Route::get('api/cxc', 'CuentasPorCobrarController@getDataTable');
 
 
-=======
 	//Refresh unread message notification
 	/*******************************************************/
 	// Route::resource('notifications/unread_messages','NotificationsController');
@@ -179,7 +177,6 @@ Route::group(['middleware' => 'auth', 'admin'], function ()
 		'uses'	=> 'NotificationsController@getUnreadMessages',
 		'as'	=> 'notifications.getUnreadMessages'
 	]);
->>>>>>> develop
 });
 
 /********************************************************/

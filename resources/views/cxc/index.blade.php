@@ -17,23 +17,38 @@
 
                     <table id="users-table" class="table table-bordered table-hover">
                         <thead style="display: table-header-group;">
-
-                        <th><strong>NOMBRE</strong></th>
-                        <th><strong>MONTO</strong></th>
-                        <th><strong>RECURRENCIA</strong></th>
-                        <th><strong>EDIFICIO</strong></th>
-                        <th><strong>STATUS</strong></th>
-                        <th><strong>FECHA INICIO COBRO</strong></th>
-                        <th><strong>ACCIONES</strong></th>
+                            <th><strong>NOMBRE</strong></th>
+                            <th><strong>MONTO</strong></th>
+                            <th><strong>RECURRENCIA</strong></th>
+                            <th><strong>FECHA INICIO</strong></th>
+                            <th><strong>FECHA FIN</strong></th>
+                            <th><strong>STATUS</strong></th>
+                            <th><strong>ACCIONES</strong></th>
                         </thead>
-                        <tfoot style="display:table-row-group;">
-                        <th><strong>NOMBRE</strong></th>
-                        <th><strong>MONTO</strong></th>
-                        <th><strong>RECURRENCIA</strong></th>
-                        <th><strong>EDIFICIO</strong></th>
-                        <th><strong>STATUS</strong></th>
-
-                        </tfoot>
+                        
+                        @foreach($cobros as $cobro)
+                        <tr>
+                            <th><strong>{{$cobro->nombre}}</strong></th>
+                            <th><strong>{{$cobro->monto}}</strong></th>
+                            <th><strong>{{$cobro->recurrencia}}</strong></th>
+                            <th><strong>{{$cobro->fecha_inicio_cobro}}</strong></th>
+                            <th><strong>{{$cobro->fecha_fin_cobro}}</strong></th>
+                            <th><strong>{{$cobro->status}}</strong></th>
+                            <th><strong>
+                                <a href="" class="btn btn-danger" title="Elimiar" onclick="return confirm('¿Seguro que desea eliminar el registro?')">
+                                <i class="fa fa-trash"></i></a>
+                                
+                                <a href="" class="btn btn-success" title="Detalle" >
+                                <i class="fa fa-users"></i></a>
+                                
+                                <a href="" class="btn btn-warning" title="Editar">
+                                <i class="fa fa-pencil-square-o"></i></a>
+                                
+                                </strong>
+                            </th>
+                        </tr>
+                        @endforeach
+                        
                     </table>
 
                 </div>
