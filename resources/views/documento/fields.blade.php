@@ -7,8 +7,11 @@
 <div class="form-gorup">
     <div class="col-md-6">
         {!! Form::label('TipoDocumento', 'Tipo de Documento:') !!}
-        {!! Form::select('tipo_documentos_id', $tipo_documentos_list, null, ['class' => 'form-control select-type', 'placeholder' => 'Seleccione un tipo de documento', 'required'])!!}
-
+        <select class="form-control" name="item_id">
+            @foreach($tipo_documentos_list as $tipoDoc)
+              <option value="{{$tipoDoc->id}}">{{$tipoDoc->descripcion}} -> ({{$tipoDoc->torre->nombre}})</option>
+            @endforeach
+        </select>
     </div>
 </div>
 <div class="form-gorup">

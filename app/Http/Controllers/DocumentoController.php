@@ -24,12 +24,11 @@ class DocumentoController extends Controller {
 
 	public function index(Request $request) {
 		$documentos = Documento::search($request->nombre)->orderBy('nombre', 'ASC')->paginate(5);
-		//dd($documentos->relations());
 		return view('documento.index')->with('documentos', $documentos);
 	}
 	public function create() {
 		$previousUrl    = Url::previous();
-		$tipoDocumentos = Tipo_documento::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');// se listan los paises
+		$tipoDocumentos = Tipo_documento::orderBy('descripcion', 'ASC')->get();
 		$torres         = Torre::orderBy('nombre', 'ASC')->lists('nombre', 'id');
 		return view('documento.create')
 			->with('tipo_documentos_list', $tipoDocumentos)
@@ -37,7 +36,6 @@ class DocumentoController extends Controller {
 			->with('previousUrl', $previousUrl);
 	}
 	public function store(Request $request) {
-
 		$input = $request->all();
 		$dateRepDel =  str_replace('/', '-',$input['del']);
 		$dataRepAl	=  str_replace('/', '-', $input['al']);
@@ -51,7 +49,6 @@ class DocumentoController extends Controller {
 		$documento->save();
 		Flash::success('Documento "'.$documento->nombre.'" ha sido agregado satisfactoriamente.');
 		return redirect($request->urlBack);
-		//->route('documento.index');
 	}
 
 	public function show($id) {
