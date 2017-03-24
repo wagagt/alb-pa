@@ -61,9 +61,10 @@ class DocumentoController extends Controller {
 
 	public function edit($id, Request $request) {
 		$previousUrl          = Url::previous();
-		$tipo_documentos_list = Tipo_documento::orderBy('descripcion', 'ASC')->lists('descripcion', 'id');
-		$torres               = Torre::orderBy('nombre', 'ASC')->lists('nombre', 'id');
-		$documento            = Documento::findOrfail($id);
+        $tipo_documentos_list = Tipo_documento::orderBy('descripcion', 'ASC')->get();
+        $torres         = Torre::orderBy('nombre', 'ASC')->lists('nombre', 'id');
+        $documento            = Documento::findOrfail($id);
+        
 		return view('documento.edit')
 			->with('documento', $documento)
 			->with('tipo_documentos_list', $tipo_documentos_list)

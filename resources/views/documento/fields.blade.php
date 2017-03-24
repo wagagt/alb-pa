@@ -9,7 +9,7 @@
         {!! Form::label('TipoDocumento', 'Tipo de Documento:') !!}
         <select class="form-control" name="item_id">
             @foreach($tipo_documentos_list as $tipoDoc)
-              <option value="{{$tipoDoc->id}}">{{$tipoDoc->descripcion}} -> ({{$tipoDoc->torre->nombre}})</option>
+              <option value="{{$tipoDoc->id}}">{{$tipoDoc->descripcion}} - [{{$tipoDoc->torre->nombre}}]</option>
             @endforeach
         </select>
     </div>
