@@ -62,28 +62,33 @@ class TorreController extends Controller {
 	
 	public function documento(Request $request, $id,$tipo)
 	{
+		$year = (is_null($request->year))?date('Y'):$request->year;
 		$trim1 = Documento::where('torre_id', '=', $id)
 			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '1')
 			->whereMonth('fecha_del', '<=', '3')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim2 = Documento::where('torre_id', '=', $id)
 			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '4')
 			->whereMonth('fecha_del', '<=', '6')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim3 = Documento::where('torre_id', '=', $id)
 			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '7')
 			->whereMonth('fecha_del', '<=', '9')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim4 = Documento::where('torre_id', '=', $id)
 			->where('tipo_documentos_id','=',$tipo)
 			->whereMonth('fecha_del', '>=', '10')
 			->whereMonth('fecha_del', '<=', '12')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$torre = Torre::findOrfail($id);
@@ -94,29 +99,35 @@ class TorreController extends Controller {
 			->with('trim2', $trim2)
 			->with('trim3', $trim3)
 			->with('trim4', $trim4)
-			->with('torre', $torre);
+			->with('torre', $torre)
+			->with('year', $year);
 	}
 
 	public function documentos(Request $request, $id)
 	{
+		$year = (is_null($request->year))?date('Y'):$request->year;
 		$trim1 = Documento::where('torre_id', '=', $id)
 			->whereMonth('fecha_del', '>=', '1')
 			->whereMonth('fecha_del', '<=', '3')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim2 = Documento::where('torre_id', '=', $id)
 			->whereMonth('fecha_del', '>=', '4')
 			->whereMonth('fecha_del', '<=', '6')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim3 = Documento::where('torre_id', '=', $id)
 			->whereMonth('fecha_del', '>=', '7')
 			->whereMonth('fecha_del', '<=', '9')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$trim4 = Documento::where('torre_id', '=', $id)
 			->whereMonth('fecha_del', '>=', '10')
 			->whereMonth('fecha_del', '<=', '12')
+			->whereYear('created_at', '=', $year)
 			->orderBy('nombre', 'ASC')->paginate(25);
 
 		$torre = Torre::findOrfail($id);
@@ -127,6 +138,8 @@ class TorreController extends Controller {
 			->with('trim2', $trim2)
 			->with('trim3', $trim3)
 			->with('trim4', $trim4)
-			->with('torre', $torre);
+			->with('torre', $torre)
+			->with('year', $year);
+			
 	}
 }
