@@ -35,16 +35,17 @@
             <li class=""><a href="#t2" data-toggle="tab" aria-expanded="false">Abril-Junio</a></li>
             <li class=""><a href="#t3" data-toggle="tab" aria-expanded="false">Julio-Septiembre</a></li>
             <li class=""><a href="#t4" data-toggle="tab" aria-expanded="false">Octubre-Diciembre</a></li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                Año <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">2016</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">2017</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><2016</a></li>
-              </ul>
-            </li>
+            <li class=""><a href="#" >
+                    <input type='hidden' id='pyear' name='pyear' value='{{ $year }}'>
+                    <input type='hidden' id='path' name='path' value='{{\Request::url()}}'>
+                    Año
+                    
+                    <select class="dropdown" id=year name=year>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                    </select>              
+              </a></li>
+
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="t1">
@@ -241,11 +242,26 @@
 </div>
 </div>
 
-
-
 </div>
 
 </div>
 </div>
 
 @endsection
+
+@section('scripts')
+<script>
+  // select year on select input.
+  $('#year').val($('input#pyear').val());
+  
+  // event to redirect by year
+$(document).ready(function(){
+  $('#year').change(function(){
+    newUrl=$('#path').val()+'?year='+$('#year').val();
+    $(location).attr("href", newUrl);
+  });
+});
+</script>
+@endsection
+
+
