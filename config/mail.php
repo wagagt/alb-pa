@@ -28,7 +28,7 @@ return [
 	|
 	 */
 
-	'host' => env('MAIL_HOST', 'mail.albpanama.com'),
+	'host' => env('MAIL_HOST', 'mail.alb-panama.com'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
 	 */
 
 	//'from' => ['address' => null, 'name' => null],
-	'from' => ['address' => 'noreplay@albpanama.com', 'name' => 'Administrador del sistema'],
+	'from' => ['address' => 'noreplay@alb-panama.com', 'name' => 'Administrador del sistema'],
 
 	/*
 	|--------------------------------------------------------------------------
